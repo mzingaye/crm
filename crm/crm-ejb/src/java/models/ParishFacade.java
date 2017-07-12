@@ -1,0 +1,31 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package models;
+
+import entities.Parish;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+/**
+ *
+ * @author Lyne
+ */
+@Stateless
+public class ParishFacade extends AbstractFacade<Parish> {
+    @PersistenceContext(unitName = "crm-ejbPU")
+    private EntityManager em;
+
+    @Override
+    protected EntityManager getEntityManager() {
+        return em;
+    }
+
+    public ParishFacade() {
+        super(Parish.class);
+    }
+    
+}

@@ -15,7 +15,26 @@
     
     <jsp:attribute name="content">
         <f:view>
-            
+            <h:form>
+                <h:dataTable var="p" value="#{parish.getAll()}">
+                    <h:column>
+                        <f:facet name="header">Id</f:facet>
+                        <h:outputText value="#{p.id}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Name</f:facet>
+                        <h:outputText value="#{p.name}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Contact</f:facet>
+                        <h:outputText value="#{p.contact}"></h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Address</f:facet>
+                        <h:outputText value="#{p.physicalAddress}"></h:outputText>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
         </f:view>
     </jsp:attribute>
 </t:mainTemplate>
