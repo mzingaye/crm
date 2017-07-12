@@ -1,6 +1,6 @@
 <%-- 
-    Document   : baptism
-    Created on : Jul 10, 2017, 1:18:38 PM
+    Document   : catholics
+    Created on : Jul 12, 2017, 10:51:13 PM
     Author     : Lyne
 --%>
 
@@ -12,33 +12,30 @@
 
 <t:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
-    <jsp:attribute name="page_title">Baptism Records</jsp:attribute>
-   
+    <jsp:attribute name="page_title">Dashboard</jsp:attribute>
+    
     <jsp:attribute name="content">
         <f:view>
             <h:form>
-                <h:commandLink value="New Baptism" action="newBaptism"></h:commandLink>
-                
-                <h:dataTable var="p" value="#{parish.getAll()}">
+                <h:dataTable var="c" value="#{catholic.getAll()}">
                     <h:column>
                         <f:facet name="header">Id</f:facet>
-                        <h:outputText value="#{p.id}"></h:outputText>
+                        <h:outputText value="#{c.id}"></h:outputText>
                     </h:column>
                     <h:column>
-                        <f:facet name="header">Name</f:facet>
-                        <h:outputText value="#{p.name}"></h:outputText>
+                        <f:facet name="header">First Name</f:facet>
+                        <h:outputText value="#{c.fname}"></h:outputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Contact</f:facet>
-                        <h:outputText value="#{p.contact}"></h:outputText>
+                        <h:outputText value="#{c.contact}"></h:outputText>
                     </h:column>
                     <h:column>
                         <f:facet name="header">Address</f:facet>
-                        <h:outputText value="#{p.physicalAddress}"></h:outputText>
+                        <h:outputText value="#{c.age}"></h:outputText>
                     </h:column>
                 </h:dataTable>
             </h:form>
-            
         </f:view>
     </jsp:attribute>
 </t:mainTemplate>
