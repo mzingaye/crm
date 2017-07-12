@@ -35,7 +35,6 @@
     <!-- Custom Theme Style -->
     <link href="resources/build/css/custom.min.css" rel="stylesheet">
   </head>
-
   <body class="nav-md">
     <div class="container body">
       <div class="main_container">
@@ -50,7 +49,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="resources/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="/resources/images/img.jpg" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
