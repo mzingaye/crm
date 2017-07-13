@@ -6,9 +6,7 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,12 +14,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -36,8 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByUsername", query = "SELECT u FROM User u WHERE u.username = :username"),
     @NamedQuery(name = "User.findByPassword", query = "SELECT u FROM User u WHERE u.password = :password"),
     @NamedQuery(name = "User.findByUsergroup", query = "SELECT u FROM User u WHERE u.usergroup = :usergroup"),
-    @NamedQuery(name = "User.findByDesignation", query = "SELECT u FROM User u WHERE u.designation = :designation"),
-    @NamedQuery(name = "User.findByUserid", query = "SELECT u FROM User u WHERE u.userid = :userid")})
+    @NamedQuery(name = "User.findByDesignation", query = "SELECT u FROM User u WHERE u.designation = :designation")})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -45,7 +40,7 @@ public class User implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
+    @Basic(optional = false) 
     @NotNull
     @Size(min = 1, max = 20)
     @Column(name = "username")
@@ -64,20 +59,6 @@ public class User implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "designation")
     private String designation;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "Userid")
-    private int userid;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Death> deathList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Matrimonial> matrimonialList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Catholic> catholicList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Baptism> baptismList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Confirmation> confirmationList;
 
     public User() {
     }
@@ -86,13 +67,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String username, String password, int usergroup, String designation, int userid) {
+    public User(Integer id, String username, String password, int usergroup, String designation) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.usergroup = usergroup;
         this.designation = designation;
-        this.userid = userid;
     }
 
     public Integer getId() {
@@ -133,59 +113,6 @@ public class User implements Serializable {
 
     public void setDesignation(String designation) {
         this.designation = designation;
-    }
-
-    public int getUserid() {
-        return userid;
-    }
-
-    public void setUserid(int userid) {
-        this.userid = userid;
-    }
-
-    @XmlTransient
-    public List<Death> getDeathList() {
-        return deathList;
-    }
-
-    public void setDeathList(List<Death> deathList) {
-        this.deathList = deathList;
-    }
-
-    @XmlTransient
-    public List<Matrimonial> getMatrimonialList() {
-        return matrimonialList;
-    }
-
-    public void setMatrimonialList(List<Matrimonial> matrimonialList) {
-        this.matrimonialList = matrimonialList;
-    }
-
-    @XmlTransient
-    public List<Catholic> getCatholicList() {
-        return catholicList;
-    }
-
-    public void setCatholicList(List<Catholic> catholicList) {
-        this.catholicList = catholicList;
-    }
-
-    @XmlTransient
-    public List<Baptism> getBaptismList() {
-        return baptismList;
-    }
-
-    public void setBaptismList(List<Baptism> baptismList) {
-        this.baptismList = baptismList;
-    }
-
-    @XmlTransient
-    public List<Confirmation> getConfirmationList() {
-        return confirmationList;
-    }
-
-    public void setConfirmationList(List<Confirmation> confirmationList) {
-        this.confirmationList = confirmationList;
     }
 
     @Override

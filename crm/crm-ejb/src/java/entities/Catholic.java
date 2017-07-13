@@ -56,6 +56,15 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Catholic.findByFnatID", query = "SELECT c FROM Catholic c WHERE c.fnatID = :fnatID"),
     @NamedQuery(name = "Catholic.findByMnatID", query = "SELECT c FROM Catholic c WHERE c.mnatID = :mnatID")})
 public class Catholic implements Serializable {
+    @Size(max = 15)
+    @Column(name = "natID")
+    private String natID;
+    @Size(max = 15)
+    @Column(name = "fnatID")
+    private String fnatID;
+    @Size(max = 15)
+    @Column(name = "mnatID")
+    private String mnatID;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -117,12 +126,6 @@ public class Catholic implements Serializable {
     @Size(max = 50)
     @Column(name = "mlname")
     private String mlname;
-    @Column(name = "natID")
-    private Integer natID;
-    @Column(name = "fnatID")
-    private Integer fnatID;
-    @Column(name = "mnatID")
-    private Integer mnatID;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "memberid")
     private List<Death> deathList;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
@@ -271,29 +274,6 @@ public class Catholic implements Serializable {
         this.mlname = mlname;
     }
 
-    public Integer getNatID() {
-        return natID;
-    }
-
-    public void setNatID(Integer natID) {
-        this.natID = natID;
-    }
-
-    public Integer getFnatID() {
-        return fnatID;
-    }
-
-    public void setFnatID(Integer fnatID) {
-        this.fnatID = fnatID;
-    }
-
-    public Integer getMnatID() {
-        return mnatID;
-    }
-
-    public void setMnatID(Integer mnatID) {
-        this.mnatID = mnatID;
-    }
 
     @XmlTransient
     public List<Death> getDeathList() {
@@ -353,6 +333,30 @@ public class Catholic implements Serializable {
     @Override
     public String toString() {
         return "entities.Catholic[ id=" + id + " ]";
+    }
+
+    public String getNatID() {
+        return natID;
+    }
+
+    public void setNatID(String natID) {
+        this.natID = natID;
+    }
+
+    public String getFnatID() {
+        return fnatID;
+    }
+
+    public void setFnatID(String fnatID) {
+        this.fnatID = fnatID;
+    }
+
+    public String getMnatID() {
+        return mnatID;
+    }
+
+    public void setMnatID(String mnatID) {
+        this.mnatID = mnatID;
     }
     
 }

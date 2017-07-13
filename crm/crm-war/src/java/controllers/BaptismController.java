@@ -6,8 +6,8 @@
 package controllers;
 
 import entities.Baptism;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -17,7 +17,7 @@ import models.BaptismFacade;
  *
  * @author Lyne
  */
-@Named(value = "baptism")
+@ManagedBean(name = "baptism")
 @SessionScoped
 public class BaptismController implements Serializable {
     @EJB

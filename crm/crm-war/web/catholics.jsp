@@ -12,7 +12,7 @@
 
 <t:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
-    <jsp:attribute name="page_title">Dashboard</jsp:attribute>
+    <jsp:attribute name="page_title">Catholic Membership </jsp:attribute>
     
     <jsp:attribute name="content">
         <f:view>

@@ -6,21 +6,23 @@
 package controllers;
 
 import entities.Catholic;
-import javax.faces.bean.SessionScoped;
+import entities.User;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
 import models.CatholicFacade;
+import models.UserFacade;
 
 /**
  *
  * @author Lyne
  */
-@ManagedBean(name = "catholic")
-@SessionScoped
-public class CatholicController{
+public class CatholicController {
+    @EJB
+    private UserFacade userFacade;
+    
     @EJB
     private CatholicFacade catholicFacade;
+ 
     
     private Catholic c = new Catholic();
 
@@ -35,14 +37,18 @@ public class CatholicController{
     public CatholicController() {
     }
     
+    
     public List<Catholic> getAll(){
         return this.catholicFacade.findAll();
     }
     
     public String add(){
+        User u = userFacade.find(1);
+        c.setUserid(u);
         this.catholicFacade.create(c);
-        c = new Catholic();
-        return "index";
+        //c = new Catholic();
+        return "sponsor";
     }
+   
     
 }

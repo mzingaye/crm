@@ -39,9 +39,9 @@ public class ParishController {
     }
     
     public String add(){
-        
-        this.parishFacade.create(p);
-        p = new Parish();
+        System.out.println("Im being executed!!!");
+       // this.parishFacade.create(p);
+       // p = new Parish();
         return "index";
     }
     
