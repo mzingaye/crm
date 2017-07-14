@@ -49,6 +49,10 @@ public class CatholicController {
         c = new Catholic();
         return "sponsor";
     }
+    
+    public String next(){
+        return "sponsor";
+    }
    
     
 }

@@ -38,6 +38,14 @@ public class SponsorController {
     public String add(){
         this.sponsorFacade.create(this.s);
         s = new Sponsor();
+        return "index";
+    }
+    
+    public String prev(){
+        return "createcatholic";
+    }
+    
+    public String next(){
         return "newBaptism";
     }
     
