@@ -16,10 +16,10 @@
     
     <jsp:attribute name="content">
         <f:view>
-            <h:commandLink value="New Minister" action="minister"></h:commandLink>
-
-
+            
             <h:form>
+                
+                <h:commandLink value="New Minister" action="minister"></h:commandLink>
                 <h1><h:outputText value="List"/></h1>
                 <h:dataTable value="#{minister.getAll()}" var="item">
                     <h:column>
@@ -44,7 +44,7 @@
                         <f:facet name="header">
                             <h:outputText value="Order"/>
                         </f:facet>
-                        <h:outputText value="#{item.order}"/>
+                        <h:outputText value="#{item.priestorder}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">

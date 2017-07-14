@@ -24,4 +24,9 @@
         <managed-bean-class>controllers.MinisterController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>baptismActions</managed-bean-name>
+        <managed-bean-class>controllers.BaptismActions</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>

@@ -37,7 +37,7 @@ public class SponsorController {
     
     public String add(){
         this.sponsorFacade.create(this.s);
-        //s = new Sponsor();
+        s = new Sponsor();
         return "newBaptism";
     }
     

@@ -123,8 +123,8 @@
                                         </h:selectOneMenu>
                                     </div>
                                 </div>  
-                                    <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Place Of Baptism</label>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptized By</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <h:selectOneMenu value="#{baptism.b.ministerid}" styleClass="form-control ">
                                             <f:selectItems value="#{minister.getAll()}" 
@@ -134,6 +134,8 @@
                                         </h:selectOneMenu>
                                     </div>
                                 </div>
+                                <hr>
+                                <h:commandButton action="#{baptism.add()}" value="Save Baptism" styleClass="btn btn-primary"/>
                              </h:form>
                           </div>
                         </div>

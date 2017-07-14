@@ -1,9 +1,8 @@
 <%-- 
-    Document   : minister
-    Created on : Jul 13, 2017, 11:21:42 PM
+    Document   : parish
+    Created on : Jul 14, 2017, 11:05:49 AM
     Author     : Lyne
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -20,7 +19,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Catholic Minister Details </h2>
+                        <h2>Parish Details </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -43,8 +42,8 @@
                         <ul class="wizard_steps">
                             <li>
                               <a href="parish.jsp">
-                                <span class="step_no">1</span>
-                                <span class="step_descr">
+                                <span class="step_no" style="color: #FAFAFA; font-weight: bold">1</span>
+                                <span class="step_descr" style="color: black; font-weight: bold ">
                                     Step 1<br />
                                     <small>Parish Details</small>
                                 </span>
@@ -52,8 +51,8 @@
                             </li>
                             <li>
                               <a href="minister.jsp">
-                                <span class="step_no" style="color: #FAFAFA; font-weight: bold" >2</span>
-                                <span class="step_descr" style="color: black; font-weight: bold " >
+                                <span class="step_no" >2</span>
+                                <span class="step_descr" >
                                     Step 2<br />
                                     <small>Catholic Minister Details</small>
                                 </span>
@@ -70,46 +69,30 @@
                             </li>
                           </ul>
                             
-                            <h:outputLabel>Minister Information</h:outputLabel>
+                            <h:outputLabel>Church Information</h:outputLabel>
                             <hr>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Church Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{minister.m.fname}"/>
+                                <h:inputText styleClass="form-control has-feedback-left" id="name" value="#{parish.p.name}"/>
                                 </div>
                             </div>
+                            
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Physical Address</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{minister.m.lname}"/>
+                                    <h:inputTextarea styleClass="form-control has-feedback-left" id="physicalAddress" value="#{parish.p.physicalAddress}"/>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Religious Order</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="priestorder" value="#{minister.m.priestorder}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Position</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="rank" value="#{minister.m.rank}" title="Position" required="true" requiredMessage="The Dob field is required."/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{minister.m.natID}"/>
-                                </div>
-                            </div>
-                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact Details</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{minister.m.contact}" title="Contact" required="true" requiredMessage="The Contact field is required."/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="contact" value="#{parish.p.contact}"/>
                                 </div>
-                            </div> 
+                            </div>
+                             
                             <hr> 
-                            <h:commandButton value="Save" action="#{minister.add()}" styleClass="btn btn-primary"/>
+                            <h:commandButton value="Save Parish" action="#{parish.add()}" styleClass="btn btn-primary"/>
                     </h:form>    
                    </div>
                 </div>

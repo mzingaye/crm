@@ -46,7 +46,7 @@ public class CatholicController {
         User u = userFacade.find(1);
         c.setUserid(u);
         this.catholicFacade.create(c);
-        //c = new Catholic();
+        c = new Catholic();
         return "sponsor";
     }
    

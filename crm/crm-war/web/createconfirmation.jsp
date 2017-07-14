@@ -1,9 +1,8 @@
 <%-- 
-    Document   : newCatholic
-    Created on : Jul 12, 2017, 8:59:43 PM
+    Document   : createconfirmation
+    Created on : Jul 14, 2017, 1:22:22 PM
     Author     : Lyne
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
@@ -13,7 +12,7 @@
 
 <t:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
-    <jsp:attribute name="page_title">New Baptism Record</jsp:attribute>
+    <jsp:attribute name="page_title">New Confirmation Record</jsp:attribute>
    
     <jsp:attribute name="content">
          <f:view>
@@ -22,7 +21,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Sponsor Details </h2>
+                        <h2>Confirmation Details </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -43,36 +42,7 @@
                     <div class="x_content">
                         <div id="wizard" class="form_wizard wizard_horizontal">
                         <h:form  styleClass="form-horizontal form-label-left">
-                        <ul class="wizard_steps">
-                            <li>
-                              <a href="createcatholic.jsp">
-                                <span class="step_no">1</span>
-                                <span class="step_descr" >
-                                    Step 1<br />
-                                    <small>Personal Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="sponsor.jsp">
-                                <span class="step_no" style="color: #FAFAFA; font-weight: bold">2</span>
-                                <span class="step_descr" style="color: black;  font-weight: bold">
-                                    Step 2<br />
-                                    <small>Sponsor Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="newBaptism.jsp">
-                                <span class="step_no" >3</span>
-                                <span class="step_descr" >
-                                    Step 3<br />
-                                    <small>Baptism Details</small>
-                                </span>
-                              </a>
-                            </li>
-                          </ul>
-                            
+                        
                             <h:outputLabel>Sponsor Personal Information</h:outputLabel>
                             <hr>
                             <div class="form-group">
@@ -139,4 +109,3 @@
         </f:view>
     </jsp:attribute>
 </t:mainTemplate>
-           

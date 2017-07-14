@@ -39,4 +39,10 @@ public class UsersController {
         return  this.userFacade.find(userID);
     }
     
+    public String add(){
+        this.userFacade.create(u);
+        this.u = new User();
+        return "config";
+    }
+    
 }

@@ -183,7 +183,7 @@
                                 </div>
                             </div>
                                 <hr>
-                            <h:commandButton action="#{catholic.add()}" value="Add Catholic"/>
+                            <h:commandButton action="#{catholic.add()}" value="Add Catholic" styleClass="btn btn-primary"/>
                         </h:form>
                         </div>
                     </div>
