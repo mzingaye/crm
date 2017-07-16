@@ -18,7 +18,7 @@
        <f:view>
          <h:form>
                
-                <h:commandLink value="Add New Record" action="creatematrimonial" styleClass="btn btn-info"></h:commandLink>
+                <h:commandLink value="Add New Record" action="creatematrimonialrec" styleClass="btn btn-info"></h:commandLink>
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">

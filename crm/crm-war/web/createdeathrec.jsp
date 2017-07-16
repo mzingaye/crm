@@ -21,7 +21,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Sponsor Details </h2>
+                        <h2>Deceased Details </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -40,96 +40,50 @@
                         <div class="clearfix"></div>
                       </div>
                     <div class="x_content">
-                        <div id="wizard" class="form_wizard wizard_horizontal">
-                        <h:form  styleClass="form-horizontal form-label-left">
-                        <ul class="wizard_steps">
-                            <li>
-                              <a href="createcatholic.jsp">
-                                <span class="step_no">1</span>
-                                <span class="step_descr" >
-                                    Step 1<br />
-                                    <small>Personal Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="sponsor.jsp">
-                                <span class="step_no" style="color: #FAFAFA; font-weight: bold">2</span>
-                                <span class="step_descr" style="color: black;  font-weight: bold">
-                                    Step 2<br />
-                                    <small>Sponsor Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="newBaptism.jsp">
-                                <span class="step_no" >3</span>
-                                <span class="step_descr" >
-                                    Step 3<br />
-                                    <small>Baptism Details</small>
-                                </span>
-                              </a>
-                            </li>
-                          </ul>
-                            
-                            <h:outputLabel>Sponsor Personal Information</h:outputLabel>
-                            <hr>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{sponsor.s.fname}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{sponsor.s.mname}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{sponsor.s.lname}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{sponsor.s.sex}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{sponsor.s.natID}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{sponsor.s.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
-                                        <f:convertDateTime pattern="dd/mm/yyyy" />
-                                    </h:inputText>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Age</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="age" value="#{sponsor.s.age}" title="Age" required="true" requiredMessage="The Age field is required."/>
-                                </div>
-                            </div>
-                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{sponsor.s.contact}" title="Contact" required="true" requiredMessage="The Contact field is required."/>
-                                </div>
-                            </div> 
-                            <hr>
-                                                        
-                            <h:commandButton action="#{sponsor.add()}" value="Add Catholic" styleClass="btn btn-primary"/>
+
+                        <h:form>
+                            <h:panelGrid columns="2" styleClass="form-group">
+                                <h:outputLabel value="Id:" for="id" styleClass="control-label col-md-3 col-sm-3 col-xs-12"/>
+                                <h:inputText id="id" value="#{deathRec.d.id}" title="Id" required="true" requiredMessage="The Id field is required." styleClass="form-control has-feedback-left col-md-6 col-sm-6 col-xs-12"/>
+                                <h:outputLabel value="SpouseMemberID:" for="spouseMemberID" />
+                                <h:inputText id="spouseMemberID" value="#{deathRec.d.spouseMemberID}" title="SpouseMemberID" />
+                                <h:outputLabel value="Dod:" for="dod" />
+                                <h:inputText id="dod" value="#{deathRec.d.dod}" title="Dod" required="true" requiredMessage="The Dod field is required.">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:inputText>
+                                <h:outputLabel value="PlaceOfDeath:" for="placeOfDeath" />
+                                <h:inputText id="placeOfDeath" value="#{deathRec.d.placeOfDeath}" title="PlaceOfDeath" required="true" requiredMessage="The PlaceOfDeath field is required."/>
+                                <h:outputLabel value="DateOfBurial:" for="dateOfBurial" />
+                                <h:inputText id="dateOfBurial" value="#{deathRec.d.dateOfBurial}" title="DateOfBurial" required="true" requiredMessage="The DateOfBurial field is required.">
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:inputText>
+                                <h:outputLabel value="PlaceOfBurial:" for="placeOfBurial" />
+                                <h:inputText id="placeOfBurial" value="#{deathRec.d.placeOfBurial}" title="PlaceOfBurial" required="true" requiredMessage="The PlaceOfBurial field is required."/>
+                                <h:outputLabel value="SacramentAdministered:" for="sacramentAdministered" />
+                                <h:inputText id="sacramentAdministered" value="#{deathRec.d.sacramentAdministered}" title="SacramentAdministered" />
+                                <h:outputLabel value="Userid:" for="userid" />
+                                <h:selectOneMenu id="userid" value="#{deathRec.d.userid}" title="Userid" required="true" requiredMessage="The Userid field is required.">
+                                    <!-- TODO: update below reference to list of available items-->
+                                    <f:selectItems value="#{fixme}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="Memberid:" for="memberid" />
+                                <h:selectOneMenu id="memberid" value="#{deathRec.d.memberid}" title="Memberid" required="true" requiredMessage="The Memberid field is required.">
+                                    <!-- TODO: update below reference to list of available items-->
+                                    <f:selectItems value="#{fixme}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="Parishid:" for="parishid" />
+                                <h:selectOneMenu id="parishid" value="#{deathRec.d.parishid}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
+                                    <!-- TODO: update below reference to list of available items-->
+                                    <f:selectItems value="#{fixme}"/>
+                                </h:selectOneMenu>
+                                <h:outputLabel value="Ministerid:" for="ministerid" />
+                                <h:selectOneMenu id="ministerid" value="#{deathRec.d.ministerid}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
+                                    <!-- TODO: update below reference to list of available items-->
+                                    <f:selectItems value="#{fixme}"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
                         </h:form>
-                        </div>
+
                     </div>
                 </div>
               </div>
