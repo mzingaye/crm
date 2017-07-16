@@ -5,9 +5,11 @@
  */
 package controllers;
 
+import entities.Catholic;
 import entities.Sponsor;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedProperty;
 import models.SponsorFacade;
 
 /**
@@ -17,8 +19,21 @@ import models.SponsorFacade;
 public class SponsorController {
     @EJB
     private SponsorFacade sponsorFacade;
+    
+    @ManagedProperty(value="#{catholic}")
+    private CatholicController cc;
+    
+    private Catholic c;
 
-    private Sponsor s = new Sponsor();
+    public Catholic getC() {
+        return c;
+    }
+
+    public void setC(Catholic c) {
+        this.c = c;
+    }
+
+    private Sponsor s;
 
     public Sponsor getS() {
         return s;
@@ -29,6 +44,11 @@ public class SponsorController {
     }
     
     public SponsorController() {
+        this.s = new Sponsor();
+    }
+
+    public SponsorController(Sponsor s) {
+        this.s = s;
     }
     
     public List<Sponsor> getAll(){
@@ -37,16 +57,15 @@ public class SponsorController {
     
     public String add(){
         this.sponsorFacade.create(this.s);
-        s = new Sponsor();
-        return "index";
+       // s = new Sponsor();
+        return null;
     }
     
-    public String prev(){
-        return "createcatholic";
-    }
-    
-    public String next(){
+    public String nextBapt(){
+        this.sponsorFacade.create(s);
+        System.out.println("Sponsor Name => "+s.getFname()+"Sponsor ID => "+s.getId());
         return "newBaptism";
     }
+    
     
 }

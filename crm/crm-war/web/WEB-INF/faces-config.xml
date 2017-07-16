@@ -7,26 +7,41 @@
     <managed-bean>
         <managed-bean-name>user</managed-bean-name>
         <managed-bean-class>controllers.UsersController</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>catholic</managed-bean-name>
         <managed-bean-class>controllers.CatholicController</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>sponsor</managed-bean-name>
         <managed-bean-class>controllers.SponsorController</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>minister</managed-bean-name>
         <managed-bean-class>controllers.MinisterController</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
-    </managed-bean>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <managed-bean>
         <managed-bean-name>baptismActions</managed-bean-name>
         <managed-bean-class>controllers.BaptismActions</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    <managed-bean>
+        <managed-bean-name>confirmation</managed-bean-name>
+        <managed-bean-class>controllers.ConfirmationController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>matrimonial</managed-bean-name>
+        <managed-bean-class>controllers.MatrimonialController</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>deathRec</managed-bean-name>
+        <managed-bean-class>controllers.DeathRecController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
 </faces-config>

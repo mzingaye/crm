@@ -6,7 +6,9 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,10 +16,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -72,6 +76,8 @@ public class Minister implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "priestorder")
     private String priestorder;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ministerid")
+    private List<Matrimonial> matrimonialList;
 
     public Minister() {
     }
@@ -144,6 +150,15 @@ public class Minister implements Serializable {
 
     public void setPriestorder(String priestorder) {
         this.priestorder = priestorder;
+    }
+
+    @XmlTransient
+    public List<Matrimonial> getMatrimonialList() {
+        return matrimonialList;
+    }
+
+    public void setMatrimonialList(List<Matrimonial> matrimonialList) {
+        this.matrimonialList = matrimonialList;
     }
 
     @Override

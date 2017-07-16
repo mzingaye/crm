@@ -115,7 +115,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Place Of Baptism</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:selectOneMenu id="parishid" value="#{baptism.b.parishid}" styleClass="form-control ">
+                                        <h:selectOneMenu id="parishid" value="#{baptismActions.parishId}" styleClass="form-control ">
                                             <f:selectItems value="#{parish.getAll()}" 
                                                            var="p"
                                                            itemLabel="#{p.name}"
@@ -126,7 +126,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptized By</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:selectOneMenu id="ministerid" value="#{baptism.b.ministerid}" styleClass="form-control ">
+                                        <h:selectOneMenu id="ministerid" value="#{baptismActions.ministerId}" styleClass="form-control ">
                                             <f:selectItems value="#{minister.getAll()}" 
                                                            var="m"
                                                            itemLabel="#{m.fname} #{m.lname}"
@@ -136,7 +136,7 @@
                                 </div>
                                 <hr>
                                 <h:commandLink action="sponsor.jsp" value="Previous Page" styleClass="btn btn-primary"></h:commandLink>
-                                <h:commandButton action="#{baptism.add()}" value="Save Baptism" styleClass="btn btn-primary"/>
+                                <h:commandButton action="#{baptismActions.add()}" value="Save Baptism" styleClass="btn btn-primary"/>
                              </h:form>
                           </div>
                         </div>

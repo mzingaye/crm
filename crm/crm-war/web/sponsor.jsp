@@ -128,7 +128,7 @@
                             </div> 
                             <hr>
                             <h:commandLink action="createcatholic.jsp" value="Previous Page" styleClass="btn btn-danger"></h:commandLink>
-                            <h:commandLink action="newBaptism.jsp" value="Next Page" styleClass="btn btn-primary"></h:commandLink>                           
+                            <h:commandButton action="#{sponsor.nextBapt()}" value="Save and Continue" styleClass="btn btn-primary"/>                          
                             <h:commandButton action="#{sponsor.add()}" value="Save Sponsor" styleClass="btn btn-success"/>
                         </h:form>
                         </div>

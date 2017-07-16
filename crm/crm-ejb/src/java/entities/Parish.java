@@ -59,13 +59,7 @@ public class Parish implements Serializable {
     @Column(name = "contact")
     private String contact;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parishid")
-    private List<Death> deathList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parishid")
     private List<Matrimonial> matrimonialList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parishid")
-    private List<Baptism> baptismList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parishid")
-    private List<Confirmation> confirmationList;
 
     public Parish() {
     }
@@ -114,39 +108,12 @@ public class Parish implements Serializable {
     }
 
     @XmlTransient
-    public List<Death> getDeathList() {
-        return deathList;
-    }
-
-    public void setDeathList(List<Death> deathList) {
-        this.deathList = deathList;
-    }
-
-    @XmlTransient
     public List<Matrimonial> getMatrimonialList() {
         return matrimonialList;
     }
 
     public void setMatrimonialList(List<Matrimonial> matrimonialList) {
         this.matrimonialList = matrimonialList;
-    }
-
-    @XmlTransient
-    public List<Baptism> getBaptismList() {
-        return baptismList;
-    }
-
-    public void setBaptismList(List<Baptism> baptismList) {
-        this.baptismList = baptismList;
-    }
-
-    @XmlTransient
-    public List<Confirmation> getConfirmationList() {
-        return confirmationList;
-    }
-
-    public void setConfirmationList(List<Confirmation> confirmationList) {
-        this.confirmationList = confirmationList;
     }
 
     @Override

@@ -183,7 +183,7 @@
                                 </div>
                             </div>
                                 <hr>
-                                <h:commandLink action="sponsor.jsp" value="Next Page" styleClass="btn btn-primary"></h:commandLink>
+                                <h:commandButton action="#{catholic.nextBapt()}" value="Save and Continue" styleClass="btn btn-primary"/>
                             <h:commandButton action="#{catholic.add()}" value="Save Catholic" styleClass="btn btn-success"/>
                         </h:form>
                         </div>

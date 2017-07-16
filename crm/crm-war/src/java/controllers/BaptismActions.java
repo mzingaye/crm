@@ -9,8 +9,11 @@ import entities.Baptism;
 import entities.Catholic;
 import entities.Sponsor;
 import javax.ejb.EJB;
+import javax.faces.bean.ManagedProperty;
 import models.BaptismFacade;
 import models.CatholicFacade;
+import models.MinisterFacade;
+import models.ParishFacade;
 import models.SponsorFacade;
 
 /**
@@ -18,6 +21,13 @@ import models.SponsorFacade;
  * @author Lyne
  */
 public class BaptismActions {
+    
+    @ManagedProperty(value="#{catholic}")
+    private CatholicController catholic;
+    @EJB
+    private MinisterFacade ministerFacade;
+    @EJB
+    private ParishFacade parishFacade;
     @EJB
     private SponsorFacade sponsorFacade;
     @EJB
@@ -25,11 +35,31 @@ public class BaptismActions {
     @EJB
     private BaptismFacade baptismFacade;
 
-    private Catholic c = new Catholic();
+    private Catholic c;
     
     private Sponsor s = new Sponsor();
     
     private Baptism b = new Baptism();
+    
+    private int parishId;
+    
+    private int ministerId;
+
+    public int getMinisterId() {
+        return ministerId;
+    }
+
+    public void setMinisterId(int ministerId) {
+        this.ministerId = ministerId;
+    }
+    
+    public int getParishId() {
+        return parishId;
+    }
+
+    public void setParishId(int parishId) {
+        this.parishId = parishId;
+    }
 
     public Catholic getC() {
         return c;
@@ -59,14 +89,18 @@ public class BaptismActions {
     }
     
     public String add(){
-        this.catholicFacade.create(c);
-        this.sponsorFacade.create(s);
-        b.setMemberid(c);
-        b.setSponsorid(s);
-        this.baptismFacade.create(b);
-        c = new Catholic();
-        s = new Sponsor();
-        b = new Baptism();
+        System.out.println("Catholic Name => "+catholic.getC().getFname()+" "+catholic.getC().getLname()+" Catholic ID => "+catholic.getC().getId());
+        //System.out.println("Minister ID => "+getMinisterId()+" "+c.getLname()+" Parish ID => "+getParishId());
+        //CatholicController cc = new CatholicController(c);
+        //cc.add();
+        //SponsorController sc = new SponsorController(s);
+        //sc.add();
+        //b.setMemberid(catholic.getC());
+        //b.setSponsorid(s);
+        //b.setMinisterid(this.ministerFacade.find(getMinisterId()));
+        //b.setParishid(this.parishFacade.find(getParishId()));
+        //BaptismController bc = new BaptismController(b);
+        //bc.add();
         return "baptism";
     }
 }

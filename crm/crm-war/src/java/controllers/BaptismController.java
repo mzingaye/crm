@@ -23,10 +23,14 @@ public class BaptismController implements Serializable {
     @EJB
     private BaptismFacade baptismFacade;
 
-    private Baptism b = new Baptism();
+    private Baptism b;
 
     public Baptism getB() {
         return b;
+    }
+
+    public BaptismController(Baptism b) {
+        this.b = b;
     }
 
     public void setB(Baptism b) {
@@ -34,6 +38,7 @@ public class BaptismController implements Serializable {
     }
     
     public BaptismController() {
+        this.b = new Baptism();
     }
     
     public List<Baptism> getAll(){
@@ -43,6 +48,6 @@ public class BaptismController implements Serializable {
     public String add(){
         this.baptismFacade.create(this.b);
         this.b = new Baptism();
-        return "baptism";
+        return null;
     }
 }

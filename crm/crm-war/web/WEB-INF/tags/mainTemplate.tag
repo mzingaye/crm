@@ -67,27 +67,27 @@
                 <ul class="nav side-menu">
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="faces/index.jsp">Dashboard</a></li>
+                      <li><a href="index.jsp">Dashboard</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Registry <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="faces/catholics.jsp">Catholic Membership</a></li>
-                      <li><a href="faces/baptism.jsp">Baptism Records</a></li>
-                      <li><a href="faces/confirmation.jsp">Confirmation Records</a></li>
-                      <li><a href="faces/matrimonial.jsp">Matrimonial Records</a></li>
-                      <li><a href="faces/death.jsp">Death Records</a></li>
+                      <li><a href="catholics.jsp">Catholic Membership</a></li>
+                      <li><a href="baptism.jsp">Baptism Records</a></li>
+                      <li><a href="confirmation.jsp">Confirmation Records</a></li>
+                      <li><a href="matrimonial.jsp">Matrimonial Records</a></li>
+                      <li><a href="death.jsp">Death Records</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="faces/users.jsp">User Management</a></li>
-                      <li><a href="faces/logs.jsp">User Logs</a></li>
+                      <li><a href="users.jsp">User Management</a></li>
+                      <li><a href="logs.jsp">User Logs</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-cog"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="faces/config.jsp">Configurations</a></li>
+                      <li><a href="config.jsp">Configurations</a></li>
                     </ul>
                   </li>
                 </ul>

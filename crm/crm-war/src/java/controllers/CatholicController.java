@@ -17,6 +17,7 @@ import models.UserFacade;
  * @author Lyne
  */
 public class CatholicController {
+    
     @EJB
     private UserFacade userFacade;
     
@@ -24,7 +25,7 @@ public class CatholicController {
     private CatholicFacade catholicFacade;
  
     
-    private Catholic c = new Catholic();
+    private Catholic c;
 
     public Catholic getC() {
         return c;
@@ -35,22 +36,33 @@ public class CatholicController {
     }
     
     public CatholicController() {
+        this.c = new Catholic();
     }
-    
-    
+
+    public CatholicController(Catholic c) {
+        this.c = c;
+    }
+
     public List<Catholic> getAll(){
         return this.catholicFacade.findAll();
     }
     
     public String add(){
-        User u = userFacade.find(1);
+        UsersController uc = new UsersController();
+        //User u = uc.get(2);
+        User u = this.userFacade.find(2);
         c.setUserid(u);
         this.catholicFacade.create(c);
-        c = new Catholic();
-        return "sponsor";
+        System.out.println("Name => "+c.getFname()+" ID => "+c.getId());
+        //c = new Catholic();
+        return null;
     }
     
-    public String next(){
+    public String nextBapt(){
+         User u = this.userFacade.find(2);
+        c.setUserid(u);
+        this.catholicFacade.create(c);
+        System.out.println("Name from Catholic => "+c.getFname()+" ID => "+c.getId());
         return "sponsor";
     }
    

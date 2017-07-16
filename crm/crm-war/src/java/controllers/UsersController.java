@@ -18,9 +18,14 @@ public class UsersController {
     @EJB
     private UserFacade userFacade;
 
-    private User u = new User();
+    private User u;
     
     public UsersController() {
+        this.u = new User();
+    }
+
+    public UsersController(User u) {
+        this.u = u;
     }
 
     public User getU() {
