@@ -34,6 +34,10 @@ public class ParishController {
     public ParishController() {
     }
     
+    public Parish get(int id){
+        return this.parishFacade.find(id);
+    }
+    
     public List<Parish> getAll(){
         return this.parishFacade.findAll();
     }

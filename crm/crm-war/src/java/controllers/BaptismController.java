@@ -5,12 +5,19 @@
  */
 package controllers;
 
+import beans.BaptismBean;
 import entities.Baptism;
+import entities.Catholic;
+import entities.Minister;
+import entities.Parish;
+import entities.Sponsor;
+import entities.User;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import models.BaptismFacade;
 
 /**
@@ -22,32 +29,31 @@ import models.BaptismFacade;
 public class BaptismController implements Serializable {
     @EJB
     private BaptismFacade baptismFacade;
-
-    private Baptism b;
-
-    public Baptism getB() {
-        return b;
-    }
-
-    public BaptismController(Baptism b) {
-        this.b = b;
-    }
-
-    public void setB(Baptism b) {
-        this.b = b;
-    }
+    
+    @Inject
+    private BaptismBean bBean;
     
     public BaptismController() {
-        this.b = new Baptism();
+
     }
     
     public List<Baptism> getAll(){
         return this.baptismFacade.findAll();
     }
     
-    public String add(){
-        this.baptismFacade.create(this.b);
-        this.b = new Baptism();
-        return null;
+    public String add(Catholic c, Parish p, User u, Minister m, Sponsor s){
+        Baptism b = new Baptism();
+        b.setCname(bBean.getCname());
+        b.setDateOfBaptism(bBean.getDateOfBaptism());
+        b.setFirstCommunion(bBean.getFirstCommunion());
+        b.setBaptismNumber(bBean.getBaptismNumber());
+        b.setPhysicalAddress(bBean.getPhysicalAddress());
+        b.setUserid(u);
+        b.setMemberid(c);
+        b.setParishid(p);
+        b.setMinisterid(m);
+        b.setSponsorid(s);
+        this.baptismFacade.create(b);
+        return "baptism";
     }
 }

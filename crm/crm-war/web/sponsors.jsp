@@ -17,7 +17,7 @@
     <jsp:attribute name="content">
         <f:view>
          <h:form>
-            <h:commandLink value="Add New Record" action="addsponsor" styleClass="btn btn-info"></h:commandLink>
+             <h:commandButton value="Add New Record" action="#{sponsor.newMember()}" styleClass="btn btn-info"/>
          </h:form>
 
             <div class="col-md-12 col-sm-12 col-xs-12">

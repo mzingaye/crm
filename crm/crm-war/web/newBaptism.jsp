@@ -81,13 +81,13 @@
                                  <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Christian Name</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:inputText styleClass="form-control has-feedback-left" id="cname" value="#{baptism.b.cname}"/>
+                                        <h:inputText styleClass="form-control has-feedback-left" id="cname" value="#{bBean.cname}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Baptism</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <h:inputText  styleClass="form-control has-feedback-left" id="dateOfBaptism" value="#{baptism.b.dateOfBaptism}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
+                                        <h:inputText  styleClass="form-control has-feedback-left" id="dateOfBaptism" value="#{bBean.dateOfBaptism}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
                                             <f:convertDateTime pattern="dd/mm/yyyy" />
                                         </h:inputText>
                                     </div>
@@ -95,7 +95,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of First Communion</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <h:inputText  styleClass="form-control has-feedback-left" id="firstCommunion" value="#{baptism.b.firstCommunion}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
+                                        <h:inputText  styleClass="form-control has-feedback-left" id="firstCommunion" value="#{bBean.firstCommunion}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
                                             <f:convertDateTime pattern="dd/mm/yyyy" />
                                         </h:inputText>
                                     </div>
@@ -103,19 +103,19 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptism Number</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:inputText styleClass="form-control has-feedback-left" id="baptismNumber" value="#{baptism.b.baptismNumber}"/>
+                                        <h:inputText styleClass="form-control has-feedback-left" id="baptismNumber" value="#{bBean.baptismNumber}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Physical Address</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:inputTextarea styleClass="form-control has-feedback-left" id="physicalAddress" value="#{baptism.b.physicalAddress}"/>
+                                        <h:inputTextarea styleClass="form-control has-feedback-left" id="physicalAddress" value="#{bBean.physicalAddress}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Place Of Baptism</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:selectOneMenu id="parishid" value="#{baptismActions.parishId}" styleClass="form-control ">
+                                        <h:selectOneMenu id="parishid" value="#{bBean.parishid}" styleClass="form-control ">
                                             <f:selectItems value="#{parish.getAll()}" 
                                                            var="p"
                                                            itemLabel="#{p.name}"
@@ -126,7 +126,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptized By</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:selectOneMenu id="ministerid" value="#{baptismActions.ministerId}" styleClass="form-control ">
+                                        <h:selectOneMenu id="ministerid" value="#{bBean.ministerid}" styleClass="form-control ">
                                             <f:selectItems value="#{minister.getAll()}" 
                                                            var="m"
                                                            itemLabel="#{m.fname} #{m.lname}"

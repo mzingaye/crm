@@ -77,7 +77,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Member Identity</label>
                                 <div class="col-md-2 col-sm-2 col-xs-12 ">
                                   <div class="input-group">
-                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{catholic.memberID}"/>
+                                      <h:inputText  styleClass="form-control" id="memeberid" value=""/>
                                     <span class="input-group-btn">
                                     <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
                                     </span>
@@ -89,31 +89,31 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{catholic.c.fname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{cBean.fname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{catholic.c.mname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{cBean.mname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{catholic.c.lname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{cBean.lname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{catholic.c.sex}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{cBean.sex}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{catholic.c.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
+                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{cBean.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
                                         <f:convertDateTime pattern="dd/mm/yyyy" />
                                     </h:inputText>
                                 </div>
@@ -121,25 +121,25 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{catholic.c.natID}"/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{cBean.natID}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Age</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="age" value="#{catholic.c.age}" title="Age" required="true" requiredMessage="The Age field is required."/>
+                                    <h:inputText  styleClass="form-control has-feedback-left" id="age" value="#{cBean.age}" title="Age" required="true" requiredMessage="The Age field is required."/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Place of Birth</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="placeOfBirth" value="#{catholic.c.placeOfBirth}" title="placeOfBirth" required="true" requiredMessage="The Place of Birth field is required."/>
+                                    <h:inputText  styleClass="form-control has-feedback-left" id="placeOfBirth" value="#{cBean.placeOfBirth}" title="placeOfBirth" required="true" requiredMessage="The Place of Birth field is required."/>
                                 </div>
                             </div>
                              <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{catholic.c.contact}" title="Contact" required="true" requiredMessage="The Contact field is required."/>
+                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{cBean.contact}" title="Contact" required="true" requiredMessage="The Contact field is required."/>
                                 </div>
                             </div> 
                             <hr>
@@ -148,25 +148,25 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="ffname" value="#{catholic.c.ffname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="ffname" value="#{cBean.ffname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="fmname" value="#{catholic.c.fmname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="fmname" value="#{cBean.fmname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="flname" value="#{catholic.c.flname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="flname" value="#{cBean.flname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="fnatID" value="#{catholic.c.fnatID}"/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="fnatID" value="#{cBean.fnatID}"/>
                                 </div>
                             </div>
                             <hr>
@@ -175,25 +175,25 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mfname" value="#{catholic.c.mfname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mfname" value="#{cBean.mfname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mmname" value="#{catholic.c.mmname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mmname" value="#{cBean.mmname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mlname" value="#{catholic.c.mlname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mlname" value="#{cBean.mlname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="mnatID" value="#{catholic.c.mnatID}"/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="mnatID" value="#{cBean.mnatID}"/>
                                 </div>
                             </div>
                                 <hr>

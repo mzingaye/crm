@@ -5,102 +5,105 @@
  */
 package controllers;
 
+import beans.BaptismBean;
+import beans.CatholicBean;
+import beans.SponsorBean;
 import entities.Baptism;
 import entities.Catholic;
+import entities.Minister;
+import entities.Parish;
 import entities.Sponsor;
+import entities.User;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedProperty;
+import javax.inject.Inject;
 import models.BaptismFacade;
 import models.CatholicFacade;
 import models.MinisterFacade;
 import models.ParishFacade;
 import models.SponsorFacade;
+import models.UserFacade;
 
 /**
  *
  * @author Lyne
  */
 public class BaptismActions {
-    
-    @ManagedProperty(value="#{catholic}")
-    private CatholicController catholic;
-    @EJB
-    private MinisterFacade ministerFacade;
-    @EJB
-    private ParishFacade parishFacade;
-    @EJB
-    private SponsorFacade sponsorFacade;
-    @EJB
-    private CatholicFacade catholicFacade;
     @EJB
     private BaptismFacade baptismFacade;
-
-    private Catholic c;
     
-    private Sponsor s = new Sponsor();
+    @EJB
+    private ParishFacade parishFacade;
     
-    private Baptism b = new Baptism();
+    @EJB
+    private MinisterFacade ministerFacade;
     
-    private int parishId;
+    @EJB
+    private SponsorFacade sponsorFacade;
     
-    private int ministerId;
-
-    public int getMinisterId() {
-        return ministerId;
-    }
-
-    public void setMinisterId(int ministerId) {
-        this.ministerId = ministerId;
-    }
+    @EJB
+    private CatholicFacade catholicFacade;
     
-    public int getParishId() {
-        return parishId;
-    }
-
-    public void setParishId(int parishId) {
-        this.parishId = parishId;
-    }
-
-    public Catholic getC() {
-        return c;
-    }
-
-    public void setC(Catholic c) {
-        this.c = c;
-    }
-
-    public Sponsor getS() {
-        return s;
-    }
-
-    public void setS(Sponsor s) {
-        this.s = s;
-    }
-
-    public Baptism getB() {
-        return b;
-    }
-
-    public void setB(Baptism b) {
-        this.b = b;
-    }
+    @EJB
+    private UserFacade userFacade;
     
+    @Inject
+    private BaptismBean bBean;
+    
+    @Inject 
+    private SponsorBean sBean;
+    
+    @Inject
+    private CatholicBean cBean;
+        
     public BaptismActions() {
     }
     
     public String add(){
-        System.out.println("Catholic Name => "+catholic.getC().getFname()+" "+catholic.getC().getLname()+" Catholic ID => "+catholic.getC().getId());
-        //System.out.println("Minister ID => "+getMinisterId()+" "+c.getLname()+" Parish ID => "+getParishId());
-        //CatholicController cc = new CatholicController(c);
-        //cc.add();
-        //SponsorController sc = new SponsorController(s);
-        //sc.add();
-        //b.setMemberid(catholic.getC());
-        //b.setSponsorid(s);
-        //b.setMinisterid(this.ministerFacade.find(getMinisterId()));
-        //b.setParishid(this.parishFacade.find(getParishId()));
-        //BaptismController bc = new BaptismController(b);
-        //bc.add();
+        Catholic c = new Catholic();
+        c.setFname(cBean.getFname());
+        c.setMname(cBean.getMname());
+        c.setLname(cBean.getLname());
+        c.setSex(cBean.getSex());
+        c.setDob(cBean.getDob());
+        c.setAge(cBean.getAge());
+        c.setPlaceOfBirth(cBean.getPlaceOfBirth());
+        c.setNatID(cBean.getNatID());
+        c.setContact(cBean.getContact());
+        c.setFfname(cBean.getFfname());
+        c.setFmname(cBean.getFmname());
+        c.setFlname(cBean.getFlname());
+        c.setFnatID(cBean.getFnatID());
+        c.setMfname(cBean.getMfname());
+        c.setMmname(cBean.getMmname());
+        c.setMlname(cBean.getMlname());
+        c.setMnatID(cBean.getMnatID());
+        User u = this.userFacade.find(2);
+        c.setUserid(u);
+        this.catholicFacade.create(c);
+        Sponsor s = new Sponsor();
+        s.setFname(sBean.getFname());
+        s.setMname(sBean.getMname());
+        s.setLname(sBean.getLname());
+        s.setSex(sBean.getSex());
+        s.setDob(sBean.getDob());
+        s.setAge(sBean.getAge());
+        s.setNatID(sBean.getNatID());
+        s.setContact(sBean.getContact());
+        this.sponsorFacade.create(s);
+        Minister m = this.ministerFacade.find(bBean.getMinisterid());
+        Parish p = this.parishFacade.find(bBean.getParishid());
+        Baptism b = new Baptism();
+        b.setCname(bBean.getCname());
+        b.setDateOfBaptism(bBean.getDateOfBaptism());
+        b.setFirstCommunion(bBean.getFirstCommunion());
+        b.setBaptismNumber(bBean.getBaptismNumber());
+        b.setPhysicalAddress(bBean.getPhysicalAddress());
+        b.setUserid(u);
+        b.setMemberid(c);
+        b.setParishid(p);
+        b.setMinisterid(m);
+        b.setSponsorid(s);
+        this.baptismFacade.create(b);
         return "baptism";
     }
 }

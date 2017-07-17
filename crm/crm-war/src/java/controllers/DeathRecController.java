@@ -5,10 +5,22 @@
  */
 package controllers;
 
+import beans.CatholicBean;
+import beans.CatholicSpouseBean;
+import beans.DeathBean;
+import entities.Catholic;
 import entities.Death;
+import entities.Minister;
+import entities.Parish;
+import entities.User;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.inject.Inject;
+import models.CatholicFacade;
 import models.DeathFacade;
+import models.MinisterFacade;
+import models.ParishFacade;
+import models.UserFacade;
 
 /**
  *
@@ -16,40 +28,69 @@ import models.DeathFacade;
  */
 public class DeathRecController {
     @EJB
+    private UserFacade userFacade;
+    
+    @EJB
+    private ParishFacade parishFacade;
+    
+    @EJB
+    private MinisterFacade ministerFacade;
+    
+    @EJB
+    private CatholicFacade catholicFacade;
+    
+    @EJB
     private DeathFacade deathFacade;
     
-    private Death d;
+    @Inject
+    private CatholicBean cBean;
     
-    private int parishId;
+    @Inject
+    private CatholicSpouseBean csBean;
     
-    private int ministerId;
-
-    public int getParishId() {
-        return parishId;
-    }
-
-    public void setParishId(int parishId) {
-        this.parishId = parishId;
-    }
-
-    public int getMinisterId() {
-        return ministerId;
-    }
-
-    public void setMinisterId(int ministerId) {
-        this.ministerId = ministerId;
-    }
-    
-
-    public Death getD() {
-        return d;
-    }
-
-    public void setD(Death d) {
-        this.d = d;
-    }
+    @Inject
+    private DeathBean dBean;
     
     public DeathRecController() {
+    }
+    
+    public String newRec(){
+        System.out.println("im here on New!!");
+        /*cBean.setFname("");
+        cBean.setMname("");
+        cBean.setLname("");
+        cBean.setSex("");
+        cBean.setDob(null);
+        cBean.setAge(0);
+        cBean.setPlaceOfBirth("");
+        cBean.setNatID("");
+        cBean.setContact("");
+        cBean.setFfname("");
+        cBean.setFmname("");
+        cBean.setFlname("");
+        cBean.setFnatID("");
+        cBean.setMfname("");
+        cBean.setMmname("");
+        cBean.setMlname("");
+        cBean.setMnatID("");
+        csBean.setFname("");
+        csBean.setMname("");
+        csBean.setLname("");
+        csBean.setSex("");
+        csBean.setDob(null);
+        csBean.setAge(0);
+        csBean.setPlaceOfBirth("");
+        csBean.setNatID("");
+        csBean.setContact("");
+        csBean.setFfname("");
+        csBean.setFmname("");
+        csBean.setFlname("");
+        csBean.setFnatID("");
+        csBean.setMfname("");
+        csBean.setMmname("");
+        csBean.setMlname("");
+        csBean.setMnatID("");*/
+        return "createdeathrec";
     }
     
     public List<Death> getAll(){
@@ -57,7 +98,25 @@ public class DeathRecController {
     }
     
     public String add(){
-        return null;
+        System.out.println("Im here");
+        Death d = new Death();
+        d.setDateOfBurial(dBean.getDateOfBurial());
+        d.setDod(dBean.getDod());
+        d.setPlaceOfBurial(dBean.getPlaceOfBurial());
+        d.setPlaceOfDeath(dBean.getPlaceOfDeath());
+        d.setSacramentAdministered(dBean.getSacramentAdministered());
+        Minister m = this.ministerFacade.find(dBean.getMinisterid());
+        Catholic c = this.catholicFacade.find(cBean.getId());
+        //Catholic cs = this.catholicFacade.find(csBean.getId());
+        Parish p = this.parishFacade.find(dBean.getParishid());
+        User u = this.userFacade.find(2);
+        d.setMemberid(c);
+        d.setMinisterid(m);
+        d.setParishid(p);
+        d.setUserid(u);
+        d.setSpouseMemberID(csBean.getId());
+        this.deathFacade.create(d);
+        return "death";
     }
     
 }

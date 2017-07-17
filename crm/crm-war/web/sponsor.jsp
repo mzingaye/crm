@@ -79,7 +79,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sponsor Identity</label>
                                 <div class="col-md-2 col-sm-2 col-xs-12 ">
                                   <div class="input-group">
-                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{catholic.memberID}"/>
+                                      <h:inputText  styleClass="form-control" id="memeberid" value=""/>
                                     <span class="input-group-btn">
                                     <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
                                     </span>
@@ -91,37 +91,37 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{sponsor.s.fname}"/>
+                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{sBean.fname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{sponsor.s.mname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{sBean.mname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{sponsor.s.lname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{sBean.lname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{sponsor.s.sex}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{sBean.sex}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{sponsor.s.natID}"/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{sBean.natID}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{sponsor.s.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
+                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{sBean.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
                                         <f:convertDateTime pattern="dd/mm/yyyy" />
                                     </h:inputText>
                                 </div>
@@ -130,13 +130,13 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Age</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="age" value="#{sponsor.s.age}" title="Age" required="true" requiredMessage="The Age field is required."/>
+                                    <h:inputText  styleClass="form-control has-feedback-left" id="age" value="#{sBean.age}" title="Age" required="true" requiredMessage="The Age field is required."/>
                                 </div>
                             </div>
                              <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{sponsor.s.contact}" title="Contact" required="true" requiredMessage="The Contact field is required."/>
+                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{sBean.contact}" title="Contact" required="true" requiredMessage="The Contact field is required."/>
                                 </div>
                             </div> 
                             <hr>

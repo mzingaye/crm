@@ -31,6 +31,10 @@ public class MinisterController {
     public MinisterController() {
     }
     
+    public Minister get(int id){
+        return this.ministerFacade.find(id);
+    }
+    
     public List<Minister> getAll(){
         return this.ministerFacade.findAll();
     }
@@ -40,5 +44,6 @@ public class MinisterController {
         m = new Minister();
         return "config";
     }
+    
     
 }

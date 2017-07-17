@@ -48,7 +48,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Member Identity</label>
                                 <div class="col-md-2 col-sm-2 col-xs-12 ">
                                   <div class="input-group">
-                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{catholic.memberID}"/>
+                                  <h:inputText  styleClass="form-control" id="memeberid" value="#{cBean.id}"/>
                                     <span class="input-group-btn">
                                     <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
                                     </span>
@@ -58,32 +58,32 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText  styleClass="form-control has-feedback-left" id="fname" value="#{catholic.c.fname}"/>
+                                  <h:inputText  styleClass="form-control has-feedback-left" id="fname" value="#{cBean.fname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{catholic.c.mname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{cBean.mname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{catholic.c.lname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{cBean.lname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{catholic.c.sex}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{cBean.sex}"/>
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{catholic.c.natID}"/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{cBean.natID}"/>
                                 </div>
                             </div>
                                 <hr>
@@ -95,7 +95,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Confirmation</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback" id="dateOfConfirmation" value="#{confirmation.c.dateOfConfirmation}" title="DateOfConfirmation" required="true" requiredMessage="The DateOfConfirmation field is required.">
+                                    <h:inputText styleClass="form-control has-feedback" id="dateOfConfirmation" value="#{coBean.dateOfConfirmation}" title="DateOfConfirmation" required="true" requiredMessage="The DateOfConfirmation field is required.">
                                         <f:convertDateTime pattern="dd/mm/yyyy" />
                                     </h:inputText>
                                 </div>
@@ -103,14 +103,15 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptized By</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback" id="baptizedBy" value="#{confirmation.c.baptizedBy}" title="BaptizedBy" required="true" requiredMessage="The BaptizedBy field is required."/>
+                                    <h:inputText styleClass="form-control has-feedback" id="baptizedBy" value="#{coBean.baptizedBy}" title="BaptizedBy" required="true" requiredMessage="The BaptizedBy field is required."/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Confirmed By</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                <h:selectOneMenu styleClass="form-control has-feedback" id="ministerid" value="#{confirmation.ministerId}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
-                                        <f:selectItems value="#{minister.getAll()}" 
+                                <h:selectOneMenu styleClass="form-control has-feedback" id="ministerid" value="#{coBean.ministerid}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
+                                    <f:selectItem itemLabel="Select Minister"itemValue="0" />    
+                                    <f:selectItems value="#{minister.getAll()}" 
                                                            var="m"
                                                            itemLabel="#{m.fname} #{m.lname}"
                                                            itemValue="#{m.id}" />
@@ -120,8 +121,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Confirmed At</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                 <h:selectOneMenu styleClass="form-control has-feedback" id="parishid" value="#{confirmation.parishId}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
-                                        <f:selectItems value="#{parish.getAll()}" 
+                                 <h:selectOneMenu styleClass="form-control has-feedback" id="parishid" value="#{coBean.parishid}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
+                                     <f:selectItem itemLabel="Select Parish"itemValue="0" />    
+                                     <f:selectItems value="#{parish.getAll()}" 
                                                            var="p"
                                                            itemLabel="#{p.name}"
                                                            itemValue="#{p.id}" />
@@ -131,8 +133,9 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sponsor</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                 <h:selectOneMenu styleClass="form-control has-feedback" id="sponsorid" value="#{confirmation.sponsorId}" title="Sponsorid" required="true" requiredMessage="The Sponsorid field is required.">
-                                        <f:selectItems value="#{sponsor.getAll()}" 
+                                 <h:selectOneMenu styleClass="form-control has-feedback" id="sponsorid" value="#{coBean.sponsorid}" title="Sponsorid" required="true" requiredMessage="The Sponsorid field is required.">
+                                     <f:selectItem itemLabel="Select Sponsor"itemValue="0" />    
+                                     <f:selectItems value="#{sponsor.getAll()}" 
                                                            var="s"
                                                            itemLabel="#{s.fname} #{s.lname}"
                                                            itemValue="#{s.id}" />

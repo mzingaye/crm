@@ -5,11 +5,11 @@
  */
 package controllers;
 
-import entities.Catholic;
+import beans.SponsorBean;
 import entities.Sponsor;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedProperty;
+import javax.inject.Inject;
 import models.SponsorFacade;
 
 /**
@@ -20,60 +20,45 @@ public class SponsorController {
     @EJB
     private SponsorFacade sponsorFacade;
     
-    @ManagedProperty(value="#{catholic}")
-    private CatholicController cc;
-    
-    private Catholic c;
-    
-    private int sponsorId;
-
-    public int getSponsorId() {
-        return sponsorId;
-    }
-
-    public void setSponsorId(int sponsorId) {
-        this.sponsorId = sponsorId;
-    }
-
-    public Catholic getC() {
-        return c;
-    }
-
-    public void setC(Catholic c) {
-        this.c = c;
-    }
-
-    private Sponsor s;
-
-    public Sponsor getS() {
-        return s;
-    }
-
-    public void setS(Sponsor s) {
-        this.s = s;
-    }
+    @Inject
+    private SponsorBean sBean;
     
     public SponsorController() {
-        this.s = new Sponsor();
-    }
-
-    public SponsorController(Sponsor s) {
-        this.s = s;
+        
     }
     
     public List<Sponsor> getAll(){
         return this.sponsorFacade.findAll();
     }
     
+    public String newMember(){
+        sBean.setFname("");
+        sBean.setMname("");
+        sBean.setLname("");
+        sBean.setSex("");
+        sBean.setDob(null);
+        sBean.setAge(0);
+        sBean.setNatID("");
+        sBean.setContact("");
+        return "addsponsor";
+    }
+    
     public String add(){
-        this.sponsorFacade.create(this.s);
-       // s = new Sponsor();
-        return null;
+        Sponsor s = new Sponsor();
+        s.setFname(sBean.getFname());
+        s.setMname(sBean.getMname());
+        s.setLname(sBean.getLname());
+        s.setSex(sBean.getSex());
+        s.setDob(sBean.getDob());
+        s.setAge(sBean.getAge());
+        s.setNatID(sBean.getNatID());
+        s.setContact(sBean.getContact());
+        this.sponsorFacade.create(s);
+        return "sponsors";
     }
     
     public String nextBapt(){
-        this.sponsorFacade.create(s);
-        System.out.println("Sponsor Name => "+s.getFname()+"Sponsor ID => "+s.getId());
+        
         return "newBaptism";
     }
     

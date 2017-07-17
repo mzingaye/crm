@@ -17,7 +17,7 @@
         <f:view>
          <h:form>
                
-                <h:commandLink value="Add New Record" action="createdeathrec" styleClass="btn btn-info"></h:commandLink>
+             <h:commandButton value="Add New Record" action="#{deathRec.newRec()}" styleClass="btn btn-info"/>
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
