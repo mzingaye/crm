@@ -11,7 +11,6 @@ import entities.Catholic;
 import entities.User;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedProperty;
 import javax.inject.Inject;
 import models.CatholicFacade;
 import models.UserFacade;
@@ -28,7 +27,7 @@ public class CatholicController {
     @EJB
     private CatholicFacade catholicFacade;
     
-    @ManagedProperty(value="cBean")
+    @Inject
     private CatholicBean cBean;
     
     @Inject
@@ -93,7 +92,7 @@ public class CatholicController {
     }
     
     public String search(){
-        System.out.println("Im here on catholic");
+        System.out.println("Im here on catholic"+cBean.getId()+" this value");
         Catholic c = this.catholicFacade.find(cBean.getId());
         cBean.setFname(c.getFname());
         cBean.setMname(c.getMname());

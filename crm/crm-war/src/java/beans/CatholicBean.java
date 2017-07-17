@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Named;
 
@@ -19,9 +18,8 @@ import javax.inject.Named;
  */
 @Stateless
 @LocalBean
-@SessionScoped
+//@SessionScoped
 //@Named(value="cBean")
-@ManagedBean(name="cBean")
 public class CatholicBean  implements Serializable{
     private String natID;
 

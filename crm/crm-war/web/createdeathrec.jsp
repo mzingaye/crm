@@ -49,7 +49,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Member Identity</label>
                                 <div class="col-md-2 col-sm-2 col-xs-12 ">
                                   <div class="input-group">
-                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{cBean.id}"/>
+                                      <h:inputText  styleClass="form-control" id="id" value="#{cBean.id}"/>
                                     <span class="input-group-btn">
                                     <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
                                     </span>

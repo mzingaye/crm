@@ -44,4 +44,9 @@
         <managed-bean-class>controllers.DeathRecController</managed-bean-class>
         <managed-bean-scope>session</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>cBean</managed-bean-name>
+        <managed-bean-class>beans.CatholicBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
 </faces-config>
