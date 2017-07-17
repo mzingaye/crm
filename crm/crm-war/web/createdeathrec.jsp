@@ -40,48 +40,156 @@
                         <div class="clearfix"></div>
                       </div>
                     <div class="x_content">
+                        
+                        <h:form styleClass="form-horizontal form-label-left">
+                                <h:outputLabel>Personal Information</h:outputLabel>
+                            <hr>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Member Identity</label>
+                                <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                  <div class="input-group">
+                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{catholic.memberID}"/>
+                                    <span class="input-group-btn">
+                                    <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText  styleClass="form-control has-feedback-left" id="fname" value="#{catholic.c.fname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{catholic.c.mname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{catholic.c.lname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{catholic.c.sex}"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{catholic.c.natID}"/>
+                                </div>
+                            </div>
+                                <hr>
+                            </h:form>
+                                
+                        <h:form styleClass="form-horizontal form-label-left">
+                            <h:outputLabel>Spouse Information</h:outputLabel>
+                            <hr>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Spouse Identity</label>
+                                <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                  <div class="input-group">
+                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{catholic.memberID}"/>
+                                    <span class="input-group-btn">
+                                    <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText  styleClass="form-control has-feedback-left" id="fname" value="#{catholic.c.fname}"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{catholic.c.lname}"/>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{catholic.c.natID}"/>
+                                </div>
+                            </div>
+                            <hr>
+                        </h:form>
 
-                        <h:form>
-                            <h:panelGrid columns="2" styleClass="form-group">
-                                <h:outputLabel value="Id:" for="id" styleClass="control-label col-md-3 col-sm-3 col-xs-12"/>
-                                <h:inputText id="id" value="#{deathRec.d.id}" title="Id" required="true" requiredMessage="The Id field is required." styleClass="form-control has-feedback-left col-md-6 col-sm-6 col-xs-12"/>
-                                <h:outputLabel value="SpouseMemberID:" for="spouseMemberID" />
-                                <h:inputText id="spouseMemberID" value="#{deathRec.d.spouseMemberID}" title="SpouseMemberID" />
-                                <h:outputLabel value="Dod:" for="dod" />
-                                <h:inputText id="dod" value="#{deathRec.d.dod}" title="Dod" required="true" requiredMessage="The Dod field is required.">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                </h:inputText>
-                                <h:outputLabel value="PlaceOfDeath:" for="placeOfDeath" />
-                                <h:inputText id="placeOfDeath" value="#{deathRec.d.placeOfDeath}" title="PlaceOfDeath" required="true" requiredMessage="The PlaceOfDeath field is required."/>
-                                <h:outputLabel value="DateOfBurial:" for="dateOfBurial" />
-                                <h:inputText id="dateOfBurial" value="#{deathRec.d.dateOfBurial}" title="DateOfBurial" required="true" requiredMessage="The DateOfBurial field is required.">
-                                    <f:convertDateTime pattern="MM/dd/yyyy" />
-                                </h:inputText>
-                                <h:outputLabel value="PlaceOfBurial:" for="placeOfBurial" />
-                                <h:inputText id="placeOfBurial" value="#{deathRec.d.placeOfBurial}" title="PlaceOfBurial" required="true" requiredMessage="The PlaceOfBurial field is required."/>
-                                <h:outputLabel value="SacramentAdministered:" for="sacramentAdministered" />
-                                <h:inputText id="sacramentAdministered" value="#{deathRec.d.sacramentAdministered}" title="SacramentAdministered" />
-                                <h:outputLabel value="Userid:" for="userid" />
-                                <h:selectOneMenu id="userid" value="#{deathRec.d.userid}" title="Userid" required="true" requiredMessage="The Userid field is required.">
-                                    <!-- TODO: update below reference to list of available items-->
-                                    <f:selectItems value="#{fixme}"/>
+                        <h:form  styleClass="form-horizontal form-label-left">
+                            <h:outputLabel>Death Record Information</h:outputLabel>
+                            <hr>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Death</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="dod" value="#{deathRec.d.dod}" title="dd/mm/yyyy" required="true" requiredMessage="The Dod field is required.">
+                                        <f:convertDateTime pattern="dd/mm/yyyy" />
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Place Of Death</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                   <h:inputText styleClass="form-control has-feedback-left" id="placeOfDeath" value="#{deathRec.d.placeOfDeath}" title="PlaceOfDeath" required="true" requiredMessage="The PlaceOfDeath field is required."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Burial</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="dateOfBurial" value="#{deathRec.d.dateOfBurial}" title="dd/mm/yyyy" required="true" requiredMessage="The DateOfBurial field is required.">
+                                        <f:convertDateTime pattern="dd/mm/yyyy" />
+                                    </h:inputText>
+                                    
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Place Of Burial</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                   <h:inputText styleClass="form-control has-feedback-left" id="placeOfBurial" value="#{deathRec.d.placeOfBurial}" title="PlaceOfBurial" required="true" requiredMessage="The PlaceOfBurial field is required."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Sacraments Administered</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                   <h:inputTextarea styleClass="tags form-control" id="sacramentAdministered" value="#{deathRec.d.sacramentAdministered}" title="SacramentAdministered" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Minister</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                <h:selectOneMenu styleClass="form-control has-feedback" id="ministerid" value="#{deathRec.ministerId}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
+                                        <f:selectItems value="#{minister.getAll()}" 
+                                                           var="m"
+                                                           itemLabel="#{m.fname} #{m.lname}"
+                                                           itemValue="#{m.id}" />
                                 </h:selectOneMenu>
-                                <h:outputLabel value="Memberid:" for="memberid" />
-                                <h:selectOneMenu id="memberid" value="#{deathRec.d.memberid}" title="Memberid" required="true" requiredMessage="The Memberid field is required.">
-                                    <!-- TODO: update below reference to list of available items-->
-                                    <f:selectItems value="#{fixme}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Parish</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                 <h:selectOneMenu styleClass="form-control has-feedback" id="parishid" value="#{deathRec.parishId}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
+                                        <f:selectItems value="#{parish.getAll()}" 
+                                                           var="p"
+                                                           itemLabel="#{p.name}"
+                                                           itemValue="#{p.id}" />
                                 </h:selectOneMenu>
-                                <h:outputLabel value="Parishid:" for="parishid" />
-                                <h:selectOneMenu id="parishid" value="#{deathRec.d.parishid}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
-                                    <!-- TODO: update below reference to list of available items-->
-                                    <f:selectItems value="#{fixme}"/>
-                                </h:selectOneMenu>
-                                <h:outputLabel value="Ministerid:" for="ministerid" />
-                                <h:selectOneMenu id="ministerid" value="#{deathRec.d.ministerid}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
-                                    <!-- TODO: update below reference to list of available items-->
-                                    <f:selectItems value="#{fixme}"/>
-                                </h:selectOneMenu>
-                            </h:panelGrid>
+                                </div>
+                            </div>
+                            <hr>
+                            <h:commandButton action="#{deathRec.add()}" value="Save Confirmation" styleClass="btn btn-success"/>
                         </h:form>
 
                     </div>

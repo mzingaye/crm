@@ -19,7 +19,37 @@ public class ConfirmationController {
     private ConfirmationFacade confirmationFacade;
 
     private Confirmation c;
+    
+    private int ministerId;
+    
+    private int parishId;
+    
+    private int sponsorId;
 
+    public int getMinisterId() {
+        return ministerId;
+    }
+
+    public void setMinisterId(int ministerId) {
+        this.ministerId = ministerId;
+    }
+
+    public int getParishId() {
+        return parishId;
+    }
+
+    public void setParishId(int parishId) {
+        this.parishId = parishId;
+    }
+
+    public int getSponsorId() {
+        return sponsorId;
+    }
+
+    public void setSponsorId(int sponsorId) {
+        this.sponsorId = sponsorId;
+    }
+    
     public Confirmation getC() {
         return c;
     }
@@ -33,5 +63,9 @@ public class ConfirmationController {
     
     public List<Confirmation> getall(){
         return this.confirmationFacade.findAll();
+    }
+    
+    public String add(){
+        return null;
     }
 }

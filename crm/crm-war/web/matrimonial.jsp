@@ -42,10 +42,13 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
+                      
+                            
+                                                        
 
 
                   <h:form>
+                      
                       <h:dataTable value="#{matrimonial.all}" var="item" styleClass="table table-stripped">
                           <h:column>
                               <f:facet name="header">

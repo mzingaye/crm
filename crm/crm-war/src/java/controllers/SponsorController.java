@@ -24,6 +24,16 @@ public class SponsorController {
     private CatholicController cc;
     
     private Catholic c;
+    
+    private int sponsorId;
+
+    public int getSponsorId() {
+        return sponsorId;
+    }
+
+    public void setSponsorId(int sponsorId) {
+        this.sponsorId = sponsorId;
+    }
 
     public Catholic getC() {
         return c;
@@ -67,5 +77,7 @@ public class SponsorController {
         return "newBaptism";
     }
     
-    
+    public String search(){
+        return null;
+    }
 }

@@ -25,7 +25,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Create Record Wizard </h2>
+                        <h2>Create Baptism Record Wizard </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -76,7 +76,7 @@
                             </li>
                           </ul>
                               
-                                  <h:outputLabel>Personal Information</h:outputLabel>
+                                  <h:outputLabel>Baptism Information</h:outputLabel>
                             <hr>
                                  <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Christian Name</label>
@@ -135,7 +135,7 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <h:commandLink action="sponsor.jsp" value="Previous Page" styleClass="btn btn-primary"></h:commandLink>
+                                <h:commandLink action="sponsor.jsp" value="Previous Page" styleClass="btn btn-danger"></h:commandLink>
                                 <h:commandButton action="#{baptismActions.add()}" value="Save Baptism" styleClass="btn btn-primary"/>
                              </h:form>
                           </div>

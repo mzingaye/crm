@@ -17,6 +17,26 @@ import models.MatrimonialFacade;
 public class MatrimonialController {
     @EJB
     private MatrimonialFacade matrimonialFacade;
+    
+    private int ministerId;
+    
+    private int parishId;
+
+    public int getMinisterId() {
+        return ministerId;
+    }
+
+    public void setMinisterId(int ministerId) {
+        this.ministerId = ministerId;
+    }
+
+    public int getParishId() {
+        return parishId;
+    }
+
+    public void setParishId(int parishId) {
+        this.parishId = parishId;
+    }
 
     private Matrimonial m;
 
@@ -33,6 +53,10 @@ public class MatrimonialController {
     
     public List<Matrimonial> getAll(){
         return this.matrimonialFacade.findAll();
+    }
+    
+    public String add(){
+        return null;
     }
     
 }

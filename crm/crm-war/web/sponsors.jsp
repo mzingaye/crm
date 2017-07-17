@@ -1,6 +1,6 @@
 <%-- 
-    Document   : catholics
-    Created on : Jul 12, 2017, 10:51:13 PM
+    Document   : sponsors
+    Created on : Jul 17, 2017, 1:39:01 PM
     Author     : Lyne
 --%>
 
@@ -12,18 +12,18 @@
 
 <t:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
-    <jsp:attribute name="page_title">Catholic Members </jsp:attribute>
+    <jsp:attribute name="page_title">Catholic Sponsors </jsp:attribute>
     
     <jsp:attribute name="content">
         <f:view>
          <h:form>
-               
-                <h:commandLink value="Add New Record" action="addmember" styleClass="btn btn-info"></h:commandLink>
+            <h:commandLink value="Add New Record" action="addsponsor" styleClass="btn btn-info"></h:commandLink>
+         </h:form>
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Catholic Records</h2>
+                    <h2>Sponsor Records</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -43,28 +43,29 @@
                   </div>
                   <div class="x_content">
 
-                  <h:dataTable value="#{catholic.all}" var="item" styleClass="table table-stripped">
+                  <h:form>
+                      <h:dataTable value="#{sponsor.all}" var="item" styleClass="table table-stripped">
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="#"/>
+                                  <h:outputText value="Id"/>
                               </f:facet>
                               <h:outputText value="#{item.id}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="First Name"/>
+                                  <h:outputText value="Fname"/>
                               </f:facet>
                               <h:outputText value="#{item.fname}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="Middle Name"/>
+                                  <h:outputText value="Mname"/>
                               </f:facet>
                               <h:outputText value="#{item.mname}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="Last Nname"/>
+                                  <h:outputText value="Lname"/>
                               </f:facet>
                               <h:outputText value="#{item.lname}"/>
                           </h:column>
@@ -76,25 +77,35 @@
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="Date Of Birth"/>
+                                  <h:outputText value="Dob"/>
                               </f:facet>
                               <h:outputText value="#{item.dob}">
                                   <f:convertDateTime pattern="MM/dd/yyyy" />
                               </h:outputText>
                           </h:column>
-                          
+                          <h:column>
+                              <f:facet name="header">
+                                  <h:outputText value="Age"/>
+                              </f:facet>
+                              <h:outputText value="#{item.age}"/>
+                          </h:column>
+                          <h:column>
+                              <f:facet name="header">
+                                  <h:outputText value="NatID"/>
+                              </f:facet>
+                              <h:outputText value="#{item.natID}"/>
+                          </h:column>
                           <h:column>
                               <f:facet name="header">
                                   <h:outputText value="Contact"/>
                               </f:facet>
                               <h:outputText value="#{item.contact}"/>
                           </h:column>
-                        <h:column>
+                          <h:column>
                             <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
                             <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
                             <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
                         </h:column>
-                          
                       </h:dataTable>
                   </h:form>
 

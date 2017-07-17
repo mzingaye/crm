@@ -23,7 +23,16 @@ public class CatholicController {
     
     @EJB
     private CatholicFacade catholicFacade;
- 
+    
+    private int memberID;
+
+    public int getMemberID() {
+        return memberID;
+    }
+
+    public void setMemberID(int memberID) {
+        this.memberID = memberID;
+    }
     
     private Catholic c;
 
@@ -64,6 +73,10 @@ public class CatholicController {
         this.catholicFacade.create(c);
         System.out.println("Name from Catholic => "+c.getFname()+" ID => "+c.getId());
         return "sponsor";
+    }
+    
+    public String search(){
+        return null;
     }
    
     

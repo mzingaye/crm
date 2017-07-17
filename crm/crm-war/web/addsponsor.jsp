@@ -1,9 +1,8 @@
 <%-- 
-    Document   : newCatholic
-    Created on : Jul 12, 2017, 8:59:43 PM
+    Document   : addsponsor
+    Created on : Jul 17, 2017, 1:45:52 PM
     Author     : Lyne
 --%>
-
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
@@ -13,7 +12,7 @@
 
 <t:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
-    <jsp:attribute name="page_title">New Baptism Record</jsp:attribute>
+    <jsp:attribute name="page_title">Catholic Sponsors</jsp:attribute>
    
     <jsp:attribute name="content">
          <f:view>
@@ -22,7 +21,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Create Baptism Record Wizard </h2>
+                        <h2>Sponsor Details </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -42,52 +41,10 @@
                       </div>
                     <div class="x_content">
                         <div id="wizard" class="form_wizard wizard_horizontal">
-                        <ul class="wizard_steps">
-                            <li>
-                              <a href="createcatholic.jsp">
-                                <span class="step_no">1</span>
-                                <span class="step_descr" >
-                                    Step 1<br />
-                                    <small>Personal Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="sponsor.jsp">
-                                <span class="step_no" style="color: #FAFAFA; font-weight: bold">2</span>
-                                <span class="step_descr" style="color: black;  font-weight: bold">
-                                    Step 2<br />
-                                    <small>Sponsor Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="newBaptism.jsp">
-                                <span class="step_no" >3</span>
-                                <span class="step_descr" >
-                                    Step 3<br />
-                                    <small>Baptism Details</small>
-                                </span>
-                              </a>
-                            </li>
-                          </ul>
+                        <h:form  styleClass="form-horizontal form-label-left">
                             
-                            <h:outputLabel>Sponsor Information</h:outputLabel>
+                            <h:outputLabel>Sponsor Personal Information</h:outputLabel>
                             <hr>
-                            <h:form  styleClass="form-horizontal form-label-left">
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Sponsor Identity</label>
-                                <div class="col-md-2 col-sm-2 col-xs-12 ">
-                                  <div class="input-group">
-                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{catholic.memberID}"/>
-                                    <span class="input-group-btn">
-                                    <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
-                                    </span>
-                                  </div>
-                                </div>
-                            </div>
-                            </h:form>
-                            <h:form  styleClass="form-horizontal form-label-left">
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -140,8 +97,7 @@
                                 </div>
                             </div> 
                             <hr>
-                            <h:commandLink action="createcatholic.jsp" value="Previous Page" styleClass="btn btn-danger"></h:commandLink>
-                            <h:commandButton action="#{sponsor.nextBapt()}" value="Save and Continue" styleClass="btn btn-primary"/>                          
+                            <h:commandButton action="#{sponsor.add()}" value="Save Sponsor" styleClass="btn btn-success"/>
                         </h:form>
                         </div>
                     </div>
@@ -152,4 +108,3 @@
         </f:view>
     </jsp:attribute>
 </t:mainTemplate>
-           

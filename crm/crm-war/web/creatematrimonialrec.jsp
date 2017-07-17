@@ -41,61 +41,283 @@
                       </div>
                     <div class="x_content">
                         <div id="wizard" class="form_wizard wizard_horizontal">
+                            <h:form styleClass="form-horizontal form-label-left">
+                            <h:outputLabel>Husband Information</h:outputLabel>
+                            <hr>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Husband Identity</label>
+                                <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                  <div class="input-group">
+                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{catholic.memberID}"/>
+                                    <span class="input-group-btn">
+                                    <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText  styleClass="form-control has-feedback-left" id="fname" value="#{catholic.c.fname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{catholic.c.mname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{catholic.c.lname}"/>
+                                </div>
+                            </div>
+                                                        
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{catholic.c.natID}"/>
+                                </div>
+                            </div>
+                            <hr>
+                        </h:form>
+                        <h:form styleClass="form-horizontal form-label-left">
+                            <h:outputLabel>Wife Information</h:outputLabel>
+                            <hr>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Wife Identity</label>
+                                <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                  <div class="input-group">
+                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{catholic.memberID}"/>
+                                    <span class="input-group-btn">
+                                    <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText  styleClass="form-control has-feedback-left" id="fname" value="#{catholic.c.fname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{catholic.c.mname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{catholic.c.lname}"/>
+                                </div>
+                            </div>
+                                                        
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{catholic.c.natID}"/>
+                                </div>
+                            </div>
+                            <hr>
+                        </h:form>
+                        <h:form styleClass="form-horizontal form-label-left">
+                            <h:outputLabel>Husband Sponsor Information</h:outputLabel>
+                            <hr>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Husband Sponsor Identity</label>
+                                <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                  <div class="input-group">
+                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{sponsor.sponsorId}"/>
+                                    <span class="input-group-btn">
+                                    <h:commandButton action="#{sponsor.search()}" value="Search" styleClass="btn btn-warning"/>
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText  styleClass="form-control has-feedback-left" id="fname" value="#{catholic.c.fname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{catholic.c.mname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{catholic.c.lname}"/>
+                                </div>
+                            </div>
+                                                        
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{catholic.c.natID}"/>
+                                </div>
+                            </div>
+                            <hr>
+                        </h:form>
+                        <h:form styleClass="form-horizontal form-label-left">
+                            <h:outputLabel>Wife Sponsor Information</h:outputLabel>
+                            <hr>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Wife Sponsor Identity</label>
+                                <div class="col-md-2 col-sm-2 col-xs-12 ">
+                                  <div class="input-group">
+                                      <h:inputText  styleClass="form-control" id="memeberid" value="#{sponsor.sponsorId}"/>
+                                    <span class="input-group-btn">
+                                    <h:commandButton action="#{sponsor.search()}" value="Search" styleClass="btn btn-warning"/>
+                                    </span>
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText  styleClass="form-control has-feedback-left" id="fname" value="#{catholic.c.fname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{catholic.c.mname}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{catholic.c.lname}"/>
+                                </div>
+                            </div>
+                                                        
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{catholic.c.natID}"/>
+                                </div>
+                            </div>
+                            <hr>
+                        </h:form>
 
-
-                            <h:form>
-                                <h1><h:outputText value="Create/Edit"/></h1>
-                                <h:panelGrid columns="2">
-                                    <h:outputLabel value="Id:" for="id" />
-                                    <h:inputText id="id" value="#{matrimonial.m.id}" title="Id" required="true" requiredMessage="The Id field is required."/>
-                                    <h:outputLabel value="MarriageNumber:" for="marriageNumber" />
-                                    <h:inputText id="marriageNumber" value="#{matrimonial.m.marriageNumber}" title="MarriageNumber" required="true" requiredMessage="The MarriageNumber field is required."/>
-                                    <h:outputLabel value="DateOfMarriage:" for="dateOfMarriage" />
-                                    <h:inputText id="dateOfMarriage" value="#{matrimonial.m.dateOfMarriage}" title="DateOfMarriage" required="true" requiredMessage="The DateOfMarriage field is required.">
-                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                            <h:form styleClass="form-horizontal form-label-left">
+                                <h:outputLabel>Marital Information</h:outputLabel>
+                            <hr>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Marriage Number</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="marriageNumber" value="#{matrimonial.m.marriageNumber}" title="MarriageNumber" required="true" requiredMessage="The MarriageNumber field is required."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Marriage</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="dateOfMarriage" value="#{matrimonial.m.dateOfMarriage}" title="dd/mm/yyyy" required="true" requiredMessage="The DateOfMarriage field is required.">
+                                        <f:convertDateTime pattern="dd/mm/yyyy" />
                                     </h:inputText>
-                                    <h:outputLabel value="HusbandMemberID:" for="husbandMemberID" />
-                                    <h:inputText id="husbandMemberID" value="#{matrimonial.m.husbandMemberID}" title="HusbandMemberID" required="true" requiredMessage="The HusbandMemberID field is required."/>
-                                    <h:outputLabel value="HusbandAddress:" for="husbandAddress" />
-                                    <h:inputText id="husbandAddress" value="#{matrimonial.m.husbandAddress}" title="HusbandAddress" required="true" requiredMessage="The HusbandAddress field is required."/>
-                                    <h:outputLabel value="WifeMemberID:" for="wifeMemberID" />
-                                    <h:inputText id="wifeMemberID" value="#{matrimonial.m.wifeMemberID}" title="WifeMemberID" required="true" requiredMessage="The WifeMemberID field is required."/>
-                                    <h:outputLabel value="WifeAddress:" for="wifeAddress" />
-                                    <h:inputText id="wifeAddress" value="#{matrimonial.m.wifeAddress}" title="WifeAddress" required="true" requiredMessage="The WifeAddress field is required."/>
-                                    <h:outputLabel value="ConditionOfParties:" for="conditionOfParties" />
-                                    <h:inputText id="conditionOfParties" value="#{matrimonial.m.conditionOfParties}" title="ConditionOfParties" required="true" requiredMessage="The ConditionOfParties field is required."/>
-                                    <h:outputLabel value="ConscentByWhomGiven:" for="conscentByWhomGiven" />
-                                    <h:inputText id="conscentByWhomGiven" value="#{matrimonial.m.conscentByWhomGiven}" title="ConscentByWhomGiven" required="true" requiredMessage="The ConscentByWhomGiven field is required."/>
-                                    <h:outputLabel value="Banns:" for="banns" />
-                                    <h:inputText id="banns" value="#{matrimonial.m.banns}" title="Banns" required="true" requiredMessage="The Banns field is required."/>
-                                    <h:outputLabel value="IntentionToMarry:" for="intentionToMarry" />
-                                    <h:inputText id="intentionToMarry" value="#{matrimonial.m.intentionToMarry}" title="IntentionToMarry" required="true" requiredMessage="The IntentionToMarry field is required."/>
-                                    <h:outputLabel value="MarriageLicence:" for="marriageLicence" />
-                                    <h:inputText id="marriageLicence" value="#{matrimonial.m.marriageLicence}" title="MarriageLicence" required="true" requiredMessage="The MarriageLicence field is required."/>
-                                    <h:outputLabel value="HusbandSponsorID:" for="husbandSponsorID" />
-                                    <h:inputText id="husbandSponsorID" value="#{matrimonial.m.husbandSponsorID}" title="HusbandSponsorID" required="true" requiredMessage="The HusbandSponsorID field is required."/>
-                                    <h:outputLabel value="WifeSponsorID:" for="wifeSponsorID" />
-                                    <h:inputText id="wifeSponsorID" value="#{matrimonial.m.wifeSponsorID}" title="WifeSponsorID" required="true" requiredMessage="The WifeSponsorID field is required."/>
-                                    <h:outputLabel value="OfficialDesignation:" for="officialDesignation" />
-                                    <h:inputText id="officialDesignation" value="#{matrimonial.m.officialDesignation}" title="OfficialDesignation" required="true" requiredMessage="The OfficialDesignation field is required."/>
-                                    <h:outputLabel value="Userid:" for="userid" />
-                                    <h:selectOneMenu id="userid" value="#{matrimonial.m.userid}" title="Userid" required="true" requiredMessage="The Userid field is required.">
-                                        <!-- TODO: update below reference to list of available items-->
-                                        <f:selectItems value="#{fixme}"/>
-                                    </h:selectOneMenu>
-                                    <h:outputLabel value="Parishid:" for="parishid" />
-                                    <h:selectOneMenu id="parishid" value="#{matrimonial.m.parishid}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
-                                        <!-- TODO: update below reference to list of available items-->
-                                        <f:selectItems value="#{fixme}"/>
-                                    </h:selectOneMenu>
-                                    <h:outputLabel value="Ministerid:" for="ministerid" />
-                                    <h:selectOneMenu id="ministerid" value="#{matrimonial.m.ministerid}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
-                                        <!-- TODO: update below reference to list of available items-->
-                                        <f:selectItems value="#{fixme}"/>
-                                    </h:selectOneMenu>
-                                </h:panelGrid>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Husband Residence <small>(Time Of Marriage)</small></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputTextarea styleClass="form-control has-feedback-left" id="husbandAddress" value="#{matrimonial.m.husbandAddress}" title="Husband Address" required="true" requiredMessage="The HusbandAddress field is required."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Wife Residence <small>(Time Of Marriage)</small></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputTextarea styleClass="form-control has-feedback-left" id="wifeAddress" value="#{matrimonial.m.wifeAddress}" title="Wife Address" required="true" requiredMessage="The HusbandAddress field is required."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Condition of Husband</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <h:selectOneMenu styleClass="form-control has-feedback" id="condhusband" value="" title="" required="true" requiredMessage="The Ministerid field is required.">
+                                        <f:selectItem itemLabel="Bachelor" itemValue="bachelor" />
+                                        <f:selectItem itemLabel="Widower" itemValue="widower" />
+                                        <f:selectItem itemLabel="Divorcee" itemValue="divorcee" />
+                                </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Condition of Wife</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <h:selectOneMenu styleClass="form-control has-feedback" id="condwife" value="" title="" required="true" requiredMessage="The Ministerid field is required.">
+                                        <f:selectItem itemLabel="Spinster" itemValue="spinster" />
+                                        <f:selectItem itemLabel="Widow" itemValue="widow" />
+                                        <f:selectItem itemLabel="Divorcee" itemValue="divorcee" />
+                                </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Husband Consent <small>By Whom Given</small></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <h:selectOneMenu styleClass="form-control has-feedback" id="conshusband" value="" title="" required="true" requiredMessage="The Ministerid field is required.">
+                                        <f:selectItem itemLabel="Own" itemValue="own" />
+                                        <f:selectItem itemLabel="Arranged" itemValue="arranged" />
+                                        <f:selectItem itemLabel="Forced" itemValue="forced" />
+                                </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Wife Consent <small>By Whom Given</small></label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <h:selectOneMenu styleClass="form-control has-feedback" id="conswife" value="" title="" required="true" requiredMessage="The Ministerid field is required.">
+                                        <f:selectItem itemLabel="Own" itemValue="own" />
+                                        <f:selectItem itemLabel="Arranged" itemValue="arranged" />
+                                        <f:selectItem itemLabel="Forced" itemValue="forced" />
+                                </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Marriage By</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <h:selectOneMenu styleClass="form-control has-feedback" id="marriageny" value="" title="" required="true" requiredMessage="The Ministerid field is required.">
+                                    <f:selectItem  itemLabel="Banns" itemValue="Banns" />
+                                    <f:selectItem  itemLabel="Intention To Marry" itemValue="Intention To Marry" />
+                                    <f:selectItem  itemLabel="Marriage License" itemValue="Marriage License" />
+                                </h:selectOneMenu>
+                                </div>
+                            </div>        
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Marriage Officer</label>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                <h:selectOneMenu styleClass="form-control has-feedback" id="ministerid" value="#{confirmation.ministerId}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
+                                        <f:selectItems value="#{minister.getAll()}" 
+                                                           var="m"
+                                                           itemLabel="#{m.fname} #{m.lname}"
+                                                           itemValue="#{m.id}" />
+                                </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Official Designation</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback" id="officialDesignation" value="#{matrimonial.m.officialDesignation}" title="OfficialDesignation" required="true" requiredMessage="The OfficialDesignation field is required."/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Marriage Solemnized At</label>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                 <h:selectOneMenu styleClass="form-control has-feedback" id="parishid" value="#{confirmation.parishId}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
+                                        <f:selectItems value="#{parish.getAll()}" 
+                                                           var="p"
+                                                           itemLabel="#{p.name}"
+                                                           itemValue="#{p.id}" />
+                                </h:selectOneMenu>
+                                </div>
+                            </div>
+                                <hr>
+                                <h:commandButton action="#{matrimonial.add()}" value="Add Marriage" styleClass="btn btn-success"/>
                             </h:form>
-
+                                        
+                        
                         </div>
                     </div>
                 </div>
