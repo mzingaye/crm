@@ -18,7 +18,7 @@
        <f:view>
          <h:form>
                
-                <h:commandLink value="Add New Record" action="creatematrimonialrec" styleClass="btn btn-info"></h:commandLink>
+             <h:commandButton value="Add New Record" action="#{matrimonial.newRec()}" styleClass="btn btn-info"/>
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -52,7 +52,7 @@
                       <h:dataTable value="#{matrimonial.all}" var="item" styleClass="table table-stripped">
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="Id"/>
+                                  <h:outputText value="#"/>
                               </f:facet>
                               <h:outputText value="#{item.id}"/>
                           </h:column>
@@ -70,18 +70,7 @@
                                   <f:convertDateTime pattern="MM/dd/yyyy" />
                               </h:outputText>
                           </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="HusbandMemberID"/>
-                              </f:facet>
-                              <h:outputText value="#{item.husbandMemberID}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="HusbandAddress"/>
-                              </f:facet>
-                              <h:outputText value="#{item.husbandAddress}"/>
-                          </h:column>
+                          
                           <h:column>
                               <f:facet name="header">
                                   <h:outputText value="WifeMemberID"/>
@@ -96,70 +85,35 @@
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="ConditionOfParties"/>
+                                  <h:outputText value="ConditionOfHusband"/>
                               </f:facet>
-                              <h:outputText value="#{item.conditionOfParties}"/>
+                              <h:outputText value="#{item.conditionOfHus}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="ConscentByWhomGiven"/>
+                                  <h:outputText value="ConscentHusband"/>
                               </f:facet>
-                              <h:outputText value="#{item.conscentByWhomGiven}"/>
+                              <h:outputText value="#{item.conscentHus}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="Banns"/>
+                                  <h:outputText value="ConditionOfWife"/>
                               </f:facet>
-                              <h:outputText value="#{item.banns}"/>
+                              <h:outputText value="#{item.conditionOfWife}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="IntentionToMarry"/>
+                                  <h:outputText value="ConscentWife"/>
                               </f:facet>
-                              <h:outputText value="#{item.intentionToMarry}"/>
+                              <h:outputText value="#{item.conscentWife}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="MarriageLicence"/>
+                                  <h:outputText value="MarriageBy"/>
                               </f:facet>
-                              <h:outputText value="#{item.marriageLicence}"/>
+                              <h:outputText value="#{item.marriageBy}"/>
                           </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="HusbandSponsorID"/>
-                              </f:facet>
-                              <h:outputText value="#{item.husbandSponsorID}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="WifeSponsorID"/>
-                              </f:facet>
-                              <h:outputText value="#{item.wifeSponsorID}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="OfficialDesignation"/>
-                              </f:facet>
-                              <h:outputText value="#{item.officialDesignation}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Userid"/>
-                              </f:facet>
-                              <h:outputText value="#{item.userid}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Parishid"/>
-                              </f:facet>
-                              <h:outputText value="#{item.parishid}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Ministerid"/>
-                              </f:facet>
-                              <h:outputText value="#{item.ministerid}"/>
-                          </h:column>
+                          
                       </h:dataTable>
                   </h:form>
 
