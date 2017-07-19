@@ -92,30 +92,14 @@
                               </f:facet>
                               <h:outputText value="#{item.sacramentAdministered}"/>
                           </h:column>
+                          
                           <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Userid"/>
-                              </f:facet>
-                              <h:outputText value="#{item.userid}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Memberid"/>
-                              </f:facet>
-                              <h:outputText value="#{item.memberid}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Parishid"/>
-                              </f:facet>
-                              <h:outputText value="#{item.parishid}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Ministerid"/>
-                              </f:facet>
-                              <h:outputText value="#{item.ministerid}"/>
-                          </h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                              <h:commandButton  action="#{deathRec.view(item)}" value="view" styleClass="fa-eye"/>|
+                            <h:outputText value="" styleClass="fa fa-trash"/> 
+                        </h:column>
                       </h:dataTable>
                   </h:form>
 
