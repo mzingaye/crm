@@ -89,7 +89,6 @@
                                 <h:outputText value=""/>
                             </f:facet>
                             <h:commandLink action="#{baptismActions.view(item)}" value="" styleClass="fa fa-eye"/> |
-                            <h:outputText value="" styleClass="fa fa-edit"/> |
                             <h:outputText value="" styleClass="fa fa-trash"/> 
                         </h:column>
                         

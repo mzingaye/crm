@@ -101,4 +101,51 @@ public class ConfirmationController {
         this.confirmationFacade.create(co);
         return "confirmation";
     }
+    
+    public String view(Confirmation co){
+        cBean.setId(co.getMemberid().getId());
+        cBean.setFname(co.getMemberid().getFname());
+        cBean.setMname(co.getMemberid().getMname());
+        cBean.setLname(co.getMemberid().getLname());
+        cBean.setSex(co.getMemberid().getSex());
+        cBean.setDob(co.getMemberid().getDob());
+        cBean.setAge(co.getMemberid().getAge());
+        cBean.setPlaceOfBirth(co.getMemberid().getPlaceOfBirth());
+        cBean.setNatID(co.getMemberid().getNatID());
+        cBean.setContact(co.getMemberid().getContact());
+        cBean.setFfname(co.getMemberid().getFfname());
+        cBean.setFmname(co.getMemberid().getFmname());
+        cBean.setFlname(co.getMemberid().getFlname());
+        cBean.setFnatID(co.getMemberid().getFnatID());
+        cBean.setMfname(co.getMemberid().getMfname());
+        cBean.setMmname(co.getMemberid().getMmname());
+        cBean.setMlname(co.getMemberid().getMlname());
+        cBean.setMnatID(co.getMemberid().getMnatID());
+        coBean.setBaptizedBy(co.getBaptizedBy());
+        coBean.setDateOfConfirmation(co.getDateOfConfirmation());
+        coBean.setMemberid(co.getMemberid().getId());
+        coBean.setMinisterid(co.getMinisterid().getId());
+        coBean.setParishid(co.getParishid().getId());
+        coBean.setSponsorid(co.getSponsorid().getId());
+        coBean.setId(co.getId());
+        return "viewconfirmation";
+    }
+    
+    public String edit(){
+        Confirmation co = new Confirmation(coBean.getId());
+        co.setDateOfConfirmation(coBean.getDateOfConfirmation());
+        co.setBaptizedBy(coBean.getBaptizedBy());
+        Minister m = this.ministerFacade.find(coBean.getMinisterid());
+        Catholic c = this.catholicFacade.find(cBean.getId());
+        Parish p = this.parishFacade.find(coBean.getParishid());
+        Sponsor s = this.sponsorFacade.find(coBean.getSponsorid());
+        User u = this.userFacade.find(2);
+        co.setMinisterid(m);
+        co.setMemberid(c);
+        co.setParishid(p);
+        co.setSponsorid(s);
+        co.setUserid(u);
+        this.confirmationFacade.edit(co);
+        return "confirmation";
+    }
 }

@@ -69,34 +69,29 @@
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="Userid"/>
+                                  <h:outputText value="Member"/>
                               </f:facet>
-                              <h:outputText value="#{item.userid}"/>
+                              <h:outputText value="#{item.memberid.fname} #{item.memberid.lname}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="Ministerid"/>
+                                  <h:outputText value="Parish"/>
                               </f:facet>
-                              <h:outputText value="#{item.ministerid}"/>
+                              <h:outputText value="#{item.parishid.name}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="Memberid"/>
+                                  <h:outputText value="Sponsor"/>
                               </f:facet>
-                              <h:outputText value="#{item.memberid}"/>
+                              <h:outputText value="#{item.sponsorid.fname} #{item.sponsorid.lname}"/>
                           </h:column>
                           <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Parishid"/>
-                              </f:facet>
-                              <h:outputText value="#{item.parishid}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Sponsorid"/>
-                              </f:facet>
-                              <h:outputText value="#{item.sponsorid}"/>
-                          </h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                              <h:commandButton  action="#{confirmation.view(item)}" value="view" styleClass="fa-eye"/>|
+                            <h:outputText value="" styleClass="fa fa-trash"/> 
+                        </h:column>
                       </h:dataTable>
                   </h:form>
 
