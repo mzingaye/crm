@@ -106,4 +106,98 @@ public class BaptismActions {
         this.baptismFacade.create(b);
         return "baptism";
     }
+    
+    public String view(Baptism b){
+        bBean.setId(b.getId());
+        bBean.setCname(b.getCname());
+        bBean.setDateOfBaptism(b.getDateOfBaptism());
+        bBean.setFirstCommunion(b.getFirstCommunion());
+        bBean.setBaptismNumber(b.getBaptismNumber());
+        bBean.setPhysicalAddress(b.getPhysicalAddress());
+        //bBean.setUserid(b.getUserid().getId());
+        bBean.setMemberid(b.getMemberid());
+        bBean.setParishid(b.getParishid().getId());
+        bBean.setMinisterid(b.getMinisterid().getId());
+        bBean.setSponsorid(b.getSponsorid());
+        
+        cBean.setId(b.getMemberid().getId());
+        cBean.setFname(b.getMemberid().getFname());
+        cBean.setMname(b.getMemberid().getMname());
+        cBean.setLname(b.getMemberid().getLname());
+        cBean.setSex(b.getMemberid().getSex());
+        cBean.setDob(b.getMemberid().getDob());
+        cBean.setAge(b.getMemberid().getAge());
+        cBean.setPlaceOfBirth(b.getMemberid().getPlaceOfBirth());
+        cBean.setNatID(b.getMemberid().getNatID());
+        cBean.setContact(b.getMemberid().getContact());
+        cBean.setFfname(b.getMemberid().getFfname());
+        cBean.setFmname(b.getMemberid().getFmname());
+        cBean.setFlname(b.getMemberid().getFlname());
+        cBean.setFnatID(b.getMemberid().getFnatID());
+        cBean.setMfname(b.getMemberid().getMfname());
+        cBean.setMmname(b.getMemberid().getMmname());
+        cBean.setMlname(b.getMemberid().getMlname());
+        cBean.setMnatID(b.getMemberid().getMnatID());
+        
+        sBean.setId(b.getSponsorid().getId());
+        sBean.setFname(b.getSponsorid().getFname());
+        sBean.setMname(b.getSponsorid().getMname());
+        sBean.setLname(b.getSponsorid().getLname());
+        sBean.setSex(b.getSponsorid().getSex());
+        sBean.setDob(b.getSponsorid().getDob());
+        sBean.setAge(b.getSponsorid().getAge());
+        sBean.setNatID(b.getSponsorid().getNatID());
+        sBean.setContact(b.getSponsorid().getContact());
+        
+        return "viewcatholic";
+    }
+    
+    public String edit(){
+        Catholic c = new Catholic(cBean.getId());
+        c.setFname(cBean.getFname());
+        c.setMname(cBean.getMname());
+        c.setLname(cBean.getLname());
+        c.setSex(cBean.getSex());
+        c.setDob(cBean.getDob());
+        c.setAge(cBean.getAge());
+        c.setPlaceOfBirth(cBean.getPlaceOfBirth());
+        c.setNatID(cBean.getNatID());
+        c.setContact(cBean.getContact());
+        c.setFfname(cBean.getFfname());
+        c.setFmname(cBean.getFmname());
+        c.setFlname(cBean.getFlname());
+        c.setFnatID(cBean.getFnatID());
+        c.setMfname(cBean.getMfname());
+        c.setMmname(cBean.getMmname());
+        c.setMlname(cBean.getMlname());
+        c.setMnatID(cBean.getMnatID());
+        User u = this.userFacade.find(2);
+        c.setUserid(u);
+        this.catholicFacade.edit(c);
+        Sponsor s = new Sponsor(sBean.getId());
+        s.setFname(sBean.getFname());
+        s.setMname(sBean.getMname());
+        s.setLname(sBean.getLname());
+        s.setSex(sBean.getSex());
+        s.setDob(sBean.getDob());
+        s.setAge(sBean.getAge());
+        s.setNatID(sBean.getNatID());
+        s.setContact(sBean.getContact());
+        this.sponsorFacade.edit(s);
+        Minister m = this.ministerFacade.find(bBean.getMinisterid());
+        Parish p = this.parishFacade.find(bBean.getParishid());
+        Baptism b = new Baptism(bBean.getId());
+        b.setCname(bBean.getCname());
+        b.setDateOfBaptism(bBean.getDateOfBaptism());
+        b.setFirstCommunion(bBean.getFirstCommunion());
+        b.setBaptismNumber(bBean.getBaptismNumber());
+        b.setPhysicalAddress(bBean.getPhysicalAddress());
+        b.setUserid(u);
+        b.setMemberid(c);
+        b.setParishid(p);
+        b.setMinisterid(m);
+        b.setSponsorid(s);
+        this.baptismFacade.edit(b);
+        return "baptism";
+    }
 }

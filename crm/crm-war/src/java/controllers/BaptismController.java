@@ -56,4 +56,6 @@ public class BaptismController implements Serializable {
         this.baptismFacade.create(b);
         return "baptism";
     }
+    
+    
 }
