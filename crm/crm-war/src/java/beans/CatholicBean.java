@@ -18,8 +18,8 @@ import javax.inject.Named;
  */
 @Stateless
 @LocalBean
-//@SessionScoped
-//@Named(value="cBean")
+@SessionScoped
+@Named(value="cBean")
 public class CatholicBean  implements Serializable{
     private String natID;
 
