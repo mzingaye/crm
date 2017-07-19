@@ -40,14 +40,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Matrimonial.findByHusbandAddress", query = "SELECT m FROM Matrimonial m WHERE m.husbandAddress = :husbandAddress"),
     @NamedQuery(name = "Matrimonial.findByWifeMemberID", query = "SELECT m FROM Matrimonial m WHERE m.wifeMemberID = :wifeMemberID"),
     @NamedQuery(name = "Matrimonial.findByWifeAddress", query = "SELECT m FROM Matrimonial m WHERE m.wifeAddress = :wifeAddress"),
-    @NamedQuery(name = "Matrimonial.findByConditionOfParties", query = "SELECT m FROM Matrimonial m WHERE m.conditionOfParties = :conditionOfParties"),
-    @NamedQuery(name = "Matrimonial.findByConscentByWhomGiven", query = "SELECT m FROM Matrimonial m WHERE m.conscentByWhomGiven = :conscentByWhomGiven"),
-    @NamedQuery(name = "Matrimonial.findByBanns", query = "SELECT m FROM Matrimonial m WHERE m.banns = :banns"),
-    @NamedQuery(name = "Matrimonial.findByIntentionToMarry", query = "SELECT m FROM Matrimonial m WHERE m.intentionToMarry = :intentionToMarry"),
-    @NamedQuery(name = "Matrimonial.findByMarriageLicence", query = "SELECT m FROM Matrimonial m WHERE m.marriageLicence = :marriageLicence"),
     @NamedQuery(name = "Matrimonial.findByHusbandSponsorID", query = "SELECT m FROM Matrimonial m WHERE m.husbandSponsorID = :husbandSponsorID"),
     @NamedQuery(name = "Matrimonial.findByWifeSponsorID", query = "SELECT m FROM Matrimonial m WHERE m.wifeSponsorID = :wifeSponsorID"),
-    @NamedQuery(name = "Matrimonial.findByOfficialDesignation", query = "SELECT m FROM Matrimonial m WHERE m.officialDesignation = :officialDesignation")})
+    @NamedQuery(name = "Matrimonial.findByOfficialDesignation", query = "SELECT m FROM Matrimonial m WHERE m.officialDesignation = :officialDesignation"),
+    @NamedQuery(name = "Matrimonial.findByConditionOfHus", query = "SELECT m FROM Matrimonial m WHERE m.conditionOfHus = :conditionOfHus"),
+    @NamedQuery(name = "Matrimonial.findByConditionOfWife", query = "SELECT m FROM Matrimonial m WHERE m.conditionOfWife = :conditionOfWife"),
+    @NamedQuery(name = "Matrimonial.findByConsentHus", query = "SELECT m FROM Matrimonial m WHERE m.consentHus = :consentHus"),
+    @NamedQuery(name = "Matrimonial.findByConsentWife", query = "SELECT m FROM Matrimonial m WHERE m.consentWife = :consentWife"),
+    @NamedQuery(name = "Matrimonial.findByMarriageBy", query = "SELECT m FROM Matrimonial m WHERE m.marriageBy = :marriageBy")})
 public class Matrimonial implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -84,31 +84,6 @@ public class Matrimonial implements Serializable {
     private String wifeAddress;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "conditionOfParties")
-    private String conditionOfParties;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "conscentByWhomGiven")
-    private String conscentByWhomGiven;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "Banns")
-    private String banns;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "IntentionToMarry")
-    private String intentionToMarry;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "MarriageLicence")
-    private String marriageLicence;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "husbandSponsorID")
     private int husbandSponsorID;
     @Basic(optional = false)
@@ -120,6 +95,31 @@ public class Matrimonial implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "officialDesignation")
     private String officialDesignation;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "conditionOfHus")
+    private String conditionOfHus;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "conditionOfWife")
+    private String conditionOfWife;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "consentHus")
+    private String consentHus;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 15)
+    @Column(name = "consentWife")
+    private String consentWife;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 20)
+    @Column(name = "marriageBy")
+    private String marriageBy;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
@@ -137,7 +137,7 @@ public class Matrimonial implements Serializable {
         this.id = id;
     }
 
-    public Matrimonial(Integer id, int marriageNumber, Date dateOfMarriage, int husbandMemberID, String husbandAddress, int wifeMemberID, String wifeAddress, String conditionOfParties, String conscentByWhomGiven, String banns, String intentionToMarry, String marriageLicence, int husbandSponsorID, int wifeSponsorID, String officialDesignation) {
+    public Matrimonial(Integer id, int marriageNumber, Date dateOfMarriage, int husbandMemberID, String husbandAddress, int wifeMemberID, String wifeAddress, int husbandSponsorID, int wifeSponsorID, String officialDesignation, String conditionOfHus, String conditionOfWife, String consentHus, String consentWife, String marriageBy) {
         this.id = id;
         this.marriageNumber = marriageNumber;
         this.dateOfMarriage = dateOfMarriage;
@@ -145,14 +145,14 @@ public class Matrimonial implements Serializable {
         this.husbandAddress = husbandAddress;
         this.wifeMemberID = wifeMemberID;
         this.wifeAddress = wifeAddress;
-        this.conditionOfParties = conditionOfParties;
-        this.conscentByWhomGiven = conscentByWhomGiven;
-        this.banns = banns;
-        this.intentionToMarry = intentionToMarry;
-        this.marriageLicence = marriageLicence;
         this.husbandSponsorID = husbandSponsorID;
         this.wifeSponsorID = wifeSponsorID;
         this.officialDesignation = officialDesignation;
+        this.conditionOfHus = conditionOfHus;
+        this.conditionOfWife = conditionOfWife;
+        this.consentHus = consentHus;
+        this.consentWife = consentWife;
+        this.marriageBy = marriageBy;
     }
 
     public Integer getId() {
@@ -211,46 +211,6 @@ public class Matrimonial implements Serializable {
         this.wifeAddress = wifeAddress;
     }
 
-    public String getConditionOfParties() {
-        return conditionOfParties;
-    }
-
-    public void setConditionOfParties(String conditionOfParties) {
-        this.conditionOfParties = conditionOfParties;
-    }
-
-    public String getConscentByWhomGiven() {
-        return conscentByWhomGiven;
-    }
-
-    public void setConscentByWhomGiven(String conscentByWhomGiven) {
-        this.conscentByWhomGiven = conscentByWhomGiven;
-    }
-
-    public String getBanns() {
-        return banns;
-    }
-
-    public void setBanns(String banns) {
-        this.banns = banns;
-    }
-
-    public String getIntentionToMarry() {
-        return intentionToMarry;
-    }
-
-    public void setIntentionToMarry(String intentionToMarry) {
-        this.intentionToMarry = intentionToMarry;
-    }
-
-    public String getMarriageLicence() {
-        return marriageLicence;
-    }
-
-    public void setMarriageLicence(String marriageLicence) {
-        this.marriageLicence = marriageLicence;
-    }
-
     public int getHusbandSponsorID() {
         return husbandSponsorID;
     }
@@ -273,6 +233,46 @@ public class Matrimonial implements Serializable {
 
     public void setOfficialDesignation(String officialDesignation) {
         this.officialDesignation = officialDesignation;
+    }
+
+    public String getConditionOfHus() {
+        return conditionOfHus;
+    }
+
+    public void setConditionOfHus(String conditionOfHus) {
+        this.conditionOfHus = conditionOfHus;
+    }
+
+    public String getConditionOfWife() {
+        return conditionOfWife;
+    }
+
+    public void setConditionOfWife(String conditionOfWife) {
+        this.conditionOfWife = conditionOfWife;
+    }
+
+    public String getConsentHus() {
+        return consentHus;
+    }
+
+    public void setConsentHus(String consentHus) {
+        this.consentHus = consentHus;
+    }
+
+    public String getConsentWife() {
+        return consentWife;
+    }
+
+    public void setConsentWife(String consentWife) {
+        this.consentWife = consentWife;
+    }
+
+    public String getMarriageBy() {
+        return marriageBy;
+    }
+
+    public void setMarriageBy(String marriageBy) {
+        this.marriageBy = marriageBy;
     }
 
     public User getUserid() {
