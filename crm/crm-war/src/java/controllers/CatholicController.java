@@ -92,7 +92,6 @@ public class CatholicController {
     }
     
     public String search(){
-        System.out.println("Im here on catholic"+cBean.getId()+" this value");
         Catholic c = this.catholicFacade.find(cBean.getId());
         cBean.setFname(c.getFname());
         cBean.setMname(c.getMname());

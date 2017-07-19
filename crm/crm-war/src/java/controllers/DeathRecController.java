@@ -55,8 +55,7 @@ public class DeathRecController {
     }
     
     public String newRec(){
-        System.out.println("im here on New!!");
-        /*cBean.setFname("");
+        cBean.setFname("");
         cBean.setMname("");
         cBean.setLname("");
         cBean.setSex("");
@@ -89,7 +88,7 @@ public class DeathRecController {
         csBean.setMfname("");
         csBean.setMmname("");
         csBean.setMlname("");
-        csBean.setMnatID("");*/
+        csBean.setMnatID("");
         return "createdeathrec";
     }
     
@@ -98,7 +97,6 @@ public class DeathRecController {
     }
     
     public String add(){
-        System.out.println("Im here");
         Death d = new Death();
         d.setDateOfBurial(dBean.getDateOfBurial());
         d.setDod(dBean.getDod());
@@ -107,7 +105,6 @@ public class DeathRecController {
         d.setSacramentAdministered(dBean.getSacramentAdministered());
         Minister m = this.ministerFacade.find(dBean.getMinisterid());
         Catholic c = this.catholicFacade.find(cBean.getId());
-        //Catholic cs = this.catholicFacade.find(csBean.getId());
         Parish p = this.parishFacade.find(dBean.getParishid());
         User u = this.userFacade.find(2);
         d.setMemberid(c);
