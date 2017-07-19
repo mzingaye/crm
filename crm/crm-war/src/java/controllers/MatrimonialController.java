@@ -34,10 +34,6 @@ public class MatrimonialController {
     @EJB
     private UserFacade userFacade;
     @EJB
-    private SponsorFacade sponsorFacade;
-    @EJB
-    private CatholicFacade catholicFacade;
-    @EJB
     private MinisterFacade ministerFacade;
     
     @EJB

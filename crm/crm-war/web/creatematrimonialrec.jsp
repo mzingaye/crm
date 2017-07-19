@@ -248,7 +248,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Condition of Wife</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:selectOneMenu styleClass="form-control has-feedback" id="conditionOfWife" value="" title="#{mBean.conditionOfWife}" required="true" requiredMessage="The Ministerid field is required.">
+                                    <h:selectOneMenu styleClass="form-control has-feedback" id="conditionOfWife" value="#{mBean.conditionOfWife}" title="" required="true" requiredMessage="The Ministerid field is required.">
                                         <f:selectItem itemLabel="Spinster" itemValue="spinster" />
                                         <f:selectItem itemLabel="Widow" itemValue="widow" />
                                         <f:selectItem itemLabel="Divorcee" itemValue="divorcee" />

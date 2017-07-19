@@ -91,9 +91,9 @@
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="ConscentHusband"/>
+                                  <h:outputText value="ConsentHusband"/>
                               </f:facet>
-                              <h:outputText value="#{item.conscentHus}"/>
+                              <h:outputText value="#{item.consentHus}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
@@ -103,9 +103,9 @@
                           </h:column>
                           <h:column>
                               <f:facet name="header">
-                                  <h:outputText value="ConscentWife"/>
+                                  <h:outputText value="ConsentWife"/>
                               </f:facet>
-                              <h:outputText value="#{item.conscentWife}"/>
+                              <h:outputText value="#{item.consentWife}"/>
                           </h:column>
                           <h:column>
                               <f:facet name="header">
