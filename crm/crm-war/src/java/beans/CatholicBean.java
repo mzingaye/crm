@@ -63,6 +63,15 @@ public class CatholicBean  implements Serializable{
     private String mfname;
     private String mmname;
     private String mlname;
+    private int deleteFlag;
+
+    public int getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 
     public CatholicBean() {
     }

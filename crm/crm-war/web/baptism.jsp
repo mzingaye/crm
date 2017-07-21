@@ -18,7 +18,7 @@
         <f:view>
          <h:form>
                
-                <h:commandLink value="Add New Record" action="createcatholic" styleClass="btn btn-info"></h:commandLink>
+             <h:commandButton value="Add New Record" action="#{baptismActions.newRec()}" styleClass="btn btn-info"/>
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -86,10 +86,17 @@
                         </h:column>
                         <h:column>
                             <f:facet name="header">
+                                <h:outputText value="Flagged Delete"/>
+                            </f:facet>
+                            <c:if test="${item.deleteFlag eq 1}"><h:outputText value="Deleted"/></c:if>
+                            <c:if test="${item.deteleFlag == '1'}"><h:outputText value="Valid"/></c:if>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:outputText value=""/>
                             </f:facet>
                             <h:commandLink action="#{baptismActions.view(item)}" value="" styleClass="fa fa-eye"/> |
-                            <h:outputText value="" styleClass="fa fa-trash"/> 
+                            <h:commandLink action="#{baptismActions.delete(item)}" value="" styleClass="fa fa-trash"/> 
                         </h:column>
                         
                     </h:dataTable>

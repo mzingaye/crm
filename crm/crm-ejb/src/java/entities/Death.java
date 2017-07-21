@@ -39,7 +39,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Death.findByPlaceOfDeath", query = "SELECT d FROM Death d WHERE d.placeOfDeath = :placeOfDeath"),
     @NamedQuery(name = "Death.findByDateOfBurial", query = "SELECT d FROM Death d WHERE d.dateOfBurial = :dateOfBurial"),
     @NamedQuery(name = "Death.findByPlaceOfBurial", query = "SELECT d FROM Death d WHERE d.placeOfBurial = :placeOfBurial"),
-    @NamedQuery(name = "Death.findBySacramentAdministered", query = "SELECT d FROM Death d WHERE d.sacramentAdministered = :sacramentAdministered")})
+    @NamedQuery(name = "Death.findBySacramentAdministered", query = "SELECT d FROM Death d WHERE d.sacramentAdministered = :sacramentAdministered"),
+    @NamedQuery(name = "Death.findByDeleteFlag", query = "SELECT d FROM Death d WHERE d.deleteFlag = :deleteFlag"),
+    @NamedQuery(name = "Death.findByCreatedAt", query = "SELECT d FROM Death d WHERE d.createdAt = :createdAt")})
 public class Death implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -72,6 +74,11 @@ public class Death implements Serializable {
     @Size(max = 255)
     @Column(name = "sacramentAdministered")
     private String sacramentAdministered;
+    @Column(name = "deleteFlag")
+    private Integer deleteFlag;
+    @Column(name = "createdAt")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
@@ -154,6 +161,22 @@ public class Death implements Serializable {
 
     public void setSacramentAdministered(String sacramentAdministered) {
         this.sacramentAdministered = sacramentAdministered;
+    }
+
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public User getUserid() {

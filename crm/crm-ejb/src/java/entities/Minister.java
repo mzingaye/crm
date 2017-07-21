@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -18,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,7 +41,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Minister.findByRank", query = "SELECT m FROM Minister m WHERE m.rank = :rank"),
     @NamedQuery(name = "Minister.findByContact", query = "SELECT m FROM Minister m WHERE m.contact = :contact"),
     @NamedQuery(name = "Minister.findByNatID", query = "SELECT m FROM Minister m WHERE m.natID = :natID"),
-    @NamedQuery(name = "Minister.findByPriestorder", query = "SELECT m FROM Minister m WHERE m.priestorder = :priestorder")})
+    @NamedQuery(name = "Minister.findByPriestorder", query = "SELECT m FROM Minister m WHERE m.priestorder = :priestorder"),
+    @NamedQuery(name = "Minister.findByDeleteFlag", query = "SELECT m FROM Minister m WHERE m.deleteFlag = :deleteFlag"),
+    @NamedQuery(name = "Minister.findByCreatedAt", query = "SELECT m FROM Minister m WHERE m.createdAt = :createdAt")})
 public class Minister implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -76,8 +81,19 @@ public class Minister implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "priestorder")
     private String priestorder;
+    @Column(name = "deleteFlag")
+    private Integer deleteFlag;
+    @Column(name = "createdAt")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ministerid")
+    private List<Death> deathList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ministerid")
     private List<Matrimonial> matrimonialList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ministerid")
+    private List<Baptism> baptismList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ministerid")
+    private List<Confirmation> confirmationList;
 
     public Minister() {
     }
@@ -152,6 +168,31 @@ public class Minister implements Serializable {
         this.priestorder = priestorder;
     }
 
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    @XmlTransient
+    public List<Death> getDeathList() {
+        return deathList;
+    }
+
+    public void setDeathList(List<Death> deathList) {
+        this.deathList = deathList;
+    }
+
     @XmlTransient
     public List<Matrimonial> getMatrimonialList() {
         return matrimonialList;
@@ -159,6 +200,24 @@ public class Minister implements Serializable {
 
     public void setMatrimonialList(List<Matrimonial> matrimonialList) {
         this.matrimonialList = matrimonialList;
+    }
+
+    @XmlTransient
+    public List<Baptism> getBaptismList() {
+        return baptismList;
+    }
+
+    public void setBaptismList(List<Baptism> baptismList) {
+        this.baptismList = baptismList;
+    }
+
+    @XmlTransient
+    public List<Confirmation> getConfirmationList() {
+        return confirmationList;
+    }
+
+    public void setConfirmationList(List<Confirmation> confirmationList) {
+        this.confirmationList = confirmationList;
     }
 
     @Override

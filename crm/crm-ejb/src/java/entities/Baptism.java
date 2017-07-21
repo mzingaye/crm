@@ -38,7 +38,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Baptism.findByDateOfBaptism", query = "SELECT b FROM Baptism b WHERE b.dateOfBaptism = :dateOfBaptism"),
     @NamedQuery(name = "Baptism.findByFirstCommunion", query = "SELECT b FROM Baptism b WHERE b.firstCommunion = :firstCommunion"),
     @NamedQuery(name = "Baptism.findByBaptismNumber", query = "SELECT b FROM Baptism b WHERE b.baptismNumber = :baptismNumber"),
-    @NamedQuery(name = "Baptism.findByPhysicalAddress", query = "SELECT b FROM Baptism b WHERE b.physicalAddress = :physicalAddress")})
+    @NamedQuery(name = "Baptism.findByPhysicalAddress", query = "SELECT b FROM Baptism b WHERE b.physicalAddress = :physicalAddress"),
+    @NamedQuery(name = "Baptism.findByDeleteFlag", query = "SELECT b FROM Baptism b WHERE b.deleteFlag = :deleteFlag"),
+    @NamedQuery(name = "Baptism.findByCreatedAt", query = "SELECT b FROM Baptism b WHERE b.createdAt = :createdAt")})
 public class Baptism implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -68,6 +70,11 @@ public class Baptism implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "physicalAddress")
     private String physicalAddress;
+    @Column(name = "deleteFlag")
+    private Integer deleteFlag;
+    @Column(name = "createdAt")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
@@ -145,6 +152,22 @@ public class Baptism implements Serializable {
 
     public void setPhysicalAddress(String physicalAddress) {
         this.physicalAddress = physicalAddress;
+    }
+
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public User getUserid() {

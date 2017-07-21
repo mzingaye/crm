@@ -38,6 +38,15 @@ public class MatrimonialBean implements Serializable {
     private String marriageBy;
     private int parishid;
     private int ministerid;
+    private int deleteFlag;
+
+    public int getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 
     public MatrimonialBean() {
     }

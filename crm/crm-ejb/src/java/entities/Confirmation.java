@@ -35,7 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Confirmation.findAll", query = "SELECT c FROM Confirmation c"),
     @NamedQuery(name = "Confirmation.findById", query = "SELECT c FROM Confirmation c WHERE c.id = :id"),
     @NamedQuery(name = "Confirmation.findByDateOfConfirmation", query = "SELECT c FROM Confirmation c WHERE c.dateOfConfirmation = :dateOfConfirmation"),
-    @NamedQuery(name = "Confirmation.findByBaptizedBy", query = "SELECT c FROM Confirmation c WHERE c.baptizedBy = :baptizedBy")})
+    @NamedQuery(name = "Confirmation.findByBaptizedBy", query = "SELECT c FROM Confirmation c WHERE c.baptizedBy = :baptizedBy"),
+    @NamedQuery(name = "Confirmation.findByDeleteFlag", query = "SELECT c FROM Confirmation c WHERE c.deleteFlag = :deleteFlag"),
+    @NamedQuery(name = "Confirmation.findByCreatedAt", query = "SELECT c FROM Confirmation c WHERE c.createdAt = :createdAt")})
 public class Confirmation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -53,6 +55,11 @@ public class Confirmation implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "baptizedBy")
     private String baptizedBy;
+    @Column(name = "deleteFlag")
+    private Integer deleteFlag;
+    @Column(name = "createdAt")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
@@ -104,6 +111,22 @@ public class Confirmation implements Serializable {
 
     public void setBaptizedBy(String baptizedBy) {
         this.baptizedBy = baptizedBy;
+    }
+
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     public User getUserid() {

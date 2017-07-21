@@ -36,6 +36,15 @@ public class BaptismBean implements Serializable {
     private Catholic memberid;
     private int parishid;
     private int ministerid;
+
+    public int getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+    private int deleteFlag;
     private Sponsor sponsorid;
 
     public BaptismBean() {

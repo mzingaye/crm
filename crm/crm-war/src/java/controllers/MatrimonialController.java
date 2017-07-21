@@ -164,7 +164,7 @@ public class MatrimonialController {
         sBean.setContact(s.getContact());
         
         ssBean.setId(m.getWifeSponsorID());
-        Sponsor ss = this.sponsorFacade.find(m.getWifeSponsorID())
+        Sponsor ss = this.sponsorFacade.find(m.getWifeSponsorID());
         ssBean.setFname(ss.getFname());
         ssBean.setMname(ss.getMname());
         ssBean.setLname(ss.getLname());

@@ -30,6 +30,15 @@ public class SponsorBean implements Serializable  {
     private int age;
     private String natID;
     private String contact;
+    private int deleteFlag;
+
+    public int getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
     
     public SponsorBean() {
     }

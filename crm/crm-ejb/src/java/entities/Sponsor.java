@@ -43,7 +43,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sponsor.findByDob", query = "SELECT s FROM Sponsor s WHERE s.dob = :dob"),
     @NamedQuery(name = "Sponsor.findByAge", query = "SELECT s FROM Sponsor s WHERE s.age = :age"),
     @NamedQuery(name = "Sponsor.findByNatID", query = "SELECT s FROM Sponsor s WHERE s.natID = :natID"),
-    @NamedQuery(name = "Sponsor.findByContact", query = "SELECT s FROM Sponsor s WHERE s.contact = :contact")})
+    @NamedQuery(name = "Sponsor.findByContact", query = "SELECT s FROM Sponsor s WHERE s.contact = :contact"),
+    @NamedQuery(name = "Sponsor.findByDeleteFlag", query = "SELECT s FROM Sponsor s WHERE s.deleteFlag = :deleteFlag"),
+    @NamedQuery(name = "Sponsor.findByCreatedAt", query = "SELECT s FROM Sponsor s WHERE s.createdAt = :createdAt")})
 public class Sponsor implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -88,6 +90,11 @@ public class Sponsor implements Serializable {
     @Size(min = 1, max = 255)
     @Column(name = "contact")
     private String contact;
+    @Column(name = "deleteFlag")
+    private Integer deleteFlag;
+    @Column(name = "createdAt")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sponsorid")
     private List<Baptism> baptismList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sponsorid")
@@ -181,6 +188,22 @@ public class Sponsor implements Serializable {
 
     public void setContact(String contact) {
         this.contact = contact;
+    }
+
+    public Integer getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(Integer deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
     @XmlTransient

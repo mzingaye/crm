@@ -29,6 +29,15 @@ public class ConfirmationBean implements Serializable  {
     private int memberid;
     private int parishid;
     private int sponsorid;
+    private int deleteFlag;
+
+    public int getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 
     public ConfirmationBean() {
     }

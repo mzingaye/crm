@@ -197,7 +197,7 @@
                                 </div>
                             </div>
                                 <hr>
-                                <h:commandButton action="#{catholic.nextBapt()}" value="Save and Continue" styleClass="btn btn-primary"/>
+                                <h:commandButton action="#{catholic.nextBapt()}" value="Next Page" styleClass="btn btn-primary"/>
                         </h:form>
                         </div>
                     </div>

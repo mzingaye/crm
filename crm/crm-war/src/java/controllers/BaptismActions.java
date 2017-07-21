@@ -58,6 +58,51 @@ public class BaptismActions {
     public BaptismActions() {
     }
     
+    public String newRec(){
+        bBean.setId(null);
+        bBean.setCname(null);
+        bBean.setDateOfBaptism(null);
+        bBean.setFirstCommunion(null);
+        bBean.setBaptismNumber(0);
+        bBean.setPhysicalAddress(null);
+        //bBean.setUserid(b.getUserid().getId());
+        bBean.setMemberid(null);
+        bBean.setParishid(0);
+        bBean.setMinisterid(0);
+        bBean.setSponsorid(null);
+        
+        cBean.setId(null);
+        cBean.setFname(null);
+        cBean.setMname(null);
+        cBean.setLname(null);
+        cBean.setSex(null);
+        cBean.setDob(null);
+        cBean.setAge(0);
+        cBean.setPlaceOfBirth(null);
+        cBean.setNatID(null);
+        cBean.setContact(null);
+        cBean.setFfname(null);
+        cBean.setFmname(null);
+        cBean.setFlname(null);
+        cBean.setFnatID(null);
+        cBean.setMfname(null);
+        cBean.setMmname(null);
+        cBean.setMlname(null);
+        cBean.setMnatID(null);
+        
+        sBean.setId(null);
+        sBean.setFname(null);
+        sBean.setMname(null);
+        sBean.setLname(null);
+        sBean.setSex(null);
+        sBean.setDob(null);
+        sBean.setAge(0);
+        sBean.setNatID(null);
+        sBean.setContact(null);
+        
+        return "createcatholic";
+    }
+    
     public String add(){
         Catholic c = new Catholic();
         c.setFname(cBean.getFname());
@@ -197,6 +242,12 @@ public class BaptismActions {
         b.setParishid(p);
         b.setMinisterid(m);
         b.setSponsorid(s);
+        this.baptismFacade.edit(b);
+        return "baptism";
+    }
+    
+    public String delete(Baptism b){
+        b.setDeleteFlag(1);
         this.baptismFacade.edit(b);
         return "baptism";
     }

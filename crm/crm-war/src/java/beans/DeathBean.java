@@ -32,6 +32,15 @@ public class DeathBean implements Serializable{
     private int memberid;
     private int parishid;
     private int ministerid;
+    private int deleteFlag;
+
+    public int getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(int deleteFlag) {
+        this.deleteFlag = deleteFlag;
+    }
 
     public DeathBean() {
     }
