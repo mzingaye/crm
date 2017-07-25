@@ -1,7 +1,7 @@
 <%-- 
-    Document   : baptism
-    Created on : Jul 10, 2017, 1:18:38 PM
-    Author     : Lyne
+    Document   : searchbapt
+    Created on : Jul 25, 2017, 11:28:13 PM
+    Author     : Developer
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -16,19 +16,6 @@
    
     <jsp:attribute name="content">
         <f:view>
-            <h:form  styleClass="form-horizontal form-label-left">
-                <div class="form-group">
-                    
-                    <div class="col-md-4 col-sm-4 col-xs-12 ">
-                      <div class="input-group">
-                          <h:inputText  styleClass="form-control" id="cname" value="#{bBean.cname}"/>
-                        <span class="input-group-btn">
-                        <h:commandButton action="#{baptism.search()}" value="Search" styleClass="btn btn-warning"/>
-                        </span>
-                      </div>
-                    </div>
-                </div>
-            </h:form>
          <h:form>
                
              <h:commandButton value="Add New Record" action="#{baptismActions.newRec()}" styleClass="btn btn-info"/>
@@ -36,7 +23,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Baptism Records</h2>
+                      <h2>Search Results : <h:outputText value="#{bBean.cname}"/></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -56,7 +43,7 @@
                   </div>
                   <div class="x_content">
 
-                    <h:dataTable value="#{baptism.all}" var="item" styleClass="table table-striped">
+                    <h:dataTable value="#{baptism.getCname(bBean.cname)}" var="item" styleClass="table table-striped">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#"/>

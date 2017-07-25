@@ -6,6 +6,7 @@
 package models;
 
 import entities.Baptism;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,6 +27,10 @@ public class BaptismFacade extends AbstractFacade<Baptism> {
 
     public BaptismFacade() {
         super(Baptism.class);
+    }
+    
+    public List<Baptism> findByCname(String cname) {
+        return getEntityManager().createNamedQuery("Baptism.findByCname",Baptism.class).setParameter("cname","%"+cname+"%").getResultList();
     }
     
 }

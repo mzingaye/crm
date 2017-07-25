@@ -41,6 +41,14 @@ public class BaptismController implements Serializable {
         return this.baptismFacade.findAll();
     }
     
+    public List<Baptism> getCname(String cname){
+        return this.baptismFacade.findByCname(cname);
+    }
+    
+    public String search(){
+       return "searchbapt";
+    }
+    
     public String add(Catholic c, Parish p, User u, Minister m, Sponsor s){
         Baptism b = new Baptism();
         b.setCname(bBean.getCname());

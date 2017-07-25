@@ -34,13 +34,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Baptism.findAll", query = "SELECT b FROM Baptism b"),
     @NamedQuery(name = "Baptism.findById", query = "SELECT b FROM Baptism b WHERE b.id = :id"),
-    @NamedQuery(name = "Baptism.findByCname", query = "SELECT b FROM Baptism b WHERE b.cname = :cname"),
-    @NamedQuery(name = "Baptism.findByDateOfBaptism", query = "SELECT b FROM Baptism b WHERE b.dateOfBaptism = :dateOfBaptism"),
-    @NamedQuery(name = "Baptism.findByFirstCommunion", query = "SELECT b FROM Baptism b WHERE b.firstCommunion = :firstCommunion"),
-    @NamedQuery(name = "Baptism.findByBaptismNumber", query = "SELECT b FROM Baptism b WHERE b.baptismNumber = :baptismNumber"),
-    @NamedQuery(name = "Baptism.findByPhysicalAddress", query = "SELECT b FROM Baptism b WHERE b.physicalAddress = :physicalAddress"),
-    @NamedQuery(name = "Baptism.findByDeleteFlag", query = "SELECT b FROM Baptism b WHERE b.deleteFlag = :deleteFlag"),
-    @NamedQuery(name = "Baptism.findByCreatedAt", query = "SELECT b FROM Baptism b WHERE b.createdAt = :createdAt")})
+    @NamedQuery(name = "Baptism.findByCname", query = "SELECT b FROM Baptism b WHERE b.cname like :cname"),
+    @NamedQuery(name = "Baptism.findByDateOfBaptism", query = "SELECT b FROM Baptism b WHERE b.dateOfBaptism like :dateOfBaptism"),
+    @NamedQuery(name = "Baptism.findByFirstCommunion", query = "SELECT b FROM Baptism b WHERE b.firstCommunion like :firstCommunion"),
+    @NamedQuery(name = "Baptism.findByBaptismNumber", query = "SELECT b FROM Baptism b WHERE b.baptismNumber like :baptismNumber"),
+    @NamedQuery(name = "Baptism.findByPhysicalAddress", query = "SELECT b FROM Baptism b WHERE b.physicalAddress like :physicalAddress"),
+    @NamedQuery(name = "Baptism.findByDeleteFlag", query = "SELECT b FROM Baptism b WHERE b.deleteFlag like :deleteFlag"),
+    @NamedQuery(name = "Baptism.findByCreatedAt", query = "SELECT b FROM Baptism b WHERE b.createdAt like :createdAt")})
 public class Baptism implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
