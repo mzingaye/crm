@@ -60,8 +60,8 @@
                            <div class="form-group">
                                <div class="col-md-12 col-sm-12 col-xs-12 ">
                                  <div class="input-group">
-                                     <h:inputText  styleClass="form-control" id="dateOfBaptism" value="#{bBean.dateOfBaptism}" title="dd/mm/yyyy">
-                                            <f:convertDateTime pattern="dd/mm/yyyy" />
+                                     <h:inputText  styleClass="form-control" id="dateOfBaptism" value="#{bBean.dateOfBaptism}" title="yyyy-mm-dd">
+                                            <f:convertDateTime pattern="yyyy-mm-dd" />
                                         </h:inputText>
                                    <span class="input-group-btn">
                                    <h:commandButton action="#{baptism.searchDateOfBaptism()}" value="Date of Baptism" styleClass="btn btn-warning"/>
@@ -133,7 +133,7 @@
                                 <h:outputText value="Date Of Baptism"/>
                             </f:facet>
                             <h:outputText value="#{item.dateOfBaptism}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </h:column>
                         <h:column>
@@ -141,7 +141,7 @@
                                 <h:outputText value="First Communion"/>
                             </f:facet>
                             <h:outputText value="#{item.firstCommunion}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </h:column>
                         <h:column>

@@ -21,7 +21,7 @@
                 <div class="x_panel">
                   <div class="x_title">
                       <h2>Search Results by Date of Baptism : <h:outputText value="#{bBean.dateOfBaptism}" style="color: red" >
-                                            <f:convertDateTime pattern="dd/mm/yyyy" />
+                                            <f:convertDateTime pattern="yyyy-mm-dd" />
                                         </h:outputText></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
