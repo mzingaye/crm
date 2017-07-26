@@ -15,6 +15,7 @@ import entities.User;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -44,9 +45,21 @@ public class BaptismController implements Serializable {
     public List<Baptism> getCname(String cname){
         return this.baptismFacade.findByCname(cname);
     }
+    public List<Baptism> getDateOfBaptism(){
+        return this.baptismFacade.findByDateOfBaptism((Date)this.bBean.getDateOfBaptism());
+    }
+    public List<Baptism> getFirstCommunion(Date firstCommunion){
+        return this.baptismFacade.findByFirstCommunion(firstCommunion);
+    }
     
-    public String search(){
+    public String searchCname(){
        return "searchbapt";
+    }
+    public String searchDateOfBaptism(){
+       return "searchbaptdob";
+    }
+    public String searchFirstCommunion(){
+       return "searchbaptfc";
     }
     
     public String add(Catholic c, Parish p, User u, Minister m, Sponsor s){

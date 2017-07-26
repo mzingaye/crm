@@ -17,13 +17,10 @@
     <jsp:attribute name="content">
         <f:view>
          <h:form>
-               
-             <h:commandButton value="Add New Record" action="#{baptismActions.newRec()}" styleClass="btn btn-info"/>
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                      <h2>Search Results : <h:outputText value="#{bBean.cname}"/></h2>
+                      <h2>Search Results by Christian Name : <h:outputText value="#{bBean.cname}" style="color: red"/></h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
