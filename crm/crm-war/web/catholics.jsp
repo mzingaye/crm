@@ -11,6 +11,7 @@
 <%@taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
 
 <t:mainTemplate>
+    
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
     <jsp:attribute name="page_title">Catholic Members </jsp:attribute>
     
@@ -19,6 +20,7 @@
          <h:form>
                
              <h:commandButton value="Add New Record" action="#{catholic.newMember()}" styleClass="btn btn-info"/>
+             </h:form>
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
@@ -42,62 +44,46 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
-                  <h:dataTable value="#{catholic.all}" var="item" styleClass="table table-stripped">
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="#"/>
-                              </f:facet>
-                              <h:outputText value="#{item.id}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="First Name"/>
-                              </f:facet>
-                              <h:outputText value="#{item.fname}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Middle Name"/>
-                              </f:facet>
-                              <h:outputText value="#{item.mname}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Last Nname"/>
-                              </f:facet>
-                              <h:outputText value="#{item.lname}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Sex"/>
-                              </f:facet>
-                              <h:outputText value="#{item.sex}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Date Of Birth"/>
-                              </f:facet>
-                              <h:outputText value="#{item.dob}">
-                                  <f:convertDateTime pattern="MM/dd/yyyy" />
-                              </h:outputText>
-                          </h:column>
-                          
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Contact"/>
-                              </f:facet>
-                              <h:outputText value="#{item.contact}"/>
-                          </h:column>
-                        <h:column>
-                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
-                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
-                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
-                        </h:column>
-                          
-                      </h:dataTable>
-                  </h:form>
-
+                      
+                    <table id="datatable" class="table table-striped  ">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Sex</th>
+                            <th>Date Of Birth</th>
+                            <th>Contact</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody >
+                            <c:forEach var="i" items="#{catholic.all}" >
+                                <tr >
+                                    <td>${i.id}</td>
+                                    <td>${i.fname}</td>
+                                    <td>${i.mname}</td>
+                                    <td>${i.lname}</td>
+                                    <td>${i.sex}</td>
+                                    <td>
+                                        <h:outputText value="#{i.dob}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </td>
+                                    <td>${i.contact}</td>
+                                    <td>
+                                        <h:column>
+                                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
+                                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
+                                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
+                                        </h:column>
+                                    </td>
+                                </tr>
+                            </c:forEach> 
+                        </tbody>
+                      
+                    </table>
                   </div>
                 </div>
               </div>

@@ -42,59 +42,45 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
+                  
 
-
-
-                  <h:form>
-                      <h:dataTable value="#{confirmation.all}" var="item" styleClass="table table-stripped">
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="#"/>
-                              </f:facet>
-                              <h:outputText value="#{item.id}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="DateOfConfirmation"/>
-                              </f:facet>
-                              <h:outputText value="#{item.dateOfConfirmation}">
-                                  <f:convertDateTime pattern="MM/dd/yyyy" />
-                              </h:outputText>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="BaptizedBy"/>
-                              </f:facet>
-                              <h:outputText value="#{item.baptizedBy}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Member"/>
-                              </f:facet>
-                              <h:outputText value="#{item.memberid.fname} #{item.memberid.lname}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Parish"/>
-                              </f:facet>
-                              <h:outputText value="#{item.parishid.name}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Sponsor"/>
-                              </f:facet>
-                              <h:outputText value="#{item.sponsorid.fname} #{item.sponsorid.lname}"/>
-                          </h:column>
-                          <h:column>
-                            <f:facet name="header">
-                                <h:outputText value=""/>
-                            </f:facet>
-                              <h:commandButton  action="#{confirmation.view(item)}" value="view" styleClass="fa-eye"/>|
-                            <h:outputText value="" styleClass="fa fa-trash"/> 
-                        </h:column>
-                      </h:dataTable>
-                  </h:form>
-
+                    <table id="datatable" class="table table-striped  ">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Date Of Confirmation</th>
+                            <th>Baptized By</th>
+                            <th>Catholic Member</th>
+                            <th>Parish</th>
+                            <th>Sponsor</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody >
+                            <c:forEach var="i" items="#{confirmation.all}" >
+                                <tr >
+                                    <td>${i.id}</td>
+                                    <td>
+                                        <h:outputText value="#{i.dateOfConfirmation}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </td>
+                                    <td>${i.baptizedBy}</td>
+                                    <td><h:outputText value="#{i.memberid.fname} #{i.memberid.lname}"/></td>
+                                    <td><h:outputText value="#{i.parishid.name}"/></td>
+                                    <td><h:outputText value="#{i.sponsorid.fname} #{i.sponsorid.lname}"/></td>
+                                    <td>
+                                        <h:column>
+                                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
+                                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
+                                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
+                                        </h:column>
+                                    </td>
+                                </tr>
+                            </c:forEach> 
+                        </tbody>
+                      
+                    </table>    
                 </h:form>
 
                   </div>

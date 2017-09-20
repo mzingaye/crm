@@ -41,67 +41,52 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-
-
-
-                  <h:form>
-                      <h:dataTable value="#{deathRec.all}" var="item" styleClass="table table-stripped">
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Id"/>
-                              </f:facet>
-                              <h:outputText value="#{item.id}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="SpouseMemberID"/>
-                              </f:facet>
-                              <h:outputText value="#{item.spouseMemberID}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Dod"/>
-                              </f:facet>
-                              <h:outputText value="#{item.dod}">
-                                  <f:convertDateTime pattern="MM/dd/yyyy" />
-                              </h:outputText>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="PlaceOfDeath"/>
-                              </f:facet>
-                              <h:outputText value="#{item.placeOfDeath}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="DateOfBurial"/>
-                              </f:facet>
-                              <h:outputText value="#{item.dateOfBurial}">
-                                  <f:convertDateTime pattern="MM/dd/yyyy" />
-                              </h:outputText>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="PlaceOfBurial"/>
-                              </f:facet>
-                              <h:outputText value="#{item.placeOfBurial}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="SacramentAdministered"/>
-                              </f:facet>
-                              <h:outputText value="#{item.sacramentAdministered}"/>
-                          </h:column>
-                          
-                          <h:column>
-                            <f:facet name="header">
-                                <h:outputText value=""/>
-                            </f:facet>
-                              <h:commandButton  action="#{deathRec.view(item)}" value="view" styleClass="fa-eye"/>|
-                            <h:outputText value="" styleClass="fa fa-trash"/> 
-                        </h:column>
-                      </h:dataTable>
-                  </h:form>
+            
+                    <table id="datatable" class="table table-striped">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Deceased</th>
+                            <th>Spouse</th>
+                            <th>Date Of Death</th>
+                            <th>Place Of Death</th>
+                            <th>Date Of Burial</th>
+                            <th>Place Of Burial</th>
+                            <th>Sacrament Administered</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody >
+                            <c:forEach var="i" items="#{deathRec.all}" >
+                                <tr >
+                                    <td>${i.id}</td>
+                                    <td>${i.memberid.fname} ${i.memberid.lname} [${i.memberid.id}]</td>
+                                    <td>${i.spouseMemberID}</td>
+                                    <td>
+                                        <h:outputText value="#{i.dod}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </td>
+                                    <td>${i.placeOfDeath}</td>
+                                    <td>
+                                        <h:outputText value="#{i.dateOfBurial}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </td>
+                                    <td>${i.placeOfBurial}</td>
+                                    <td>${i.sacramentAdministered}</td>
+                                    <td>
+                                        <h:column>
+                                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
+                                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
+                                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
+                                        </h:column>
+                                    </td>
+                                </tr>
+                            </c:forEach> 
+                        </tbody>
+                      
+                    </table>
 
                 </h:form>
 

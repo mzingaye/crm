@@ -16,80 +16,16 @@
    
     <jsp:attribute name="content">
         <f:view>
-            
-            <table class="table table-striped">
-                <tr>
-                    <td colspan="3"><h:outputLabel value="Common Actions"/></td>
-                </tr>
-                <tr> 
-                    <td>
-                        <h:form  styleClass="form-horizontal form-label-left">
-                           <div class="form-group">
-                               <div class="col-md-12 col-sm-12 col-xs-12 ">
-                                 <div class="input-group">
-                                  <h:commandButton value="Add New Record" action="#{baptismActions.newRec()}" styleClass="btn btn-info"/>   
-                                 </div>
-                               </div>
-                           </div>
-                       </h:form>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="3"><h:outputLabel value="Search Options"/></td>
-                </tr>
-                
-                <tr>
-                    <td>
-                        <h:form  styleClass="form-horizontal form-label-left">
-                            <div class="form-group">
-                                <div class="col-md-12 col-sm-12 col-xs-12 ">
-                                  <div class="input-group">
-                                      <h:inputText  styleClass="form-control" id="cname" value="#{bBean.cname}"/>
-                                    <span class="input-group-btn">
-                                    <h:commandButton action="#{baptism.searchCname()}" value="Christian Name" styleClass="btn btn-warning"/>
-                                    </span>
-                                  </div>
-                                </div>
-                            </div>
-                        </h:form>
-                    </td>
-                    <td>
-                        <h:form  styleClass="form-horizontal form-label-left">
-                           <div class="form-group">
-                               <div class="col-md-12 col-sm-12 col-xs-12 ">
-                                 <div class="input-group">
-                                     <h:inputText  styleClass="form-control" id="dateOfBaptism" value="#{bBean.dateOfBaptism}" title="yyyy-mm-dd">
-                                            <f:convertDateTime pattern="yyyy-mm-dd" />
-                                        </h:inputText>
-                                   <span class="input-group-btn">
-                                   <h:commandButton action="#{baptism.searchDateOfBaptism()}" value="Date of Baptism" styleClass="btn btn-warning"/>
-                                   </span>
-                                 </div>
-                               </div>
-                           </div>
-                       </h:form>
-                    </td>
-                    <td>
-                        <h:form  styleClass="form-horizontal form-label-left">
-                           <div class="form-group">
-                               <div class="col-md-12 col-sm-12 col-xs-12 ">
-                                 <div class="input-group">
-                                     <h:inputText  styleClass="form-control" id="firstCommunion" value="#{bBean.firstCommunion}" title="dd/mm/yyyy">
-                                            <f:convertDateTime pattern="dd/mm/yyyy" />
-                                        </h:inputText>
-                                   <span class="input-group-btn">
-                                   <h:commandButton action="#{baptism.searchFirstCommunion()}" value="Date of Confirmation" styleClass="btn btn-warning"/>
-                                   </span>
-                                 </div>
-                               </div>
-                           </div>
-                       </h:form>
-                    </td>
-                </tr>
-                
-            </table>
+            <h:form  styleClass="form-horizontal form-label-left">
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                      <div class="input-group">
+                       <h:commandButton value="Add New Record" action="#{baptismActions.newRec()}" styleClass="btn btn-info"/>   
+                      </div>
+                    </div>
+                </div>
+            </h:form>
+           
                 <hr>
          <h:form>
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -115,63 +51,46 @@
                   </div>
                   <div class="x_content">
 
-                    <h:dataTable value="#{baptism.all}" var="item" styleClass="table table-striped">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="#"/>
-                            </f:facet>
-                            <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Christian Name"/>
-                            </f:facet>
-                            <h:outputText value="#{item.cname}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Date Of Baptism"/>
-                            </f:facet>
-                            <h:outputText value="#{item.dateOfBaptism}">
-                                <f:convertDateTime pattern="dd/MM/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="First Communion"/>
-                            </f:facet>
-                            <h:outputText value="#{item.firstCommunion}">
-                                <f:convertDateTime pattern="dd/MM/yyyy" />
-                            </h:outputText>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Baptism Number"/>
-                            </f:facet>
-                            <h:outputText value="#{item.baptismNumber}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Physical Address"/>
-                            </f:facet>
-                            <h:outputText value="#{item.physicalAddress}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Flagged Delete"/>
-                            </f:facet>
-                            <c:if test="${item.deleteFlag eq 1}"><h:outputText value="Deleted"/></c:if>
-                            <c:if test="${item.deteleFlag == '1'}"><h:outputText value="Valid"/></c:if>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value=""/>
-                            </f:facet>
-                            <h:commandLink action="#{baptismActions.view(item)}" value="" styleClass="fa fa-eye"/> |
-                            <h:commandLink action="#{baptismActions.delete(item)}" value="" styleClass="fa fa-trash"/> 
-                        </h:column>
-                        
-                    </h:dataTable>
+                    <table id="datatable" class="table table-striped  ">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Christian Name</th>
+                            <th>Date Of Baptism</th>
+                            <th>First Communion</th>
+                            <th>Baptism Number</th>
+                            <th>Physical Address</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody >
+                            <c:forEach var="i" items="#{baptism.all}" >
+                                <tr >
+                                    <td>${i.id}</td>
+                                    <td>${i.cname}</td>
+                                    <td>
+                                        <h:outputText value="#{i.dateOfBaptism}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </td>
+                                    <td>
+                                        <h:outputText value="#{i.firstCommunion}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </td>
+                                    <td>${i.baptismNumber}</td>
+                                    <td>${i.physicalAddress}</td>
+                                    <td>
+                                        <h:column>
+                                            <h:commandLink action="#{baptismActions.view(i)}" value="" styleClass="fa fa-eye"/> |
+                                            <h:commandLink action="#{baptismActions.delete(i)}" value="" styleClass="fa fa-trash"/> 
+                                        </h:column>
+                                    </td>
+                                </tr>
+                            </c:forEach> 
+                        </tbody>
+                      
+                    </table>
                 </h:form>
 
                   </div>

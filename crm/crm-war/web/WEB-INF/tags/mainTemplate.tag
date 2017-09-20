@@ -31,6 +31,12 @@
     <link href="resources/vendors/nprogress/nprogress.css" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="resources/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Datatables -->
+    <link href="./resources/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+    <link href="./resources/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+    <link href="./resources/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+    <link href="./resources/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+    <link href="./resources/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
     <link href="resources/build/css/custom.min.css" rel="stylesheet">
@@ -78,6 +84,7 @@
                       <li><a href="confirmation.jsp">Confirmation Records</a></li>
                       <li><a href="matrimonial.jsp">Matrimonial Records</a></li>
                       <li><a href="death.jsp">Death Records</a></li>
+                      <li><a href="misc.jsp">Miscellaneous Records</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
@@ -275,6 +282,23 @@
     <!-- bootstrap-daterangepicker -->
     <script src="resources/vendors/moment/min/moment.min.js"></script>
     <script src="resources/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    
+    <!-- Datatables -->
+    <script src="./resources/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="./resources/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="./resources/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="./resources/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="./resources/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="./resources/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="./resources/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="./resources/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="./resources/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="./resources/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="./resources/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="./resources/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+    <script src="./resources/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="./resources/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="./resources/vendors/pdfmake/build/vfs_fonts.js"></script>
     
     <!-- Custom Theme Scripts -->
     <script src="resources/build/js/custom.min.js"></script>

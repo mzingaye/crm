@@ -44,69 +44,50 @@
                   <div class="x_content">
 
                   <h:form>
-                      <h:dataTable value="#{sponsor.all}" var="item" styleClass="table table-stripped">
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Id"/>
-                              </f:facet>
-                              <h:outputText value="#{item.id}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Fname"/>
-                              </f:facet>
-                              <h:outputText value="#{item.fname}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Mname"/>
-                              </f:facet>
-                              <h:outputText value="#{item.mname}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Lname"/>
-                              </f:facet>
-                              <h:outputText value="#{item.lname}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Sex"/>
-                              </f:facet>
-                              <h:outputText value="#{item.sex}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Dob"/>
-                              </f:facet>
-                              <h:outputText value="#{item.dob}">
-                                  <f:convertDateTime pattern="MM/dd/yyyy" />
-                              </h:outputText>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Age"/>
-                              </f:facet>
-                              <h:outputText value="#{item.age}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="NatID"/>
-                              </f:facet>
-                              <h:outputText value="#{item.natID}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Contact"/>
-                              </f:facet>
-                              <h:outputText value="#{item.contact}"/>
-                          </h:column>
-                          <h:column>
-                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
-                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
-                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
-                        </h:column>
-                      </h:dataTable>
+                      
+                    <table id="datatable" class="table table-striped  ">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>National ID</th>
+                            <th>Sex</th>
+                            <th>Date Of Birth</th>
+                            <th>Age</th>
+                            <th>Contact</th>
+                            <th>Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody >
+                            <c:forEach var="i" items="#{sponsor.all}" >
+                                <tr >
+                                    <td>${i.id}</td>
+                                    <td>${i.fname}</td>
+                                    <td>${i.mname}</td>
+                                    <td>${i.lname}</td>
+                                    <td>${i.natID}</td>
+                                    <td>${i.sex}</td>
+                                    <td>
+                                        <h:outputText value="#{i.dob}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </td>
+                                    <td>${i.age}</td>
+                                    <td>${i.contact}</td>
+                                    <td>
+                                        <h:column>
+                                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
+                                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
+                                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
+                                        </h:column>
+                                    </td>
+                                </tr>
+                            </c:forEach> 
+                        </tbody>
+                      
+                    </table>
                   </h:form>
 
                   </div>
