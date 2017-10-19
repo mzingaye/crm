@@ -7,24 +7,21 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -41,7 +38,11 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByUsergroup", query = "SELECT u FROM User u WHERE u.usergroup = :usergroup"),
     @NamedQuery(name = "User.findByDesignation", query = "SELECT u FROM User u WHERE u.designation = :designation"),
     @NamedQuery(name = "User.findByDeleteFlag", query = "SELECT u FROM User u WHERE u.deleteFlag = :deleteFlag"),
-    @NamedQuery(name = "User.findByCreatedAt", query = "SELECT u FROM User u WHERE u.createdAt = :createdAt")})
+    @NamedQuery(name = "User.findByCreatedAt", query = "SELECT u FROM User u WHERE u.createdAt = :createdAt"),
+    @NamedQuery(name = "User.findByFname", query = "SELECT u FROM User u WHERE u.fname = :fname"),
+    @NamedQuery(name = "User.findByLname", query = "SELECT u FROM User u WHERE u.lname = :lname"),
+    @NamedQuery(name = "User.findByDob", query = "SELECT u FROM User u WHERE u.dob = :dob"),
+    @NamedQuery(name = "User.findByNatID", query = "SELECT u FROM User u WHERE u.natID = :natID")})
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -65,24 +66,31 @@ public class User implements Serializable {
     private int usergroup;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 20)
+    @Size(min = 1, max = 50)
     @Column(name = "designation")
     private String designation;
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "createdAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Death> deathList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Matrimonial> matrimonialList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Catholic> catholicList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Baptism> baptismList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userid")
-    private List<Confirmation> confirmationList;
+    @Size(max = 20)
+    @Column(name = "fname")
+    private String fname;
+    @Size(max = 20)
+    @Column(name = "lname")
+    private String lname;
+    @Column(name = "dob")
+    @Temporal(TemporalType.DATE)
+    private Date dob;
+    @Size(max = 15)
+    @Column(name = "natID")
+    private String natID;
+    @Lob
+    @Column(name = "img")
+    private byte[] img;
 
     public User() {
     }
@@ -91,12 +99,13 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public User(Integer id, String username, String password, int usergroup, String designation) {
+    public User(Integer id, String username, String password, int usergroup, String designation, Date createdAt) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.usergroup = usergroup;
         this.designation = designation;
+        this.createdAt = createdAt;
     }
 
     public Integer getId() {
@@ -155,49 +164,44 @@ public class User implements Serializable {
         this.createdAt = createdAt;
     }
 
-    @XmlTransient
-    public List<Death> getDeathList() {
-        return deathList;
+    public String getFname() {
+        return fname;
     }
 
-    public void setDeathList(List<Death> deathList) {
-        this.deathList = deathList;
+    public void setFname(String fname) {
+        this.fname = fname;
     }
 
-    @XmlTransient
-    public List<Matrimonial> getMatrimonialList() {
-        return matrimonialList;
+    public String getLname() {
+        return lname;
     }
 
-    public void setMatrimonialList(List<Matrimonial> matrimonialList) {
-        this.matrimonialList = matrimonialList;
+    public void setLname(String lname) {
+        this.lname = lname;
     }
 
-    @XmlTransient
-    public List<Catholic> getCatholicList() {
-        return catholicList;
+    public Date getDob() {
+        return dob;
     }
 
-    public void setCatholicList(List<Catholic> catholicList) {
-        this.catholicList = catholicList;
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
-    @XmlTransient
-    public List<Baptism> getBaptismList() {
-        return baptismList;
+    public String getNatID() {
+        return natID;
     }
 
-    public void setBaptismList(List<Baptism> baptismList) {
-        this.baptismList = baptismList;
+    public void setNatID(String natID) {
+        this.natID = natID;
     }
 
-    @XmlTransient
-    public List<Confirmation> getConfirmationList() {
-        return confirmationList;
+    public byte[] getImg() {
+        return img;
     }
 
-    public void setConfirmationList(List<Confirmation> confirmationList) {
-        this.confirmationList = confirmationList;
+    public void setImg(byte[] img) {
+        this.img = img;
     }
 
     @Override

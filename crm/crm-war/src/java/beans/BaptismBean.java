@@ -6,10 +6,7 @@
 package beans;
 
 import entities.Catholic;
-import entities.Minister;
-import entities.Parish;
 import entities.Sponsor;
-import entities.User;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.Stateless;

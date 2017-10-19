@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="033ce8d6-1a3c-4cc5-aecb-fed57fb5d7bd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="86e6fb36-4185-4b40-8915-4741df6a25e8">
+		<queryString language="SQL">
+			<![CDATA[SELECT
+     member.`id` AS member_id,
+     member.`fname` AS member_fname,
+     member.`mname` AS member_mname,
+     member.`lname` AS member_lname,
+     member.`sex` AS member_sex,
+     member.`dob` AS member_dob,
+     member.`age` AS member_age,
+     member.`placeOfBirth` AS member_placeOfBirth,
+     member.`contact` AS member_contact,
+     member.`ffname` AS member_ffname,
+     member.`fmname` AS member_fmname,
+     member.`flname` AS member_flname,
+     member.`mfname` AS member_mfname,
+     member.`mmname` AS member_mmname,
+     member.`mlname` AS member_mlname,
+     member.`natID` AS member_natID,
+     member.`fnatID` AS member_fnatID,
+     member.`mnatID` AS member_mnatID,
+     member.`Userid` AS member_Userid,
+     member.`deleteFlag` AS member_deleteFlag,
+     member.`createdAt` AS member_createdAt
+FROM
+     `member` member]]>
+		</queryString>
+		<field name="member_id" class="java.lang.Integer"/>
+		<field name="member_fname" class="java.lang.String"/>
+		<field name="member_mname" class="java.lang.String"/>
+		<field name="member_lname" class="java.lang.String"/>
+		<field name="member_sex" class="java.lang.String"/>
+		<field name="member_dob" class="java.sql.Date"/>
+		<field name="member_age" class="java.lang.Integer"/>
+		<field name="member_placeOfBirth" class="java.lang.String"/>
+		<field name="member_contact" class="java.lang.String"/>
+		<field name="member_ffname" class="java.lang.String"/>
+		<field name="member_fmname" class="java.lang.String"/>
+		<field name="member_flname" class="java.lang.String"/>
+		<field name="member_mfname" class="java.lang.String"/>
+		<field name="member_mmname" class="java.lang.String"/>
+		<field name="member_mlname" class="java.lang.String"/>
+		<field name="member_natID" class="java.lang.String"/>
+		<field name="member_fnatID" class="java.lang.String"/>
+		<field name="member_mnatID" class="java.lang.String"/>
+	</subDataset>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     member.`id` AS member_id,
+     member.`fname` AS member_fname,
+     member.`mname` AS member_mname,
+     member.`lname` AS member_lname,
+     member.`sex` AS member_sex,
+     member.`dob` AS member_dob,
+     member.`age` AS member_age,
+     member.`placeOfBirth` AS member_placeOfBirth,
+     member.`contact` AS member_contact,
+     member.`ffname` AS member_ffname,
+     member.`fmname` AS member_fmname,
+     member.`flname` AS member_flname,
+     member.`mfname` AS member_mfname,
+     member.`mmname` AS member_mmname,
+     member.`mlname` AS member_mlname,
+     member.`natID` AS member_natID,
+     member.`fnatID` AS member_fnatID,
+     member.`mnatID` AS member_mnatID,
+     member.`Userid` AS member_Userid,
+     member.`deleteFlag` AS member_deleteFlag,
+     member.`createdAt` AS member_createdAt
+FROM
+     `member` member]]>
+	</queryString>
+	<field name="member_id" class="java.lang.Integer"/>
+	<field name="member_fname" class="java.lang.String"/>
+	<field name="member_mname" class="java.lang.String"/>
+	<field name="member_lname" class="java.lang.String"/>
+	<field name="member_sex" class="java.lang.String"/>
+	<field name="member_dob" class="java.sql.Date"/>
+	<field name="member_age" class="java.lang.Integer"/>
+	<field name="member_placeOfBirth" class="java.lang.String"/>
+	<field name="member_contact" class="java.lang.String"/>
+	<field name="member_ffname" class="java.lang.String"/>
+	<field name="member_fmname" class="java.lang.String"/>
+	<field name="member_flname" class="java.lang.String"/>
+	<field name="member_mfname" class="java.lang.String"/>
+	<field name="member_mmname" class="java.lang.String"/>
+	<field name="member_mlname" class="java.lang.String"/>
+	<field name="member_natID" class="java.lang.String"/>
+	<field name="member_fnatID" class="java.lang.String"/>
+	<field name="member_mnatID" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="35" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="220" y="14" width="80" height="20" uuid="b7f39a1c-5464-4e30-bad7-7c7fa1102a26"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="300" y="14" width="40" height="20" uuid="a432830a-7132-4fb9-882b-ba8bf1e9e579"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="16" y="14" width="100" height="20" uuid="7b8ec372-1631-461f-8fa0-fa8b0491c7fe"/>
+				<text><![CDATA[Generated]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="85" y="14" width="100" height="20" uuid="85335b5e-d1f7-463b-b75f-f6ca587ed2ed"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

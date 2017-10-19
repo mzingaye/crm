@@ -130,18 +130,16 @@ public class Catholic implements Serializable {
     private String mnatID;
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "createdAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "memberid")
-    private List<Death> deathList;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "memberid")
-    private List<Baptism> baptismList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "memberid")
-    private List<Confirmation> confirmationList;
+    private List<Misc> miscList;
 
     public Catholic() {
     }
@@ -150,7 +148,7 @@ public class Catholic implements Serializable {
         this.id = id;
     }
 
-    public Catholic(Integer id, String fname, String lname, String sex, Date dob, int age, String placeOfBirth, String contact) {
+    public Catholic(Integer id, String fname, String lname, String sex, Date dob, int age, String placeOfBirth, String contact, Date createdAt) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -159,6 +157,7 @@ public class Catholic implements Serializable {
         this.age = age;
         this.placeOfBirth = placeOfBirth;
         this.contact = contact;
+        this.createdAt = createdAt;
     }
 
     public Integer getId() {
@@ -321,15 +320,6 @@ public class Catholic implements Serializable {
         this.createdAt = createdAt;
     }
 
-    @XmlTransient
-    public List<Death> getDeathList() {
-        return deathList;
-    }
-
-    public void setDeathList(List<Death> deathList) {
-        this.deathList = deathList;
-    }
-
     public User getUserid() {
         return userid;
     }
@@ -339,21 +329,12 @@ public class Catholic implements Serializable {
     }
 
     @XmlTransient
-    public List<Baptism> getBaptismList() {
-        return baptismList;
+    public List<Misc> getMiscList() {
+        return miscList;
     }
 
-    public void setBaptismList(List<Baptism> baptismList) {
-        this.baptismList = baptismList;
-    }
-
-    @XmlTransient
-    public List<Confirmation> getConfirmationList() {
-        return confirmationList;
-    }
-
-    public void setConfirmationList(List<Confirmation> confirmationList) {
-        this.confirmationList = confirmationList;
+    public void setMiscList(List<Misc> miscList) {
+        this.miscList = miscList;
     }
 
     @Override

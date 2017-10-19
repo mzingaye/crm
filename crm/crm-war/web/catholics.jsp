@@ -17,10 +17,27 @@
     
     <jsp:attribute name="content">
         <f:view>
-         <h:form>
-               
-             <h:commandButton value="Add New Record" action="#{catholic.newMember()}" styleClass="btn btn-info"/>
-             </h:form>
+            <table>
+                <tr>
+                    <td>
+                        <h:form>
+                            <h:commandButton value="Add New Record" action="#{catholic.newMember()}" styleClass="btn btn-info"/>
+                        </h:form>
+                    </td>
+                    <td>
+                        <h:form>
+                            <h:commandButton value="Print Records" action="#{catholic.newMember()}" styleClass="btn btn-warning"/>
+                        </h:form>
+                    </td>
+                    <td>
+                        <h:form>
+                            <h:commandButton value="Generate Reports" action="#{catholic.newMember()}" styleClass="btn btn-success"/>
+                        </h:form>
+                    </td>
+                </tr>
+            </table>
+             
+             
 
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">

@@ -74,17 +74,18 @@
                   <li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="index.jsp">Dashboard</a></li>
-                      <li><a href="catholics.jsp">Catholic Members</a></li>
-                      <li><a href="sponsors.jsp">Catholic Sponsors</a></li>
+                      
                     </ul>
                   </li>
                   <li><a><i class="fa fa-edit"></i> Registry <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="baptism.jsp">Baptism Records</a></li>
-                      <li><a href="confirmation.jsp">Confirmation Records</a></li>
-                      <li><a href="matrimonial.jsp">Matrimonial Records</a></li>
-                      <li><a href="death.jsp">Death Records</a></li>
-                      <li><a href="misc.jsp">Miscellaneous Records</a></li>
+                        <li><a href="catholics.jsp">Catholic Members</a></li>
+                        <li><a href="sponsors.jsp">Catholic Sponsors</a></li>
+                        <li><a href="baptism.jsp">Baptism Records</a></li>
+                        <li><a href="confirmation.jsp">Confirmation Records</a></li>
+                        <li><a href="matrimonial.jsp">Matrimonial Records</a></li>
+                        <li><a href="death.jsp">Death Records</a></li>
+                        <li><a href="misc.jsp">Miscellaneous Records</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
