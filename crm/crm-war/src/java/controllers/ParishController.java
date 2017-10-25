@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import models.ParishFacade;
 import java.util.*;
 import entities.*;
+import java.io.Serializable;
 
 /**
  *
@@ -18,7 +19,7 @@ import entities.*;
  */
 @ManagedBean(name = "parish")
 @SessionScoped
-public class ParishController {
+public class ParishController implements Serializable {
     @EJB
     private ParishFacade parishFacade;
     private Parish p = new Parish();

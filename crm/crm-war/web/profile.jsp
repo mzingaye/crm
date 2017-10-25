@@ -3,7 +3,9 @@
     Created on : Jul 10, 2017, 1:21:41 PM
     Author     : Lyne
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <%@taglib prefix="crm" tagdir="/WEB-INF/tags/" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
@@ -13,7 +15,7 @@
 <crm:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
     <jsp:attribute name="page_title">Profile</jsp:attribute>
-   
+    <jsp:attribute name="username"></jsp:attribute>
     <jsp:attribute name="content">
         <f:view>
             <div class="">

@@ -7,10 +7,10 @@
 <%@tag description="Catholic Records Management" pageEncoding="UTF-8" %>
 <%@attribute name="title" required="true" fragment="true"  %>
 <%@attribute name="page_title" required="true" fragment="true"  %>
+<%@attribute name="username" required="false" fragment="true"  %>
 <%@attribute name="content" required="true" fragment="true" %>
 <%@taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <%@taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,7 +59,7 @@
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2>System Admin</h2>
+                <h2><jsp:invoke fragment="username"></jsp:invoke></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->

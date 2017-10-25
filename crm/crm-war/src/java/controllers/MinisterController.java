@@ -6,6 +6,7 @@
 package controllers;
 
 import entities.Minister;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import models.MinisterFacade;
@@ -14,7 +15,7 @@ import models.MinisterFacade;
  *
  * @author Lyne
  */
-public class MinisterController {
+public class MinisterController implements Serializable {
     @EJB
     private MinisterFacade ministerFacade;
     
