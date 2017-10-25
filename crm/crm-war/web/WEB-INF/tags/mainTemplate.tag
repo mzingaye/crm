@@ -8,6 +8,7 @@
 <%@attribute name="title" required="true" fragment="true"  %>
 <%@attribute name="page_title" required="true" fragment="true"  %>
 <%@attribute name="username" required="false" fragment="true"  %>
+<%@attribute name="profpic" required="false" fragment="true"  %>
 <%@attribute name="content" required="true" fragment="true" %>
 <%@taglib prefix="f" uri="http://java.sun.com/jsf/core" %>
 <%@taglib prefix="h" uri="http://java.sun.com/jsf/html" %>
@@ -55,11 +56,11 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="/resources/images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="/crm-war/image?id=${uBean.id}&f=image" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
-                <h2><jsp:invoke fragment="username"></jsp:invoke></h2>
+                <h2>${uBean.fname} ${uBean.lname}</h2>
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -135,7 +136,7 @@
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">System Admin
+                      <img src="/crm-war/image?id=${uBean.id}&f=image" alt="">${uBean.username}
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -147,7 +148,7 @@
                       </a>
                     </li>
                     <li><a href="help.jsp">Help</a></li>
-                    <li><a href="login.jsp"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="/crm-war/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 

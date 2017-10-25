@@ -15,7 +15,12 @@
 <crm:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
     <jsp:attribute name="page_title">Profile</jsp:attribute>
-    <jsp:attribute name="username"></jsp:attribute>
+    <jsp:attribute name="username">${uBean.fname} ${uBean.lname}</jsp:attribute>
+    <jsp:attribute name="profpic">
+        <f:view>
+            <h:graphicImage style="width: 100%; height: 100%;border-radius: 7em" value="/image?id=#{uBean.id}&f=image" alt="Image display"></h:graphicImage>
+        </f:view>
+    </jsp:attribute>
     <jsp:attribute name="content">
         <f:view>
             <div class="">
@@ -23,7 +28,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                          <h2>${uBean.id} - ${uBean.username} Profile </h2>
+                          <h2>${uBean.fname} ${uBean.lname}'s Profile </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -46,68 +51,85 @@
                        
                             <h:outputLabel>System User Information</h:outputLabel>
                             <hr>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{uBean.fname}"/>
-                                </div>
-                            </div>
-                                <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{uBean.lname}"/>
-                                </div>
-                            </div>
-                                <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{uBean.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
-                                        <f:convertDateTime pattern="dd/mm/yyyy" />
-                                    </h:inputText>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="natid" value="#{uBean.natID}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Designation</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="designation" value="#{uBean.designation}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="username" value="#{uBean.username}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Password </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputSecret styleClass="form-control has-feedback-left" id="password" value="#{uBean.password}"/>
-                                </div>
-                            </div>
+                                <table>
+                                    <tr >
+                                        <td style="width: 20%">
+                                            <div class="form-group">
+                                                <div style=" border-radius: 7em">
+                                                    <h:graphicImage style="width: 100%; height: 100%;border-radius: 7em" value="/image?id=#{uBean.id}&f=image" alt="Image display"></h:graphicImage>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{uBean.fname}"/>
+                                                </div>
+                                            </div>
+                                                <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{uBean.lname}"/>
+                                                </div>
+                                            </div>
+                                                <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{uBean.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
+                                                        <f:convertDateTime pattern="dd/mm/yyyy" />
+                                                    </h:inputText>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputText styleClass="form-control has-feedback-left" id="natid" value="#{uBean.natID}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Designation</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputText styleClass="form-control has-feedback-left" id="designation" value="#{uBean.designation}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputText disabled="true" style="ed" styleClass="form-control has-feedback-left" id="username" value="#{uBean.username}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Password </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputSecret styleClass="form-control has-feedback-left" id="password" value="#{user.password}"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <h:inputSecret styleClass="form-control has-feedback-left" id="con_password" value="#{user.con_password}"/>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">User Group</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <h:inputText styleClass="form-control has-feedback-left" id="usergroup" value="#{uBean.usergroup}"/>
+                                               </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Upload Profile Picture :</label>
+                                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                                    <t:inputFileUpload styleClass=" has-feedback-left" id="image" value="#{user.image}" title="Image"></t:inputFileUpload>
+                                                </div>
+                                              </div>
+                                        </td>
+                                    </tr>
+                                </table>
                             
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">User Group</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="usergroup" value="#{uBean.usergroup}"/>
-                               </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Attach Profile Picture :</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <t:inputFileUpload styleClass=" has-feedback-left" id="image" value="#{user.image}" title="Image"></t:inputFileUpload>
-                                </div>
-                                <div class="col-md-3 col-sm-3 col-xs-12" style="width: 20px; height: 20px">
-                                <h:graphicImage style="width: 50px; height: 50px" value="/image?id=#{uBean.id}&f=image" alt="Image display"></h:graphicImage>
-                                </div>
-                              </div>
                             <hr> 
-                            <h:commandButton value="Save" action="#{user.add()}" styleClass="btn btn-primary"/>
+                                                    <h:commandButton value="Update Profile" action="#{user.edit(uBean.id)}" styleClass="btn btn-primary"/>
                     </h:form>    
                    </div>
                 </div>

@@ -56,7 +56,7 @@
                 <br />
 
                 <div>
-                  <h1><i class="fa fa-bank"></i> Catholic Records Management!</h1>
+                    <a href="faces/index.jsp"><h1><i class="fa fa-bank"></i> Catholic Records Management!</h1></a>
                   <p>Lyne Systems Private Limited &copy; 2017, All Rights Reserved. Privacy and Terms</p>
                 </div>
               </div>

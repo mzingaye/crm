@@ -91,10 +91,10 @@ public class UsersController  implements Serializable {
         return  this.userFacade.find(userID);
     }
     
-    public void add() throws IOException{
+    public String add() throws IOException{
         FacesMessage facesMessage;
         if(this.password.equals(this.con_password)){
-            uBean.setPassword(get_SHA_512_SecurePassword(con_password, uBean.getUsername())); 
+            uBean.setPassword(con_password); 
             if(image!= null)
                 uBean.setImg(image.getBytes());
             u.setImg(uBean.getImg());
@@ -117,35 +117,41 @@ public class UsersController  implements Serializable {
             facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match, try again!", null);
         }
        
-        //return "profile";
+        return "users";
     }
     
-    public String edit(int id) throws IOException{
+    public void edit(int id) throws IOException{
         u = this.userFacade.find(id);
-        if(image!= null)
-            uBean.setImg(image.getBytes());
-        u.setImg(uBean.getImg());
-        u.setCreatedAt(new Date());
-        u.setDeleteFlag(0);
-        u.setDesignation(uBean.getDesignation());
-        u.setDob(uBean.getDob());
-        u.setFname(uBean.getFname());
-        u.setLname(uBean.getLname());
-        u.setNatID(uBean.getNatID());
-        u.setPassword(uBean.getPassword());
-        u.setUsergroup(uBean.getUsergroup());
-        u.setUsername(uBean.getUsername());
-        this.userFacade.edit(u);
-        uBean.setId(u.getId());
-       // this.u = new User();
-        return "profile";
+        FacesMessage facesMessage;
+        if(this.password.equals(this.con_password)){
+            uBean.setPassword(con_password); 
+            if(image!= null)
+                uBean.setImg(image.getBytes());
+            u.setImg(uBean.getImg());
+            u.setCreatedAt(new Date());
+            u.setDeleteFlag(0);
+            u.setDesignation(uBean.getDesignation());
+            u.setDob(uBean.getDob());
+            u.setFname(uBean.getFname());
+            u.setLname(uBean.getLname());
+            u.setNatID(uBean.getNatID());
+            u.setPassword(uBean.getPassword());
+            u.setUsergroup(uBean.getUsergroup());
+            u.setUsername(uBean.getUsername());
+            this.userFacade.edit(u);
+            //uBean.setId(u.getId());
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "User "+u.getId()+" updated successfully!", null);
+        }
+        else{
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match, try again!", null);
+        }
     }
     
-    public String get_SHA_512_SecurePassword(String passwordToHash, String   salt) throws UnsupportedEncodingException{
+    public String getSecurePassword(String passwordToHash) throws UnsupportedEncodingException{
         String generatedPassword = null;
         try {
-             MessageDigest md = MessageDigest.getInstance("SHA-512");
-             md.update(salt.getBytes("UTF-8"));
+             MessageDigest md = MessageDigest.getInstance("SHA-256");
+            // md.update(salt.getBytes("UTF-8"));
              byte[] bytes = md.digest(passwordToHash.getBytes("UTF-8"));
              StringBuilder sb = new StringBuilder();
              for(int i=0; i< bytes.length ;i++){
@@ -157,6 +163,42 @@ public class UsersController  implements Serializable {
             e.printStackTrace();
            }
         return generatedPassword;
+    }
+    
+    public String view(User user){
+        u = user;
+        return "viewuser";
+    }
+    
+    public String update(){
+        FacesMessage facesMessage;
+        if(this.password.equals(this.con_password)){
+            u.setPassword(con_password); 
+            this.userFacade.edit(u);
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "User "+u.getId()+" updated successfully!", null);
+        }
+        else{
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match, try again!", null);
+        }
+        return "users";
+    }
+    
+    public String create(){
+        FacesMessage facesMessage;
+        if(this.password.equals(this.con_password)){
+            u.setPassword(con_password); 
+            u.setCreatedAt(new Date());
+            this.userFacade.create(u);
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "User "+u.getId()+" created successfully!", null);
+        }
+        else{
+            facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match, try again!", null);
+        }
+        return "users";
+    }
+    
+    public String newUser(){
+        return "newuser";
     }
     
 }

@@ -11,15 +11,24 @@
 
 <t:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
-    <jsp:attribute name="page_title">System Configuration</jsp:attribute>
+    <jsp:attribute name="page_title">User Management</jsp:attribute>
     <jsp:attribute name="content">
         <f:view>
+            <h:form  styleClass="form-horizontal form-label-left">
+                <div class="form-group">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                      <div class="input-group">
+                       <h:commandButton value="New System User" action="#{user.newUser()}" styleClass="btn btn-info"/>   
+                      </div>
+                    </div>
+                </div>
+            </h:form>
             <div class="">
                 <div class="row">
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>System User Details </h2>
+                        <h2>System Users </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -37,70 +46,45 @@
                         </ul>
                         <div class="clearfix"></div>
                       </div>
-                       <div id="wizard" class="form_wizard wizard_horizontal">
-                        <h:form  styleClass="form-horizontal form-label-left">
-                        <ul class="wizard_steps">
-                            <li>
-                              <a href="parish.jsp">
-                                <span class="step_no">1</span>
-                                <span class="step_descr">
-                                    Step 1<br />
-                                    <small>Parish Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="minister.jsp">
-                                <span class="step_no">2</span>
-                                <span class="step_descr" >
-                                    Step 2<br />
-                                    <small>Catholic Minister Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="users.jsp">
-                                <span class="step_no" style="color: #FAFAFA; font-weight: bold"  >3</span>
-                                <span class="step_descr" style="color: black; font-weight: bold " >
-                                    Step 3<br />
-                                    <small>System Users</small>
-                                </span>
-                              </a>
-                            </li>
-                          </ul>
-                            
-                            <h:outputLabel>System User Information</h:outputLabel>
-                            <hr>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="username" value="#{user.u.username}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Password </label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputSecret styleClass="form-control has-feedback-left" id="password" value="#{user.u.password}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Designation</label>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="designation" value="#{user.u.designation}"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">User Group</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="usergroup" value="#{user.u.usergroup}"/>
-                               </div>
-                            </div>
-                            
-                            <hr> 
-                            <h:commandButton value="Save" action="#{user.add()}" styleClass="btn btn-primary"/>
-                    </h:form>    
-                   </div>
-                </div>
+                        <div class="x_content">
+                        <h:form   styleClass="form-horizontal form-label-left">
+                        <table id="datatable-buttons" class="table table-striped  ">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>Username</th>
+                                <th>Usergroup</th>
+                                <th>Designation</th>
+                                <th>Delete Flag</th>
+                                <th>Created At</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody >
+                                <c:forEach var="i" items="#{user.all}" >
+                                    <tr >
+                                        <td>${i.id}</td>
+                                        <td>${i.username}</td>
+                                        <td>${i.usergroup}</td>
+                                        <td>${i.designation}</td>
+                                        <td>${i.deleteFlag}</td>
+                                        <td>${i.createdAt}</td>
+                                        <td>
+                                            <h:column>
+                                                <h:commandLink action="#{user.view(i)}" value="" styleClass="fa fa-eye"/> |
+                                                <h:commandLink action="#{user.delete(i)}" value="" styleClass="fa fa-trash"/> 
+                                            </h:column>
+                                        </td>
+                                    </tr>
+                                </c:forEach> 
+                            </tbody>
+
+                        </table>
+                    </h:form>
+
+                  </div>
+                        
+                 </div>
               </div>
             </div>
           </div>
