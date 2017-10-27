@@ -21,6 +21,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import models.UserFacade;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -36,6 +37,8 @@ public class LoginFilter implements Filter {
     private static final boolean debug = false;
 
     private FilterConfig filterConfig = null;
+    
+    static final Logger log = Logger.getLogger(LoginFilter.class);
     
     public LoginFilter() {
     }    
@@ -61,6 +64,9 @@ public class LoginFilter implements Filter {
             HttpServletRequest req = (HttpServletRequest)request;
             String username = req.getRemoteUser();
             String  browserDetails  =   req.getHeader("User-Agent");
+            String host = req.getRemoteHost();
+            String user = req.getRemoteUser();
+            String ip = req.getRemoteAddr();
             if(username != null){
                 User u = userFacade.find(username);
                 uBean.setId(u.getId());
@@ -74,7 +80,8 @@ public class LoginFilter implements Filter {
                 uBean.setNatID(u.getNatID());
                 uBean.setUsergroup(u.getUsergroup());
                 uBean.setUsername(u.getUsername());
-                System.out.println("The currently logged User is : "+uBean.getFname()+" "+uBean.getLname()+" : Logged using : "+browserDetails); 
+                log.info("User : "+uBean.getFname()+" "+uBean.getLname()+" Host: "+host+" IP: "+ip+" User: "+user+" : Logged using : "+browserDetails+" ");
+                //System.out.println(); 
                 //System.out.println("The currently logged User is : "+username+" : Logged using : "+browserDetails); 
             }
             else

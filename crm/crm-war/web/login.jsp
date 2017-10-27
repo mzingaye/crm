@@ -37,7 +37,7 @@
 
               <div class="separator">
                 <p class="change_link">New to site?
-                  <a href="adduser.jsp" >Create Account </a>
+                  <a href="faces/adduser.jsp" >Create Account </a>
                 </p>
 
                 <div class="clearfix"></div>

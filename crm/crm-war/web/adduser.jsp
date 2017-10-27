@@ -49,7 +49,7 @@
 
               <div class="separator">
                 <p class="change_link">Already have an account ?
-                    <h:commandLink action="login.jsp" value="Log in"/>  
+                    <h:commandLink action="faces/index.jsp" value="Log in"/>  
                 </p>
 
                 <div class="clearfix"></div>
