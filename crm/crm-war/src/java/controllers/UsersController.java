@@ -20,6 +20,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
 import models.UserFacade;
+import org.apache.log4j.Logger;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
 /**
@@ -68,6 +69,8 @@ public class UsersController  implements Serializable {
     }
     
     public UsersController() {
+        Logger log = Logger.getLogger(UsersController.class);
+        log.info("Users Contoller by ");
         this.u = new User();
     }
 

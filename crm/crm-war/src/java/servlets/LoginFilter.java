@@ -20,6 +20,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import models.UserFacade;
 import org.apache.log4j.Logger;
 
@@ -38,17 +39,21 @@ public class LoginFilter implements Filter {
 
     private FilterConfig filterConfig = null;
     
+    static boolean  login_status = false;
+    
     static final Logger log = Logger.getLogger(LoginFilter.class);
     
     public LoginFilter() {
+        
     }    
     
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
+        
         if (debug) {
             log("LoginFilter:DoBeforeProcessing");
         }
-         
+        
     }    
     
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
@@ -80,13 +85,16 @@ public class LoginFilter implements Filter {
                 uBean.setNatID(u.getNatID());
                 uBean.setUsergroup(u.getUsergroup());
                 uBean.setUsername(u.getUsername());
-                log.info("User : "+uBean.getFname()+" "+uBean.getLname()+" Host: "+host+" IP: "+ip+" User: "+user+" : Logged using : "+browserDetails+" ");
-                //System.out.println(); 
-                //System.out.println("The currently logged User is : "+username+" : Logged using : "+browserDetails); 
+                if(LoginFilter.login_status == false){
+                   log.info("#"+uBean.getId()+";"+user+";"+ip+";"+host+";"+browserDetails+" => LOGGED IN");
+                   HttpSession ses = req.getSession();
+                   ses.setAttribute("username", username);
+                   LoginFilter.login_status = true;
+                }
+                
             }
             else
                 System.out.println("No users logged in"); 
-            
         }
         if (debug) {
             log("LoginFilter:doFilter()");

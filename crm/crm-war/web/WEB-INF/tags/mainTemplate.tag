@@ -89,15 +89,20 @@
                         <li><a href="misc.jsp">Miscellaneous Records</a></li>
                     </ul>
                   </li>
+                  <li><a><i class="fa fa-stack-exchange"></i> Reports <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="reports.jsp">Reports Management</a></li>
+                    </ul>
+                  </li>
                   <li><a><i class="fa fa-user"></i> Users <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="users.jsp">User Management</a></li>
-                      <li><a href="logs.jsp">User Logs</a></li>
                     </ul>
                   </li>
                   <li><a><i class="fa fa-cog"></i> Settings <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="config.jsp">Configurations</a></li>
+                      <li><a href="logs.jsp">System Logs</a></li>
                     </ul>
                   </li>
                 </ul>

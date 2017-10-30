@@ -5,33 +5,31 @@
  */
 package servlets;
 
+import beans.UserBean;
 import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Lyne
  */
 public class LogoutServlet extends HttpServlet {
+    @Inject
+    private UserBean uBean;
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    final Logger log = Logger.getLogger(LogoutServlet.class);
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session=request.getSession();  
-         session.invalidate();
+        log.info("User #"+uBean.getId()+" - "+uBean.getUsername()+" has LOGGED OUT Successfully!");
+        LoginFilter.login_status = false;
+        session.invalidate();
         response.sendRedirect("faces/index.jsp");
     }
 
