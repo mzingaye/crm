@@ -41,6 +41,8 @@ public class UsersController  implements Serializable {
     private String password;
     
     private String con_password;
+    
+    Logger log = Logger.getLogger(UsersController.class);
 
     public String getPassword() {
         return password;
@@ -69,7 +71,7 @@ public class UsersController  implements Serializable {
     }
     
     public UsersController() {
-        Logger log = Logger.getLogger(UsersController.class);
+        
         log.info("Users Contoller by ");
         this.u = new User();
     }
@@ -97,24 +99,29 @@ public class UsersController  implements Serializable {
     public String add() throws IOException{
         FacesMessage facesMessage;
         if(this.password.equals(this.con_password)){
-            uBean.setPassword(con_password); 
-            if(image!= null)
-                uBean.setImg(image.getBytes());
-            u.setImg(uBean.getImg());
-            u.setCreatedAt(new Date());
-            u.setDeleteFlag(0);
-            u.setDesignation(uBean.getDesignation());
-            u.setDob(uBean.getDob());
-            u.setFname(uBean.getFname());
-            u.setLname(uBean.getLname());
-            u.setNatID(uBean.getNatID());
-            u.setPassword(uBean.getPassword());
-            u.setUsergroup(uBean.getUsergroup());
-            u.setUsername(uBean.getUsername());
-            this.userFacade.create(u);
-            uBean.setId(u.getId());
-            facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "User "+u.getId()+"created successfully!", null);
-            this.u = new User();
+            try{
+                uBean.setPassword(con_password); 
+                if(image!= null)
+                    uBean.setImg(image.getBytes());
+                u.setImg(uBean.getImg());
+                u.setCreatedAt(new Date());
+                u.setDeleteFlag(0);
+                u.setDesignation(uBean.getDesignation());
+                u.setDob(uBean.getDob());
+                u.setFname(uBean.getFname());
+                u.setLname(uBean.getLname());
+                u.setNatID(uBean.getNatID());
+                u.setPassword(uBean.getPassword());
+                u.setUsergroup(uBean.getUsergroup());
+                u.setUsername(uBean.getUsername());
+                this.userFacade.create(u);
+                uBean.setId(u.getId());
+                facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "User "+u.getId()+"created successfully!", null);
+                this.u = new User();
+            }
+            catch(Exception e){
+                log.error("Constraint violation when adding new user : "+e);
+            }
         }
         else{
             facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match, try again!", null);
