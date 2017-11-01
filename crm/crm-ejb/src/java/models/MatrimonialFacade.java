@@ -5,6 +5,7 @@
  */
 package models;
 
+import entities.Catholic;
 import entities.Matrimonial;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -26,6 +27,13 @@ public class MatrimonialFacade extends AbstractFacade<Matrimonial> {
 
     public MatrimonialFacade() {
         super(Matrimonial.class);
+    }
+    
+    public Matrimonial findByHusbandMemberID(int husbandMemberID) throws Exception {
+        return getEntityManager().createNamedQuery("Matrimonial.findByHusbandMemberID",Matrimonial.class).setParameter("husbandMemberID",husbandMemberID).getSingleResult();
+    }
+    public Matrimonial findByWifeMemberID(int wifeMemberID) throws Exception {
+        return getEntityManager().createNamedQuery("Matrimonial.findByWifeMemberID",Matrimonial.class).setParameter("wifeMemberID",wifeMemberID).getSingleResult();
     }
     
 }

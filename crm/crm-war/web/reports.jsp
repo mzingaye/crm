@@ -110,25 +110,27 @@
                             <th>Actions</th>
                           </tr>
                         </thead>
-                        <tbody >
-                            <c:forEach var="i" items="#{reports.rep}" >
-                                <tr >
-                                    <td>${i.id}</td>
-                                    <td>${i.name}</td>
-                                    <td>
-                                        <h:outputText value="#{i.date}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                                        </h:outputText>
-                                    </td>
-                                    <td>
-                                        <h:column>
-                                            <h:outputLink onclick="window.open('baptism_report.jsp', 'popupWindowName', 'height=750,width=900,resizable=0', 'dependent=yes, menubar=no, toolbar=no'); return false;" value="#{reports.view(i.id)}">
-                                                <h:outputText value="" styleClass="fa fa-eye" title="View Report"/>
-                                            </h:outputLink>
-                                        </h:column>
-                                    </td>
-                                </tr>
-                            </c:forEach> 
+                        <tbody > 
+                            <h:form>
+                                <c:forEach var="i" items="#{reports.rep}" >
+                                    <tr >
+                                        <td>${i.id}</td>
+                                        <td>${i.name}</td>
+                                        <td>
+                                            <h:outputText value="#{i.date}">
+                                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                                            </h:outputText>
+                                        </td>
+                                        <td>
+                                            <h:column>
+                                                <h:outputLink onclick="window.open('viewreport?id=#{i.id}&&view=#{reports.r_type}', 'popupWindowName', 'height=750,width=900,resizable=0', 'dependent=yes, menubar=no, toolbar=no'); return false;" value="">
+                                                    <h:outputText value=" View Report" styleClass="fa fa-eye" title=" View Report"/>
+                                                </h:outputLink>
+                                            </h:column>
+                                        </td>
+                                    </tr>
+                                </c:forEach>  
+                            </h:form>
                         </tbody>
                       
                     </table>

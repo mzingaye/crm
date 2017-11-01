@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Confirmation.findAll", query = "SELECT c FROM Confirmation c"),
     @NamedQuery(name = "Confirmation.findById", query = "SELECT c FROM Confirmation c WHERE c.id = :id"),
+    @NamedQuery(name = "Confirmation.findByMemberId", query = "SELECT c FROM Confirmation c WHERE c.memberid = :memberid"),
     @NamedQuery(name = "Confirmation.findByDateOfConfirmation", query = "SELECT c FROM Confirmation c WHERE c.dateOfConfirmation = :dateOfConfirmation"),
     @NamedQuery(name = "Confirmation.findByBaptizedBy", query = "SELECT c FROM Confirmation c WHERE c.baptizedBy = :baptizedBy"),
     @NamedQuery(name = "Confirmation.findByDeleteFlag", query = "SELECT c FROM Confirmation c WHERE c.deleteFlag = :deleteFlag"),

@@ -5,9 +5,11 @@
  */
 package models;
 
+import entities.Catholic;
 import entities.Confirmation;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -26,6 +28,10 @@ public class ConfirmationFacade extends AbstractFacade<Confirmation> {
 
     public ConfirmationFacade() {
         super(Confirmation.class);
+    }
+    
+    public Confirmation findMember(Catholic memberid) throws Exception {
+        return getEntityManager().createNamedQuery("Confirmation.findByMemberId",Confirmation.class).setParameter("memberid",memberid).getSingleResult();
     }
     
 }

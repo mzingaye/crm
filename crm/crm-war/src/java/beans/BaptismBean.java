@@ -6,6 +6,8 @@
 package beans;
 
 import entities.Catholic;
+import entities.Minister;
+import entities.Parish;
 import entities.Sponsor;
 import java.io.Serializable;
 import java.util.Date;
@@ -31,9 +33,14 @@ public class BaptismBean implements Serializable {
     private int baptismNumber;
     private String physicalAddress;
     private Catholic memberid;
-    private int parishid;
-    private int ministerid;
+    private Parish parishid;
+    private Minister ministerid;
+    private int deleteFlag;
+    private Sponsor sponsorid;
 
+    public BaptismBean() {
+    }
+    
     public int getDeleteFlag() {
         return deleteFlag;
     }
@@ -41,12 +48,6 @@ public class BaptismBean implements Serializable {
     public void setDeleteFlag(int deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
-    private int deleteFlag;
-    private Sponsor sponsorid;
-
-    public BaptismBean() {
-    }
-
     public Integer getId() {
         return id;
     }
@@ -103,19 +104,19 @@ public class BaptismBean implements Serializable {
         this.memberid = memberid;
     }
 
-    public int getParishid() {
+    public Parish getParishid() {
         return parishid;
     }
 
-    public void setParishid(int parishid) {
+    public void setParishid(Parish parishid) {
         this.parishid = parishid;
     }
 
-    public int getMinisterid() {
+    public Minister getMinisterid() {
         return ministerid;
     }
 
-    public void setMinisterid(int ministerid) {
+    public void setMinisterid(Minister ministerid) {
         this.ministerid = ministerid;
     }
 

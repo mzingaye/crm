@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Baptism.findAll", query = "SELECT b FROM Baptism b"),
     @NamedQuery(name = "Baptism.findById", query = "SELECT b FROM Baptism b WHERE b.id = :id"),
+    @NamedQuery(name = "Baptism.findByMemberId", query = "SELECT b FROM Baptism b WHERE b.memberid = :memberid"),
     @NamedQuery(name = "Baptism.findByCname", query = "SELECT b FROM Baptism b WHERE b.cname like :cname"),
     @NamedQuery(name = "Baptism.findByDateOfBaptism", query = "SELECT b FROM Baptism b WHERE b.dateOfBaptism like :dateOfBaptism"),
     @NamedQuery(name = "Baptism.findByFirstCommunion", query = "SELECT b FROM Baptism b WHERE b.firstCommunion like :firstCommunion"),

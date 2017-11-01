@@ -95,7 +95,7 @@ public class ReportsController implements Serializable {
     public ReportsController() {
     }
     
-    public void view(int i){
+    /*public String view(int i){
         switch(this.r_type){
             case "catholic":
                 
@@ -105,14 +105,14 @@ public class ReportsController implements Serializable {
                 
                 break;
             case "baptism":
-                
+                System.out.println("The id passed is here: "+i);
                 Baptism c = baptismFacade.find(i);
                 b.setBaptismNumber(c.getBaptismNumber());
                 b.setCname(c.getCname());
                 b.setDateOfBaptism(c.getDateOfBaptism());
                 b.setFirstCommunion(c.getFirstCommunion());
                 b.setMemberid(c.getMemberid());
-                b.setMinisterid(c.getMinisterid().getId());
+                b.setMinisterid(c.getMinisterid());
                 b.setParishid(c.getParishid().getId());
                 b.setPhysicalAddress(c.getPhysicalAddress());
                 b.setSponsorid(c.getSponsorid());
@@ -131,8 +131,9 @@ public class ReportsController implements Serializable {
                 break;
         }
         b = new BaptismBean();
+        return "baptism_report";
     }
-    
+    */
     public void generate(){
         switch(this.r_type){
             case "catholic":

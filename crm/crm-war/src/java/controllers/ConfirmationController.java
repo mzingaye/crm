@@ -78,20 +78,67 @@ public class ConfirmationController {
         cBean.setMnatID("");
         coBean.setBaptizedBy(null);
         coBean.setDateOfConfirmation(null);
-        coBean.setMemberid(0);
-        coBean.setMinisterid(0);
-        coBean.setParishid(0);
-        coBean.setSponsorid(0);
+        coBean.setMemberid(null);
+        coBean.setMinisterid(null);
+        coBean.setParishid(null);
+        coBean.setSponsorid(null);
         return "createconfirmation";
     }
+    
+    private int minister;
+    private int catholic;
+    private int parish;
+    private int sponsor;
+    private String baptizedBy;
+
+    public String getBaptizedBy() {
+        return baptizedBy;
+    }
+
+    public void setBaptizedBy(String baptizedBy) {
+        this.baptizedBy = baptizedBy;
+    }
+
+    public int getMinister() {
+        return minister;
+    }
+
+    public void setMinister(int minister) {
+        this.minister = minister;
+    }
+
+    public int getCatholic() {
+        return catholic;
+    }
+
+    public void setCatholic(int catholic) {
+        this.catholic = catholic;
+    }
+
+    public int getParish() {
+        return parish;
+    }
+
+    public void setParish(int parish) {
+        this.parish = parish;
+    }
+
+    public int getSponsor() {
+        return sponsor;
+    }
+
+    public void setSponsor(int sponsor) {
+        this.sponsor = sponsor;
+    }
+    
     public String add(){
         Confirmation co = new Confirmation();
         co.setDateOfConfirmation(coBean.getDateOfConfirmation());
         co.setBaptizedBy(coBean.getBaptizedBy());
-        Minister m = this.ministerFacade.find(coBean.getMinisterid());
+        Minister m = this.ministerFacade.find(minister);
         Catholic c = this.catholicFacade.find(cBean.getId());
-        Parish p = this.parishFacade.find(coBean.getParishid());
-        Sponsor s = this.sponsorFacade.find(coBean.getSponsorid());
+        Parish p = this.parishFacade.find(parish);
+        Sponsor s = this.sponsorFacade.find(sponsor);
         User u = this.userFacade.find(2);
         co.setMinisterid(m);
         co.setMemberid(c);
@@ -123,10 +170,10 @@ public class ConfirmationController {
         cBean.setMnatID(co.getMemberid().getMnatID());
         coBean.setBaptizedBy(co.getBaptizedBy());
         coBean.setDateOfConfirmation(co.getDateOfConfirmation());
-        coBean.setMemberid(co.getMemberid().getId());
-        coBean.setMinisterid(co.getMinisterid().getId());
-        coBean.setParishid(co.getParishid().getId());
-        coBean.setSponsorid(co.getSponsorid().getId());
+        coBean.setMemberid(co.getMemberid());
+        coBean.setMinisterid(co.getMinisterid());
+        coBean.setParishid(co.getParishid());
+        coBean.setSponsorid(co.getSponsorid());
         coBean.setId(co.getId());
         return "viewconfirmation";
     }

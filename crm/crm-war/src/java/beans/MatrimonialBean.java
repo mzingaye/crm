@@ -5,6 +5,8 @@
  */
 package beans;
 
+import entities.Minister;
+import entities.Parish;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.Stateless;
@@ -39,6 +41,34 @@ public class MatrimonialBean implements Serializable {
     private int parishid;
     private int ministerid;
     private int deleteFlag;
+    private String marriedTo;
+    private Parish parish;
+    private Minister minister;
+
+    public Parish getParish() {
+        return parish;
+    }
+
+    public void setParish(Parish parish) {
+        this.parish = parish;
+    }
+
+    public Minister getMinister() {
+        return minister;
+    }
+
+    public void setMinister(Minister minister) {
+        this.minister = minister;
+    }
+    
+
+    public String getMarriedTo() {
+        return marriedTo;
+    }
+
+    public void setMarriedTo(String marriedTo) {
+        this.marriedTo = marriedTo;
+    }
 
     public int getDeleteFlag() {
         return deleteFlag;

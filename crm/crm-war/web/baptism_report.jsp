@@ -17,34 +17,123 @@
    
     <jsp:attribute name="content">
         <f:view>
-            <div style="width:800px; height:1050px; padding:20px;  border: 10px solid #787878">
-                <div style="width:750px; height:1000px; padding:20px; text-align:center; border: 5px solid #787878">
-                       <span style="font-size:50px; font-weight:bold">Baptism Certificate</span>
-                       <br><br>
-                       <p><span style="font-size:20px">Parish/Mission _____________ ${bBean.parishid}</span></p>
-                       <p><span style="font-size:20px">Baptism Reg. No.____________ ${bBean.baptismNumber}</span></p>
-                       <p><span style="font-size:20px">Christian Name _____________ ${bBean.cname}</span></p>
-                       <p><span style="font-size:20px">First Name _________________ ${bBean.memberid.fname}</span></p> 
-                       <p><span style="font-size:20px">Surname ____________________ ${bBean.memberid.lname}</span></p>
-                       <p><span style="font-size:20px">Date of Birth ______________ ${bBean.memberid.dob}</span></p>
-                       <p><span style="font-size:20px">Date of Baptism ___________ ${bBean.dateOfBaptism}</span></p>
-                       <p><span style="font-size:20px">Sponsor ____________ ${bBean.sponsorid.fname} ${bBean.sponsorid.lname}</span></p>
-                       <p><span style="font-size:20px">Father's Name _____________ ${bBean.memberid.ffname} ${bBean.memberid.flname}</span></p>
-                       <p><span style="font-size:20px">Mother's Name _________________ ${bBean.memberid.mfname} ${bBean.memberid.mlname}</span></p> 
-                       <p><span style="font-size:20px">Baptized by ____________________ ${bBean.ministerid}</span></p>
-                       <p><span style="font-size:20px">Confirmed at ______________ ${bBean.parishid}</span></p>
-                       <p><span style="font-size:20px">Date _____________ ${bBean.parishid}</span></p>
-                       <p><span style="font-size:20px">Married to _________________ ${bBean.parishid}</span></p> 
-                       <p><span style="font-size:20px">Date ____________________ ${bBean.parishid}</span></p>
-                       <p><span style="font-size:20px">Registered at ______________ ${bBean.parishid}</span></p>
-                        <p><span style="font-size:20px">No. _____________ ${bBean.parishid}</span></p>
-                       <p><span style="font-size:20px">Died at ____________ ${bBean.parishid}</span></p>
-                       <p><span style="font-size:20px">Date _______________ ${bBean.parishid}</span></p>
-                       <p><span style="font-size:20px"><i>I herewith certify that the above is a true extract <br/>from the Baptism Register.</i></span></p> 
-                       <p><span style="font-size:20px">Signed  ____________________</span></p>
-                       <p><span style="font-size:20px">Place and Date ______________</span></p>
+            <div style="width:800px; height:1150px; padding:20px;  border: 10px solid #787878;">
+                <div style="width:750px; height:1100px; padding:20px; text-align:center; border: 5px solid #787878">
+                    <table class="table table-striped" >
+                        <tr>
+                            <td colspan="2"><br><span style="font-size:50px; font-weight:bold">Baptism Certificate</span><br></td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Parish/Mission </span> </td>
+                            <td><span style="font-size:15px">${bBean.parishid.name}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Baptism Reg. No.</span> </td>
+                            <td><span style="font-size:15px">${bBean.baptismNumber}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Christian Name</span> </td>
+                            <td><span style="font-size:15px">${bBean.cname}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">First Name</span> </td>
+                            <td><span style="font-size:15px">${bBean.memberid.fname}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Surname</span> </td>
+                            <td><span style="font-size:15px">${bBean.memberid.lname}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Date of Birth</span> </td>
+                            <td>
+                                <span style="font-size:15px">
+                                    <h:outputText value="#{bBean.memberid.dob}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </span> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Date of Baptism</span> </td>
+                            <td>
+                                <span style="font-size:15px">
+                                    <h:outputText value="#{bBean.dateOfBaptism}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </span> 
+                            </td>
+                        </tr><tr>
+                            <td><span style="font-size:15px">Sponsor</span> </td>
+                            <td><span style="font-size:15px">${bBean.sponsorid.fname} ${bBean.sponsorid.lname}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Father's Name</span> </td>
+                            <td><span style="font-size:15px">${bBean.memberid.ffname} ${bBean.memberid.flname}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Mother's Name</span> </td>
+                            <td><span style="font-size:15px">${bBean.memberid.mfname} ${bBean.memberid.mlname}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Baptized by</span> </td>
+                            <td><span style="font-size:15px">${bBean.ministerid.fname} ${bBean.ministerid.lname}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Confirmed at</span> </td>
+                            <td><span style="font-size:15px">${coBean.parishid.name}</span> </td>
+                        </tr><tr>
+                            <td><span style="font-size:15px">Date</span> </td>
+                            <td>
+                                <span style="font-size:15px">
+                                    <h:outputText value="#{coBean.dateOfConfirmation}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </span> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Married to</span> </td>
+                            <td><span style="font-size:15px">${mBean.marriedTo}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Date</span> </td>
+                            <td>
+                                <span style="font-size:15px">
+                                    <h:outputText value="#{mBean.dateOfMarriage}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                    </h:outputText>
+                                </span> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Registered at</span> </td>
+                            <td><span style="font-size:15px">${mBean.parish.name}</span> </td>
+                        </tr><tr>
+                            <td><span style="font-size:15px">No.</span> </td>
+                            <td><span style="font-size:15px">${mBean.marriageNumber}</span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Died at</span> </td>
+                            <td><span style="font-size:15px"></span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Date</span> </td>
+                            <td><span style="font-size:15px"></span> </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><span style="font-size:12px"><i>I herewith certify that the above is a true extract from the Baptism Register.</i></span> </td>
+                        </tr>
+                        <tr>
+                            <td><span style="font-size:15px">Signed</span> </td>
+                            <td><span style="font-size:15px"></span> </td>
+                        </tr><tr>
+                            <td><span style="font-size:15px">Place and Date</span> </td>
+                            <td><span style="font-size:15px"></span> </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
+            <button class="btn btn-dark" onclick="window.print()">Print Report</button>
         </f:view>
     </jsp:attribute>
 </crm:plainTemplate>

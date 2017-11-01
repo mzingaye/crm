@@ -7,12 +7,15 @@ package controllers;
 
 import beans.CatholicBean;
 import beans.CatholicSpouseBean;
+import beans.ConfirmationBean;
 import entities.Catholic;
 import entities.User;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import models.BaptismFacade;
 import models.CatholicFacade;
+import models.ConfirmationFacade;
 import models.UserFacade;
 
 /**
@@ -26,9 +29,16 @@ public class CatholicController {
     
     @EJB
     private CatholicFacade catholicFacade;
+    @EJB
+    private ConfirmationFacade conFacade;
+    
+    @EJB
+    private BaptismFacade baptismFacade;
     
     @Inject
     private CatholicBean cBean;
+    @Inject
+    private ConfirmationBean conBean;
     
     @Inject
     private CatholicSpouseBean csBean;
@@ -110,6 +120,8 @@ public class CatholicController {
         cBean.setMmname(c.getMmname());
         cBean.setMlname(c.getMlname());
         cBean.setMnatID(c.getMnatID());
+        
+        conBean.setBaptizedBy(this.baptismFacade.findMember(c).getMinisterid().getFname()+" "+this.baptismFacade.findMember(c).getMinisterid().getLname());
         return null;
     }
     

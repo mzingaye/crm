@@ -103,13 +103,13 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptized By</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback" id="baptizedBy" value="#{coBean.baptizedBy}" title="BaptizedBy" required="true" requiredMessage="The BaptizedBy field is required."/>
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback" id="baptizedBy" value="#{coBean.baptizedBy}" title="BaptizedBy" required="true" requiredMessage="The BaptizedBy field is required."/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Confirmed By</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                <h:selectOneMenu styleClass="form-control has-feedback" id="ministerid" value="#{coBean.ministerid}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
+                                    <h:selectOneMenu styleClass="form-control has-feedback" id="ministerid" value="#{confirmation.minister}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
                                     <f:selectItem itemLabel="Select Minister"itemValue="0" />    
                                     <f:selectItems value="#{minister.getAll()}" 
                                                            var="m"
@@ -121,7 +121,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Confirmed At</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                 <h:selectOneMenu styleClass="form-control has-feedback" id="parishid" value="#{coBean.parishid}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
+                                    <h:selectOneMenu styleClass="form-control has-feedback" id="parishid" value="#{confirmation.parish}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
                                      <f:selectItem itemLabel="Select Parish"itemValue="0" />    
                                      <f:selectItems value="#{parish.getAll()}" 
                                                            var="p"
@@ -133,7 +133,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sponsor</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                 <h:selectOneMenu styleClass="form-control has-feedback" id="sponsorid" value="#{coBean.sponsorid}" title="Sponsorid" required="true" requiredMessage="The Sponsorid field is required.">
+                                    <h:selectOneMenu styleClass="form-control has-feedback" id="sponsorid" value="#{confirmation.sponsor}" title="Sponsorid" required="true" requiredMessage="The Sponsorid field is required.">
                                      <f:selectItem itemLabel="Select Sponsor"itemValue="0" />    
                                      <f:selectItems value="#{sponsor.getAll()}" 
                                                            var="s"

@@ -6,7 +6,7 @@
 package models;
 
 import entities.Baptism;
-import java.text.SimpleDateFormat;
+import entities.Catholic;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -39,6 +39,9 @@ public class BaptismFacade extends AbstractFacade<Baptism> {
     }
     public List<Baptism> findByFirstCommunion(Date firstCommunion) {
         return getEntityManager().createNamedQuery("Baptism.findByFirstCommunion",Baptism.class).setParameter("firstCommunion","%"+firstCommunion+"%").getResultList();
+    }
+     public Baptism findMember(Catholic memberid) {
+        return getEntityManager().createNamedQuery("Baptism.findByMemberId",Baptism.class).setParameter("memberid",memberid).getSingleResult();
     }
     
 }

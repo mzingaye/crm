@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Matrimonial.findAll", query = "SELECT m FROM Matrimonial m"),
     @NamedQuery(name = "Matrimonial.findById", query = "SELECT m FROM Matrimonial m WHERE m.id = :id"),
+    @NamedQuery(name = "Matrimonial.findByMemberId", query = "SELECT m FROM Matrimonial m WHERE m.husbandMemberID = :memberid OR m.wifeMemberID = :memberid"),
     @NamedQuery(name = "Matrimonial.findByMarriageNumber", query = "SELECT m FROM Matrimonial m WHERE m.marriageNumber = :marriageNumber"),
     @NamedQuery(name = "Matrimonial.findByDateOfMarriage", query = "SELECT m FROM Matrimonial m WHERE m.dateOfMarriage = :dateOfMarriage"),
     @NamedQuery(name = "Matrimonial.findByHusbandMemberID", query = "SELECT m FROM Matrimonial m WHERE m.husbandMemberID = :husbandMemberID"),
