@@ -131,7 +131,7 @@ public class Catholic implements Serializable {
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
     @Basic(optional = false)
-    @NotNull
+    //@NotNull
     @Column(name = "createdAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;

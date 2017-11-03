@@ -8,6 +8,7 @@ package controllers;
 import beans.CatholicBean;
 import beans.CatholicSpouseBean;
 import beans.ConfirmationBean;
+import beans.UserBean;
 import entities.Catholic;
 import entities.User;
 import java.util.List;
@@ -37,6 +38,8 @@ public class CatholicController {
     
     @Inject
     private CatholicBean cBean;
+    @Inject
+    private UserBean uBean;
     @Inject
     private ConfirmationBean conBean;
     
@@ -90,7 +93,8 @@ public class CatholicController {
         c.setMmname(cBean.getMmname());
         c.setMlname(cBean.getMlname());
         c.setMnatID(cBean.getMnatID());
-        User u = this.userFacade.find(2);
+        User u = this.userFacade.find(uBean.getId());
+        System.out.println("The logged in user id is: "+uBean.getId());
         c.setUserid(u);
         this.catholicFacade.create(c);
         return "catholics";

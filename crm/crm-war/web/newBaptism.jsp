@@ -115,7 +115,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Place Of Baptism</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:selectOneMenu id="parishid" value="#{bBean.parishid}" styleClass="form-control ">
+                                        <h:selectOneMenu id="parishid" value="#{baptismActions.parish}" styleClass="form-control ">
                                             <f:selectItems value="#{parish.getAll()}" 
                                                            var="p"
                                                            itemLabel="#{p.name}"
@@ -126,7 +126,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptized By</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <h:selectOneMenu id="ministerid" value="#{bBean.ministerid}" styleClass="form-control ">
+                                        <h:selectOneMenu id="ministerid" value="#{baptismActions.minister}" styleClass="form-control ">
                                             <f:selectItems value="#{minister.getAll()}" 
                                                            var="m"
                                                            itemLabel="#{m.fname} #{m.lname}"

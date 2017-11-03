@@ -8,6 +8,7 @@ package controllers;
 import beans.BaptismBean;
 import beans.CatholicBean;
 import beans.SponsorBean;
+import beans.UserBean;
 import entities.Baptism;
 import entities.Catholic;
 import entities.Minister;
@@ -54,6 +55,9 @@ public class BaptismActions {
     
     @Inject
     private CatholicBean cBean;
+    
+    @Inject
+    private UserBean uBean;
         
     public BaptismActions() {
     }
@@ -102,7 +106,24 @@ public class BaptismActions {
         
         return "createcatholic";
     }
-    
+    private int minister;
+    private int parish;
+
+    public int getMinister() {
+        return minister;
+    }
+
+    public void setMinister(int minister) {
+        this.minister = minister;
+    }
+
+    public int getParish() {
+        return parish;
+    }
+
+    public void setParish(int parish) {
+        this.parish = parish;
+    }
     public String add(){
         Catholic c = new Catholic();
         c.setFname(cBean.getFname());
@@ -122,7 +143,8 @@ public class BaptismActions {
         c.setMmname(cBean.getMmname());
         c.setMlname(cBean.getMlname());
         c.setMnatID(cBean.getMnatID());
-        User u = this.userFacade.find(2);
+        User u = this.userFacade.find(uBean.getId());
+        System.out.println("The logged in user id is: "+uBean.getId());
         c.setUserid(u);
         this.catholicFacade.create(c);
         Sponsor s = new Sponsor();
@@ -135,8 +157,8 @@ public class BaptismActions {
         s.setNatID(sBean.getNatID());
         s.setContact(sBean.getContact());
         this.sponsorFacade.create(s);
-        Minister m = this.ministerFacade.find(bBean.getMinisterid());
-        Parish p = this.parishFacade.find(bBean.getParishid());
+        Minister m = this.ministerFacade.find(minister);
+        Parish p = this.parishFacade.find(parish);
         Baptism b = new Baptism();
         b.setCname(bBean.getCname());
         b.setDateOfBaptism(bBean.getDateOfBaptism());
@@ -216,7 +238,8 @@ public class BaptismActions {
         c.setMmname(cBean.getMmname());
         c.setMlname(cBean.getMlname());
         c.setMnatID(cBean.getMnatID());
-        User u = this.userFacade.find(2);
+        User u = this.userFacade.find(uBean.getId());
+        System.out.println("The logged in user id is: "+uBean.getId());
         c.setUserid(u);
         this.catholicFacade.edit(c);
         Sponsor s = new Sponsor(sBean.getId());
@@ -229,8 +252,8 @@ public class BaptismActions {
         s.setNatID(sBean.getNatID());
         s.setContact(sBean.getContact());
         this.sponsorFacade.edit(s);
-        Minister m = this.ministerFacade.find(bBean.getMinisterid());
-        Parish p = this.parishFacade.find(bBean.getParishid());
+        Minister m = this.ministerFacade.find(minister);
+        Parish p = this.parishFacade.find(parish);
         Baptism b = new Baptism(bBean.getId());
         b.setCname(bBean.getCname());
         b.setDateOfBaptism(bBean.getDateOfBaptism());
