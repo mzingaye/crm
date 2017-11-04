@@ -44,6 +44,7 @@
                         <h:form  styleClass="form-horizontal form-label-left" enctype="multipart/form-data">
                             <h:outputLabel>User Information</h:outputLabel>
                             <hr>
+                            ${sys.msg}
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -98,7 +99,11 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">User Group</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="usergroup" value="#{user.u.usergroup}"/>
+                                    <h:selectOneMenu styleClass="form-control has-feedback-left" id="usergroup" value="#{user.u.usergroup}">
+                                        <f:selectItem itemLabel="Select User Group" itemValue="0" />
+                                        <f:selectItem itemLabel="Administrator" itemValue="100" />
+                                        <f:selectItem itemLabel="Secretary" itemValue="50" />
+                                    </h:selectOneMenu>
                                </div>
                             </div>
                             <hr> 

@@ -5,6 +5,7 @@
  */
 package beans;
 
+import entities.Matrimonial;
 import java.io.Serializable;
 import java.util.Date;
 import javax.ejb.Stateless;
@@ -23,7 +24,7 @@ import javax.inject.Named;
 public class DeathBean implements Serializable{
 
     private Integer id;
-    private Integer spouseMemberID;
+    private Matrimonial matrimonialid;
     private Date dod;
     private String placeOfDeath;
     private Date dateOfBurial;
@@ -33,6 +34,14 @@ public class DeathBean implements Serializable{
     private int parishid;
     private int ministerid;
     private int deleteFlag;
+
+    public Matrimonial getMatrimonialid() {
+        return matrimonialid;
+    }
+
+    public void setMatrimonialid(Matrimonial matrimonialid) {
+        this.matrimonialid = matrimonialid;
+    }
 
     public int getDeleteFlag() {
         return deleteFlag;
@@ -51,14 +60,6 @@ public class DeathBean implements Serializable{
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getSpouseMemberID() {
-        return spouseMemberID;
-    }
-
-    public void setSpouseMemberID(Integer spouseMemberID) {
-        this.spouseMemberID = spouseMemberID;
     }
 
     public Date getDod() {

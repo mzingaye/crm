@@ -1,8 +1,9 @@
 <%-- 
-    Document   : parish
-    Created on : Jul 14, 2017, 11:05:49 AM
+    Document   : viewparish
+    Created on : Nov 4, 2017, 12:54:25 AM
     Author     : Lyne
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags/" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -40,7 +41,7 @@
                        <div id="wizard" class="form_wizard wizard_horizontal">
                         <h:form  styleClass="form-horizontal form-label-left">
                         
-                            <h:outputLabel>Church Information</h:outputLabel>
+                            <h:outputLabel>Church #${parish.p.id} Information</h:outputLabel>
                             <hr>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Church Name</label>
@@ -63,7 +64,7 @@
                             </div>
                              
                             <hr> 
-                            <h:commandButton value="Save Parish" action="#{parish.add()}" styleClass="btn btn-primary"/>
+                            <h:commandButton value="Update" action="#{parish.edit()}" styleClass="btn btn-primary"/>
                             <h:commandButton value="Cancel" action="#{parish.cancel()}" styleClass="btn btn-danger"/>
                     </h:form>    
                    </div>
@@ -74,4 +75,3 @@
         </f:view>
     </jsp:attribute>
 </t:mainTemplate>
-

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : minister
-    Created on : Jul 13, 2017, 11:21:42 PM
+    Document   : viewminister
+    Created on : Nov 4, 2017, 12:17:43 AM
     Author     : Lyne
 --%>
 
@@ -41,7 +41,7 @@
                        <div id="wizard" class="form_wizard wizard_horizontal">
                         <h:form  styleClass="form-horizontal form-label-left">
                             
-                            <h:outputLabel>Minister's Information</h:outputLabel>
+                            <h:outputLabel>Minister #${minister.m.id} Information</h:outputLabel>
                             <hr>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
@@ -88,7 +88,7 @@
                                 </div>
                             </div> 
                             <hr> 
-                            <h:commandButton value="Save" action="#{minister.add()}" styleClass="btn btn-primary"/>
+                            <h:commandButton value="Update" action="#{minister.edit()}" styleClass="btn btn-primary"/>
                             <h:commandButton value="Cancel" action="#{minister.cancel()}" styleClass="btn btn-danger"/>
                     </h:form>    
                    </div>
@@ -99,4 +99,3 @@
         </f:view>
     </jsp:attribute>
 </t:mainTemplate>
-

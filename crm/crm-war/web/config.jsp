@@ -17,9 +17,8 @@
     <jsp:attribute name="content">
         <f:view>
             <h:form>
-            <h:commandLink value="Add New Parish" action="parish" styleClass="btn btn-info"></h:commandLink>
-            <h:commandLink value="Add New Minister" action="minister" styleClass="btn btn-primary"></h:commandLink>
-            <h:commandLink value="Add New System User" action="users" styleClass="btn btn-success"></h:commandLink>
+            <h:commandLink value="New Parish" action="parish" styleClass="btn btn-info"></h:commandLink>
+            <h:commandLink value="New Minister" action="minister" styleClass="btn btn-primary"></h:commandLink>
                 <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -43,7 +42,6 @@
                   </div>
                   <div class="x_content">
 
-                  <h:form>
                       <h:dataTable value="#{parish.all}" var="item" styleClass="table table-stripped">
                           <h:column>
                               <f:facet name="header">
@@ -73,12 +71,10 @@
                             <f:facet name="header">
                                 <h:outputText value="Actions"/>
                             </f:facet>
-                            <h:outputText value="" styleClass="fa fa-eye"/> |
-                            <h:outputText value="" styleClass="fa fa-edit"/> |
-                            <h:outputText value="" styleClass="fa fa-trash"/> 
+                            <h:commandLink action="#{parish.view(item)}" value="" styleClass="fa fa-eye"/> |
+                            <h:commandLink action="#{parish.delete(item)}" value="" styleClass="fa fa-trash"/> 
                         </h:column>
                       </h:dataTable>
-                  </h:form>
 
 
                   </div>
@@ -108,60 +104,39 @@
                   </div>
                   <div class="x_content">
 
-                  <h:form>
-                      <h:dataTable value="#{minister.all}" var="item" styleClass="table table-stripped">
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Id"/>
-                              </f:facet>
-                              <h:outputText value="#{item.id}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Fname"/>
-                              </f:facet>
-                              <h:outputText value="#{item.fname}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Lname"/>
-                              </f:facet>
-                              <h:outputText value="#{item.lname}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Rank"/>
-                              </f:facet>
-                              <h:outputText value="#{item.rank}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Contact"/>
-                              </f:facet>
-                              <h:outputText value="#{item.contact}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="NatID"/>
-                              </f:facet>
-                              <h:outputText value="#{item.natID}"/>
-                          </h:column>
-                          <h:column>
-                              <f:facet name="header">
-                                  <h:outputText value="Priestorder"/>
-                              </f:facet>
-                              <h:outputText value="#{item.priestorder}"/>
-                          </h:column>
-                          <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Actions"/>
-                            </f:facet>
-                            <h:outputText value="" styleClass="fa fa-eye"/> |
-                            <h:outputText value="" styleClass="fa fa-edit"/> |
-                            <h:outputText value="" styleClass="fa fa-trash"/> 
-                        </h:column>
-                      </h:dataTable>
-                  </h:form>
+                      <table id="datatable-buttons" class="table table-striped  ">
+                            <thead>
+                              <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Title</th>
+                                <th>Order</th>
+                                <th>Contact</th>
+                                <th>Actions</th>
+                              </tr>
+                            </thead>
+                            <tbody >
+                                <c:forEach var="i" items="#{minister.all}" >
+                                    <tr >
+                                        <td>${i.id}</td>
+                                        <td>${i.fname}</td>
+                                        <td>${i.lname}</td>
+                                        <td>${i.rank}</td>
+                                        <td>${i.morder}</td>
+                                        <td>${i.contact}</td>
+                                        <td>
+                                            <h:column>
+                                                <h:commandLink action="#{minister.view(i)}" value="" styleClass="fa fa-eye"/> |
+                                                <h:commandLink action="#{minister.delete(i)}" value="" styleClass="fa fa-trash"/> 
+                                            </h:column>
+                                        </td>
+                                    </tr>
+                                </c:forEach> 
+                            </tbody>
+
+                        </table>
+                     
 
 
                   </div>

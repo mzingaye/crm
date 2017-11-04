@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import beans.UserBean;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -12,6 +13,8 @@ import models.ParishFacade;
 import java.util.*;
 import entities.*;
 import java.io.Serializable;
+import javax.inject.Inject;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -22,6 +25,12 @@ import java.io.Serializable;
 public class ParishController implements Serializable {
     @EJB
     private ParishFacade parishFacade;
+    
+    @Inject
+    private UserBean uBean;
+    
+    Logger log = Logger.getLogger(ParishController.class);
+    
     private Parish p = new Parish();
 
     public Parish getP() {
@@ -44,8 +53,44 @@ public class ParishController implements Serializable {
     }
     
     public String add(){
-        this.parishFacade.create(p);
-        p = new Parish();
+        try{
+            this.parishFacade.create(p);
+            log.info("Parish "+p.getId()+" created successfully by System User: "+uBean.getUsername());
+            p = new Parish();
+        }
+        catch(Exception e){
+            log.error("Constraint violation when adding new parish : "+e);
+        }
+        return "config";
+    }
+    
+    public String view(Parish p){
+        this.p = p;
+        return "viewparish";
+    }
+    
+     public String edit(){
+        try{
+            this.parishFacade.edit(p);
+            log.info("Parish "+p.getId()+" updated successfully by System User: "+uBean.getUsername());
+            p = new Parish();
+        }
+        catch(Exception e){
+            log.error("Constraint violation when updating parish #"+p.getId()+" : "+e);
+        }
+        
+        return "config";
+    }
+     
+    public String cancel(){
+        this.p = new Parish();
+        return "config";
+    }
+    
+    public String delete(Parish p){
+        this.p = p;
+        this.parishFacade.remove(this.p);
+        log.info("Parish "+p.getId()+" deleted successfully by System User: "+uBean.getUsername());
         return "config";
     }
     

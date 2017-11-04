@@ -67,7 +67,7 @@ public class BaptismController implements Serializable {
         b.setCname(bBean.getCname());
         b.setDateOfBaptism(bBean.getDateOfBaptism());
         b.setFirstCommunion(bBean.getFirstCommunion());
-        b.setBaptismNumber(bBean.getBaptismNumber());
+        //b.setBaptismNumber(bBean.getBaptismNumber());
         b.setPhysicalAddress(bBean.getPhysicalAddress());
         b.setUserid(u);
         b.setMemberid(c);

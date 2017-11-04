@@ -5,10 +5,14 @@
  */
 package beans;
 
+import entities.Baptism;
+import entities.Death;
 import entities.Minister;
 import entities.Parish;
+import entities.User;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.faces.bean.SessionScoped;
@@ -24,58 +28,97 @@ import javax.inject.Named;
 @Named(value="mBean")
 public class MatrimonialBean implements Serializable {
     private Integer id;
-    private int marriageNumber;
     private Date dateOfMarriage;
-    private int husbandMemberID;
+    private String spouse;
+    private int isSpouseCatholic;
     private String husbandAddress;
-    private int wifeMemberID;
     private String wifeAddress;
-    private int husbandSponsorID;
-    private int wifeSponsorID;
-    private String officialDesignation;
     private String conditionOfHus;
     private String conditionOfWife;
     private String consentHus;
     private String consentWife;
     private String marriageBy;
-    private int parishid;
-    private int ministerid;
-    private int deleteFlag;
-    private String marriedTo;
-    private Parish parish;
-    private Minister minister;
+    private int husbandSponsorID;
+    private int wifeSponsorID;
+    private String officialDesignation;
+    private Integer deleteFlag;
+    private Date createdAt;
+    private List<Death> deathList;
+    private Baptism baptismid;
+    private User userid;
+    private Parish parishid;
+    private Minister ministerid;
 
-    public Parish getParish() {
-        return parish;
+    public String getSpouse() {
+        return spouse;
     }
 
-    public void setParish(Parish parish) {
-        this.parish = parish;
+    public void setSpouse(String spouse) {
+        this.spouse = spouse;
     }
 
-    public Minister getMinister() {
-        return minister;
+    public int getIsSpouseCatholic() {
+        return isSpouseCatholic;
     }
 
-    public void setMinister(Minister minister) {
-        this.minister = minister;
-    }
-    
-
-    public String getMarriedTo() {
-        return marriedTo;
+    public void setIsSpouseCatholic(int isSpouseCatholic) {
+        this.isSpouseCatholic = isSpouseCatholic;
     }
 
-    public void setMarriedTo(String marriedTo) {
-        this.marriedTo = marriedTo;
-    }
-
-    public int getDeleteFlag() {
+    public Integer getDeleteFlag() {
         return deleteFlag;
     }
 
-    public void setDeleteFlag(int deleteFlag) {
+    public void setDeleteFlag(Integer deleteFlag) {
         this.deleteFlag = deleteFlag;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public List<Death> getDeathList() {
+        return deathList;
+    }
+
+    public void setDeathList(List<Death> deathList) {
+        this.deathList = deathList;
+    }
+
+    public Baptism getBaptismid() {
+        return baptismid;
+    }
+
+    public void setBaptismid(Baptism baptismid) {
+        this.baptismid = baptismid;
+    }
+
+    public User getUserid() {
+        return userid;
+    }
+
+    public void setUserid(User userid) {
+        this.userid = userid;
+    }
+
+    public Parish getParishid() {
+        return parishid;
+    }
+
+    public void setParishid(Parish parishid) {
+        this.parishid = parishid;
+    }
+
+    public Minister getMinisterid() {
+        return ministerid;
+    }
+
+    public void setMinisterid(Minister ministerid) {
+        this.ministerid = ministerid;
     }
 
     public MatrimonialBean() {
@@ -88,15 +131,7 @@ public class MatrimonialBean implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-    public int getMarriageNumber() {
-        return marriageNumber;
-    }
-
-    public void setMarriageNumber(int marriageNumber) {
-        this.marriageNumber = marriageNumber;
-    }
-
+  
     public Date getDateOfMarriage() {
         return dateOfMarriage;
     }
@@ -105,28 +140,12 @@ public class MatrimonialBean implements Serializable {
         this.dateOfMarriage = dateOfMarriage;
     }
 
-    public int getHusbandMemberID() {
-        return husbandMemberID;
-    }
-
-    public void setHusbandMemberID(int husbandMemberID) {
-        this.husbandMemberID = husbandMemberID;
-    }
-
     public String getHusbandAddress() {
         return husbandAddress;
     }
 
     public void setHusbandAddress(String husbandAddress) {
         this.husbandAddress = husbandAddress;
-    }
-
-    public int getWifeMemberID() {
-        return wifeMemberID;
-    }
-
-    public void setWifeMemberID(int wifeMemberID) {
-        this.wifeMemberID = wifeMemberID;
     }
 
     public String getWifeAddress() {
@@ -200,21 +219,4 @@ public class MatrimonialBean implements Serializable {
     public void setMarriageBy(String marriageBy) {
         this.marriageBy = marriageBy;
     }
-
-    public int getParishid() {
-        return parishid;
-    }
-
-    public void setParishid(int parishid) {
-        this.parishid = parishid;
-    }
-
-    public int getMinisterid() {
-        return ministerid;
-    }
-
-    public void setMinisterid(int ministerid) {
-        this.ministerid = ministerid;
-    }
-
 }

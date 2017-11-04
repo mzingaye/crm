@@ -5,8 +5,12 @@
  */
 package beans;
 
+import entities.Baptism;
+import entities.Misc;
+import entities.User;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.faces.bean.SessionScoped;
@@ -64,6 +68,33 @@ public class CatholicBean  implements Serializable{
     private String mmname;
     private String mlname;
     private int deleteFlag;
+    private User userid;
+    private List<Baptism> baptismList;
+    private List<Misc> miscList;
+
+    public User getUserid() {
+        return userid;
+    }
+
+    public void setUserid(User userid) {
+        this.userid = userid;
+    }
+
+    public List<Baptism> getBaptismList() {
+        return baptismList;
+    }
+
+    public void setBaptismList(List<Baptism> baptismList) {
+        this.baptismList = baptismList;
+    }
+
+    public List<Misc> getMiscList() {
+        return miscList;
+    }
+
+    public void setMiscList(List<Misc> miscList) {
+        this.miscList = miscList;
+    }
 
     public int getDeleteFlag() {
         return deleteFlag;

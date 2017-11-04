@@ -7,9 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,14 +15,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -38,10 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Minister.findById", query = "SELECT m FROM Minister m WHERE m.id = :id"),
     @NamedQuery(name = "Minister.findByFname", query = "SELECT m FROM Minister m WHERE m.fname = :fname"),
     @NamedQuery(name = "Minister.findByLname", query = "SELECT m FROM Minister m WHERE m.lname = :lname"),
+    @NamedQuery(name = "Minister.findByMorder", query = "SELECT m FROM Minister m WHERE m.morder = :morder"),
     @NamedQuery(name = "Minister.findByRank", query = "SELECT m FROM Minister m WHERE m.rank = :rank"),
     @NamedQuery(name = "Minister.findByContact", query = "SELECT m FROM Minister m WHERE m.contact = :contact"),
     @NamedQuery(name = "Minister.findByNatID", query = "SELECT m FROM Minister m WHERE m.natID = :natID"),
-    @NamedQuery(name = "Minister.findByPriestorder", query = "SELECT m FROM Minister m WHERE m.priestorder = :priestorder"),
     @NamedQuery(name = "Minister.findByDeleteFlag", query = "SELECT m FROM Minister m WHERE m.deleteFlag = :deleteFlag"),
     @NamedQuery(name = "Minister.findByCreatedAt", query = "SELECT m FROM Minister m WHERE m.createdAt = :createdAt")})
 public class Minister implements Serializable {
@@ -64,6 +60,11 @@ public class Minister implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
+    @Column(name = "morder")
+    private String morder;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
     @Column(name = "rank")
     private String rank;
     @Basic(optional = false)
@@ -76,24 +77,11 @@ public class Minister implements Serializable {
     @Size(min = 1, max = 15)
     @Column(name = "natID")
     private String natID;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "priestorder")
-    private String priestorder;
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
     @Column(name = "createdAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ministerid")
-    private List<Death> deathList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ministerid")
-    private List<Matrimonial> matrimonialList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ministerid")
-    private List<Baptism> baptismList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ministerid")
-    private List<Confirmation> confirmationList;
 
     public Minister() {
     }
@@ -102,14 +90,14 @@ public class Minister implements Serializable {
         this.id = id;
     }
 
-    public Minister(Integer id, String fname, String lname, String rank, String contact, String natID, String priestorder) {
+    public Minister(Integer id, String fname, String lname, String morder, String rank, String contact, String natID) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
+        this.morder = morder;
         this.rank = rank;
         this.contact = contact;
         this.natID = natID;
-        this.priestorder = priestorder;
     }
 
     public Integer getId() {
@@ -136,6 +124,14 @@ public class Minister implements Serializable {
         this.lname = lname;
     }
 
+    public String getMorder() {
+        return morder;
+    }
+
+    public void setMorder(String morder) {
+        this.morder = morder;
+    }
+
     public String getRank() {
         return rank;
     }
@@ -160,14 +156,6 @@ public class Minister implements Serializable {
         this.natID = natID;
     }
 
-    public String getPriestorder() {
-        return priestorder;
-    }
-
-    public void setPriestorder(String priestorder) {
-        this.priestorder = priestorder;
-    }
-
     public Integer getDeleteFlag() {
         return deleteFlag;
     }
@@ -182,42 +170,6 @@ public class Minister implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
-    }
-
-    @XmlTransient
-    public List<Death> getDeathList() {
-        return deathList;
-    }
-
-    public void setDeathList(List<Death> deathList) {
-        this.deathList = deathList;
-    }
-
-    @XmlTransient
-    public List<Matrimonial> getMatrimonialList() {
-        return matrimonialList;
-    }
-
-    public void setMatrimonialList(List<Matrimonial> matrimonialList) {
-        this.matrimonialList = matrimonialList;
-    }
-
-    @XmlTransient
-    public List<Baptism> getBaptismList() {
-        return baptismList;
-    }
-
-    public void setBaptismList(List<Baptism> baptismList) {
-        this.baptismList = baptismList;
-    }
-
-    @XmlTransient
-    public List<Confirmation> getConfirmationList() {
-        return confirmationList;
-    }
-
-    public void setConfirmationList(List<Confirmation> confirmationList) {
-        this.confirmationList = confirmationList;
     }
 
     @Override

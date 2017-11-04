@@ -10,7 +10,7 @@ import beans.CatholicSpouseBean;
 import beans.ConfirmationBean;
 import beans.UserBean;
 import entities.Catholic;
-import entities.User;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -18,18 +18,20 @@ import models.BaptismFacade;
 import models.CatholicFacade;
 import models.ConfirmationFacade;
 import models.UserFacade;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Lyne
  */
-public class CatholicController {
+public class CatholicController implements Serializable {
     
     @EJB
     private UserFacade userFacade;
     
     @EJB
     private CatholicFacade catholicFacade;
+    
     @EJB
     private ConfirmationFacade conFacade;
     
@@ -38,13 +40,27 @@ public class CatholicController {
     
     @Inject
     private CatholicBean cBean;
+    
     @Inject
     private UserBean uBean;
+    
     @Inject
     private ConfirmationBean conBean;
     
     @Inject
     private CatholicSpouseBean csBean;
+    
+    Logger log = Logger.getLogger(CatholicController.class);
+    
+    private Catholic c;
+
+    public Catholic getC() {
+        return c;
+    }
+
+    public void setC(Catholic c) {
+        this.c = c;
+    }
        
     public CatholicController() {
     }
@@ -54,50 +70,50 @@ public class CatholicController {
     }
     
     public String newMember(){
-        cBean.setFname("");
-        cBean.setMname("");
-        cBean.setLname("");
-        cBean.setSex("");
-        cBean.setDob(null);
-        cBean.setAge(0);
-        cBean.setPlaceOfBirth("");
-        cBean.setNatID("");
-        cBean.setContact("");
-        cBean.setFfname("");
-        cBean.setFmname("");
-        cBean.setFlname("");
-        cBean.setFnatID("");
-        cBean.setMfname("");
-        cBean.setMmname("");
-        cBean.setMlname("");
-        cBean.setMnatID("");
+        this.c = new Catholic();
         return "addmember";
     }
     
     public String add(){
-        Catholic c = new Catholic();
-        c.setFname(cBean.getFname());
-        c.setMname(cBean.getMname());
-        c.setLname(cBean.getLname());
-        c.setSex(cBean.getSex());
-        c.setDob(cBean.getDob());
-        c.setAge(cBean.getAge());
-        c.setPlaceOfBirth(cBean.getPlaceOfBirth());
-        c.setNatID(cBean.getNatID());
-        c.setContact(cBean.getContact());
-        c.setFfname(cBean.getFfname());
-        c.setFmname(cBean.getFmname());
-        c.setFlname(cBean.getFlname());
-        c.setFnatID(cBean.getFnatID());
-        c.setMfname(cBean.getMfname());
-        c.setMmname(cBean.getMmname());
-        c.setMlname(cBean.getMlname());
-        c.setMnatID(cBean.getMnatID());
-        User u = this.userFacade.find(uBean.getId());
-        System.out.println("The logged in user id is: "+uBean.getId());
-        c.setUserid(u);
-        this.catholicFacade.create(c);
+        try{
+            this.c.setUserid(this.userFacade.find(uBean.getId()));
+            this.catholicFacade.create(this.c);
+            log.info("Member "+c.getId()+" created successfully by System User: "+uBean.getUsername());
+            this.c = new Catholic();  
+        }
+        catch(Exception e){
+            log.error("Constraint violation when adding new catholic : "+e);
+        }
         return "catholics";
+    }
+    
+    public String view(Catholic c){
+        this.c = c;
+        return "viewcatholic";
+    }
+    
+     public String edit(){
+        try{
+            this.catholicFacade.edit(this.c);
+            log.info("Member "+c.getId()+" updated successfully by System User: "+uBean.getUsername());
+            c = new Catholic();
+        }
+        catch(Exception e){
+            log.error("Constraint violation when updating member #"+c.getId()+" : "+e);
+        }
+        return "catholics";
+    }
+     
+    public String cancel(){
+        this.c = new Catholic();
+        return "catholics";
+    }
+    
+    public String delete(Catholic c){
+        this.c = c;
+        this.catholicFacade.remove(this.c);
+        log.info("Member "+c.getId()+" deleted successfully by System User: "+uBean.getUsername());
+        return "catholic";
     }
     
     public String nextBapt(){
@@ -125,7 +141,7 @@ public class CatholicController {
         cBean.setMlname(c.getMlname());
         cBean.setMnatID(c.getMnatID());
         
-        conBean.setBaptizedBy(this.baptismFacade.findMember(c).getMinisterid().getFname()+" "+this.baptismFacade.findMember(c).getMinisterid().getLname());
+        //conBean.setBaptizedBy(this.baptismFacade.findMember(c).getMinisterid().getFname()+" "+this.baptismFacade.findMember(c).getMinisterid().getLname());
         return null;
     }
     

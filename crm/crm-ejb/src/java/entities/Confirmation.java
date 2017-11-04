@@ -21,7 +21,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -34,9 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Confirmation.findAll", query = "SELECT c FROM Confirmation c"),
     @NamedQuery(name = "Confirmation.findById", query = "SELECT c FROM Confirmation c WHERE c.id = :id"),
-    @NamedQuery(name = "Confirmation.findByMemberId", query = "SELECT c FROM Confirmation c WHERE c.memberid = :memberid"),
     @NamedQuery(name = "Confirmation.findByDateOfConfirmation", query = "SELECT c FROM Confirmation c WHERE c.dateOfConfirmation = :dateOfConfirmation"),
-    @NamedQuery(name = "Confirmation.findByBaptizedBy", query = "SELECT c FROM Confirmation c WHERE c.baptizedBy = :baptizedBy"),
     @NamedQuery(name = "Confirmation.findByDeleteFlag", query = "SELECT c FROM Confirmation c WHERE c.deleteFlag = :deleteFlag"),
     @NamedQuery(name = "Confirmation.findByCreatedAt", query = "SELECT c FROM Confirmation c WHERE c.createdAt = :createdAt")})
 public class Confirmation implements Serializable {
@@ -51,25 +48,20 @@ public class Confirmation implements Serializable {
     @Column(name = "dateOfConfirmation")
     @Temporal(TemporalType.DATE)
     private Date dateOfConfirmation;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "baptizedBy")
-    private String baptizedBy;
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
     @Column(name = "createdAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @JoinColumn(name = "Baptismid", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Baptism baptismid;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
     @JoinColumn(name = "ministerid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Minister ministerid;
-    @JoinColumn(name = "memberid", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Catholic memberid;
     @JoinColumn(name = "Parishid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Parish parishid;
@@ -84,10 +76,9 @@ public class Confirmation implements Serializable {
         this.id = id;
     }
 
-    public Confirmation(Integer id, Date dateOfConfirmation, String baptizedBy) {
+    public Confirmation(Integer id, Date dateOfConfirmation) {
         this.id = id;
         this.dateOfConfirmation = dateOfConfirmation;
-        this.baptizedBy = baptizedBy;
     }
 
     public Integer getId() {
@@ -106,14 +97,6 @@ public class Confirmation implements Serializable {
         this.dateOfConfirmation = dateOfConfirmation;
     }
 
-    public String getBaptizedBy() {
-        return baptizedBy;
-    }
-
-    public void setBaptizedBy(String baptizedBy) {
-        this.baptizedBy = baptizedBy;
-    }
-
     public Integer getDeleteFlag() {
         return deleteFlag;
     }
@@ -130,6 +113,14 @@ public class Confirmation implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public Baptism getBaptismid() {
+        return baptismid;
+    }
+
+    public void setBaptismid(Baptism baptismid) {
+        this.baptismid = baptismid;
+    }
+
     public User getUserid() {
         return userid;
     }
@@ -144,14 +135,6 @@ public class Confirmation implements Serializable {
 
     public void setMinisterid(Minister ministerid) {
         this.ministerid = ministerid;
-    }
-
-    public Catholic getMemberid() {
-        return memberid;
-    }
-
-    public void setMemberid(Catholic memberid) {
-        this.memberid = memberid;
     }
 
     public Parish getParishid() {

@@ -76,6 +76,8 @@ public class Parish implements Serializable {
     private List<Baptism> baptismList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "parishid")
     private List<Confirmation> confirmationList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parishid")
+    private List<Misc> miscList;
 
     public Parish() {
     }
@@ -173,6 +175,15 @@ public class Parish implements Serializable {
 
     public void setConfirmationList(List<Confirmation> confirmationList) {
         this.confirmationList = confirmationList;
+    }
+
+    @XmlTransient
+    public List<Misc> getMiscList() {
+        return miscList;
+    }
+
+    public void setMiscList(List<Misc> miscList) {
+        this.miscList = miscList;
     }
 
     @Override

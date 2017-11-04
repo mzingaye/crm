@@ -57,6 +57,9 @@ public class Misc implements Serializable {
     @Size(max = 20)
     @Column(name = "income")
     private String income;
+    @JoinColumn(name = "Parishid", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Parish parishid;
     @JoinColumn(name = "memberid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Catholic memberid;
@@ -114,6 +117,14 @@ public class Misc implements Serializable {
 
     public void setIncome(String income) {
         this.income = income;
+    }
+
+    public Parish getParishid() {
+        return parishid;
+    }
+
+    public void setParishid(Parish parishid) {
+        this.parishid = parishid;
     }
 
     public Catholic getMemberid() {

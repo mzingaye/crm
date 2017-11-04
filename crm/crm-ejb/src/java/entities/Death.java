@@ -34,10 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Death.findAll", query = "SELECT d FROM Death d"),
     @NamedQuery(name = "Death.findById", query = "SELECT d FROM Death d WHERE d.id = :id"),
-    @NamedQuery(name = "Death.findBySpouseMemberID", query = "SELECT d FROM Death d WHERE d.spouseMemberID = :spouseMemberID"),
-    @NamedQuery(name = "Death.findByDod", query = "SELECT d FROM Death d WHERE d.dod = :dod"),
-    @NamedQuery(name = "Death.findByPlaceOfDeath", query = "SELECT d FROM Death d WHERE d.placeOfDeath = :placeOfDeath"),
+    @NamedQuery(name = "Death.findByDateOfDeath", query = "SELECT d FROM Death d WHERE d.dateOfDeath = :dateOfDeath"),
     @NamedQuery(name = "Death.findByDateOfBurial", query = "SELECT d FROM Death d WHERE d.dateOfBurial = :dateOfBurial"),
+    @NamedQuery(name = "Death.findByPlaceOfDeath", query = "SELECT d FROM Death d WHERE d.placeOfDeath = :placeOfDeath"),
     @NamedQuery(name = "Death.findByPlaceOfBurial", query = "SELECT d FROM Death d WHERE d.placeOfBurial = :placeOfBurial"),
     @NamedQuery(name = "Death.findBySacramentAdministered", query = "SELECT d FROM Death d WHERE d.sacramentAdministered = :sacramentAdministered"),
     @NamedQuery(name = "Death.findByDeleteFlag", query = "SELECT d FROM Death d WHERE d.deleteFlag = :deleteFlag"),
@@ -49,18 +48,11 @@ public class Death implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "spouseMemberID")
-    private Integer spouseMemberID;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "dod")
+    @Column(name = "dateOfDeath")
     @Temporal(TemporalType.DATE)
-    private Date dod;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "placeOfDeath")
-    private String placeOfDeath;
+    private Date dateOfDeath;
     @Basic(optional = false)
     @NotNull
     @Column(name = "dateOfBurial")
@@ -69,9 +61,16 @@ public class Death implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
+    @Column(name = "placeOfDeath")
+    private String placeOfDeath;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
     @Column(name = "placeOfBurial")
     private String placeOfBurial;
-    @Size(max = 255)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 255)
     @Column(name = "sacramentAdministered")
     private String sacramentAdministered;
     @Column(name = "deleteFlag")
@@ -79,12 +78,15 @@ public class Death implements Serializable {
     @Column(name = "createdAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @JoinColumn(name = "Matrimonialid", referencedColumnName = "id")
+    @ManyToOne
+    private Matrimonial matrimonialid;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
-    @JoinColumn(name = "memberid", referencedColumnName = "id")
+    @JoinColumn(name = "Baptismid", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Catholic memberid;
+    private Baptism baptismid;
     @JoinColumn(name = "Parishid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Parish parishid;
@@ -99,12 +101,13 @@ public class Death implements Serializable {
         this.id = id;
     }
 
-    public Death(Integer id, Date dod, String placeOfDeath, Date dateOfBurial, String placeOfBurial) {
+    public Death(Integer id, Date dateOfDeath, Date dateOfBurial, String placeOfDeath, String placeOfBurial, String sacramentAdministered) {
         this.id = id;
-        this.dod = dod;
-        this.placeOfDeath = placeOfDeath;
+        this.dateOfDeath = dateOfDeath;
         this.dateOfBurial = dateOfBurial;
+        this.placeOfDeath = placeOfDeath;
         this.placeOfBurial = placeOfBurial;
+        this.sacramentAdministered = sacramentAdministered;
     }
 
     public Integer getId() {
@@ -115,28 +118,12 @@ public class Death implements Serializable {
         this.id = id;
     }
 
-    public Integer getSpouseMemberID() {
-        return spouseMemberID;
+    public Date getDateOfDeath() {
+        return dateOfDeath;
     }
 
-    public void setSpouseMemberID(Integer spouseMemberID) {
-        this.spouseMemberID = spouseMemberID;
-    }
-
-    public Date getDod() {
-        return dod;
-    }
-
-    public void setDod(Date dod) {
-        this.dod = dod;
-    }
-
-    public String getPlaceOfDeath() {
-        return placeOfDeath;
-    }
-
-    public void setPlaceOfDeath(String placeOfDeath) {
-        this.placeOfDeath = placeOfDeath;
+    public void setDateOfDeath(Date dateOfDeath) {
+        this.dateOfDeath = dateOfDeath;
     }
 
     public Date getDateOfBurial() {
@@ -145,6 +132,14 @@ public class Death implements Serializable {
 
     public void setDateOfBurial(Date dateOfBurial) {
         this.dateOfBurial = dateOfBurial;
+    }
+
+    public String getPlaceOfDeath() {
+        return placeOfDeath;
+    }
+
+    public void setPlaceOfDeath(String placeOfDeath) {
+        this.placeOfDeath = placeOfDeath;
     }
 
     public String getPlaceOfBurial() {
@@ -179,6 +174,14 @@ public class Death implements Serializable {
         this.createdAt = createdAt;
     }
 
+    public Matrimonial getMatrimonialid() {
+        return matrimonialid;
+    }
+
+    public void setMatrimonialid(Matrimonial matrimonialid) {
+        this.matrimonialid = matrimonialid;
+    }
+
     public User getUserid() {
         return userid;
     }
@@ -187,12 +190,12 @@ public class Death implements Serializable {
         this.userid = userid;
     }
 
-    public Catholic getMemberid() {
-        return memberid;
+    public Baptism getBaptismid() {
+        return baptismid;
     }
 
-    public void setMemberid(Catholic memberid) {
-        this.memberid = memberid;
+    public void setBaptismid(Baptism baptismid) {
+        this.baptismid = baptismid;
     }
 
     public Parish getParishid() {

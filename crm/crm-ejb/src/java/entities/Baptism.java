@@ -7,7 +7,9 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,12 +19,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -35,13 +39,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Baptism.findAll", query = "SELECT b FROM Baptism b"),
     @NamedQuery(name = "Baptism.findById", query = "SELECT b FROM Baptism b WHERE b.id = :id"),
     @NamedQuery(name = "Baptism.findByMemberId", query = "SELECT b FROM Baptism b WHERE b.memberid = :memberid"),
-    @NamedQuery(name = "Baptism.findByCname", query = "SELECT b FROM Baptism b WHERE b.cname like :cname"),
-    @NamedQuery(name = "Baptism.findByDateOfBaptism", query = "SELECT b FROM Baptism b WHERE b.dateOfBaptism like :dateOfBaptism"),
-    @NamedQuery(name = "Baptism.findByFirstCommunion", query = "SELECT b FROM Baptism b WHERE b.firstCommunion like :firstCommunion"),
-    @NamedQuery(name = "Baptism.findByBaptismNumber", query = "SELECT b FROM Baptism b WHERE b.baptismNumber like :baptismNumber"),
-    @NamedQuery(name = "Baptism.findByPhysicalAddress", query = "SELECT b FROM Baptism b WHERE b.physicalAddress like :physicalAddress"),
-    @NamedQuery(name = "Baptism.findByDeleteFlag", query = "SELECT b FROM Baptism b WHERE b.deleteFlag like :deleteFlag"),
-    @NamedQuery(name = "Baptism.findByCreatedAt", query = "SELECT b FROM Baptism b WHERE b.createdAt like :createdAt")})
+    @NamedQuery(name = "Baptism.findByCname", query = "SELECT b FROM Baptism b WHERE b.cname = :cname"),
+    @NamedQuery(name = "Baptism.findByDateOfBaptism", query = "SELECT b FROM Baptism b WHERE b.dateOfBaptism = :dateOfBaptism"),
+    @NamedQuery(name = "Baptism.findByFirstCommunion", query = "SELECT b FROM Baptism b WHERE b.firstCommunion = :firstCommunion"),
+    @NamedQuery(name = "Baptism.findByPhysicalAddress", query = "SELECT b FROM Baptism b WHERE b.physicalAddress = :physicalAddress"),
+    @NamedQuery(name = "Baptism.findByDeleteFlag", query = "SELECT b FROM Baptism b WHERE b.deleteFlag = :deleteFlag"),
+    @NamedQuery(name = "Baptism.findByCreatedAt", query = "SELECT b FROM Baptism b WHERE b.createdAt = :createdAt")})
 public class Baptism implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -64,10 +67,6 @@ public class Baptism implements Serializable {
     private Date firstCommunion;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "baptismNumber")
-    private int baptismNumber;
-    @Basic(optional = false)
-    @NotNull
     @Size(min = 1, max = 100)
     @Column(name = "physicalAddress")
     private String physicalAddress;
@@ -76,6 +75,10 @@ public class Baptism implements Serializable {
     @Column(name = "createdAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "baptismid")
+    private List<Death> deathList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "baptismid")
+    private List<Matrimonial> matrimonialList;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
@@ -91,6 +94,8 @@ public class Baptism implements Serializable {
     @JoinColumn(name = "Sponsorid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Sponsor sponsorid;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "baptismid")
+    private List<Confirmation> confirmationList;
 
     public Baptism() {
     }
@@ -99,11 +104,10 @@ public class Baptism implements Serializable {
         this.id = id;
     }
 
-    public Baptism(Integer id, String cname, Date dateOfBaptism, int baptismNumber, String physicalAddress) {
+    public Baptism(Integer id, String cname, Date dateOfBaptism, String physicalAddress) {
         this.id = id;
         this.cname = cname;
         this.dateOfBaptism = dateOfBaptism;
-        this.baptismNumber = baptismNumber;
         this.physicalAddress = physicalAddress;
     }
 
@@ -139,14 +143,6 @@ public class Baptism implements Serializable {
         this.firstCommunion = firstCommunion;
     }
 
-    public int getBaptismNumber() {
-        return baptismNumber;
-    }
-
-    public void setBaptismNumber(int baptismNumber) {
-        this.baptismNumber = baptismNumber;
-    }
-
     public String getPhysicalAddress() {
         return physicalAddress;
     }
@@ -169,6 +165,24 @@ public class Baptism implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @XmlTransient
+    public List<Death> getDeathList() {
+        return deathList;
+    }
+
+    public void setDeathList(List<Death> deathList) {
+        this.deathList = deathList;
+    }
+
+    @XmlTransient
+    public List<Matrimonial> getMatrimonialList() {
+        return matrimonialList;
+    }
+
+    public void setMatrimonialList(List<Matrimonial> matrimonialList) {
+        this.matrimonialList = matrimonialList;
     }
 
     public User getUserid() {
@@ -209,6 +223,15 @@ public class Baptism implements Serializable {
 
     public void setSponsorid(Sponsor sponsorid) {
         this.sponsorid = sponsorid;
+    }
+
+    @XmlTransient
+    public List<Confirmation> getConfirmationList() {
+        return confirmationList;
+    }
+
+    public void setConfirmationList(List<Confirmation> confirmationList) {
+        this.confirmationList = confirmationList;
     }
 
     @Override

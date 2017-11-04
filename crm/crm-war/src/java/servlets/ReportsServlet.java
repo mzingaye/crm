@@ -70,9 +70,9 @@ public class ReportsServlet extends HttpServlet {
                 Baptism c = baptismFacade.find(id);
                 try{
                     Confirmation co = confirmationFacade.findMember(c.getMemberid());
-                    con.setBaptizedBy(co.getBaptizedBy());
+                   // con.setBaptizedBy(co.getBaptizedBy());
                     con.setDateOfConfirmation(co.getDateOfConfirmation());
-                    con.setMemberid(co.getMemberid());
+                    //con.setMemberid(co.getMemberid());
                     con.setMinisterid(co.getMinisterid());
                     con.setParishid(co.getParishid());
                     con.setSponsorid(co.getSponsorid());
@@ -82,7 +82,7 @@ public class ReportsServlet extends HttpServlet {
                     con.setParishid(null);
                 }
                 Matrimonial m;
-                try{
+               /* try{
                     if(c.getMemberid().getSex().equals("Male") || c.getMemberid().getSex().equals("male")){
                         m = matrimonialFacade.findByWifeMemberID(c.getMemberid().getId());
                         mBean.setMarriedTo(catholicFacade.find(m.getHusbandMemberID()).getFname()+" "+catholicFacade.find(m.getHusbandMemberID()).getLname());
@@ -101,7 +101,7 @@ public class ReportsServlet extends HttpServlet {
                     mBean.setMarriedTo(null);
                     mBean.setParishid(0);
                 }
-                b.setBaptismNumber(c.getBaptismNumber());
+                b.setBaptismNumber(c.getBaptismNumber());*/
                 b.setCname(c.getCname());
                 b.setDateOfBaptism(c.getDateOfBaptism());
                 b.setFirstCommunion(c.getFirstCommunion());

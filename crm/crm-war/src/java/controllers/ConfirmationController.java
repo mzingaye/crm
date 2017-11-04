@@ -76,9 +76,9 @@ public class ConfirmationController {
         cBean.setMmname("");
         cBean.setMlname("");
         cBean.setMnatID("");
-        coBean.setBaptizedBy(null);
+        coBean.setBaptismid(null);
         coBean.setDateOfConfirmation(null);
-        coBean.setMemberid(null);
+        //coBean.setMemberid(null);
         coBean.setMinisterid(null);
         coBean.setParishid(null);
         coBean.setSponsorid(null);
@@ -89,7 +89,7 @@ public class ConfirmationController {
     private int catholic;
     private int parish;
     private int sponsor;
-    private String baptizedBy;
+    /*private String baptizedBy;
 
     public String getBaptizedBy() {
         return baptizedBy;
@@ -97,7 +97,7 @@ public class ConfirmationController {
 
     public void setBaptizedBy(String baptizedBy) {
         this.baptizedBy = baptizedBy;
-    }
+    }*/
 
     public int getMinister() {
         return minister;
@@ -134,14 +134,14 @@ public class ConfirmationController {
     public String add(){
         Confirmation co = new Confirmation();
         co.setDateOfConfirmation(coBean.getDateOfConfirmation());
-        co.setBaptizedBy(coBean.getBaptizedBy());
+        //co.setBaptizedBy(coBean.getBaptizedBy());
         Minister m = this.ministerFacade.find(minister);
         Catholic c = this.catholicFacade.find(cBean.getId());
         Parish p = this.parishFacade.find(parish);
         Sponsor s = this.sponsorFacade.find(sponsor);
         User u = this.userFacade.find(2);
         co.setMinisterid(m);
-        co.setMemberid(c);
+        //co.setMemberid(c);
         co.setParishid(p);
         co.setSponsorid(s);
         co.setUserid(u);
@@ -150,7 +150,7 @@ public class ConfirmationController {
     }
     
     public String view(Confirmation co){
-        cBean.setId(co.getMemberid().getId());
+        /*cBean.setId(co.getMemberid().getId());
         cBean.setFname(co.getMemberid().getFname());
         cBean.setMname(co.getMemberid().getMname());
         cBean.setLname(co.getMemberid().getLname());
@@ -170,7 +170,7 @@ public class ConfirmationController {
         cBean.setMnatID(co.getMemberid().getMnatID());
         coBean.setBaptizedBy(co.getBaptizedBy());
         coBean.setDateOfConfirmation(co.getDateOfConfirmation());
-        coBean.setMemberid(co.getMemberid());
+        coBean.setMemberid(co.getMemberid());*/
         coBean.setMinisterid(co.getMinisterid());
         coBean.setParishid(co.getParishid());
         coBean.setSponsorid(co.getSponsorid());
@@ -181,14 +181,14 @@ public class ConfirmationController {
     public String edit(){
         Confirmation co = new Confirmation(coBean.getId());
         co.setDateOfConfirmation(coBean.getDateOfConfirmation());
-        co.setBaptizedBy(coBean.getBaptizedBy());
+        //co.setBaptizedBy(coBean.getBaptizedBy());
         Minister m = this.ministerFacade.find(coBean.getMinisterid());
         Catholic c = this.catholicFacade.find(cBean.getId());
         Parish p = this.parishFacade.find(coBean.getParishid());
         Sponsor s = this.sponsorFacade.find(coBean.getSponsorid());
         User u = this.userFacade.find(2);
         co.setMinisterid(m);
-        co.setMemberid(c);
+        //co.setMemberid(c);
         co.setParishid(p);
         co.setSponsorid(s);
         co.setUserid(u);

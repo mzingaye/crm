@@ -39,7 +39,11 @@
                     </div>
                     <label >Usergroup</label>
                     <div >
-                        <h:inputText styleClass="form-control has-feedback-left" id="usergroup" value="#{uBean.usergroup}"/>
+                        <h:selectOneMenu styleClass="form-control has-feedback-left" id="usergroup" value="#{uBean.usergroup}">
+                            <f:selectItem itemLabel="Select User Group" itemValue="0" />
+                            <f:selectItem itemLabel="Administrator" itemValue="100" />
+                            <f:selectItem itemLabel="Secretary" itemValue="50" />
+                        </h:selectOneMenu>
                    </div>
               <div style="padding-left:100px">
                   <h:commandButton value="Submit" action="#{user.add()}" styleClass="btn btn-default" />

@@ -127,11 +127,11 @@ public class MatrimonialController {
     
     public String add(){
         Matrimonial m = new Matrimonial();
-        m.setMarriageNumber(mBean.getMarriageNumber());
+       /* m.setMarriageNumber(mBean.getMarriageNumber());
         m.setDateOfMarriage(mBean.getDateOfMarriage());
         m.setHusbandMemberID(cBean.getId());
         m.setHusbandAddress(mBean.getHusbandAddress());
-        m.setWifeMemberID(csBean.getId());
+        m.setWifeMemberID(csBean.getId());*/
         m.setWifeAddress(mBean.getWifeAddress());
         m.setHusbandSponsorID(sBean.getId());
         m.setWifeSponsorID(ssBean.getId());
@@ -174,7 +174,7 @@ public class MatrimonialController {
         ssBean.setNatID(ss.getNatID());
         ssBean.setContact(ss.getContact());
         
-        cBean.setId(m.getHusbandMemberID());
+        /*cBean.setId(m.getHusbandMemberID());
         Catholic c = this.catholicFacade.find(m.getHusbandMemberID());
         cBean.setFname(c.getFname());
         cBean.setMname(c.getMname());
@@ -212,7 +212,7 @@ public class MatrimonialController {
         csBean.setMfname(cs.getMfname());
         csBean.setMmname(cs.getMmname());
         csBean.setMlname(cs.getMlname());
-        csBean.setMnatID(cs.getMnatID());
+        csBean.setMnatID(cs.getMnatID());*/
         
         mBean.setId(m.getId());
         mBean.setConditionOfHus(m.getConditionOfHus());
@@ -221,7 +221,7 @@ public class MatrimonialController {
         mBean.setConsentWife(m.getConsentWife());
         mBean.setDateOfMarriage(m.getDateOfMarriage());
         mBean.setHusbandAddress(m.getHusbandAddress());
-        mBean.setHusbandMemberID(m.getHusbandMemberID());
+       /* mBean.setHusbandMemberID(m.getHusbandMemberID());
         mBean.setHusbandSponsorID(m.getHusbandSponsorID());
         mBean.setMarriageBy(m.getMarriageBy());
         mBean.setMarriageNumber(m.getMarriageNumber());
@@ -230,17 +230,17 @@ public class MatrimonialController {
         mBean.setParishid(m.getParishid().getId());
         mBean.setWifeAddress(m.getWifeAddress());
         mBean.setWifeMemberID(m.getWifeMemberID());
-        mBean.setWifeSponsorID(m.getWifeSponsorID());
+        mBean.setWifeSponsorID(m.getWifeSponsorID());*/
         return "viewmatrimonial";
     }
     
     public String edit(){
         Matrimonial m = new Matrimonial(mBean.getId());
-        m.setMarriageNumber(mBean.getMarriageNumber());
+        /*m.setMarriageNumber(mBean.getMarriageNumber());
         m.setDateOfMarriage(mBean.getDateOfMarriage());
         m.setHusbandMemberID(cBean.getId());
         m.setHusbandAddress(mBean.getHusbandAddress());
-        m.setWifeMemberID(csBean.getId());
+        m.setWifeMemberID(csBean.getId());*/
         m.setWifeAddress(mBean.getWifeAddress());
         m.setHusbandSponsorID(sBean.getId());
         m.setWifeSponsorID(ssBean.getId());

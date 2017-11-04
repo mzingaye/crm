@@ -99,7 +99,7 @@ public class DeathRecController {
     public String add(){
         Death d = new Death();
         d.setDateOfBurial(dBean.getDateOfBurial());
-        d.setDod(dBean.getDod());
+       // d.setDod(dBean.getDod());
         d.setPlaceOfBurial(dBean.getPlaceOfBurial());
         d.setPlaceOfDeath(dBean.getPlaceOfDeath());
         d.setSacramentAdministered(dBean.getSacramentAdministered());
@@ -107,19 +107,19 @@ public class DeathRecController {
         Catholic c = this.catholicFacade.find(cBean.getId());
         Parish p = this.parishFacade.find(dBean.getParishid());
         User u = this.userFacade.find(2);
-        d.setMemberid(c);
+        //d.setMemberid(c);
         d.setMinisterid(m);
         d.setParishid(p);
         d.setUserid(u);
-        d.setSpouseMemberID(csBean.getId());
+        //d.setSpouseMemberID(csBean.getId());
         this.deathFacade.create(d);
         return "death";
     }
     
     public String view(Death d){
-        cBean.setId(d.getMemberid().getId());
-        Catholic c = this.catholicFacade.find(d.getMemberid().getId());
-        cBean.setFname(c.getFname());
+        //cBean.setId(d.getMemberid().getId());
+        //Catholic c = this.catholicFacade.find(d.getMemberid().getId());
+        /*cBean.setFname(c.getFname());
         cBean.setMname(c.getMname());
         cBean.setLname(c.getLname());
         cBean.setSex(c.getSex());
@@ -166,14 +166,14 @@ public class DeathRecController {
         dBean.setPlaceOfBurial(d.getPlaceOfBurial());
         dBean.setPlaceOfDeath(d.getPlaceOfDeath());
         dBean.setSacramentAdministered(d.getSacramentAdministered());
-        dBean.setSpouseMemberID(d.getSpouseMemberID());
+        dBean.setSpouseMemberID(d.getSpouseMemberID());*/
         return "viewdeath";
     }
     
     public String edit(){
         Death d = new Death(dBean.getId());
         d.setDateOfBurial(dBean.getDateOfBurial());
-        d.setDod(dBean.getDod());
+        //d.setDod(dBean.getDod());
         d.setPlaceOfBurial(dBean.getPlaceOfBurial());
         d.setPlaceOfDeath(dBean.getPlaceOfDeath());
         d.setSacramentAdministered(dBean.getSacramentAdministered());
@@ -181,11 +181,11 @@ public class DeathRecController {
         Catholic c = this.catholicFacade.find(cBean.getId());
         Parish p = this.parishFacade.find(dBean.getParishid());
         User u = this.userFacade.find(2);
-        d.setMemberid(c);
+        //d.setMemberid(c);
         d.setMinisterid(m);
         d.setParishid(p);
         d.setUserid(u);
-        d.setSpouseMemberID(csBean.getId());
+        //d.setSpouseMemberID(csBean.getId());
         this.deathFacade.edit(d);
         return "death";
     }

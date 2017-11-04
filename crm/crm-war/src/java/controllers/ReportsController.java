@@ -160,7 +160,7 @@ public class ReportsController implements Serializable {
                 rep = new ArrayList<>();
                 for(Baptism c : baptismFacade.findAll()){
                    reportsBean.setId(c.getId());
-                   reportsBean.setName(c.getCname()+" "+c.getMemberid().getFname()+" "+c.getMemberid().getLname()+" "+c.getBaptismNumber()+" "+c.getFirstCommunion());
+                   reportsBean.setName(c.getCname()+" "+c.getMemberid().getFname()+" "+c.getMemberid().getLname());//+" "+c.getBaptismNumber()+" "+c.getFirstCommunion());
                    reportsBean.setDate(c.getDateOfBaptism());
                    rep.add(reportsBean);
                    reportsBean = new ReportsBean();
@@ -170,7 +170,7 @@ public class ReportsController implements Serializable {
                 rep = new ArrayList<>();
                 for(Confirmation c : confirmationFacade.findAll()){
                    reportsBean.setId(c.getId());
-                   reportsBean.setName(c.getMemberid().getFname()+" "+c.getMemberid().getLname()+" "+c.getMemberid().getNatID());
+                   //reportsBean.setName(c.getMemberid().getFname()+" "+c.getMemberid().getLname()+" "+c.getMemberid().getNatID());
                    reportsBean.setDate(c.getDateOfConfirmation());
                    rep.add(reportsBean);
                    reportsBean = new ReportsBean();
@@ -180,7 +180,7 @@ public class ReportsController implements Serializable {
                 rep = new ArrayList<>();
                 for(Matrimonial c : matrimonialFacade.findAll()){
                    reportsBean.setId(c.getId());
-                   reportsBean.setName(c.getMarriageNumber()+" "+catholicFacade.find(c.getHusbandMemberID()).getFname()+" "+catholicFacade.find(c.getHusbandMemberID()).getLname()+" "+catholicFacade.find(c.getWifeMemberID()).getFname()+" "+catholicFacade.find(c.getWifeMemberID()).getLname());
+                   //reportsBean.setName(c.getMarriageNumber()+" "+catholicFacade.find(c.getHusbandMemberID()).getFname()+" "+catholicFacade.find(c.getHusbandMemberID()).getLname()+" "+catholicFacade.find(c.getWifeMemberID()).getFname()+" "+catholicFacade.find(c.getWifeMemberID()).getLname());
                    reportsBean.setDate(c.getDateOfMarriage());
                    rep.add(reportsBean);
                    reportsBean = new ReportsBean();
@@ -190,8 +190,8 @@ public class ReportsController implements Serializable {
                 rep = new ArrayList<>();
                 for(Death c : deathFacade.findAll()){
                    reportsBean.setId(c.getId());
-                   reportsBean.setName(c.getMemberid().getFname()+" "+c.getMemberid().getLname()+" "+c.getMemberid().getNatID()+" "+catholicFacade.find(c.getSpouseMemberID()).getFname()+" "+catholicFacade.find(c.getSpouseMemberID()).getLname());
-                   reportsBean.setDate(c.getDod());
+                   /*reportsBean.setName(c.getMemberid().getFname()+" "+c.getMemberid().getLname()+" "+c.getMemberid().getNatID()+" "+catholicFacade.find(c.getSpouseMemberID()).getFname()+" "+catholicFacade.find(c.getSpouseMemberID()).getLname());
+                   reportsBean.setDate(c.getDod());*/
                    rep.add(reportsBean);
                    reportsBean = new ReportsBean();
                 }

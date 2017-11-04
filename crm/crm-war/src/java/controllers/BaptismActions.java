@@ -67,7 +67,7 @@ public class BaptismActions {
         bBean.setCname(null);
         bBean.setDateOfBaptism(null);
         bBean.setFirstCommunion(null);
-        bBean.setBaptismNumber(0);
+        //bBean.setBaptismNumber(0);
         bBean.setPhysicalAddress(null);
         //bBean.setUserid(b.getUserid().getId());
         bBean.setMemberid(null);
@@ -163,7 +163,7 @@ public class BaptismActions {
         b.setCname(bBean.getCname());
         b.setDateOfBaptism(bBean.getDateOfBaptism());
         b.setFirstCommunion(bBean.getFirstCommunion());
-        b.setBaptismNumber(bBean.getBaptismNumber());
+        //b.setBaptismNumber(bBean.getBaptismNumber());
         b.setPhysicalAddress(bBean.getPhysicalAddress());
         b.setUserid(u);
         b.setMemberid(c);
@@ -179,7 +179,7 @@ public class BaptismActions {
         bBean.setCname(b.getCname());
         bBean.setDateOfBaptism(b.getDateOfBaptism());
         bBean.setFirstCommunion(b.getFirstCommunion());
-        bBean.setBaptismNumber(b.getBaptismNumber());
+        //bBean.setBaptismNumber(b.getBaptismNumber());
         bBean.setPhysicalAddress(b.getPhysicalAddress());
         //bBean.setUserid(b.getUserid().getId());
         bBean.setMemberid(b.getMemberid());
@@ -258,7 +258,7 @@ public class BaptismActions {
         b.setCname(bBean.getCname());
         b.setDateOfBaptism(bBean.getDateOfBaptism());
         b.setFirstCommunion(bBean.getFirstCommunion());
-        b.setBaptismNumber(bBean.getBaptismNumber());
+        //b.setBaptismNumber(bBean.getBaptismNumber());
         b.setPhysicalAddress(bBean.getPhysicalAddress());
         b.setUserid(u);
         b.setMemberid(c);

@@ -5,6 +5,7 @@
  */
 package beans;
 
+import entities.Baptism;
 import entities.Catholic;
 import entities.Minister;
 import entities.Parish;
@@ -28,11 +29,18 @@ public class ConfirmationBean implements Serializable  {
 
     private Integer id;
     private Date dateOfConfirmation;
-    private String baptizedBy;
     private Minister ministerid;
-    private Catholic memberid;
+    private Baptism baptismid;
     private Parish parishid;
     private Sponsor sponsorid;
+
+    public Baptism getBaptismid() {
+        return baptismid;
+    }
+
+    public void setBaptismid(Baptism baptismid) {
+        this.baptismid = baptismid;
+    }
 
     public Minister getMinisterid() {
         return ministerid;
@@ -40,14 +48,6 @@ public class ConfirmationBean implements Serializable  {
 
     public void setMinisterid(Minister ministerid) {
         this.ministerid = ministerid;
-    }
-
-    public Catholic getMemberid() {
-        return memberid;
-    }
-
-    public void setMemberid(Catholic memberid) {
-        this.memberid = memberid;
     }
 
     public Parish getParishid() {
@@ -92,14 +92,6 @@ public class ConfirmationBean implements Serializable  {
 
     public void setDateOfConfirmation(Date dateOfConfirmation) {
         this.dateOfConfirmation = dateOfConfirmation;
-    }
-
-    public String getBaptizedBy() {
-        return baptizedBy;
-    }
-
-    public void setBaptizedBy(String baptizedBy) {
-        this.baptizedBy = baptizedBy;
     }
 
 }

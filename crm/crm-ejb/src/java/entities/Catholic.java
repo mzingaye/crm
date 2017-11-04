@@ -130,14 +130,14 @@ public class Catholic implements Serializable {
     private String mnatID;
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
-    @Basic(optional = false)
-    //@NotNull
     @Column(name = "createdAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "memberid")
+    private List<Baptism> baptismList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "memberid")
     private List<Misc> miscList;
 
@@ -148,7 +148,7 @@ public class Catholic implements Serializable {
         this.id = id;
     }
 
-    public Catholic(Integer id, String fname, String lname, String sex, Date dob, int age, String placeOfBirth, String contact, Date createdAt) {
+    public Catholic(Integer id, String fname, String lname, String sex, Date dob, int age, String placeOfBirth, String contact) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
@@ -157,7 +157,6 @@ public class Catholic implements Serializable {
         this.age = age;
         this.placeOfBirth = placeOfBirth;
         this.contact = contact;
-        this.createdAt = createdAt;
     }
 
     public Integer getId() {
@@ -326,6 +325,15 @@ public class Catholic implements Serializable {
 
     public void setUserid(User userid) {
         this.userid = userid;
+    }
+
+    @XmlTransient
+    public List<Baptism> getBaptismList() {
+        return baptismList;
+    }
+
+    public void setBaptismList(List<Baptism> baptismList) {
+        this.baptismList = baptismList;
     }
 
     @XmlTransient

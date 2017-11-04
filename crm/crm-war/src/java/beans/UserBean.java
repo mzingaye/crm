@@ -5,9 +5,15 @@
  */
 package beans;
 
+import entities.Baptism;
+import entities.Catholic;
+import entities.Confirmation;
+import entities.Death;
+import entities.Matrimonial;
 import entities.User;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
 import javax.faces.bean.SessionScoped;
@@ -22,18 +28,23 @@ import javax.inject.Named;
 @SessionScoped
 @Named (value="uBean")
 public class UserBean implements Serializable{
-
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private String username;
     private String password;
     private int usergroup;
-    private String designation;
-    private Integer deleteFlag;
-    private Date createdAt;
     private String fname;
     private String lname;
     private Date dob;
     private String natID;
+    private String designation;
+    private Integer deleteFlag;
+    private Date createdAt;
+    private List<Death> deathList;
+    private List<Matrimonial> matrimonialList;
+    private List<Catholic> catholicList;
+    private List<Baptism> baptismList;
+    private List<Confirmation> confirmationList;
     private byte[] img;
     private User u;
 
@@ -43,6 +54,46 @@ public class UserBean implements Serializable{
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public List<Death> getDeathList() {
+        return deathList;
+    }
+
+    public void setDeathList(List<Death> deathList) {
+        this.deathList = deathList;
+    }
+
+    public List<Matrimonial> getMatrimonialList() {
+        return matrimonialList;
+    }
+
+    public void setMatrimonialList(List<Matrimonial> matrimonialList) {
+        this.matrimonialList = matrimonialList;
+    }
+
+    public List<Catholic> getCatholicList() {
+        return catholicList;
+    }
+
+    public void setCatholicList(List<Catholic> catholicList) {
+        this.catholicList = catholicList;
+    }
+
+    public List<Baptism> getBaptismList() {
+        return baptismList;
+    }
+
+    public void setBaptismList(List<Baptism> baptismList) {
+        this.baptismList = baptismList;
+    }
+
+    public List<Confirmation> getConfirmationList() {
+        return confirmationList;
+    }
+
+    public void setConfirmationList(List<Confirmation> confirmationList) {
+        this.confirmationList = confirmationList;
     }
 
     public String getUsername() {
