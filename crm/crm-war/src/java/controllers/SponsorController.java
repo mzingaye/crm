@@ -7,6 +7,7 @@ package controllers;
 
 import beans.SponsorBean;
 import beans.SponsorSpouseBean;
+import entities.Catholic;
 import entities.Sponsor;
 import java.util.List;
 import javax.ejb.EJB;
@@ -60,6 +61,24 @@ public class SponsorController {
     public String view(Sponsor s){
         this.s = s;
         return "viewsponsor";
+    }
+    
+    public String make(Catholic c){
+        if(c.getAge()<18)
+            return null;
+        else{
+            this.s = new Sponsor();
+            this.s.setFname(c.getFname());
+            this.s.setMname(c.getMname());
+            this.s.setLname(c.getLname());
+            this.s.setNatID(c.getNatID());
+            this.s.setAge(c.getAge());
+            this.s.setSex(c.getSex());
+            this.s.setDob(c.getDob());
+            this.s.setContact(c.getContact());
+            return "addsponsor";  
+        }
+        
     }
     
     public String edit(){

@@ -6,6 +6,7 @@
 package controllers;
 
 import beans.BaptismBean;
+import beans.UserBean;
 import entities.Baptism;
 import entities.Catholic;
 import entities.Minister;
@@ -20,6 +21,9 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import models.BaptismFacade;
+import models.MinisterFacade;
+import models.ParishFacade;
+import models.UserFacade;
 
 /**
  *
@@ -28,15 +32,38 @@ import models.BaptismFacade;
 @ManagedBean(name = "baptism")
 @SessionScoped
 public class BaptismController implements Serializable {
+
+    @EJB
+    private UserFacade userFacade;
+
+    @EJB
+    private ParishFacade parishFacade;
+
+    @EJB
+    private MinisterFacade ministerFacade;
+
     @EJB
     private BaptismFacade baptismFacade;
     
     @Inject
     private BaptismBean bBean;
     
+    @Inject 
+    private UserBean uBean;
+    
     private Baptism b;
     
     private Catholic c;
+    
+    private Sponsor s;
+
+    public Sponsor getS() {
+        return s;
+    }
+
+    public void setS(Sponsor s) {
+        this.s = s;
+    }
 
     public Catholic getC() {
         return c;
@@ -98,14 +125,45 @@ public class BaptismController implements Serializable {
         return "baptism";
     }
     
+    private int ministerid;
+    private int parishid;
+
+    public int getMinisterid() {
+        return ministerid;
+    }
+
+    public void setMinisterid(int ministerid) {
+        this.ministerid = ministerid;
+    }
+
+    public int getParishid() {
+        return parishid;
+    }
+
+    public void setParishid(int parishid) {
+        this.parishid = parishid;
+    }
+    
     public String add(){
+        b.setMemberid(c);
+        b.setMinisterid(this.ministerFacade.find(ministerid));
+        b.setParishid(this.parishFacade.find(parishid));
+        b.setSponsorid(s);
+        b.setUserid(this.userFacade.find(uBean.getId()));
         this.baptismFacade.create(this.b);
+        this.c = new Catholic();
+        this.s = new Sponsor();
+        this.b = new Baptism();
         return "baptism";
     }
     
     public String newBaptism(Catholic c){
         this.c = c;
         return "newBaptism";
+    }
+    
+    public void findSponsor(Sponsor s){
+        this.s = s;
     }
     
     

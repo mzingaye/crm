@@ -60,7 +60,6 @@
                             <th>Member ID</th>
                             <th>Date Of Baptism</th>
                             <th>First Communion</th>
-                            <th>Baptism Number</th>
                             <th>Physical Address</th>
                             <th>Actions</th>
                           </tr>
@@ -82,7 +81,6 @@
                                             <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:outputText>
                                     </td>
-                                    <td>${i.baptismNumber}</td>
                                     <td>${i.physicalAddress}</td>
                                     <td>
                                         <h:column>
