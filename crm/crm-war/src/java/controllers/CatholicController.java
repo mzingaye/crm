@@ -13,7 +13,13 @@ import entities.Catholic;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import models.BaptismFacade;
 import models.CatholicFacade;
 import models.ConfirmationFacade;
@@ -24,6 +30,8 @@ import org.apache.log4j.Logger;
  *
  * @author Lyne
  */
+@ManagedBean(name = "catholic")
+@SessionScoped
 public class CatholicController implements Serializable {
     
     @EJB
@@ -53,7 +61,7 @@ public class CatholicController implements Serializable {
     Logger log = Logger.getLogger(CatholicController.class);
     
     private Catholic c;
-
+    
     public Catholic getC() {
         return c;
     }
@@ -63,6 +71,7 @@ public class CatholicController implements Serializable {
     }
        
     public CatholicController() {
+        this.c = new Catholic();
     }
 
     public List<Catholic> getAll(){
@@ -75,14 +84,27 @@ public class CatholicController implements Serializable {
     }
     
     public String add(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        
         try{
             this.c.setUserid(this.userFacade.find(uBean.getId()));
             this.catholicFacade.create(this.c);
             log.info("Member "+c.getId()+" created successfully by System User: "+uBean.getUsername());
             this.c = new Catholic();  
+            context.addMessage("update", new FacesMessage(FacesMessage.SEVERITY_INFO, "Member "+c.getId()+"created!", null));
+        
         }
-        catch(Exception e){
-            log.error("Constraint violation when adding new catholic : "+e);
+        catch(ConstraintViolationException e){
+            log.error("Constraint violation when adding new catholic : "+e.getConstraintViolations());
+            for(ConstraintViolation violation : e.getConstraintViolations()) {
+                System.out.println(violation.getMessage());
+            }
+            context.addMessage("update", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Member "+c.getId()+"failed!", null));
+        }
+        catch(Exception ex){
+            log.error("Exception occurred when adding new catholic : "+ex);
+            context.addMessage("update", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Member failed!", null));
+            ex.printStackTrace();
         }
         return "catholics";
     }

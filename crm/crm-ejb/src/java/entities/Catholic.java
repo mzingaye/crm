@@ -65,7 +65,7 @@ public class Catholic implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "First Name cannot be empty!") 
     @Size(min = 1, max = 50)
     @Column(name = "fname")
     private String fname;
@@ -73,31 +73,31 @@ public class Catholic implements Serializable {
     @Column(name = "mname")
     private String mname;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "Last Name cannot be empty!") 
     @Size(min = 1, max = 50)
     @Column(name = "lname")
     private String lname;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "Sex can't be empty") 
     @Size(min = 1, max = 10)
     @Column(name = "sex")
     private String sex;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "Date can't be empty") 
     @Column(name = "dob")
     @Temporal(TemporalType.DATE)
     private Date dob;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "Age can't be empty") 
     @Column(name = "age")
     private int age;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "Place of birth can't be empty") 
     @Size(min = 1, max = 100)
     @Column(name = "placeOfBirth")
     private String placeOfBirth;
     @Basic(optional = false)
-    @NotNull
+    @NotNull(message = "Contact can't be empty") 
     @Size(min = 1, max = 255)
     @Column(name = "contact")
     private String contact;
@@ -119,7 +119,7 @@ public class Catholic implements Serializable {
     @Size(max = 50)
     @Column(name = "mlname")
     private String mlname;
-    @Size(max = 15)
+    @Size(max = 15, message = "Cannot be more than 15 characters!")
     @Column(name = "natID")
     private String natID;
     @Size(max = 15)

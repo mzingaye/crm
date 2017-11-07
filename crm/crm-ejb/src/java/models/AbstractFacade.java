@@ -6,7 +6,10 @@
 package models;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
+import javax.validation.ConstraintViolationException;
 
 /**
  *
@@ -22,7 +25,14 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
     public void create(T entity) {
-        getEntityManager().persist(entity);
+        try{
+            getEntityManager().persist(entity);
+        }
+        catch (ConstraintViolationException e) {
+            Logger log = Logger.getGlobal();
+            log.log(Level.SEVERE,"ConstraintViolationException: ");
+            e.getConstraintViolations().forEach(err->log.log(Level.SEVERE,err.toString()));
+        }
     }
 
     public void edit(T entity) {

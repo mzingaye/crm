@@ -71,7 +71,8 @@
                                         <td>${i.contact}</td>
                                         <td>
                                             <h:column>
-                                                <h:commandLink action="#{catholic.view(i)}" value="" styleClass="fa fa-eye"/> |
+                                                <h:commandLink action="#{catholic.view(i)}" value="View" styleClass="fa fa-eye"/> |
+                                                <h:commandLink action="#{baptism.newBaptism(i)}" value="Baptism" styleClass="fa fa-plus"/> |
                                                 <h:commandLink action="#{catholic.delete(i)}" value="" styleClass="fa fa-trash"/> 
                                             </h:column>
                                         </td>

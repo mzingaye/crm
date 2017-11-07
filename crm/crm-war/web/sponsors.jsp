@@ -71,17 +71,16 @@
                                     <td>${i.sex}</td>
                                     <td>
                                         <h:outputText value="#{i.dob}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:outputText>
                                     </td>
                                     <td>${i.age}</td>
                                     <td>${i.contact}</td>
                                     <td>
                                         <h:column>
-                                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
-                                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
-                                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
-                                        </h:column>
+                                                <h:commandLink action="#{sponsor.view(i)}" value="" styleClass="fa fa-eye"/> |
+                                                <h:commandLink action="#{sponsor.delete(i)}" value="" styleClass="fa fa-trash"/> 
+                                            </h:column>
                                     </td>
                                 </tr>
                             </c:forEach> 

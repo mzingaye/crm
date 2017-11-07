@@ -27,7 +27,18 @@ public class SponsorController {
     @Inject
     private SponsorSpouseBean ssBean;
     
+    private Sponsor s;
+
+    public Sponsor getS() {
+        return s;
+    }
+
+    public void setS(Sponsor s) {
+        this.s = s;
+    }
+    
     public SponsorController() {
+        this.s = new Sponsor();
         
     }
     
@@ -36,28 +47,23 @@ public class SponsorController {
     }
     
     public String newMember(){
-        sBean.setFname("");
-        sBean.setMname("");
-        sBean.setLname("");
-        sBean.setSex("");
-        sBean.setDob(null);
-        sBean.setAge(0);
-        sBean.setNatID("");
-        sBean.setContact("");
+        this.s = new Sponsor();
         return "addsponsor";
     }
     
     public String add(){
-        Sponsor s = new Sponsor();
-        s.setFname(sBean.getFname());
-        s.setMname(sBean.getMname());
-        s.setLname(sBean.getLname());
-        s.setSex(sBean.getSex());
-        s.setDob(sBean.getDob());
-        s.setAge(sBean.getAge());
-        s.setNatID(sBean.getNatID());
-        s.setContact(sBean.getContact());
-        this.sponsorFacade.create(s);
+        this.sponsorFacade.create(this.s);
+        this.s = new Sponsor();
+        return "sponsors";
+    }
+    
+    public String view(Sponsor s){
+        this.s = s;
+        return "viewsponsor";
+    }
+    
+    public String edit(){
+        this.sponsorFacade.edit(s);
         return "sponsors";
     }
     

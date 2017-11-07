@@ -23,30 +23,44 @@
               <h1>Create Account</h1>
                     <label >Username</label>
                     <div >
-                        <h:inputText styleClass="form-control has-feedback-left" id="username" value="#{uBean.username}"/>
+                        <h:inputText styleClass="form-control has-feedback-left" id="username" value="#{uBean.username}" title="Username" required="true" requiredMessage="The Username field is required.">
+                            <f:validateLength maximum="20" />
+                        </h:inputText>
+                        <h:message for="username" style="color: red"/>
                     </div>
                     <label >Password</label>
                     <div >
-                        <h:inputSecret styleClass="form-control has-feedback-left" id="password" value="#{user.password}"/>
+                        <h:inputSecret styleClass="form-control has-feedback-left" id="password" value="#{user.password}" title="Password" required="true" requiredMessage="The Password field is required.">
+                            <f:validateLength maximum="255" />
+                        </h:inputSecret>
+                        <h:message for="password" style="color: red"/>
                     </div>
                     <label >Confirm Password</label>
                     <div>
-                        <h:inputSecret styleClass="form-control has-feedback-left" id="con_password" value="#{user.con_password}"/>
+                        <h:inputSecret styleClass="form-control has-feedback-left" id="con_password" value="#{user.con_password}" title="Confirm Password" required="true" requiredMessage="The Confirm Password field is required.">
+                            <f:validateLength maximum="255" />
+                        </h:inputSecret>
+                        <h:message for="con_password" style="color: red"/>
                     </div>
                     <label >Designation</label>
                     <div >
-                        <h:inputText styleClass="form-control has-feedback-left" id="designation" value="#{uBean.designation}"/>
+                        <h:inputText styleClass="form-control has-feedback-left" id="designation" value="#{uBean.designation}" title="Designation" required="true" requiredMessage="The Designation field is required.">
+                            <f:validateLength maximum="50" />
+                        </h:inputText>
+                        <h:message for="designation" style="color: red"/>
                     </div>
                     <label >Usergroup</label>
                     <div >
-                        <h:selectOneMenu styleClass="form-control has-feedback-left" id="usergroup" value="#{uBean.usergroup}">
-                            <f:selectItem itemLabel="Select User Group" itemValue="0" />
+                        <h:selectOneMenu styleClass="form-control has-feedback-left" id="usergroup" value="#{uBean.usergroup}" title="User Group" required="true" requiredMessage="The User Group field is required.">
+                            <f:selectItem itemLabel="Select User Group" itemValue="" />
                             <f:selectItem itemLabel="Administrator" itemValue="100" />
                             <f:selectItem itemLabel="Secretary" itemValue="50" />
+                            <f:validateLength maximum="15" />
                         </h:selectOneMenu>
+                        <h:message for="usergroup" style="color: red"/>
                    </div>
               <div style="padding-left:100px">
-                  <h:commandButton value="Submit" action="#{user.add()}" styleClass="btn btn-default" />
+                  <h:commandButton value="Create" action="#{user.add()}" styleClass="btn btn-default" />
                </div>
 
               <div class="clearfix"></div>

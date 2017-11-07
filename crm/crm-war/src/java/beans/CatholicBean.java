@@ -6,6 +6,7 @@
 package beans;
 
 import entities.Baptism;
+import entities.Catholic;
 import entities.Misc;
 import entities.User;
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
 
 /**
@@ -22,7 +23,7 @@ import javax.inject.Named;
  */
 @Stateless
 @LocalBean
-@SessionScoped
+@RequestScoped
 @Named(value="cBean")
 public class CatholicBean  implements Serializable{
     private String natID;
@@ -71,6 +72,15 @@ public class CatholicBean  implements Serializable{
     private User userid;
     private List<Baptism> baptismList;
     private List<Misc> miscList;
+    private Catholic c;
+
+    public Catholic getC() {
+        return c;
+    }
+
+    public void setC(Catholic c) {
+        this.c = c;
+    }
 
     public User getUserid() {
         return userid;

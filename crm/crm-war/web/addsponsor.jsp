@@ -42,62 +42,87 @@
                     <div class="x_content">
                         <div id="wizard" class="form_wizard wizard_horizontal">
                         <h:form  styleClass="form-horizontal form-label-left">
-                            
                             <h:outputLabel>Sponsor Personal Information</h:outputLabel>
                             <hr>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{sBean.fname}"/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{sponsor.s.fname}" title="First Name" required="true" requiredMessage="The First Name field is required.">
+                                        <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                    <h:message for="fname" style="color: red"/>  
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{sBean.mname}"/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{sponsor.s.mname}">
+                                          <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                    <h:message for="mname" style="color: red"/>  
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{sBean.lname}"/>
+                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{sponsor.s.lname}" title="Last Name" required="true" requiredMessage="The Last Name field is required.">
+                                      <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                    <h:message for="lname" style="color: red"/>  
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{sBean.sex}"/>
+                                    <h:selectOneMenu styleClass="form-control has-feedback-left" id="sex" value="#{sponsor.s.sex}" required="true" requiredMessage="Sex is a require field!" >
+                                        <f:selectItem itemLabel="Select Sponsor's Sex" itemValue="" />
+                                        <f:selectItem itemLabel="Female" itemValue="Female" />
+                                        <f:selectItem itemLabel="Male" itemValue="Male" />
+                                    </h:selectOneMenu>
+                                    <h:message for="sex" style="color: red"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{sBean.natID}"/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{sponsor.s.natID}" title="National ID / Passport Number" required="true" requiredMessage="The National ID / Passport Number field is required.">
+                                        <f:validateLength maximum="15" />
+                                    </h:inputText>
+                                    <h:message for="natID" style="color: red"/>  
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{sBean.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
+                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{sponsor.s.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Date of Birth field is required." converterMessage="Please provide date of birth in dd/mm/yyyy format">
                                         <f:convertDateTime pattern="dd/mm/yyyy" />
+                                    <f:validateLength maximum="50" />
                                     </h:inputText>
+                                  <h:message for="dob" style="color: red"/>  
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Age</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="age" value="#{sBean.age}" title="Age" required="true" requiredMessage="The Age field is required."/>
+                                    <h:inputText  styleClass="form-control has-feedback-left" id="age" value="#{sponsor.s.age}" title="Age" required="true" requiredMessage="The Age field is required.">
+                                        <f:validateLength maximum="10" />
+                                </h:inputText>
+                                  <h:message for="age" style="color: red"/>  
                                 </div>
                             </div>
                              <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{sBean.contact}" title="Contact" required="true" requiredMessage="The Contact field is required."/>
+                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{sponsor.s.contact}" title="Contact" required="true" requiredMessage="The Contact field is required.">
+                                        <f:validateLength maximum="255" />
+                                    </h:inputTextarea>
+                                    <h:message for="contact" style="color: red"/>  
                                 </div>
                             </div> 
                             <hr>
-                            <h:commandButton action="#{sponsor.add()}" value="Save Sponsor" styleClass="btn btn-success"/>
+                            <h:commandButton action="#{sponsor.add()}" value="Save" styleClass="btn btn-success"/>
+                            <a href="sponsors.jsp" value="" class="btn btn-danger">Cancel</a>
                         </h:form>
                         </div>
                     </div>

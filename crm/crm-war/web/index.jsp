@@ -149,7 +149,7 @@
                               <f:facet name="header">
                                   <h:outputText value="Priestorder"/>
                               </f:facet>
-                              <h:outputText value="#{item.priestorder}"/>
+                              <h:outputText value="#{item.morder}"/>
                           </h:column>
                           <h:column>
                             <f:facet name="header">

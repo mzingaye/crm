@@ -85,6 +85,7 @@ public class LoginFilter implements Filter {
                 uBean.setNatID(u.getNatID());
                 uBean.setUsergroup(u.getUsergroup());
                 uBean.setUsername(u.getUsername());
+                uBean.setU(u);
                 if(LoginFilter.login_status == false){
                    log.info("#"+uBean.getId()+";"+user+";"+ip+";"+host+";"+browserDetails+" => LOGGED IN");
                    HttpSession ses = req.getSession();

@@ -34,8 +34,28 @@ public class BaptismController implements Serializable {
     @Inject
     private BaptismBean bBean;
     
-    public BaptismController() {
+    private Baptism b;
+    
+    private Catholic c;
 
+    public Catholic getC() {
+        return c;
+    }
+
+    public void setC(Catholic c) {
+        this.c = c;
+    }
+
+    public Baptism getB() {
+        return b;
+    }
+
+    public void setB(Baptism b) {
+        this.b = b;
+    }
+    
+    public BaptismController() {
+        this.b = new Baptism();
     }
     
     public List<Baptism> getAll(){
@@ -76,6 +96,16 @@ public class BaptismController implements Serializable {
         b.setSponsorid(s);
         this.baptismFacade.create(b);
         return "baptism";
+    }
+    
+    public String add(){
+        this.baptismFacade.create(this.b);
+        return "baptism";
+    }
+    
+    public String newBaptism(Catholic c){
+        this.c = c;
+        return "newBaptism";
     }
     
     

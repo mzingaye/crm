@@ -8,6 +8,10 @@
         <param-name>log4j</param-name>
         <param-value>/WEB-INF/classes/log4j.xml</param-value>
     </context-param>
+    <context-param>  
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>  
+        <param-value>true</param-value>  
+    </context-param>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/*</url-pattern>
