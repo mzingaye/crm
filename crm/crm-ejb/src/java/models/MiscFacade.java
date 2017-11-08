@@ -5,6 +5,7 @@
  */
 package models;
 
+import entities.Catholic;
 import entities.Misc;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -27,5 +28,7 @@ public class MiscFacade extends AbstractFacade<Misc> {
     public MiscFacade() {
         super(Misc.class);
     }
-    
+    public Misc findMember(Catholic memberid) {
+        return getEntityManager().createNamedQuery("Misc.findByMemberId",Misc.class).setParameter("memberid",memberid).getSingleResult();
+    }
 }

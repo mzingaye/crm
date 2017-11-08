@@ -74,6 +74,7 @@
                                                 <h:commandLink action="#{catholic.view(i)}" value="View" styleClass="fa fa-eye"/> |
                                                 <h:commandLink action="#{sponsor.make(i)}" value="Sponsor" styleClass="fa fa-search-minus"/> |
                                                 <h:commandLink action="#{baptism.newBaptism(i)}" value="Baptism" styleClass="fa fa-plus"/> |
+                                                <h:commandLink action="#{misc.newMisc(i)}" value="Misc" styleClass="fa fa-plus"/> |
                                                 <h:commandLink action="#{catholic.delete(i)}" value="Delete" styleClass="fa fa-trash"/> 
                                             </h:column>
                                         </td>

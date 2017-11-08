@@ -16,13 +16,10 @@
     <jsp:attribute name="content">
         <f:view>
          <h:form>
-               
-             <h:commandButton value="Add New Record" action="#{deathRec.newRec()}" styleClass="btn btn-info"/>
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
-                    <h2>Death Records</h2>
+                    <h2>Miscellaneous Records</h2>
                     <ul class="nav navbar-right panel_toolbox">
                       <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                       </li>
@@ -46,40 +43,29 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Deceased</th>
-                            <th>Spouse</th>
-                            <th>Date Of Death</th>
-                            <th>Place Of Death</th>
-                            <th>Date Of Burial</th>
-                            <th>Place Of Burial</th>
-                            <th>Sacrament Administered</th>
+                            <th>Member</th>
+                            <th>Tribe</th>
+                            <th>Employment Status</th>
+                            <th>Financial Income</th>
+                            <th>Parish</th>
+                            <th>SCC</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
                         <tbody >
-                            <c:forEach var="i" items="#{deathRec.all}" >
+                            <c:forEach var="i" items="#{misc.all}" >
                                 <tr >
                                     <td>${i.id}</td>
                                     <td>${i.memberid.fname} ${i.memberid.lname} [${i.memberid.id}]</td>
-                                    <td>${i.spouseMemberID}</td>
-                                    <td>
-                                        <h:outputText value="#{i.dod}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                                        </h:outputText>
-                                    </td>
-                                    <td>${i.placeOfDeath}</td>
-                                    <td>
-                                        <h:outputText value="#{i.dateOfBurial}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                                        </h:outputText>
-                                    </td>
-                                    <td>${i.placeOfBurial}</td>
-                                    <td>${i.sacramentAdministered}</td>
+                                    <td>${i.tribe}</td>
+                                    <td>${i.empStatus}</td>
+                                    <td>${i.income}</td>
+                                    <td>${i.parishid.name}</td>
+                                    <td>${i.scc}</td>
                                     <td>
                                         <h:column>
-                                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
-                                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
-                                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
+                                            <h:commandLink action="#{misc.view(i)}" value=" View" styleClass="fa fa-eye"/> |
+                                            <h:commandLink action="#{misc.delete(i)}" value=" Delete" styleClass="fa fa-trash"/>
                                         </h:column>
                                     </td>
                                 </tr>
