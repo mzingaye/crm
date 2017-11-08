@@ -99,16 +99,31 @@ public class UsersController  implements Serializable {
     }
     
     public String add() throws IOException{
-        //FacesMessage facesMessage;
         if(this.password.equals(this.con_password)){
             try{
                 if(image!= null)
                     this.u.setImg(image.getBytes());
                 this.u.setPassword(con_password); 
                 this.userFacade.create(this.u);
+                log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Created User: "+u.getUsername()+" successfully");
                 this.u = new User();
-                //uBean.setId(u.getId());
-                /*uBean.setPassword(con_password); 
+            }
+            catch(IOException e){
+                log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => User with Username : "+u.getUsername()+" or National Id / Passport Number : "+u.getNatID()+" already exists, constraint Violated!");
+            }
+        }
+        else{
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Passwords do not match, cannot create new user try again!");
+        }
+       
+        return "users";
+    }
+    
+    public void edit(int id) throws IOException{
+        try{
+            u = this.userFacade.find(id);
+            if(this.password.equals(this.con_password)){
+                uBean.setPassword(con_password); 
                 if(image!= null)
                     uBean.setImg(image.getBytes());
                 u.setImg(uBean.getImg());
@@ -122,52 +137,15 @@ public class UsersController  implements Serializable {
                 u.setPassword(uBean.getPassword());
                 u.setUsergroup(uBean.getUsergroup());
                 u.setUsername(uBean.getUsername());
-                this.userFacade.create(u);
-                uBean.setId(u.getId());
-                facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "User "+u.getId()+"created successfully!", null);
-                this.u = new User();*/
+                this.userFacade.edit(u);
+                log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => profile updated successfully!");
             }
-            catch(Exception e){
-                log.error("Constraint violation when adding new user : "+e);
-            }
-        }
-        else{
-           // facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match, try again!", null);
-        }
-       
-        return "users";
-    }
-    
-    public void edit(int id) throws IOException{
-        try{
-        u = this.userFacade.find(id);
-        FacesMessage facesMessage;
-        if(this.password.equals(this.con_password)){
-            uBean.setPassword(con_password); 
-            if(image!= null)
-                uBean.setImg(image.getBytes());
-            u.setImg(uBean.getImg());
-            u.setCreatedAt(new Date());
-            u.setDeleteFlag(0);
-            u.setDesignation(uBean.getDesignation());
-            u.setDob(uBean.getDob());
-            u.setFname(uBean.getFname());
-            u.setLname(uBean.getLname());
-            u.setNatID(uBean.getNatID());
-            u.setPassword(uBean.getPassword());
-            u.setUsergroup(uBean.getUsergroup());
-            u.setUsername(uBean.getUsername());
-            this.userFacade.edit(u);
-            facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "User "+u.getId()+" updated successfully!", null);
-        }
-        else{
-            facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match, try again!", null);
-        }
+            else{
+                log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Passwords do not match, cannot update profile try again!");
+           }
         }
         catch(Exception e){
-            sys.setMsg("Complete all required fields before updating!");
-            sys.setLvl("error");
-            log.info("Constraint Violated by System User: "+uBean.getUsername()+" Error: "+e);
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => User with Username : "+u.getUsername()+" or National Id / Passport Number : "+u.getNatID()+" already exists, constraint Violated!");
         }
     }
     
@@ -196,22 +174,20 @@ public class UsersController  implements Serializable {
     
     public String update(){
         try{
-            FacesMessage facesMessage;
             if(this.password.equals(this.con_password)){
                 u.setPassword(con_password); 
                 this.userFacade.edit(u);
-                facesMessage = new FacesMessage(FacesMessage.SEVERITY_INFO, "User "+u.getId()+" updated successfully!", null);
+                log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => User: "+u.getId()+" updated successfully!");
+                return "users";
             }
             else{
-                facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Passwords do not match, try again!", null);
+                log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Passwords do not match, try again!");
             }
         }
         catch(Exception e){
-            sys.setMsg("Complete all required fields before updating!");
-            sys.setLvl("error");
-            log.info("Constraint Violated by System User: "+uBean.getUsername()+" Error: "+e);
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => User with National Id / Passport Number : "+u.getNatID()+" already exists, constraint Violated!");
         }
-        return "users";
+        return null;
     }
     
     public String create(){
@@ -219,22 +195,18 @@ public class UsersController  implements Serializable {
             this.u.setPassword(con_password); 
             try{
                 this.userFacade.create(this.u);
-                log.info("User "+u.getId()+" created successfully by System User: "+uBean.getUsername());
-                sys.setMsg("User "+u.getId()+" created successfully!");
-                sys.setLvl("success");
+                log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Created User: "+u.getUsername()+" successfully");
+                return "users";
             }
             catch(Exception e){
-                log.info("Failed to create new user by System User: "+uBean.getUsername());
-                log.error(e);
-                sys.setMsg("Failed to create new user due to "+e);
-                sys.setLvl("error");
+                log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Username already taken, try again!");
             }
-            this.u = new User();
+            finally{
+               this.u = new User(); 
+            }
         }
         else{
-            sys.setMsg("Passwords do not match, try again!");
-            sys.setLvl("error");
-            log.info("User Passwords do not match by System User: "+uBean.getUsername());
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Passwords do not match, try again!");
         }
         return null;
     }

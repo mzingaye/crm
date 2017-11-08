@@ -68,62 +68,84 @@
                                             <div class="form-group" style="width: 100%">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{uBean.fname}"/>
+                                                    <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{uBean.fname}" title="First Name" required="true" requiredMessage="The First Name field is required.">
+                                                        <f:validateLength maximum="20" />
+                                                    </h:inputText>
+                                                    <h:message for="fname" style="color: red"/>
                                                 </div>
                                             </div>
                                                 <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{uBean.lname}"/>
-                                                </div>
+                                                    <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{uBean.lname}" title="Last Name" required="true" requiredMessage="The Last Name field is required.">
+                                                        <f:validateLength maximum="20" />
+                                                    </h:inputText>
+                                                    <h:message for="lname" style="color: red"/>
+                                                    </div>
                                             </div>
                                                 <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{uBean.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required.">
-                                                        <f:convertDateTime pattern="dd/mm/yyyy" />
+                                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{uBean.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Dob field is required." converterMessage="Please provide date of firstCommunion in dd/mm/yyyy format">
+                                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                                        <f:validateLength maximum="50" />
                                                     </h:inputText>
+                                                    <h:message for="dob" style="color: red"/>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <h:inputText styleClass="form-control has-feedback-left" id="natid" value="#{uBean.natID}"/>
-                                                </div>
+                                                    <h:inputText styleClass="form-control has-feedback-left" id="natid" value="#{uBean.natID}" title="National ID / Passport Number" required="true" requiredMessage="The National ID / Passport Number field is required.">
+                                                        <f:validateLength maximum="15" />
+                                                    </h:inputText>
+                                                    <h:message for="natid" style="color: red"/>
+                                                    </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Designation</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <h:inputText styleClass="form-control has-feedback-left" id="designation" value="#{uBean.designation}"/>
-                                                </div>
+                                                    <h:inputText styleClass="form-control has-feedback-left" id="designation" value="#{uBean.designation}" title="Designation" required="true" requiredMessage="The Designation field is required.">
+                                                        <f:validateLength maximum="200" />
+                                                    </h:inputText>
+                                                    <h:message for="designation" style="color: red"/>
+                                                    </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Username</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
                                                     <h:inputText disabled="true" style="ed" styleClass="form-control has-feedback-left" id="username" value="#{uBean.username}"/>
+                                                       
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Password </label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <h:inputSecret styleClass="form-control has-feedback-left" id="password" value="#{user.password}"/>
-                                                </div>
+                                                    <h:inputSecret styleClass="form-control has-feedback-left" id="password" value="#{user.password}" title="Password" required="true" requiredMessage="The Password field is required.">
+                                                        <f:validateLength maximum="50" />
+                                                    </h:inputSecret>
+                                                    <h:message for="password" style="color: red"/>
+                                                    </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Confirm Password </label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <h:inputSecret styleClass="form-control has-feedback-left" id="con_password" value="#{user.con_password}"/>
+                                                    <h:inputSecret styleClass="form-control has-feedback-left" id="con_password" value="#{user.con_password}" title="Confirm Password" required="true" requiredMessage="The Confirm Password field is required.">
+                                                        <f:validateLength maximum="50" />
+                                                    </h:inputSecret>
+                                                    <h:message for="con_password" style="color: red"/>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
                                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">User Group</label>
                                                 <div class="col-md-9 col-sm-9 col-xs-12">
-                                                    <h:selectOneMenu styleClass="form-control has-feedback-left" id="usergroup" value="#{uBean.usergroup}">
+                                                    <h:selectOneMenu styleClass="form-control has-feedback-left" id="usergroup" value="#{uBean.usergroup}"  title="usergroup" required="true" requiredMessage="The Usergroup field is required.">
                                                         <f:selectItem itemLabel="Select User Group" itemValue="0" />
                                                         <f:selectItem itemLabel="Administrator" itemValue="100" />
                                                         <f:selectItem itemLabel="Secretary" itemValue="50" />
                                                     </h:selectOneMenu>
+                                                    <h:message for="usergroup" style="color: red"/>
                                                </div>
                                             </div>
                                             <div class="form-group">
@@ -137,6 +159,7 @@
                                 </table>
                             <hr> 
                             <h:commandButton value="Update Profile" action="#{user.edit(uBean.id)}" styleClass="btn btn-primary"/>
+                            <a href="users.jsp" value="" class="btn btn-danger">Cancel</a>
                     </h:form>    
                    </div>
                 </div>
