@@ -21,7 +21,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Confirmation Details </h2>
+                          <h2> Create Confirmation Record for ${confirmation.b.memberid.fname} ${confirmation.b.memberid.lname}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -45,45 +45,34 @@
                             <hr>
                             
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Member Identity</label>
-                                <div class="col-md-2 col-sm-2 col-xs-12 ">
-                                  <div class="input-group">
-                                  <h:inputText  styleClass="form-control" id="memeberid" value="#{cBean.id}"/>
-                                    <span class="input-group-btn">
-                                    <h:commandButton action="#{catholic.search()}" value="Search" styleClass="btn btn-warning"/>
-                                    </span>
-                                  </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText  styleClass="form-control has-feedback-left" id="fname" value="#{cBean.fname}"/>
+                                  <h:inputText disabled="true"  styleClass="form-control has-feedback-left" id="fname" value="#{confirmation.b.memberid.fname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{cBean.mname}"/>
+                                  <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="mname" value="#{confirmation.b.memberid.mname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{cBean.lname}"/>
+                                  <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="lname" value="#{confirmation.b.memberid.lname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="sex" value="#{cBean.sex}"/>
+                                  <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="sex" value="#{confirmation.b.memberid.sex}"/>
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{cBean.natID}"/>
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="natID" value="#{confirmation.b.memberid.natID}"/>
                                 </div>
                             </div>
                                 <hr>
@@ -93,17 +82,37 @@
                             <!-- GUI for confirmation-->
                             <h:form styleClass="form-horizontal form-label-left">
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Confirmation</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptized At</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback" id="dateOfConfirmation" value="#{coBean.dateOfConfirmation}" title="DateOfConfirmation" required="true" requiredMessage="The DateOfConfirmation field is required.">
-                                        <f:convertDateTime pattern="dd/mm/yyyy" />
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback" id="baptizedat" value="#{confirmation.b.parishid.name} " title="BaptizedAt" required="true" requiredMessage="The Baptized At field is required."/>
+                                    <h:message for="baptizedat" style="color: red"/>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptized By</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback" id="baptizedBy" value="#{confirmation.b.ministerid.rank} #{confirmation.b.ministerid.fname} #{confirmation.b.ministerid.lname}" title="BaptizedBy" required="true" requiredMessage="The BaptizedBy field is required."/>
+                                    <h:message for="baptizedBy" style="color: red"/>
+                                </div>
+                            </div>   
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Baptism</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback" id="dateOfbaptism" value="#{confirmation.b.dateOfBaptism}" title="DateOfBaptism" required="true" requiredMessage="The DateOfBaptism field is required."  converterMessage="Please provide date of baptism in dd/mm/yyyy format">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        <f:validateLength maximum="50" />
                                     </h:inputText>
+                                  <h:message for="dateOfbaptism" style="color: red"/> 
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptized By</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Confirmation</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText disabled="true" styleClass="form-control has-feedback" id="baptizedBy" value="#{coBean.baptizedBy}" title="BaptizedBy" required="true" requiredMessage="The BaptizedBy field is required."/>
+                                    <h:inputText styleClass="form-control has-feedback" id="dateOfConfirmation" value="#{confirmation.co.dateOfConfirmation}" title="DateOfConfirmation" required="true" requiredMessage="The DateOfConfirmation field is required."  converterMessage="Please provide date of confirmation in dd/mm/yyyy format">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                  <h:message for="dateOfConfirmation" style="color: red"/> 
                                 </div>
                             </div>
                             <div class="form-group">
@@ -113,9 +122,10 @@
                                     <f:selectItem itemLabel="Select Minister"itemValue="0" />    
                                     <f:selectItems value="#{minister.getAll()}" 
                                                            var="m"
-                                                           itemLabel="#{m.fname} #{m.lname}"
+                                                           itemLabel="#{m.rank} #{m.fname} #{m.lname}"
                                                            itemValue="#{m.id}" />
                                 </h:selectOneMenu>
+                                    <h:message for="ministerid" style="color: red"/>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -128,22 +138,25 @@
                                                            itemLabel="#{p.name}"
                                                            itemValue="#{p.id}" />
                                 </h:selectOneMenu>
+                                    <h:message for="parishid" style="color: red"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sponsor</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:selectOneMenu styleClass="form-control has-feedback" id="sponsorid" value="#{confirmation.sponsor}" title="Sponsorid" required="true" requiredMessage="The Sponsorid field is required.">
-                                     <f:selectItem itemLabel="Select Sponsor"itemValue="0" />    
+                                     <f:selectItem itemLabel="Select Sponsor"itemValue="" />    
                                      <f:selectItems value="#{sponsor.getAll()}" 
                                                            var="s"
                                                            itemLabel="#{s.fname} #{s.lname}"
                                                            itemValue="#{s.id}" />
                                 </h:selectOneMenu>
+                                  <h:message for="sponsorid" style="color: red"/>
                                 </div>
                             </div>
-                                <hr>
-                                    <h:commandButton action="#{confirmation.add()}" value="Save Confirmation" styleClass="btn btn-success"/>
+                            <hr>
+                            <h:commandButton action="#{confirmation.add()}" value="Save" styleClass="btn btn-success"/>
+                            <a href="confirmation.jsp" value="" class="btn btn-danger">Cancel</a>
                             </h:form>
 
                         </div>

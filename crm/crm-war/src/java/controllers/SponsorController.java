@@ -9,6 +9,7 @@ import beans.SponsorBean;
 import beans.SponsorSpouseBean;
 import entities.Catholic;
 import entities.Sponsor;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -18,7 +19,7 @@ import models.SponsorFacade;
  *
  * @author Lyne
  */
-public class SponsorController {
+public class SponsorController implements Serializable  {
     @EJB
     private SponsorFacade sponsorFacade;
     

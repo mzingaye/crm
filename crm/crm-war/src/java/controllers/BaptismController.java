@@ -19,11 +19,14 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 import models.BaptismFacade;
 import models.MinisterFacade;
 import models.ParishFacade;
 import models.UserFacade;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -50,6 +53,8 @@ public class BaptismController implements Serializable {
     
     @Inject 
     private UserBean uBean;
+    
+    static final Logger LOG = Logger.getLogger(BaptismController.class);
     
     private Baptism b;
     
@@ -145,12 +150,36 @@ public class BaptismController implements Serializable {
     }
     
     public String add(){
-        b.setMemberid(c);
+        try{
+            this.baptismFacade.findMember(c);
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+c.getId()+" : "+c.getFname()+" "+c.getLname()+"  can only be baptized once!");
+            return "catholics";
+        }
+        catch(NoResultException no){
+            
+        }
+        catch(EJBException e){
+            b.setMemberid(c);
+            b.setMinisterid(this.ministerFacade.find(ministerid));
+            b.setParishid(this.parishFacade.find(parishid));
+            b.setSponsorid(s);
+            b.setUserid(this.userFacade.find(uBean.getId()));
+            this.baptismFacade.create(this.b);
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+c.getId()+" : "+c.getFname()+" "+c.getLname()+"  baptism record ["+b.getId()+"] added successfully!");
+            this.c = new Catholic();
+            this.s = new Sponsor();
+            this.b = new Baptism(); 
+            return "baptism";
+        }
+         return null;
+    }
+    
+    public String edit(){
         b.setMinisterid(this.ministerFacade.find(ministerid));
         b.setParishid(this.parishFacade.find(parishid));
         b.setSponsorid(s);
         b.setUserid(this.userFacade.find(uBean.getId()));
-        this.baptismFacade.create(this.b);
+        this.baptismFacade.edit(this.b);
         this.c = new Catholic();
         this.s = new Sponsor();
         this.b = new Baptism();
@@ -159,6 +188,8 @@ public class BaptismController implements Serializable {
     
     public String newBaptism(Catholic c){
         this.c = c;
+        this.s = new Sponsor();
+        this.b = new Baptism();
         return "newBaptism";
     }
     
@@ -166,5 +197,17 @@ public class BaptismController implements Serializable {
         this.s = s;
     }
     
+    public String view(Baptism b){
+        this.b = b;
+        this.c = b.getMemberid();
+        this.s = b.getSponsorid();
+        this.ministerid = b.getMinisterid().getId();
+        this.parishid = b.getParishid().getId();
+        return "viewbaptism";
+    }
+    
+    public void delete(Baptism b){
+        this.baptismFacade.remove(b);
+    }
     
 }

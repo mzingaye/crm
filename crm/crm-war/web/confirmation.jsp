@@ -17,9 +17,7 @@
     <jsp:attribute name="content">
          <f:view>
          <h:form>
-               
-             <h:commandButton value="Add New Record" action="#{confirmation.newCon()}" styleClass="btn btn-info"/>
-
+            
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -49,7 +47,7 @@
                           <tr>
                             <th>#</th>
                             <th>Date Of Confirmation</th>
-                            <th>Baptized By</th>
+                            <th>Baptism Number</th>
                             <th>Catholic Member</th>
                             <th>Parish</th>
                             <th>Sponsor</th>
@@ -65,15 +63,14 @@
                                             <f:convertDateTime pattern="MM/dd/yyyy" />
                                         </h:outputText>
                                     </td>
-                                    <td>${i.baptizedBy}</td>
-                                    <td><h:outputText value="#{i.memberid.fname} #{i.memberid.lname}"/></td>
+                                    <td><h:outputText value="#{i.baptismid.id}"/></td>
+                                    <td><h:outputText value="#{i.baptismid.memberid.fname} #{i.baptismid.memberid.lname}"/></td>
                                     <td><h:outputText value="#{i.parishid.name}"/></td>
                                     <td><h:outputText value="#{i.sponsorid.fname} #{i.sponsorid.lname}"/></td>
                                     <td>
                                         <h:column>
-                                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
-                                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
-                                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
+                                            <h:commandLink action="#{confirmation.view(i)}" value=" View" styleClass="fa fa-eye"/> |
+                                            <h:commandLink action="#{confirmation.delete(i)}" value=" Delete" styleClass="fa fa-trash"/>
                                         </h:column>
                                     </td>
                                 </tr>

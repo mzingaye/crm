@@ -5,6 +5,7 @@
  */
 package models;
 
+import entities.Baptism;
 import entities.Catholic;
 import entities.Confirmation;
 import javax.ejb.Stateless;
@@ -33,5 +34,8 @@ public class ConfirmationFacade extends AbstractFacade<Confirmation> {
     public Confirmation findMember(Catholic memberid) throws Exception {
         return getEntityManager().createNamedQuery("Confirmation.findByMemberId",Confirmation.class).setParameter("memberid",memberid).getSingleResult();
     }
-    
+
+    public Confirmation findBaptism(Baptism baptismid) {
+        return getEntityManager().createNamedQuery("Confirmation.findBaptism",Confirmation.class).setParameter("baptismid",baptismid).getSingleResult(); 
+    }
 }

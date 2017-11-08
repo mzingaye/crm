@@ -15,6 +15,7 @@ import entities.Minister;
 import entities.Parish;
 import entities.Sponsor;
 import entities.User;
+import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import models.BaptismFacade;
@@ -28,7 +29,7 @@ import models.UserFacade;
  *
  * @author Lyne
  */
-public class BaptismActions {
+public class BaptismActions implements Serializable  {
     @EJB
     private BaptismFacade baptismFacade;
     

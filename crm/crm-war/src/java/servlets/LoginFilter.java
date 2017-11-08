@@ -41,7 +41,7 @@ public class LoginFilter implements Filter {
     
     static boolean  login_status = false;
     
-    static final Logger log = Logger.getLogger(LoginFilter.class);
+    static final Logger LOG = Logger.getLogger(LoginFilter.class);
     
     public LoginFilter() {
         
@@ -87,7 +87,7 @@ public class LoginFilter implements Filter {
                 uBean.setUsername(u.getUsername());
                 uBean.setU(u);
                 if(LoginFilter.login_status == false){
-                   log.info("#"+uBean.getId()+";"+user+";"+ip+";"+host+";"+browserDetails+" => LOGGED IN");
+                   LOG.info("User #"+uBean.getId()+": "+user+"; Logged in from: "+ip+"; Using:"+browserDetails);
                    HttpSession ses = req.getSession();
                    ses.setAttribute("username", username);
                    LoginFilter.login_status = true;

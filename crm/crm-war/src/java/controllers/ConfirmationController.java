@@ -5,29 +5,40 @@
  */
 package controllers;
 
-import beans.CatholicBean;
 import beans.ConfirmationBean;
-import entities.Catholic;
+import beans.UserBean;
+import entities.Baptism;
 import entities.Confirmation;
-import entities.Minister;
-import entities.Parish;
 import entities.Sponsor;
-import entities.User;
+import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.ejb.EJBException;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
+import models.BaptismFacade;
 import models.CatholicFacade;
 import models.ConfirmationFacade;
 import models.MinisterFacade;
 import models.ParishFacade;
 import models.SponsorFacade;
 import models.UserFacade;
+import org.apache.log4j.Logger;
 
 /**
  *
  * @author Lyne
  */
-public class ConfirmationController {
+
+@ManagedBean(name = "confirmation")
+@SessionScoped
+public class ConfirmationController implements Serializable {
+
+    @EJB
+    private BaptismFacade baptismFacade;
     @EJB
     private UserFacade userFacade;
     
@@ -50,54 +61,40 @@ public class ConfirmationController {
     private ConfirmationBean coBean;
     
     @Inject
-    private CatholicBean cBean;
-
-    public ConfirmationController() {
-    }
+    private UserBean uBean;
     
-    public List<Confirmation> getall(){
-        return this.confirmationFacade.findAll();
-    }
-    public String newCon(){
-        cBean.setFname("");
-        cBean.setMname("");
-        cBean.setLname("");
-        cBean.setSex("");
-        cBean.setDob(null);
-        cBean.setAge(0);
-        cBean.setPlaceOfBirth("");
-        cBean.setNatID("");
-        cBean.setContact("");
-        cBean.setFfname("");
-        cBean.setFmname("");
-        cBean.setFlname("");
-        cBean.setFnatID("");
-        cBean.setMfname("");
-        cBean.setMmname("");
-        cBean.setMlname("");
-        cBean.setMnatID("");
-        coBean.setBaptismid(null);
-        coBean.setDateOfConfirmation(null);
-        //coBean.setMemberid(null);
-        coBean.setMinisterid(null);
-        coBean.setParishid(null);
-        coBean.setSponsorid(null);
-        return "createconfirmation";
-    }
-    
+    static final Logger LOG = Logger.getLogger(ConfirmationController.class);
+    private Confirmation co;
+    private Baptism b;
+    private Sponsor s;
     private int minister;
     private int catholic;
     private int parish;
     private int sponsor;
-    /*private String baptizedBy;
 
-    public String getBaptizedBy() {
-        return baptizedBy;
+    public Confirmation getCo() {
+        return co;
     }
 
-    public void setBaptizedBy(String baptizedBy) {
-        this.baptizedBy = baptizedBy;
-    }*/
+    public void setCo(Confirmation co) {
+        this.co = co;
+    }
+
+    public Baptism getB() {
+        return b;
+    }
+
+    public void setB(Baptism b) {
+        this.b = b;
+    }
+
+    public Sponsor getS() {
+        return s;
+    }
+
+    public void setS(Sponsor s) {
+        this.s = s;
+    }
 
     public int getMinister() {
         return minister;
@@ -131,68 +128,117 @@ public class ConfirmationController {
         this.sponsor = sponsor;
     }
     
+     public ConfirmationController() {
+        this.co = new Confirmation();
+    }
+    
+    public List<Confirmation> getall(){
+        return this.confirmationFacade.findAll();
+    }
+    
+    public String newCon(Baptism b){
+        this.b = b;
+        this.co = new Confirmation();
+        this.sponsor = b.getSponsorid().getId();
+        this.minister = 0;
+        this.parish = 0;
+        return "createconfirmation";
+    }
+    
     public String add(){
-        Confirmation co = new Confirmation();
-        co.setDateOfConfirmation(coBean.getDateOfConfirmation());
-        //co.setBaptizedBy(coBean.getBaptizedBy());
-        Minister m = this.ministerFacade.find(minister);
-        Catholic c = this.catholicFacade.find(cBean.getId());
-        Parish p = this.parishFacade.find(parish);
-        Sponsor s = this.sponsorFacade.find(sponsor);
-        User u = this.userFacade.find(2);
-        co.setMinisterid(m);
-        //co.setMemberid(c);
-        co.setParishid(p);
-        co.setSponsorid(s);
-        co.setUserid(u);
-        this.confirmationFacade.create(co);
-        return "confirmation";
+        if(b != null){
+            if(minister == 0 ){
+                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Minister empty, hence confirmation record cannot be created");
+                return null;
+            }
+            else if(parish == 0){
+                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Parish empty, hence confirmation record cannot be created");
+                return null;
+            }
+            else{
+                if(b.getMemberid().getAge() < 12){
+                    LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" is below 12 years of age, hence cannot be confirmed!");
+                    return null; 
+                 }
+                 try{
+                     this.confirmationFacade.findBaptism(b);
+                     LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" can only be confirmed ONCE!");
+                     return null;
+                 }
+                 catch(NoResultException | EJBException no){
+                     if(b.getDateOfBaptism().compareTo(co.getDateOfConfirmation()) < 0){
+                         co.setBaptismid(b);
+                         co.setMinisterid(this.ministerFacade.find(minister));
+                         co.setParishid(this.parishFacade.find(parish));
+                         co.setSponsorid(this.sponsorFacade.find(sponsor));
+                         co.setUserid(this.userFacade.find(uBean.getId()));
+                         this.confirmationFacade.create(co);
+                         LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+"  confirmation record ["+co.getId()+"] added successfully!");
+                         this.co = new Confirmation();
+                         this.b = new Baptism();
+                         return "confirmation";
+                     }
+                     else{
+                         LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Baptism Date: "+b.getDateOfBaptism()+" is after the entered Confirmation Date: "+co.getDateOfConfirmation()+" hence confirmation record cannot be created");
+                         return null;
+                     }
+                 }
+            }
+        }  
+        else{
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => No baptism record found, confirmation is done on baptized catholics ONLY!");
+            return null;
+        }
     }
     
     public String view(Confirmation co){
-        /*cBean.setId(co.getMemberid().getId());
-        cBean.setFname(co.getMemberid().getFname());
-        cBean.setMname(co.getMemberid().getMname());
-        cBean.setLname(co.getMemberid().getLname());
-        cBean.setSex(co.getMemberid().getSex());
-        cBean.setDob(co.getMemberid().getDob());
-        cBean.setAge(co.getMemberid().getAge());
-        cBean.setPlaceOfBirth(co.getMemberid().getPlaceOfBirth());
-        cBean.setNatID(co.getMemberid().getNatID());
-        cBean.setContact(co.getMemberid().getContact());
-        cBean.setFfname(co.getMemberid().getFfname());
-        cBean.setFmname(co.getMemberid().getFmname());
-        cBean.setFlname(co.getMemberid().getFlname());
-        cBean.setFnatID(co.getMemberid().getFnatID());
-        cBean.setMfname(co.getMemberid().getMfname());
-        cBean.setMmname(co.getMemberid().getMmname());
-        cBean.setMlname(co.getMemberid().getMlname());
-        cBean.setMnatID(co.getMemberid().getMnatID());
-        coBean.setBaptizedBy(co.getBaptizedBy());
-        coBean.setDateOfConfirmation(co.getDateOfConfirmation());
-        coBean.setMemberid(co.getMemberid());*/
-        coBean.setMinisterid(co.getMinisterid());
-        coBean.setParishid(co.getParishid());
-        coBean.setSponsorid(co.getSponsorid());
-        coBean.setId(co.getId());
+        this.co = co;
+        this.b = co.getBaptismid();
+        this.minister = co.getMinisterid().getId();
+        this.parish = co.getParishid().getId();
+        this.sponsor = co.getSponsorid().getId();
         return "viewconfirmation";
     }
     
     public String edit(){
-        Confirmation co = new Confirmation(coBean.getId());
-        co.setDateOfConfirmation(coBean.getDateOfConfirmation());
-        //co.setBaptizedBy(coBean.getBaptizedBy());
-        Minister m = this.ministerFacade.find(coBean.getMinisterid());
-        Catholic c = this.catholicFacade.find(cBean.getId());
-        Parish p = this.parishFacade.find(coBean.getParishid());
-        Sponsor s = this.sponsorFacade.find(coBean.getSponsorid());
-        User u = this.userFacade.find(2);
-        co.setMinisterid(m);
-        //co.setMemberid(c);
-        co.setParishid(p);
-        co.setSponsorid(s);
-        co.setUserid(u);
-        this.confirmationFacade.edit(co);
-        return "confirmation";
+        if(b != null){
+            if(b.getMemberid().getAge() < 12){
+               LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" is below 12 years of age, hence cannot be confirmed!");
+               return null; 
+            }
+            try{
+                if(b.getDateOfBaptism().compareTo(co.getDateOfConfirmation()) < 0){
+                    co.setBaptismid(b);
+                    co.setMinisterid(this.ministerFacade.find(minister));
+                    co.setParishid(this.parishFacade.find(parish));
+                    co.setSponsorid(this.sponsorFacade.find(sponsor));
+                    co.setUserid(this.userFacade.find(uBean.getId()));
+                    this.confirmationFacade.edit(co);
+                    LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+"  confirmation record ["+co.getId()+"] updated successfully!");
+                    this.co = new Confirmation();
+                    this.b = new Baptism();
+                    return "confirmation";
+                }
+                else{
+                    LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Baptism Date: "+b.getDateOfBaptism()+" is after the entered Confirmation Date: "+co.getDateOfConfirmation()+" hence confirmation record cannot be updated!");
+                    return null;
+                }
+            }
+            catch(NoResultException | EJBException no){
+                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Member must be baptized before being confirmed!");
+                return null;
+            }
+        }  
+        else{
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => No baptism record found, confirmation is done on baptized catholics ONLY!");
+            return null;
+        }
+        
+    }
+    
+    public void delete(Confirmation co){
+        this.confirmationFacade.remove(co);
+        LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" deleted succesfful!");
+        
     }
 }

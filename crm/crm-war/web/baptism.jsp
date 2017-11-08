@@ -16,16 +16,7 @@
    
     <jsp:attribute name="content">
         <f:view>
-            <h:form  styleClass="form-horizontal form-label-left">
-                <div class="form-group">
-                    <div class="col-md-12 col-sm-12 col-xs-12 ">
-                      <div class="input-group">
-                       <h:commandButton value="Add New Record" action="#{baptismActions.newRec()}" styleClass="btn btn-info"/>   
-                      </div>
-                    </div>
-                </div>
-            </h:form>
-           
+            
                 <hr>
          <h:form>
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -84,8 +75,10 @@
                                     <td>${i.physicalAddress}</td>
                                     <td>
                                         <h:column>
-                                            <h:commandLink action="#{baptismActions.view(i)}" value="" styleClass="fa fa-eye"/> |
-                                            <h:commandLink action="#{baptismActions.delete(i)}" value="" styleClass="fa fa-trash"/> 
+                                            <h:commandLink action="#{baptism.view(i)}" value=" View" styleClass="fa fa-eye"/> |
+                                            <h:commandLink action="#{confirmation.newCon(i)}" value=" Confirmation" styleClass="fa fa-plus"/> |
+                                            <h:commandLink action="#{sponsor.make(i)}" value=" Matrimonial" styleClass="fa fa-plus"/> |
+                                            <h:commandLink action="#{baptism.delete(i)}" value=" Delete" styleClass="fa fa-trash"/>
                                         </h:column>
                                     </td>
                                 </tr>

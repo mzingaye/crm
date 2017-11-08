@@ -275,7 +275,7 @@
                                             <f:selectItem itemLabel="Select Baptism Minister" itemValue="" />
                                             <f:selectItems value="#{minister.getAll()}" 
                                                            var="m"
-                                                           itemLabel="#{m.fname} #{m.lname}"
+                                                           itemLabel="#{m.rank} #{m.fname} #{m.lname}"
                                                            itemValue="#{m.id}" />
                                         </h:selectOneMenu>
                                         <h:message for="ministerid" style="color: red"/> 
