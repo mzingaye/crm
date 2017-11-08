@@ -46,26 +46,35 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{minister.m.fname}"/>
+                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{minister.m.fname}" title="First Name" required="true" requiredMessage="The First Name field is required.">
+                                <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                <h:message for="fname" style="color: red"/> 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{minister.m.lname}"/>
-                                </div>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{minister.m.lname}" title="Last Name" required="true" requiredMessage="The Last Name field is required.">
+                                <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                <h:message for="lname" style="color: red"/> 
+                                    </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Religious Order</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="morder" value="#{minister.m.morder}"/>
-                                </div>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="morder" value="#{minister.m.morder}" title="Order" required="true" requiredMessage="The Order field is required.">
+                                <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                <h:message for="morder" style="color: red"/> 
+                                    </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Position</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:selectOneMenu styleClass="form-control has-feedback-left" id="rank" value="#{minister.m.rank}" title="Position">
-                                        <f:selectItem itemLabel="Select Minister's Position" itemValue="0" />
+                                    <h:selectOneMenu styleClass="form-control has-feedback-left" id="rank" value="#{minister.m.rank}" title="Position" required="true" requiredMessage="The Position field is required.">
+                                        <f:selectItem itemLabel="Select Minister's Position" itemValue="" />
                                         <f:selectItem itemLabel="Archbishop" itemValue="Archbishop" />
                                         <f:selectItem itemLabel="Bishop" itemValue="Bishop" />
                                         <f:selectItem itemLabel="Priest" itemValue="Priest" />
@@ -73,23 +82,31 @@
                                         <f:selectItem itemLabel="Sister" itemValue="Sister" />
                                         <f:selectItem itemLabel="Brother" itemValue="Brother" />
                                     </h:selectOneMenu>
+                                <h:message for="rank" style="color: red"/> 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{minister.m.natID}"/>
-                                </div>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{minister.m.natID}" title="NatIN" required="true" requiredMessage="The National ID / Passport field is required.">
+                                <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                <h:message for="natID" style="color: red"/> 
+                                    </div>
                             </div>
                              <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{minister.m.contact}" title="Contact" required="true" requiredMessage="The Contact field is required."/>
+                                    <h:inputTextarea  styleClass="form-control has-feedback-left" id="contact" value="#{minister.m.contact}" title="Contact" required="true" requiredMessage="The Contact field is required.">
+                                     <f:validateLength maximum="255" />
+                                    </h:inputTextarea>
+                                <h:message for="contact" style="color: red"/>                                
+
                                 </div>
                             </div> 
                             <hr> 
                             <h:commandButton value="Save" action="#{minister.add()}" styleClass="btn btn-primary"/>
-                            <h:commandButton value="Cancel" action="#{minister.cancel()}" styleClass="btn btn-danger"/>
+                            <a href="config.jsp" value="" class="btn btn-danger">Cancel</a>
                     </h:form>    
                    </div>
                 </div>

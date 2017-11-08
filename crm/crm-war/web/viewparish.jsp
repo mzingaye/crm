@@ -20,7 +20,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Parish Details </h2>
+                        <h2>Parish Details for ${parish.p.name}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -46,26 +46,35 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Church Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="name" value="#{parish.p.name}"/>
+                                <h:inputText styleClass="form-control has-feedback-left" id="name" value="#{parish.p.name}" required="true" requiredMessage="Parish Name field is required.">
+                                    <f:validateLength maximum="50" />
+                                </h:inputText>
+                                <h:message for="name" style="color: red"/> 
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Physical Address</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputTextarea styleClass="form-control has-feedback-left" id="physicalAddress" value="#{parish.p.physicalAddress}"/>
+                                    <h:inputTextarea styleClass="form-control has-feedback-left" id="physicalAddress" value="#{parish.p.physicalAddress}" required="true" requiredMessage="Parish Physical Address field is required.">
+                                <f:validateLength maximum="255" />
+                                </h:inputTextarea>
+                                  <h:message for="physicalAddress" style="color: red"/> 
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact Details</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="contact" value="#{parish.p.contact}"/>
+                                    <h:inputText styleClass="form-control has-feedback-left" id="contact" value="#{parish.p.contact}" required="true" requiredMessage="Parish Contact field is required.">
+                                        <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                <h:message for="contact" style="color: red"/> 
                                 </div>
                             </div>
                              
                             <hr> 
                             <h:commandButton value="Update" action="#{parish.edit()}" styleClass="btn btn-primary"/>
-                            <h:commandButton value="Cancel" action="#{parish.cancel()}" styleClass="btn btn-danger"/>
+                            <a href="config.jsp" value="" class="btn btn-danger">Cancel</a>
                     </h:form>    
                    </div>
                 </div>
