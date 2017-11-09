@@ -77,7 +77,7 @@
                                         <h:column>
                                             <h:commandLink action="#{baptism.view(i)}" value=" View" styleClass="fa fa-eye"/> |
                                             <h:commandLink action="#{confirmation.newCon(i)}" value=" Confirmation" styleClass="fa fa-plus"/> |
-                                            <h:commandLink action="#{sponsor.make(i)}" value=" Matrimonial" styleClass="fa fa-plus"/> |
+                                            <h:commandLink action="#{matrimonial.newRec(i)}" value=" Matrimonial" styleClass="fa fa-plus"/> |
                                             <h:commandLink action="#{baptism.delete(i)}" value=" Delete" styleClass="fa fa-trash"/>
                                         </h:column>
                                     </td>

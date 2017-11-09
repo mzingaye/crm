@@ -17,9 +17,6 @@
     <jsp:attribute name="content">
        <f:view>
          <h:form>
-               
-             <h:commandButton value="Add New Record" action="#{matrimonial.newRec()}" styleClass="btn btn-info"/>
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -48,10 +45,9 @@
                         <thead>
                           <tr>
                             <th>#</th>
-                            <th>Marriage Number</th>
                             <th>Date Of Marriage</th>
-                            <th>Husband</th>
-                            <th>Wife</th>
+                            <th>Baptized Catholic</th>
+                            <th>Spouse</th>
                             <th>Marriage By</th>
                             <th>Minister</th>
                             <th>Parish</th>
@@ -62,22 +58,20 @@
                             <c:forEach var="i" items="#{matrimonial.all}" >
                                 <tr >
                                     <td>${i.id}</td>
-                                    <td>${i.marriageNumber}</td>
                                     <td>
                                         <h:outputText value="#{i.dateOfMarriage}">
                                             <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:outputText>
                                     </td>
-                                    <td>${i.husbandMemberID}</td>
-                                    <td>${i.wifeMemberID}</td>
+                                    <td>${i.baptismid.memberid.fname} ${i.baptismid.memberid.fname}</td>
+                                    <td>${i.spouse}</td>
                                     <td>${i.marriageBy}</td>
                                     <td>${i.ministerid.fname} ${i.ministerid.lname}</td>
                                     <td>${i.parishid.name}</td>
                                     <td>
                                         <h:column>
-                                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
-                                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
-                                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
+                                            <h:commandLink action="#{matrimonial.view(i)}" value=" View" styleClass="fa fa-eye"/> |
+                                            <h:commandLink action="#{matrimonial.delete(i)}" value=" Delete" styleClass="fa fa-trash"/>
                                         </h:column>
                                     </td>
                                 </tr>

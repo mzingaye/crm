@@ -130,7 +130,7 @@
                             <h:form  styleClass="form-horizontal form-label-left">
                             <h:outputLabel>Sponsor Personal Information</h:outputLabel>
                             <br>
-                            <a href="findSponsor" data-toggle="modal"data-target="#findSponsor" class="btn ">Find Sponsor</a>
+                            <a href="findSponsor" data-toggle="modal"data-target="#findSponsor" class="btn btn-warning">Find Sponsor</a>
                             <hr>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>

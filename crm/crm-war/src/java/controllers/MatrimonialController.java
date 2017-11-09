@@ -5,18 +5,17 @@
  */
 package controllers;
 
-import beans.CatholicBean;
 import beans.CatholicSpouseBean;
 import beans.MatrimonialBean;
 import beans.SponsorBean;
 import beans.SponsorSpouseBean;
+import beans.UserBean;
+import entities.Baptism;
 import entities.Catholic;
 import entities.Matrimonial;
-import entities.Minister;
-import entities.Parish;
 import entities.Sponsor;
-import entities.User;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -26,6 +25,7 @@ import models.MinisterFacade;
 import models.ParishFacade;
 import models.SponsorFacade;
 import models.UserFacade;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -50,7 +50,7 @@ public class MatrimonialController implements Serializable  {
     private MatrimonialBean mBean;
     
     @Inject
-    private CatholicBean cBean;
+    private UserBean uBean;
     
     @Inject
     private CatholicSpouseBean csBean;
@@ -61,64 +61,157 @@ public class MatrimonialController implements Serializable  {
     @Inject
     private SponsorSpouseBean ssBean;
     
-    public MatrimonialController() {
+    private Catholic c;
+    private Baptism b;
+    private Baptism bs;
+    private Sponsor sh;
+    private Sponsor sw;
+    private String spousename;
+    private String spousenatid;
+    private String spousesex;
+    private Date spousedob;
+    private String spouseage;
+    private Matrimonial m;
+    private int ministerid;
+    private int parishid;
+    static final Logger LOG = Logger.getLogger(MatrimonialController.class);
+
+    public int getMinisterid() {
+        return ministerid;
+    }
+
+    public void setMinisterid(int ministerid) {
+        this.ministerid = ministerid;
+    }
+
+    public int getParishid() {
+        return parishid;
+    }
+
+    public void setParishid(int parishid) {
+        this.parishid = parishid;
+    }
+
+    public String getSpousename() {
+        return spousename;
+    }
+
+    public void setSpousename(String spousename) {
+        this.spousename = spousename;
+    }
+
+    public String getSpousenatid() {
+        return spousenatid;
+    }
+
+    public void setSpousenatid(String spousenatid) {
+        this.spousenatid = spousenatid;
+    }
+
+    public String getSpousesex() {
+        return spousesex;
+    }
+
+    public void setSpousesex(String spousesex) {
+        this.spousesex = spousesex;
+    }
+
+    public Date getSpousedob() {
+        return spousedob;
+    }
+
+    public void setSpousedob(Date spousedob) {
+        this.spousedob = spousedob;
+    }
+
+    public String getSpouseage() {
+        return spouseage;
+    }
+
+    public void setSpouseage(String spouseage) {
+        this.spouseage = spouseage;
+    }
+
+    public Catholic getC() {
+        return c;
+    }
+
+    public void setC(Catholic c) {
+        this.c = c;
+    }
+
+    public Baptism getB() {
+        return b;
+    }
+
+    public void setB(Baptism b) {
+        this.b = b;
+    }
+
+    public Baptism getBs() {
+        return bs;
+    }
+
+    public void setBs(Baptism bs) {
+        this.bs = bs;
+    }
+
+    public Sponsor getSh() {
+        return sh;
+    }
+
+    public void setSh(Sponsor sh) {
+        this.sh = sh;
+    }
+
+    public Sponsor getSw() {
+        return sw;
+    }
+
+    public void setSw(Sponsor sw) {
+        this.sw = sw;
+    }
+
+    public Matrimonial getM() {
+        return m;
+    }
+
+    public void setM(Matrimonial m) {
+        this.m = m;
     }
     
-    public String newRec(){
-        sBean.setFname("");
-        sBean.setMname("");
-        sBean.setLname("");
-        sBean.setSex("");
-        sBean.setDob(null);
-        sBean.setAge(0);
-        sBean.setNatID("");
-        sBean.setContact("");
-        
-        ssBean.setFname("");
-        ssBean.setMname("");
-        ssBean.setLname("");
-        ssBean.setSex("");
-        ssBean.setDob(null);
-        ssBean.setAge(0);
-        ssBean.setNatID("");
-        ssBean.setContact("");
-        
-        cBean.setFname("");
-        cBean.setMname("");
-        cBean.setLname("");
-        cBean.setSex("");
-        cBean.setDob(null);
-        cBean.setAge(0);
-        cBean.setPlaceOfBirth("");
-        cBean.setNatID("");
-        cBean.setContact("");
-        cBean.setFfname("");
-        cBean.setFmname("");
-        cBean.setFlname("");
-        cBean.setFnatID("");
-        cBean.setMfname("");
-        cBean.setMmname("");
-        cBean.setMlname("");
-        cBean.setMnatID("");
-        
-        csBean.setFname("");
-        csBean.setMname("");
-        csBean.setLname("");
-        csBean.setSex("");
-        csBean.setDob(null);
-        csBean.setAge(0);
-        csBean.setPlaceOfBirth("");
-        csBean.setNatID("");
-        csBean.setContact("");
-        csBean.setFfname("");
-        csBean.setFmname("");
-        csBean.setFlname("");
-        csBean.setFnatID("");
-        csBean.setMfname("");
-        csBean.setMmname("");
-        csBean.setMlname("");
-        csBean.setMnatID("");
-        
+    
+    public MatrimonialController() {
+        this.m = new Matrimonial();
+    }
+    
+    public void findMember(Catholic c){
+        this.spousename = c.getFname().concat(" ").concat(c.getLname());
+        this.spousenatid = c.getNatID();
+        this.spousedob = c.getDob();
+        this.spouseage = c.getAge()+"";
+        this.spousesex = c.getSex();
+    }
+    public void findBaptism(Baptism b){
+        this.bs = b;
+        this.spousename = b.getMemberid().getFname().concat(" ").concat(b.getMemberid().getLname());
+        this.spousenatid = b.getMemberid().getNatID();
+        this.spousedob = b.getMemberid().getDob();
+        this.spouseage = b.getMemberid().getAge()+"";
+        this.spousesex = b.getMemberid().getSex();
+    }
+    public void findSponsor(Sponsor sw){
+        this.sw = sw;
+    }
+    public void findHusSponsor(Sponsor sh){
+        this.sh = sh;
+    }
+    
+    public String newRec(Baptism b){
+        this.b = b;
+        this.m = new Matrimonial();
+        this.sh = new Sponsor();
+        this.sw = new Sponsor();
         return "creatematrimonialrec";
     }
     
@@ -127,121 +220,70 @@ public class MatrimonialController implements Serializable  {
     }
     
     public String add(){
-        Matrimonial m = new Matrimonial();
-       /* m.setMarriageNumber(mBean.getMarriageNumber());
-        m.setDateOfMarriage(mBean.getDateOfMarriage());
-        m.setHusbandMemberID(cBean.getId());
-        m.setHusbandAddress(mBean.getHusbandAddress());
-        m.setWifeMemberID(csBean.getId());*/
-        m.setWifeAddress(mBean.getWifeAddress());
-        m.setHusbandSponsorID(sBean.getId());
-        m.setWifeSponsorID(ssBean.getId());
-        m.setOfficialDesignation(mBean.getOfficialDesignation());
-        m.setConditionOfHus(mBean.getConditionOfHus());
-        m.setConditionOfWife(mBean.getConditionOfWife());
-        m.setConsentHus(mBean.getConsentHus());
-        m.setConsentWife(mBean.getConsentWife());
-        m.setMarriageBy(mBean.getMarriageBy());
-        Parish p = this.parishFacade.find(mBean.getParishid());
-        Minister min = this.ministerFacade.find(mBean.getMinisterid());
-        User u = this.userFacade.find(2);
-        m.setParishid(p);
-        m.setMinisterid(min);
-        m.setUserid(u);
-        this.matrimonialFacade.create(m);
-        return "matrimonial";
+        m.setHusbandSponsorID(sh.getId());
+        m.setWifeSponsorID(sw.getId());
+        m.setParishid(this.parishFacade.find(parishid));
+        m.setMinisterid(this.ministerFacade.find(ministerid));
+        m.setUserid(this.userFacade.find(uBean.getId()));
+        m.setSpouse(spousename);
+        m.setBaptismid(b);
+        try{
+            this.matrimonialFacade.create(this.m);
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Marriage [ "+m.getId()+" ] Between "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+"  and "+spousename+" added successfully!");
+            this.c = new Catholic();
+            this.sw = new Sponsor();
+            this.sh = new Sponsor();
+            this.b = new Baptism(); 
+            this.m = new Matrimonial();
+            return "matrimonial";
+        }
+        catch(Exception e){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Marriage Between "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+"  and "+spousename+" was not added due to an error: "+e+"!");
+            return null;
+        }
+        
     }
     
     public String view(Matrimonial m){
-        sBean.setId(m.getHusbandSponsorID());
-        Sponsor s = this.sponsorFacade.find(m.getHusbandSponsorID());
-        sBean.setFname(s.getFname());
-        sBean.setMname(s.getMname());
-        sBean.setLname(s.getLname());
-        sBean.setSex(s.getSex());
-        sBean.setDob(s.getDob());
-        sBean.setAge(s.getAge());
-        sBean.setNatID(s.getNatID());
-        sBean.setContact(s.getContact());
-        
-        ssBean.setId(m.getWifeSponsorID());
-        Sponsor ss = this.sponsorFacade.find(m.getWifeSponsorID());
-        ssBean.setFname(ss.getFname());
-        ssBean.setMname(ss.getMname());
-        ssBean.setLname(ss.getLname());
-        ssBean.setSex(ss.getSex());
-        ssBean.setDob(ss.getDob());
-        ssBean.setAge(ss.getAge());
-        ssBean.setNatID(ss.getNatID());
-        ssBean.setContact(ss.getContact());
-        
-        /*cBean.setId(m.getHusbandMemberID());
-        Catholic c = this.catholicFacade.find(m.getHusbandMemberID());
-        cBean.setFname(c.getFname());
-        cBean.setMname(c.getMname());
-        cBean.setLname(c.getLname());
-        cBean.setSex(c.getSex());
-        cBean.setDob(c.getDob());
-        cBean.setAge(c.getAge());
-        cBean.setPlaceOfBirth(c.getPlaceOfBirth());
-        cBean.setNatID(c.getNatID());
-        cBean.setContact(c.getContact());
-        cBean.setFfname(c.getFfname());
-        cBean.setFmname(c.getFmname());
-        cBean.setFlname(c.getFlname());
-        cBean.setFnatID(c.getFnatID());
-        cBean.setMfname(c.getMfname());
-        cBean.setMmname(c.getMmname());
-        cBean.setMlname(c.getMlname());
-        cBean.setMnatID(c.getMnatID());
-        
-        csBean.setId(m.getWifeMemberID());
-        Catholic cs = this.catholicFacade.find(m.getWifeMemberID());
-        csBean.setFname(cs.getFname());
-        csBean.setMname(cs.getMname());
-        csBean.setLname(cs.getLname());
-        csBean.setSex(cs.getSex());
-        csBean.setDob(cs.getDob());
-        csBean.setAge(cs.getAge());
-        csBean.setPlaceOfBirth(cs.getPlaceOfBirth());
-        csBean.setNatID(cs.getNatID());
-        csBean.setContact(cs.getContact());
-        csBean.setFfname(cs.getFfname());
-        csBean.setFmname(cs.getFmname());
-        csBean.setFlname(cs.getFlname());
-        csBean.setFnatID(cs.getFnatID());
-        csBean.setMfname(cs.getMfname());
-        csBean.setMmname(cs.getMmname());
-        csBean.setMlname(cs.getMlname());
-        csBean.setMnatID(cs.getMnatID());*/
-        
-        mBean.setId(m.getId());
-        mBean.setConditionOfHus(m.getConditionOfHus());
-        mBean.setConditionOfWife(m.getConditionOfWife());
-        mBean.setConsentHus(m.getConsentHus());
-        mBean.setConsentWife(m.getConsentWife());
-        mBean.setDateOfMarriage(m.getDateOfMarriage());
-        mBean.setHusbandAddress(m.getHusbandAddress());
-       /* mBean.setHusbandMemberID(m.getHusbandMemberID());
-        mBean.setHusbandSponsorID(m.getHusbandSponsorID());
-        mBean.setMarriageBy(m.getMarriageBy());
-        mBean.setMarriageNumber(m.getMarriageNumber());
-        mBean.setMinisterid(m.getMinisterid().getId());
-        mBean.setOfficialDesignation(m.getOfficialDesignation());
-        mBean.setParishid(m.getParishid().getId());
-        mBean.setWifeAddress(m.getWifeAddress());
-        mBean.setWifeMemberID(m.getWifeMemberID());
-        mBean.setWifeSponsorID(m.getWifeSponsorID());*/
+        this.m = m;
+        this.sh = this.sponsorFacade.find(m.getHusbandSponsorID());
+        this.sw = this.sponsorFacade.find(m.getWifeSponsorID());
+        this.spousename = m.getSpouse();
+        this.b = m.getBaptismid();
+        this.ministerid = m.getMinisterid().getId();
+        this.parishid = m.getParishid().getId();
         return "viewmatrimonial";
     }
     
     public String edit(){
-        Matrimonial m = new Matrimonial(mBean.getId());
+        m.setHusbandSponsorID(sh.getId());
+        m.setWifeSponsorID(sw.getId());
+        m.setParishid(this.parishFacade.find(parishid));
+        m.setMinisterid(this.ministerFacade.find(ministerid));
+        m.setUserid(this.userFacade.find(uBean.getId()));
+        m.setSpouse(spousename);
+        m.setBaptismid(b);
+        try{
+            this.matrimonialFacade.edit(this.m);
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Marriage [ "+m.getId()+" ] Between "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+"  and "+spousename+" updated successfully!");
+            this.c = new Catholic();
+            this.sw = new Sponsor();
+            this.sh = new Sponsor();
+            this.b = new Baptism(); 
+            this.m = new Matrimonial();
+            return "matrimonial";
+        }
+        catch(Exception e){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Marriage Between "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+"  and "+spousename+" was not updated due to an error: "+e+"!");
+            return null;
+        }
+        
+        /*Matrimonial m = new Matrimonial(mBean.getId());
         /*m.setMarriageNumber(mBean.getMarriageNumber());
         m.setDateOfMarriage(mBean.getDateOfMarriage());
         m.setHusbandMemberID(cBean.getId());
         m.setHusbandAddress(mBean.getHusbandAddress());
-        m.setWifeMemberID(csBean.getId());*/
+        m.setWifeMemberID(csBean.getId());
         m.setWifeAddress(mBean.getWifeAddress());
         m.setHusbandSponsorID(sBean.getId());
         m.setWifeSponsorID(ssBean.getId());
@@ -258,7 +300,7 @@ public class MatrimonialController implements Serializable  {
         m.setMinisterid(min);
         m.setUserid(u);
         this.matrimonialFacade.edit(m);
-        return "matrimonial";
+        return "matrimonial";*/
     }
     
 }
