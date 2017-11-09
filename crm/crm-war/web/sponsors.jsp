@@ -16,10 +16,6 @@
     
     <jsp:attribute name="content">
         <f:view>
-         <h:form>
-             <h:commandButton value="Add New Record" action="#{sponsor.newMember()}" styleClass="btn btn-info"/>
-         </h:form>
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -78,8 +74,8 @@
                                     <td>${i.contact}</td>
                                     <td>
                                         <h:column>
-                                                <h:commandLink action="#{sponsor.view(i)}" value="" styleClass="fa fa-eye"/> |
-                                                <h:commandLink action="#{sponsor.delete(i)}" value="" styleClass="fa fa-trash"/> 
+                                                <h:commandLink action="#{sponsor.view(i)}" value=" View" styleClass="fa fa-eye"/> |
+                                                <h:commandLink action="#{sponsor.delete(i)}" value=" Delete" styleClass="fa fa-trash"/> 
                                             </h:column>
                                     </td>
                                 </tr>

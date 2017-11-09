@@ -5,14 +5,12 @@
  */
 package controllers;
 
-import beans.CatholicBean;
 import beans.CatholicSpouseBean;
 import beans.DeathBean;
-import entities.Catholic;
+import beans.UserBean;
+import entities.Baptism;
 import entities.Death;
-import entities.Minister;
-import entities.Parish;
-import entities.User;
+import entities.Matrimonial;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -22,6 +20,7 @@ import models.DeathFacade;
 import models.MinisterFacade;
 import models.ParishFacade;
 import models.UserFacade;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -44,7 +43,7 @@ public class DeathRecController implements Serializable  {
     private DeathFacade deathFacade;
     
     @Inject
-    private CatholicBean cBean;
+    private UserBean uBean;
     
     @Inject
     private CatholicSpouseBean csBean;
@@ -52,45 +51,89 @@ public class DeathRecController implements Serializable  {
     @Inject
     private DeathBean dBean;
     
-    public DeathRecController() {
+    private Baptism b;
+    private Matrimonial m;
+    private int ministerid;
+    private int parishid;
+    private Death d;
+    private String fullname;
+    static final Logger LOG = Logger.getLogger(DeathRecController.class);
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public Baptism getB() {
+        return b;
+    }
+
+    public void setB(Baptism b) {
+        this.b = b;
+    }
+
+    public Matrimonial getM() {
+        return m;
+    }
+
+    public void setM(Matrimonial m) {
+        this.m = m;
+    }
+
+    public int getMinisterid() {
+        return ministerid;
+    }
+
+    public void setMinisterid(int ministerid) {
+        this.ministerid = ministerid;
+    }
+
+    public int getParishid() {
+        return parishid;
+    }
+
+    public void setParishid(int parishid) {
+        this.parishid = parishid;
+    }
+
+    public Death getD() {
+        return d;
+    }
+
+    public void setD(Death d) {
+        this.d = d;
     }
     
-    public String newRec(){
-        cBean.setFname("");
-        cBean.setMname("");
-        cBean.setLname("");
-        cBean.setSex("");
-        cBean.setDob(null);
-        cBean.setAge(0);
-        cBean.setPlaceOfBirth("");
-        cBean.setNatID("");
-        cBean.setContact("");
-        cBean.setFfname("");
-        cBean.setFmname("");
-        cBean.setFlname("");
-        cBean.setFnatID("");
-        cBean.setMfname("");
-        cBean.setMmname("");
-        cBean.setMlname("");
-        cBean.setMnatID("");
-        csBean.setFname("");
-        csBean.setMname("");
-        csBean.setLname("");
-        csBean.setSex("");
-        csBean.setDob(null);
-        csBean.setAge(0);
-        csBean.setPlaceOfBirth("");
-        csBean.setNatID("");
-        csBean.setContact("");
-        csBean.setFfname("");
-        csBean.setFmname("");
-        csBean.setFlname("");
-        csBean.setFnatID("");
-        csBean.setMfname("");
-        csBean.setMmname("");
-        csBean.setMlname("");
-        csBean.setMnatID("");
+    public DeathRecController() {
+        this.d = new Death();
+    }
+    
+    public String newRec(Baptism b){
+        this.b = b;
+        this.d = new Death();
+        this.m = new Matrimonial();
+        this.fullname = "";
+        this.ministerid = 0;
+        this.parishid = 0;
         return "createdeathrec";
+    }
+    
+    public void spouse(Matrimonial m){
+        try{
+           this.m = m;
+            if(m.getBaptismid().getMemberid().getId().equals(b.getMemberid().getId())){
+                this.fullname = m.getSpouse();
+            }
+            else{
+                this.fullname = m.getBaptismid().getMemberid().getFname().concat(" ").concat(m.getBaptismid().getMemberid().getLname());
+            } 
+        }
+        catch(NullPointerException e){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Select the died catholic first before choosing spouse!");
+        }
     }
     
     public List<Death> getAll(){
@@ -98,96 +141,71 @@ public class DeathRecController implements Serializable  {
     }
     
     public String add(){
-        Death d = new Death();
-        d.setDateOfBurial(dBean.getDateOfBurial());
-       // d.setDod(dBean.getDod());
-        d.setPlaceOfBurial(dBean.getPlaceOfBurial());
-        d.setPlaceOfDeath(dBean.getPlaceOfDeath());
-        d.setSacramentAdministered(dBean.getSacramentAdministered());
-        Minister m = this.ministerFacade.find(dBean.getMinisterid());
-        Catholic c = this.catholicFacade.find(cBean.getId());
-        Parish p = this.parishFacade.find(dBean.getParishid());
-        User u = this.userFacade.find(2);
-        //d.setMemberid(c);
-        d.setMinisterid(m);
-        d.setParishid(p);
-        d.setUserid(u);
-        //d.setSpouseMemberID(csBean.getId());
-        this.deathFacade.create(d);
-        return "death";
+        d.setParishid(this.parishFacade.find(parishid));
+        d.setMinisterid(this.ministerFacade.find(ministerid));
+        d.setUserid(this.userFacade.find(uBean.getId()));
+        d.setMatrimonialid(m);
+        d.setBaptismid(b);
+        try{
+            if(d.getDateOfDeath().compareTo(d.getDateOfBurial()) < 0){
+                this.deathFacade.create(this.d);
+                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Death Record [ "+d.getId()+" ] for "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" added successfully!");
+                this.b = new Baptism();
+                this.d = new Death();
+                this.m = new Matrimonial();
+                this.fullname = "";
+                return "death";
+            }
+            else{
+                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Date of Death: "+d.getDateOfDeath()+" is after the entered Date of Burial: "+d.getDateOfBurial()+" hence death record cannot be created!");
+                return null;
+            }
+        }
+        catch(Exception e){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Death Record for "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" was not added due to an error: "+e+"!");
+            return null;
+        }
     }
     
     public String view(Death d){
-        //cBean.setId(d.getMemberid().getId());
-        //Catholic c = this.catholicFacade.find(d.getMemberid().getId());
-        /*cBean.setFname(c.getFname());
-        cBean.setMname(c.getMname());
-        cBean.setLname(c.getLname());
-        cBean.setSex(c.getSex());
-        cBean.setDob(c.getDob());
-        cBean.setAge(c.getAge());
-        cBean.setPlaceOfBirth(c.getPlaceOfBirth());
-        cBean.setNatID(c.getNatID());
-        cBean.setContact(c.getContact());
-        cBean.setFfname(c.getFfname());
-        cBean.setFmname(c.getFmname());
-        cBean.setFlname(c.getFlname());
-        cBean.setFnatID(c.getFnatID());
-        cBean.setMfname(c.getMfname());
-        cBean.setMmname(c.getMmname());
-        cBean.setMlname(c.getMlname());
-        cBean.setMnatID(c.getMnatID());
-        
-        csBean.setId(d.getSpouseMemberID());
-        Catholic cs = this.catholicFacade.find(d.getSpouseMemberID());
-        csBean.setFname(cs.getFname());
-        csBean.setMname(cs.getMname());
-        csBean.setLname(cs.getLname());
-        csBean.setSex(cs.getSex());
-        csBean.setDob(cs.getDob());
-        csBean.setAge(cs.getAge());
-        csBean.setPlaceOfBirth(cs.getPlaceOfBirth());
-        csBean.setNatID(cs.getNatID());
-        csBean.setContact(cs.getContact());
-        csBean.setFfname(cs.getFfname());
-        csBean.setFmname(cs.getFmname());
-        csBean.setFlname(cs.getFlname());
-        csBean.setFnatID(cs.getFnatID());
-        csBean.setMfname(cs.getMfname());
-        csBean.setMmname(cs.getMmname());
-        csBean.setMlname(cs.getMlname());
-        csBean.setMnatID(cs.getMnatID());
-        
-        dBean.setId(d.getId());
-        dBean.setDateOfBurial(d.getDateOfBurial());
-        dBean.setDod(d.getDod());
-        dBean.setMemberid(d.getMemberid().getId());
-        dBean.setMinisterid(d.getMinisterid().getId());
-        dBean.setParishid(d.getParishid().getId());
-        dBean.setPlaceOfBurial(d.getPlaceOfBurial());
-        dBean.setPlaceOfDeath(d.getPlaceOfDeath());
-        dBean.setSacramentAdministered(d.getSacramentAdministered());
-        dBean.setSpouseMemberID(d.getSpouseMemberID());*/
+        this.d = d;
+        this.m = d.getMatrimonialid();
+        this.b = d.getBaptismid();
+        this.ministerid = d.getMinisterid().getId();
+        this.parishid = d.getParishid().getId();
+        if(m.getBaptismid().getMemberid().getId().equals(b.getMemberid().getId())){
+                this.fullname = m.getSpouse();
+            }
+            else{
+                this.fullname = m.getBaptismid().getMemberid().getFname().concat(" ").concat(m.getBaptismid().getMemberid().getLname());
+            } 
         return "viewdeath";
     }
     
     public String edit(){
-        Death d = new Death(dBean.getId());
-        d.setDateOfBurial(dBean.getDateOfBurial());
-        //d.setDod(dBean.getDod());
-        d.setPlaceOfBurial(dBean.getPlaceOfBurial());
-        d.setPlaceOfDeath(dBean.getPlaceOfDeath());
-        d.setSacramentAdministered(dBean.getSacramentAdministered());
-        Minister m = this.ministerFacade.find(dBean.getMinisterid());
-        Catholic c = this.catholicFacade.find(cBean.getId());
-        Parish p = this.parishFacade.find(dBean.getParishid());
-        User u = this.userFacade.find(2);
-        //d.setMemberid(c);
-        d.setMinisterid(m);
-        d.setParishid(p);
-        d.setUserid(u);
-        //d.setSpouseMemberID(csBean.getId());
-        this.deathFacade.edit(d);
-        return "death";
+        d.setParishid(this.parishFacade.find(parishid));
+        d.setMinisterid(this.ministerFacade.find(ministerid));
+        d.setUserid(this.userFacade.find(uBean.getId()));
+        d.setMatrimonialid(m);
+        d.setBaptismid(b);
+        try{
+            if(d.getDateOfDeath().compareTo(d.getDateOfBurial()) < 0){
+                this.deathFacade.edit(this.d);
+                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Death Record [ "+d.getId()+" ] for "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" updated successfully!");
+                this.b = new Baptism();
+                this.d = new Death();
+                this.m = new Matrimonial();
+                this.fullname = "";
+                return "death";
+            }
+            else{
+                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Date of Death: "+d.getDateOfDeath()+" is after the entered Date of Burial: "+d.getDateOfBurial()+" hence death record cannot be updated!");
+                return null;
+            }
+        }
+        catch(Exception e){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Death Record for "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" was not updated due to an error: "+e+"!");
+            return null;
+        }
     }
 }

@@ -12,7 +12,7 @@
 
 <t:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
-    <jsp:attribute name="page_title">View Baptism Record</jsp:attribute>
+    <jsp:attribute name="page_title">View Member Record for ${catholic.c.fname} ${catholic.c.lname}</jsp:attribute>
     <jsp:attribute name="content">
         <f:view>
             <div class="">
@@ -20,7 +20,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Baptism Record [# <h:outputText value="#{bBean.id}" /> ] - Personal Details </h2>
+                          <h2>Member Record [ ${catholic.c.id} ] - Personal Details </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>

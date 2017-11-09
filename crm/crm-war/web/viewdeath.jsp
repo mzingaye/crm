@@ -21,7 +21,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>Deceased Record Details </h2>
+                          <h2>Deceased Record for ${deathRec.b.memberid.fname} ${deathRec.b.memberid.lname}</h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -48,32 +48,38 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText readonly="true" styleClass="form-control has-feedback-left" id="fname" value="#{cBean.fname}"/>
+                                <h:inputText disabled="true"  styleClass="form-control has-feedback-left" id="fname" value="#{deathRec.b.memberid.fname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText readonly="true" styleClass="form-control has-feedback-left" id="mname" value="#{cBean.mname}"/>
+                                  <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="mname" value="#{deathRec.b.memberid.mname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText readonly="true" styleClass="form-control has-feedback-left" id="lname" value="#{cBean.lname}"/>
+                                  <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="lname" value="#{deathRec.b.memberid.lname}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                  <h:inputText readonly="true" styleClass="form-control has-feedback-left" id="sex" value="#{cBean.sex}"/>
+                                  <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="sex" value="#{deathRec.b.memberid.sex}"/>
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText readonly="true" styleClass="form-control has-feedback-left" id="natID" value="#{cBean.natID}"/>
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="natID" value="#{deathRec.b.memberid.natID}"/>
+                                </div>
+                            </div>
+                                <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Age</label>
+                                <div class="col-md-3 col-sm-3 col-xs-12">
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="age" value="#{deathRec.b.memberid.age}"/>
                                 </div>
                             </div>
                                 <hr>
@@ -84,23 +90,16 @@
                             <hr>
                             
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Full Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText  readonly="true" styleClass="form-control has-feedback-left" id="fname" value="#{csBean.fname}"/>
+                                  <h:inputText disabled="true"  styleClass="form-control has-feedback-left" id="fname" value="#{deathRec.fullname}"/>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Marriage</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText readonly="true" styleClass="form-control has-feedback-left" id="lname" value="#{csBean.lname}"/>
-                                </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText readonly="true" styleClass="form-control has-feedback-left" id="natID" value="#{csBean.natID}"/>
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="dom" value="#{deathRec.m.dateOfMarriage}"/>
                                 </div>
                             </div>
                             <hr>
@@ -112,64 +111,80 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Death</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="dod" value="#{dBean.dod}" title="dd/mm/yyyy" required="true" requiredMessage="The Dod field is required.">
-                                        <f:convertDateTime pattern="dd/mm/yyyy" />
+                                    <h:inputText styleClass="form-control has-feedback-left" id="dod" value="#{deathRec.d.dateOfDeath}" title="dd/mm/yyyy" required="true" requiredMessage="The Date of death field is required." converterMessage="Please provide date of death in dd/mm/yyyy format">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        <f:validateLength maximum="50" />
                                     </h:inputText>
+                                    <h:message for="dod" style="color: red"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Place Of Death</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                   <h:inputText styleClass="form-control has-feedback-left" id="placeOfDeath" value="#{dBean.placeOfDeath}" title="PlaceOfDeath" required="true" requiredMessage="The PlaceOfDeath field is required."/>
-                                </div>
+                                   <h:inputText styleClass="form-control has-feedback-left" id="placeOfDeath" value="#{deathRec.d.placeOfDeath}" title="PlaceOfDeath" required="true" requiredMessage="The PlaceOfDeath field is required.">
+                                        <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                    <h:message for="placeOfDeath" style="color: red"/>
+                                   </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date Of Burial</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="dateOfBurial" value="#{dBean.dateOfBurial}" title="dd/mm/yyyy" required="true" requiredMessage="The DateOfBurial field is required.">
-                                        <f:convertDateTime pattern="dd/mm/yyyy" />
+                                    <h:inputText styleClass="form-control has-feedback-left" id="dateOfBurial" value="#{deathRec.d.dateOfBurial}" title="dd/mm/yyyy" required="true" requiredMessage="The DateOfBurial field is required." converterMessage="Please provide date of burial in dd/mm/yyyy format">
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        <f:validateLength maximum="50" />
                                     </h:inputText>
+                                    <h:message for="dateOfBurial" style="color: red"/>
                                     
                                 </div>
                             </div> 
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Place Of Burial</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                   <h:inputText styleClass="form-control has-feedback-left" id="placeOfBurial" value="#{dBean.placeOfBurial}" title="PlaceOfBurial" required="true" requiredMessage="The PlaceOfBurial field is required."/>
-                                </div>
+                                   <h:inputText styleClass="form-control has-feedback-left" id="placeOfBurial" value="#{deathRec.d.placeOfBurial}" title="PlaceOfBurial" required="true" requiredMessage="The PlaceOfBurial field is required.">
+                                        <f:validateLength maximum="50" />
+                                    </h:inputText>
+                                    <h:message for="placeOfBurial" style="color: red"/>
+                                   </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sacraments Administered</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                   <h:inputTextarea styleClass="tags form-control" id="sacramentAdministered" value="#{dBean.sacramentAdministered}" title="SacramentAdministered" />
-                                </div>
+                                   <h:inputTextarea styleClass="tags form-control" id="sacramentAdministered" value="#{deathRec.d.sacramentAdministered}" title="SacramentAdministered" >
+                                        <f:validateLength maximum="50" />
+                                    </h:inputTextarea>
+                                    <h:message for="sacramentAdministered" style="color: red"/>
+                                   </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Minister</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                <h:selectOneMenu styleClass="form-control has-feedback" id="ministerid" value="#{dBean.ministerid}" title="Ministerid" required="true" requiredMessage="The Ministerid field is required.">
+                                <h:selectOneMenu styleClass="form-control has-feedback" id="ministerid" value="#{deathRec.ministerid}" title="Ministerid" required="true" requiredMessage="The Minister field is required.">
                                     <f:selectItem itemLabel="Select Minister" itemValue="0" />    
                                     <f:selectItems value="#{minister.getAll()}" 
                                                            var="m"
-                                                           itemLabel="#{m.fname} #{m.lname}"
+                                                           itemLabel="#{m.rank} #{m.fname} #{m.lname}"
                                                            itemValue="#{m.id}" />
                                 </h:selectOneMenu>
+                                    <h:message for="ministerid" style="color: red"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Parish</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                 <h:selectOneMenu styleClass="form-control has-feedback" id="parishid" value="#{dBean.parishid}" title="Parishid" required="true" requiredMessage="The Parishid field is required.">
+                                 <h:selectOneMenu styleClass="form-control has-feedback" id="parishid" value="#{deathRec.parishid}" title="Parishid" required="true" requiredMessage="The Parish field is required.">
                                       <f:selectItem itemLabel="Select Parish" itemValue="0" />  
                                      <f:selectItems value="#{parish.getAll()}" 
                                                            var="p"
                                                            itemLabel="#{p.name}"
                                                            itemValue="#{p.id}" />
                                 </h:selectOneMenu>
+                                    <h:message for="parishid" style="color: red"/>
                                 </div>
                             </div>
                             <hr>
-                            <h:commandButton action="#{deathRec.edit()}" value="Edit Record" styleClass="btn btn-success"/>
+                            <h:commandButton action="#{deathRec.edit()}" value="Update" styleClass="btn btn-success"/>
+                            <a href="death.jsp" value="" class="btn btn-danger">Cancel</a>
                         </h:form>
 
                     </div>

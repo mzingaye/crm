@@ -12,7 +12,7 @@
 
 <t:mainTemplate>
     <jsp:attribute name="title">Catholic Records Management</jsp:attribute>
-    <jsp:attribute name="page_title">View Baptism Record</jsp:attribute>
+    <jsp:attribute name="page_title">View Sponsor Record for ${sponsor.s.fname} ${sponsor.s.lname}</jsp:attribute>
     <jsp:attribute name="content">
          <f:view>
             <div class="">
@@ -20,7 +20,7 @@
                   <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                       <div class="x_title">
-                        <h2>  Baptism Record [# <h:outputText value="#{bBean.id}" /> ] - Sponsor Details </h2>
+                        <h2>  Sponsor Record [ ${sponsor.s.id} ] - Sponsor Details </h2>
                         <ul class="nav navbar-right panel_toolbox">
                           <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                           </li>
@@ -40,36 +40,6 @@
                       </div>
                     <div class="x_content">
                         <div id="wizard" class="form_wizard wizard_horizontal">
-                        <ul class="wizard_steps">
-                            <li>
-                              <a href="viewcatholic.jsp">
-                                <span class="step_no">1</span>
-                                <span class="step_descr" >
-                                    Step 1<br />
-                                    <small>Personal Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="viewsponsor.jsp">
-                                <span class="step_no" style="color: #FAFAFA; font-weight: bold">2</span>
-                                <span class="step_descr" style="color: black;  font-weight: bold">
-                                    Step 2<br />
-                                    <small>Sponsor Details</small>
-                                </span>
-                              </a>
-                            </li>
-                            <li>
-                              <a href="viewbaptism.jsp">
-                                <span class="step_no" >3</span>
-                                <span class="step_descr" >
-                                    Step 3<br />
-                                    <small>Baptism Details</small>
-                                </span>
-                              </a>
-                            </li>
-                          </ul>
-                            
                             <h:outputLabel>Sponsor Information</h:outputLabel>
                             <hr>
                             <h:form  styleClass="form-horizontal form-label-left">

@@ -16,9 +16,6 @@
     <jsp:attribute name="content">
         <f:view>
          <h:form>
-               
-             <h:commandButton value="Add New Record" action="#{deathRec.newRec()}" styleClass="btn btn-info"/>
-
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -47,12 +44,10 @@
                           <tr>
                             <th>#</th>
                             <th>Deceased</th>
-                            <th>Spouse</th>
                             <th>Date Of Death</th>
                             <th>Place Of Death</th>
                             <th>Date Of Burial</th>
                             <th>Place Of Burial</th>
-                            <th>Sacrament Administered</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
@@ -60,26 +55,23 @@
                             <c:forEach var="i" items="#{deathRec.all}" >
                                 <tr >
                                     <td>${i.id}</td>
-                                    <td>${i.memberid.fname} ${i.memberid.lname} [${i.memberid.id}]</td>
-                                    <td>${i.spouseMemberID}</td>
+                                    <td>${i.baptismid.memberid.fname} ${i.baptismid.memberid.lname} [${i.baptismid.memberid.id}]</td>
                                     <td>
-                                        <h:outputText value="#{i.dod}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        <h:outputText value="#{i.dateOfDeath}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:outputText>
                                     </td>
                                     <td>${i.placeOfDeath}</td>
                                     <td>
                                         <h:outputText value="#{i.dateOfBurial}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:outputText>
                                     </td>
                                     <td>${i.placeOfBurial}</td>
-                                    <td>${i.sacramentAdministered}</td>
                                     <td>
                                         <h:column>
-                                            <h:outputText value="" styleClass="fa fa-eye" title="View"/> |
-                                            <h:outputText value="" styleClass="fa fa-edit" title="Edit"/> |
-                                            <h:outputText value="" styleClass="fa fa-trash" title="Delete"/> 
+                                            <h:commandLink action="#{deathRec.view(i)}" value=" View" styleClass="fa fa-eye"/> | 
+                                            <h:commandLink action="#{deathRec.delete(i)}" value=" Delete" styleClass="fa fa-trash"/>
                                         </h:column>
                                     </td>
                                 </tr>
