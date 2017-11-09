@@ -135,6 +135,9 @@ public class ConfirmationController implements Serializable {
     public List<Confirmation> getall(){
         return this.confirmationFacade.findAll();
     }
+    public int count(){
+        return this.confirmationFacade.count();
+    }
     
     public String newCon(Baptism b){
         this.b = b;

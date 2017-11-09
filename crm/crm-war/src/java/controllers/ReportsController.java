@@ -35,7 +35,7 @@ import models.SponsorFacade;
 @RequestScoped
 public class ReportsController implements Serializable {
     @Inject
-    private BaptismBean b;
+    private BaptismBean ba;
     @Inject
     private ReportsBean reportsBean;
     @EJB
@@ -94,6 +94,36 @@ public class ReportsController implements Serializable {
 
     public ReportsController() {
     }
+    
+    private Baptism b;
+    private Confirmation c;
+    private Catholic m;
+
+    public Baptism getB() {
+        return b;
+    }
+
+    public void setB(Baptism b) {
+        this.b = b;
+    }
+
+    public Confirmation getC() {
+        return c;
+    }
+
+    public void setC(Confirmation c) {
+        this.c = c;
+    }
+
+    public Catholic getM() {
+        return m;
+    }
+
+    public void setM(Catholic m) {
+        this.m = m;
+    }
+    
+    
     
     /*public String view(int i){
         switch(this.r_type){

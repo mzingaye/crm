@@ -63,7 +63,7 @@
                                             <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:outputText>
                                     </td>
-                                    <td>${i.baptismid.memberid.fname} ${i.baptismid.memberid.fname}</td>
+                                    <td>${i.baptismid.memberid.fname} ${i.baptismid.memberid.lname}</td>
                                     <td>${i.spouse}</td>
                                     <td>${i.marriageBy}</td>
                                     <td>${i.ministerid.fname} ${i.ministerid.lname}</td>

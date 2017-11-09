@@ -33,7 +33,7 @@ import models.SponsorFacade;
 public class ReportsServlet extends HttpServlet {
     
     @Inject
-    private BaptismBean b;
+    private BaptismBean bBean;
     @Inject
     private ConfirmationBean con;
     @Inject
@@ -67,8 +67,22 @@ public class ReportsServlet extends HttpServlet {
                 
                 break;
             case "baptism":
-                Baptism c = baptismFacade.find(id);
-                try{
+                Baptism b = baptismFacade.find(id);
+                this.bBean.setCname(b.getCname());
+                this.bBean.setConfirmationList(b.getConfirmationList());
+                this.bBean.setDateOfBaptism(b.getDateOfBaptism());
+                this.bBean.setDeathList(b.getDeathList());
+                this.bBean.setFirstCommunion(b.getFirstCommunion());
+                this.bBean.setId(b.getId());
+                this.bBean.setMatrimonialList(b.getMatrimonialList());
+                this.bBean.setMatrimonialList1(b.getMatrimonialList1());
+                this.bBean.setMemberid(b.getMemberid());
+                this.bBean.setMinisterid(b.getMinisterid());
+                this.bBean.setParishid(b.getParishid());
+                this.bBean.setPhysicalAddress(b.getPhysicalAddress());
+                this.bBean.setSponsorid(b.getSponsorid());
+                this.bBean.setUserid(b.getUserid());
+                /*try{
                     Confirmation co = confirmationFacade.findMember(c.getMemberid());
                    // con.setBaptizedBy(co.getBaptizedBy());
                     con.setDateOfConfirmation(co.getDateOfConfirmation());
@@ -101,7 +115,8 @@ public class ReportsServlet extends HttpServlet {
                     mBean.setMarriedTo(null);
                     mBean.setParishid(0);
                 }
-                b.setBaptismNumber(c.getBaptismNumber());*/
+                b.setBaptismNumber(c.getBaptismNumber());
+                b.setId(c.getId());
                 b.setCname(c.getCname());
                 b.setDateOfBaptism(c.getDateOfBaptism());
                 b.setFirstCommunion(c.getFirstCommunion());
@@ -109,7 +124,7 @@ public class ReportsServlet extends HttpServlet {
                 b.setMinisterid(c.getMinisterid());
                 b.setParishid(c.getParishid());
                 b.setPhysicalAddress(c.getPhysicalAddress());
-                b.setSponsorid(c.getSponsorid());
+                b.setSponsorid(c.getSponsorid());*/
                 break;
             case "confirmation":
                 

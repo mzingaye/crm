@@ -93,6 +93,9 @@ public class BaptismController implements Serializable {
     public List<Baptism> getAll(){
         return this.baptismFacade.findAll();
     }
+    public int count(){
+        return this.baptismFacade.count();
+    }
     
     public List<Baptism> getCname(String cname){
         return this.baptismFacade.findByCname(cname);
@@ -190,6 +193,8 @@ public class BaptismController implements Serializable {
         this.c = c;
         this.s = new Sponsor();
         this.b = new Baptism();
+        this.ministerid = 0;
+        this.parishid = 0;
         return "newBaptism";
     }
     

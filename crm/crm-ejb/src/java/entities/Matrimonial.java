@@ -39,7 +39,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Matrimonial.findById", query = "SELECT m FROM Matrimonial m WHERE m.id = :id"),
     @NamedQuery(name = "Matrimonial.findByDateOfMarriage", query = "SELECT m FROM Matrimonial m WHERE m.dateOfMarriage = :dateOfMarriage"),
     @NamedQuery(name = "Matrimonial.findBySpouse", query = "SELECT m FROM Matrimonial m WHERE m.spouse = :spouse"),
-    @NamedQuery(name = "Matrimonial.findByIsSpouseCatholic", query = "SELECT m FROM Matrimonial m WHERE m.isSpouseCatholic = :isSpouseCatholic"),
     @NamedQuery(name = "Matrimonial.findByHusbandAddress", query = "SELECT m FROM Matrimonial m WHERE m.husbandAddress = :husbandAddress"),
     @NamedQuery(name = "Matrimonial.findByWifeAddress", query = "SELECT m FROM Matrimonial m WHERE m.wifeAddress = :wifeAddress"),
     @NamedQuery(name = "Matrimonial.findByConditionOfHus", query = "SELECT m FROM Matrimonial m WHERE m.conditionOfHus = :conditionOfHus"),
@@ -59,20 +58,14 @@ public class Matrimonial implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+    @Size(max = 255)
+    @Column(name = "spouse")
+    private String spouse;
     @Basic(optional = false)
     @NotNull
     @Column(name = "dateOfMarriage")
     @Temporal(TemporalType.DATE)
     private Date dateOfMarriage;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "spouse")
-    private String spouse;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "isSpouseCatholic")
-    private int isSpouseCatholic;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 100)
@@ -128,12 +121,15 @@ public class Matrimonial implements Serializable {
     private Date createdAt;
     @OneToMany(mappedBy = "matrimonialid")
     private List<Death> deathList;
-    @JoinColumn(name = "Baptismid", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Baptism baptismid;
+    @JoinColumn(name = "spouseBaptismid", referencedColumnName = "id")
+    @ManyToOne
+    private Baptism spouseBaptismid;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
+    @JoinColumn(name = "Baptismid", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private Baptism baptismid;
     @JoinColumn(name = "Parishid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Parish parishid;
@@ -148,11 +144,9 @@ public class Matrimonial implements Serializable {
         this.id = id;
     }
 
-    public Matrimonial(Integer id, Date dateOfMarriage, String spouse, int isSpouseCatholic, String husbandAddress, String wifeAddress, String conditionOfHus, String conditionOfWife, String consentHus, String consentWife, String marriageBy, int husbandSponsorID, int wifeSponsorID, String officialDesignation) {
+    public Matrimonial(Integer id, Date dateOfMarriage, String husbandAddress, String wifeAddress, String conditionOfHus, String conditionOfWife, String consentHus, String consentWife, String marriageBy, int husbandSponsorID, int wifeSponsorID, String officialDesignation) {
         this.id = id;
         this.dateOfMarriage = dateOfMarriage;
-        this.spouse = spouse;
-        this.isSpouseCatholic = isSpouseCatholic;
         this.husbandAddress = husbandAddress;
         this.wifeAddress = wifeAddress;
         this.conditionOfHus = conditionOfHus;
@@ -173,14 +167,6 @@ public class Matrimonial implements Serializable {
         this.id = id;
     }
 
-    public Date getDateOfMarriage() {
-        return dateOfMarriage;
-    }
-
-    public void setDateOfMarriage(Date dateOfMarriage) {
-        this.dateOfMarriage = dateOfMarriage;
-    }
-
     public String getSpouse() {
         return spouse;
     }
@@ -189,12 +175,12 @@ public class Matrimonial implements Serializable {
         this.spouse = spouse;
     }
 
-    public int getIsSpouseCatholic() {
-        return isSpouseCatholic;
+    public Date getDateOfMarriage() {
+        return dateOfMarriage;
     }
 
-    public void setIsSpouseCatholic(int isSpouseCatholic) {
-        this.isSpouseCatholic = isSpouseCatholic;
+    public void setDateOfMarriage(Date dateOfMarriage) {
+        this.dateOfMarriage = dateOfMarriage;
     }
 
     public String getHusbandAddress() {
@@ -302,12 +288,12 @@ public class Matrimonial implements Serializable {
         this.deathList = deathList;
     }
 
-    public Baptism getBaptismid() {
-        return baptismid;
+    public Baptism getSpouseBaptismid() {
+        return spouseBaptismid;
     }
 
-    public void setBaptismid(Baptism baptismid) {
-        this.baptismid = baptismid;
+    public void setSpouseBaptismid(Baptism spouseBaptismid) {
+        this.spouseBaptismid = spouseBaptismid;
     }
 
     public User getUserid() {
@@ -316,6 +302,14 @@ public class Matrimonial implements Serializable {
 
     public void setUserid(User userid) {
         this.userid = userid;
+    }
+
+    public Baptism getBaptismid() {
+        return baptismid;
+    }
+
+    public void setBaptismid(Baptism baptismid) {
+        this.baptismid = baptismid;
     }
 
     public Parish getParishid() {

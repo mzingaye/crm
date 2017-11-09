@@ -29,7 +29,7 @@
                         </tr>
                         <tr>
                             <td><span style="font-size:15px">Baptism Reg. No.</span> </td>
-                            <td><span style="font-size:15px">${bBean.baptismNumber}</span></td>
+                            <td><span style="font-size:15px">${bBean.id}</span></td>
                         </tr>
                         <tr>
                             <td><span style="font-size:15px">Christian Name</span> </td>
@@ -76,50 +76,93 @@
                         </tr>
                         <tr>
                             <td><span style="font-size:15px">Baptized by</span> </td>
-                            <td><span style="font-size:15px">${bBean.ministerid.fname} ${bBean.ministerid.lname}</span> </td>
+                            <td><span style="font-size:15px">${bBean.ministerid.rank} ${bBean.ministerid.fname} ${bBean.ministerid.lname}</span> </td>
                         </tr>
-                        <tr>
-                            <td><span style="font-size:15px">Confirmed at</span> </td>
-                            <td><span style="font-size:15px">${coBean.parishid.name}</span> </td>
-                        </tr><tr>
-                            <td><span style="font-size:15px">Date</span> </td>
-                            <td>
-                                <span style="font-size:15px">
-                                    <h:outputText value="#{coBean.dateOfConfirmation}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputText>
-                                </span> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span style="font-size:15px">Married to</span> </td>
-                            <td><span style="font-size:15px">${mBean.marriedTo}</span> </td>
-                        </tr>
-                        <tr>
-                            <td><span style="font-size:15px">Date</span> </td>
-                            <td>
-                                <span style="font-size:15px">
-                                    <h:outputText value="#{mBean.dateOfMarriage}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy" />
-                                    </h:outputText>
-                                </span> 
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><span style="font-size:15px">Registered at</span> </td>
-                            <td><span style="font-size:15px">${mBean.parish.name}</span> </td>
-                        </tr><tr>
-                            <td><span style="font-size:15px">No.</span> </td>
-                            <td><span style="font-size:15px">${mBean.marriageNumber}</span> </td>
-                        </tr>
-                        <tr>
-                            <td><span style="font-size:15px">Died at</span> </td>
-                            <td><span style="font-size:15px"></span> </td>
-                        </tr>
-                        <tr>
-                            <td><span style="font-size:15px">Date</span> </td>
-                            <td><span style="font-size:15px"></span> </td>
-                        </tr>
+                        <c:forEach var="c" items="#{bBean.confirmationList}">
+                            <tr>
+                                <td><span style="font-size:15px">Confirmed at</span> </td>
+                                <td><span style="font-size:15px">${c.parishid.name}</span> </td>
+                            </tr><tr>
+                                <td><span style="font-size:15px">Date of Confirmation</span> </td>
+                                <td>
+                                    <span style="font-size:15px">
+                                        <h:outputText value="#{c.dateOfConfirmation}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </span> 
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        <c:forEach var="m" items="#{bBean.matrimonialList}">
+                            <tr>
+                                <td><span style="font-size:15px">Married to</span> </td>
+                                <td>
+                                    <span style="font-size:15px">
+                                        ${m.baptismid.memberid.fname} ${m.baptismid.memberid.lname}
+                                    </span> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size:15px">Date of Marriage</span> </td>
+                                <td>
+                                    <span style="font-size:15px">
+                                        <h:outputText value="#{m.dateOfMarriage}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </span> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size:15px">Registered at</span> </td>
+                                <td><span style="font-size:15px">${m.parishid.name}</span> </td>
+                            </tr><tr>
+                                <td><span style="font-size:15px">Marriage Reg. No.</span> </td>
+                                <td><span style="font-size:15px">${m.id}</span> </td>
+                            </tr>
+                        </c:forEach>
+                            <c:forEach var="m" items="#{bBean.matrimonialList1}">
+                            <tr>
+                                <td><span style="font-size:15px">Married to</span> </td>
+                                <td>
+                                    <span style="font-size:15px">
+                                       ${m.spouse} 
+                                    </span> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size:15px">Date of Marriage</span> </td>
+                                <td>
+                                    <span style="font-size:15px">
+                                        <h:outputText value="#{m.dateOfMarriage}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </span> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size:15px">Registered at</span> </td>
+                                <td><span style="font-size:15px">${m.parishid.name}</span> </td>
+                            </tr><tr>
+                                <td><span style="font-size:15px">Marriage Reg. No.</span> </td>
+                                <td><span style="font-size:15px">${m.id}</span> </td>
+                            </tr>
+                        </c:forEach>
+                        <c:forEach var="d" items="#{bBean.deathList}">
+                            <tr>
+                                <td><span style="font-size:15px">Died at</span> </td>
+                                <td><span style="font-size:15px">${d.placeOfDeath}</span> </td>
+                            </tr>
+                            <tr>
+                                <td><span style="font-size:15px">Date of Death</span> </td>
+                                <td>
+                                    <span style="font-size:15px">
+                                        <h:outputText value="#{d.dateOfDeath}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </span> 
+                                </td>
+                            </tr>
+                        </c:forEach>
                         <tr>
                             <td colspan="2"><span style="font-size:12px"><i>I herewith certify that the above is a true extract from the Baptism Register.</i></span> </td>
                         </tr>

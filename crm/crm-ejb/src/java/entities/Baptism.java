@@ -77,8 +77,10 @@ public class Baptism implements Serializable {
     private Date createdAt;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "baptismid")
     private List<Death> deathList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "baptismid")
+    @OneToMany(mappedBy = "spouseBaptismid")
     private List<Matrimonial> matrimonialList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "baptismid")
+    private List<Matrimonial> matrimonialList1;
     @JoinColumn(name = "Userid", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userid;
@@ -183,6 +185,15 @@ public class Baptism implements Serializable {
 
     public void setMatrimonialList(List<Matrimonial> matrimonialList) {
         this.matrimonialList = matrimonialList;
+    }
+
+    @XmlTransient
+    public List<Matrimonial> getMatrimonialList1() {
+        return matrimonialList1;
+    }
+
+    public void setMatrimonialList1(List<Matrimonial> matrimonialList1) {
+        this.matrimonialList1 = matrimonialList1;
     }
 
     public User getUserid() {

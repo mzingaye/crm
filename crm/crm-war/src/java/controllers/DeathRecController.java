@@ -111,6 +111,10 @@ public class DeathRecController implements Serializable  {
         this.d = new Death();
     }
     
+    public int count(){
+        return this.deathFacade.count();
+    }
+    
     public String newRec(Baptism b){
         this.b = b;
         this.d = new Death();

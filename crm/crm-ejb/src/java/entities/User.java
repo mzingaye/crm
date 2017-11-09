@@ -48,9 +48,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "User.findByDeleteFlag", query = "SELECT u FROM User u WHERE u.deleteFlag = :deleteFlag"),
     @NamedQuery(name = "User.findByCreatedAt", query = "SELECT u FROM User u WHERE u.createdAt = :createdAt")})
 public class User implements Serializable {
-    @Lob
-    @Column(name = "img")
-    private byte[] img;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -88,6 +86,9 @@ public class User implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "designation")
     private String designation;
+    @Lob
+    @Column(name = "img")
+    private byte[] img;
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
     @Column(name = "createdAt")
@@ -191,6 +192,13 @@ public class User implements Serializable {
         this.designation = designation;
     }
 
+    public byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(byte[] img) {
+        this.img = img;
+    }
 
     public Integer getDeleteFlag() {
         return deleteFlag;
@@ -276,14 +284,6 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "entities.User[ id=" + id + " ]";
-    }
-
-    public byte[] getImg() {
-        return img;
-    }
-
-    public void setImg(byte[] img) {
-        this.img = img;
     }
     
 }

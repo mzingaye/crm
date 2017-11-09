@@ -7,6 +7,7 @@ package controllers;
 
 import beans.SponsorBean;
 import beans.SponsorSpouseBean;
+import beans.UserBean;
 import entities.Catholic;
 import entities.Sponsor;
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import models.SponsorFacade;
+import org.apache.log4j.Logger;
 
 /**
  *
@@ -27,7 +29,12 @@ public class SponsorController implements Serializable  {
     private SponsorBean sBean;
     
     @Inject
+    private UserBean uBean;
+    
+    @Inject
     private SponsorSpouseBean ssBean;
+    
+    Logger log = Logger.getLogger(SponsorController.class);
     
     private Sponsor s;
 
@@ -47,6 +54,9 @@ public class SponsorController implements Serializable  {
     public List<Sponsor> getAll(){
         return this.sponsorFacade.findAll();
     }
+    public int count(){
+        return this.sponsorFacade.count();
+    }
     
     public String newMember(){
         this.s = new Sponsor();
@@ -54,9 +64,17 @@ public class SponsorController implements Serializable  {
     }
     
     public String add(){
-        this.sponsorFacade.create(this.s);
-        this.s = new Sponsor();
-        return "sponsors";
+        try{
+           this.sponsorFacade.create(this.s);
+            this.s = new Sponsor();
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Sponsor [ "+s.getId()+" ]  created successfully!");
+            return "sponsors";  
+        }
+        catch(Exception e){
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Cannot create sponsor. Error : "+e);
+            return null;
+        }
+       
     }
     
     public String view(Sponsor s){
@@ -65,8 +83,10 @@ public class SponsorController implements Serializable  {
     }
     
     public String make(Catholic c){
-        if(c.getAge()<18)
+        if(c.getAge()<18){
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Member [ "+c.getId()+" ] is below 18 years!");
             return null;
+        }
         else{
             this.s = new Sponsor();
             this.s.setFname(c.getFname());
@@ -83,8 +103,16 @@ public class SponsorController implements Serializable  {
     }
     
     public String edit(){
-        this.sponsorFacade.edit(s);
-        return "sponsors";
+        try{
+           this.sponsorFacade.edit(s);
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Sponsor [ "+s.getId()+" ]  updated successfully!");
+            return "sponsors";  
+        }
+        catch(Exception e){
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Cannot update sponsor. Error : "+e);
+            return null;
+        }
+        
     }
     
     public String nextBapt(){

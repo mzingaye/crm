@@ -94,17 +94,6 @@
                             <h:outputLabel>Spouse Information</h:outputLabel>
                             <hr>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Is Spouse Baptized?</label>
-                                <div class="col-md-3 col-sm-3 col-xs-12">
-                                <h:selectOneMenu styleClass="form-control has-feedback-left" id="iscath" value="#{matrimonial.m.isSpouseCatholic}" required="true" requiredMessage="The Is Spouse Baptized field is required." >
-                                        <f:selectItem itemLabel="Select" />
-                                        <f:selectItem itemLabel="No" itemValue="1" />
-                                        <f:selectItem itemLabel="Yes" itemValue="2" />
-                                    </h:selectOneMenu>
-                                    <h:message for="iscath" style="color: red"/>
-                                </div>
-                            </div>
-                                <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Find Spouse</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <table>

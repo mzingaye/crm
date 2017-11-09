@@ -43,10 +43,19 @@ public class BaptismBean implements Serializable {
     private Sponsor sponsorid;
     private List<Death> deathList;
     private List<Matrimonial> matrimonialList;
+    private List<Matrimonial> matrimonialList1;
     private User userid;
     private List<Confirmation> confirmationList;
 
     public BaptismBean() {
+    }
+
+    public List<Matrimonial> getMatrimonialList1() {
+        return matrimonialList1;
+    }
+
+    public void setMatrimonialList1(List<Matrimonial> matrimonialList1) {
+        this.matrimonialList1 = matrimonialList1;
     }
 
     public List<Death> getDeathList() {

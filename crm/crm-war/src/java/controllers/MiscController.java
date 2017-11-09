@@ -70,6 +70,9 @@ public class MiscController implements Serializable {
     public List<Misc> getAll(){
         return this.miscFacade.findAll();
     }
+    public int count(){
+        return this.miscFacade.count();
+    }
     public String newMisc(Catholic c){
         this.c = c;
         this.m = new Misc();

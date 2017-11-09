@@ -78,6 +78,10 @@ public class CatholicController implements Serializable {
         return this.catholicFacade.findAll();
     }
     
+    public int count(){
+        return this.catholicFacade.count();
+    }
+    
     public String newMember(){
         this.c = new Catholic();
         return "addmember";
@@ -89,20 +93,20 @@ public class CatholicController implements Serializable {
         try{
             this.c.setUserid(this.userFacade.find(uBean.getId()));
             this.catholicFacade.create(this.c);
-            log.info("Member "+c.getId()+" created successfully by System User: "+uBean.getUsername());
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Member [ "+c.getId()+" ]  created successfully!");
             this.c = new Catholic();  
             context.addMessage("update", new FacesMessage(FacesMessage.SEVERITY_INFO, "Member "+c.getId()+"created!", null));
         
         }
         catch(ConstraintViolationException e){
-            log.error("Constraint violation when adding new catholic : "+e.getConstraintViolations());
+            log.error("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Constraint violation when adding new catholic : "+e.getConstraintViolations());
             for(ConstraintViolation violation : e.getConstraintViolations()) {
                 System.out.println(violation.getMessage());
             }
             context.addMessage("update", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Member "+c.getId()+"failed!", null));
         }
         catch(Exception ex){
-            log.error("Exception occurred when adding new catholic : "+ex);
+            log.error("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Exception occurred when adding new member : "+ex);
             context.addMessage("update", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Member failed!", null));
             ex.printStackTrace();
         }
@@ -117,11 +121,11 @@ public class CatholicController implements Serializable {
      public String edit(){
         try{
             this.catholicFacade.edit(this.c);
-            log.info("Member "+c.getId()+" updated successfully by System User: "+uBean.getUsername());
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Member [ "+c.getId()+" ]  updated successfully!");
             c = new Catholic();
         }
         catch(Exception e){
-            log.error("Constraint violation when updating member #"+c.getId()+" : "+e);
+            log.error("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Constraint violation when updating member #"+c.getId()+" : "+e);
         }
         return "catholics";
     }
@@ -134,7 +138,7 @@ public class CatholicController implements Serializable {
     public String delete(Catholic c){
         this.c = c;
         this.catholicFacade.remove(this.c);
-        log.info("Member "+c.getId()+" deleted successfully by System User: "+uBean.getUsername());
+        log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Member [ "+c.getId()+" ]  deleted successfully!");
         return "catholic";
     }
     
