@@ -95,7 +95,7 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{sponsor.s.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Date of Birth field is required." converterMessage="Please provide date of birth in dd/mm/yyyy format">
-                                        <f:convertDateTime pattern="dd/mm/yyyy" />
+                                        <f:convertDateTime pattern="dd/MM/yyyy" />
                                     <f:validateLength maximum="50" />
                                     </h:inputText>
                                   <h:message for="dob" style="color: red"/>  

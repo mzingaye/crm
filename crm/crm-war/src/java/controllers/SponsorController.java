@@ -145,4 +145,15 @@ public class SponsorController implements Serializable  {
         ssBean.setContact(ss.getContact());
         return null;
     }
+    
+    public void delete(Sponsor s){
+        try{
+            this.sponsorFacade.remove(s);
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Sponsor Record. No "+s.getId()+" deleted succesffully!");
+        
+        }
+        catch(Exception e){
+            log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Sponsor Record. No "+s.getId()+" cannot be deleted due to Error :"+e);
+        }
+    }
 }

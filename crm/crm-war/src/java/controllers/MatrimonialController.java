@@ -291,5 +291,14 @@ public class MatrimonialController implements Serializable  {
             return null;
         }
     }
+    public void delete(Matrimonial m){
+        try{
+            this.matrimonialFacade.remove(m);
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Marriage Reg. No "+m.getId()+"  deleted successfully!");
+        }
+        catch(Exception e){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Marriage Reg. No "+m.getId()+" cannot be deleted due to Error :"+e);
+        }
+    }
     
 }

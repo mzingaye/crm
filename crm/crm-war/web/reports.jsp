@@ -47,19 +47,19 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <h:selectOneMenu styleClass="form-control has-feedback" id="r_type" value="#{reports.r_type}" title="" required="true" requiredMessage="The Ministerid field is required.">
                                         <f:selectItem itemLabel="Select Report Type" itemValue="0" />
-                                        <f:selectItem itemLabel="Catholics Report" itemValue="catholic" />
-                                        <f:selectItem itemLabel="Sponsors Report" itemValue="sponsor" />
+                                        <%--f:selectItem itemLabel="Catholics Report" itemValue="catholic" />
+                                        <f:selectItem itemLabel="Sponsors Report" itemValue="sponsor" /--%>
                                         <f:selectItem itemLabel="Baptism Report" itemValue="baptism" />
-                                        <f:selectItem itemLabel="Confirmation Report" itemValue="confirmation" />
+                                        <%--f:selectItem itemLabel="Confirmation Report" itemValue="confirmation" />
                                         <f:selectItem itemLabel="Matrimonial Report" itemValue="matrimonial" />
-                                        <f:selectItem itemLabel="Death Report" itemValue="death" />
+                                        <f:selectItem itemLabel="Death Report" itemValue="death" /--%>
                                     </h:selectOneMenu>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <!--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Select Period View : </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:selectOneMenu styleClass="form-control has-feedback" id="r_period" value="#{reports.r_period}" title="" required="true" requiredMessage="The Ministerid field is required.">
+                                    <%--h:selectOneMenu styleClass="form-control has-feedback" id="r_period" value="#{reports.r_period}" title="" required="true" requiredMessage="The Ministerid field is required.">
                                         <f:selectItem itemLabel="Select Reporting Year" itemValue="0" />
                                         <f:selectItem itemLabel="1990" itemValue="1990" />
                                         <f:selectItem itemLabel="1991" itemValue="1991" />
@@ -93,10 +93,10 @@
                                         <f:selectItem itemLabel="2019" itemValue="2019" />
                                         <f:selectItem itemLabel="2020" itemValue="2020" />
                                         
-                                    </h:selectOneMenu>
+                                    </h:selectOneMenu--%>
                                 </div>
                             </div>
-                            <hr>
+                            <hr-->
                             <h:commandButton action="#{reports.generate()}" value="Generate Report" styleClass="btn btn-info"/>
                         </h:form>
                             <hr>

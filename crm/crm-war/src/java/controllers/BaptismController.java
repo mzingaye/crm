@@ -22,6 +22,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
+import javax.swing.JOptionPane;
 import models.BaptismFacade;
 import models.MinisterFacade;
 import models.ParishFacade;
@@ -212,7 +213,16 @@ public class BaptismController implements Serializable {
     }
     
     public void delete(Baptism b){
-        this.baptismFacade.remove(b);
+        try{
+            //int del = JOptionPane.showConfirmDialog(null, "");
+            //if(del == 1){
+                this.baptismFacade.remove(b);
+                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" deleted succesfful!");
+            //}
+        }
+        catch(Exception e){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Baptism Record. No "+b.getId()+" cannot be deleted due to Error :"+e);
+        }
     }
     
 }

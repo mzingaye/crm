@@ -212,4 +212,13 @@ public class DeathRecController implements Serializable  {
             return null;
         }
     }
+    public void delete(Death d){
+        try{
+            this.deathFacade.remove(d);
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Death Record. No "+d.getId()+"  deleted successfully!");
+        }
+        catch(Exception e){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Death Record. No "+d.getId()+" cannot be deleted due to Error :"+e);
+        }
+    }
 }
