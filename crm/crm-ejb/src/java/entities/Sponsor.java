@@ -40,10 +40,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sponsor.findByMname", query = "SELECT s FROM Sponsor s WHERE s.mname = :mname"),
     @NamedQuery(name = "Sponsor.findByLname", query = "SELECT s FROM Sponsor s WHERE s.lname = :lname"),
     @NamedQuery(name = "Sponsor.findBySex", query = "SELECT s FROM Sponsor s WHERE s.sex = :sex"),
-    @NamedQuery(name = "Sponsor.findByDob", query = "SELECT s FROM Sponsor s WHERE s.dob = :dob"),
-    @NamedQuery(name = "Sponsor.findByAge", query = "SELECT s FROM Sponsor s WHERE s.age = :age"),
-    @NamedQuery(name = "Sponsor.findByNatID", query = "SELECT s FROM Sponsor s WHERE s.natID = :natID"),
-    @NamedQuery(name = "Sponsor.findByContact", query = "SELECT s FROM Sponsor s WHERE s.contact = :contact"),
     @NamedQuery(name = "Sponsor.findByDeleteFlag", query = "SELECT s FROM Sponsor s WHERE s.deleteFlag = :deleteFlag"),
     @NamedQuery(name = "Sponsor.findByCreatedAt", query = "SELECT s FROM Sponsor s WHERE s.createdAt = :createdAt")})
 public class Sponsor implements Serializable {
@@ -71,25 +67,6 @@ public class Sponsor implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "sex")
     private String sex;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "dob")
-    @Temporal(TemporalType.DATE)
-    private Date dob;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "age")
-    private int age;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "natID")
-    private String natID;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
-    @Column(name = "contact")
-    private String contact;
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
     @Column(name = "createdAt")
@@ -107,15 +84,11 @@ public class Sponsor implements Serializable {
         this.id = id;
     }
 
-    public Sponsor(Integer id, String fname, String lname, String sex, Date dob, int age, String natID, String contact) {
+    public Sponsor(Integer id, String fname, String lname, String sex) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.sex = sex;
-        this.dob = dob;
-        this.age = age;
-        this.natID = natID;
-        this.contact = contact;
     }
 
     public Integer getId() {
@@ -156,38 +129,6 @@ public class Sponsor implements Serializable {
 
     public void setSex(String sex) {
         this.sex = sex;
-    }
-
-    public Date getDob() {
-        return dob;
-    }
-
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getNatID() {
-        return natID;
-    }
-
-    public void setNatID(String natID) {
-        this.natID = natID;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
     }
 
     public Integer getDeleteFlag() {

@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="natID" value="#{deathRec.b.memberid.natID}"/>
@@ -81,7 +81,7 @@
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="age" value="#{deathRec.b.memberid.age}"/>
                                 </div>
-                            </div>
+                            </div--%>
                                 <hr>
                             </h:form>
                                 

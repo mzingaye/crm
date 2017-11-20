@@ -36,6 +36,11 @@ public class ConfirmationFacade extends AbstractFacade<Confirmation> {
     }
 
     public Confirmation findBaptism(Baptism baptismid) {
-        return getEntityManager().createNamedQuery("Confirmation.findBaptism",Confirmation.class).setParameter("baptismid",baptismid).getSingleResult(); 
+        try{
+            return getEntityManager().createNamedQuery("Confirmation.findBaptism",Confirmation.class).setParameter("baptismid",baptismid).getSingleResult(); 
+        }
+        catch(NoResultException n){
+            return null;
+        }
     }
 }

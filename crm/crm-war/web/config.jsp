@@ -112,7 +112,7 @@
                                 <th>Last Name</th>
                                 <th>Title</th>
                                 <th>Order</th>
-                                <th>Contact</th>
+                                <!--th>Contact</th-->
                                 <th>Actions</th>
                               </tr>
                             </thead>
@@ -124,7 +124,7 @@
                                         <td>${i.lname}</td>
                                         <td>${i.rank}</td>
                                         <td>${i.morder}</td>
-                                        <td>${i.contact}</td>
+                                        <%--td>${i.contact}</td--%>
                                         <td>
                                             <h:column>
                                                 <h:commandLink action="#{minister.view(i)}" value="" styleClass="fa fa-eye"/> |

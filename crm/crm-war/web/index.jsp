@@ -335,7 +335,6 @@
                           <div class="media-body">
                             <a class="title" href="#">${m.rank} ${m.fname} ${m.lname}</a>
                             <p>${m.morder}.</p>
-                            <p>${m.contact}.</p>
                           </div>
                         </article>
                     </c:forEach>

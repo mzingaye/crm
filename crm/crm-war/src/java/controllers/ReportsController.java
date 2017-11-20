@@ -170,7 +170,7 @@ public class ReportsController implements Serializable {
                 rep = new ArrayList<>();
                 for(Catholic c : catholicFacade.findAll()){
                    reportsBean.setId(c.getId());
-                   reportsBean.setName(c.getFname()+" "+c.getLname()+" "+c.getNatID()+" "+c.getDob());
+                   reportsBean.setName(c.getFname()+" "+c.getLname());//+" "+c.getNatID()+" "+c.getDob());
                    reportsBean.setDate(c.getCreatedAt());
                    rep.add(reportsBean);
                    reportsBean = new ReportsBean();
@@ -180,7 +180,7 @@ public class ReportsController implements Serializable {
                 rep = new ArrayList<>();
                 for(Sponsor c : sponsorFacade.findAll()){
                    reportsBean.setId(c.getId());
-                   reportsBean.setName(c.getFname()+" "+c.getLname()+" "+c.getNatID()+" "+c.getDob());
+                   reportsBean.setName(c.getFname()+" "+c.getLname());//+" "+c.getNatID()+" "+c.getDob());
                    reportsBean.setDate(c.getCreatedAt());
                    rep.add(reportsBean);
                    reportsBean = new ReportsBean();

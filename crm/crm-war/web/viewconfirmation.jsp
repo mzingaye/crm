@@ -69,12 +69,12 @@
                                 </div>
                             </div>
                             
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="natID" value="#{confirmation.b.memberid.natID}"/>
                                 </div>
-                            </div>
+                            </div--%>
                                 <hr>
                             </h:form>
                             <h:outputLabel>Confirmation Information</h:outputLabel>
@@ -86,6 +86,13 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback" id="baptizedat" value="#{confirmation.b.parishid.name} " title="BaptizedAt" required="true" requiredMessage="The Baptized At field is required."/>
                                     <h:message for="baptizedat" style="color: red"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptism Reg. Number</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback" id="baptReg" value="#{confirmation.b.baptReg} " title="Baptism Reg. Number" required="true" requiredMessage="The Baptism Reg. Number field is required."/>
+                                    <h:message for="baptReg" style="color: red"/>
                                 </div>
                             </div>
                              <div class="form-group">

@@ -82,7 +82,7 @@
                                     <h:message for="sex" style="color: red"/>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{sponsor.s.natID}" title="National ID / Passport Number" required="true" requiredMessage="The National ID / Passport Number field is required.">
@@ -119,7 +119,7 @@
                                     </h:inputTextarea>
                                     <h:message for="contact" style="color: red"/>  
                                 </div>
-                            </div> 
+                            </div--%> 
                             <hr>
                             <h:commandButton action="#{sponsor.add()}" value="Save" styleClass="btn btn-success"/>
                             <a href="sponsors.jsp" value="" class="btn btn-danger">Cancel</a>

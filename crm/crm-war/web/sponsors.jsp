@@ -16,6 +16,8 @@
     
     <jsp:attribute name="content">
         <f:view>
+            <h:form>
+                      <h:commandButton value="Add New Record" action="#{sponsor.newMember()}" styleClass="btn btn-info"/>
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -39,8 +41,7 @@
                   </div>
                   <div class="x_content">
 
-                  <h:form>
-                      
+                  
                     <table id="datatable" class="table table-striped  ">
                         <thead>
                           <tr>
@@ -48,11 +49,7 @@
                             <th>First Name</th>
                             <th>Middle Name</th>
                             <th>Last Name</th>
-                            <th>National ID</th>
                             <th>Sex</th>
-                            <th>Date Of Birth</th>
-                            <th>Age</th>
-                            <th>Contact</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
@@ -63,15 +60,7 @@
                                     <td>${i.fname}</td>
                                     <td>${i.mname}</td>
                                     <td>${i.lname}</td>
-                                    <td>${i.natID}</td>
                                     <td>${i.sex}</td>
-                                    <td>
-                                        <h:outputText value="#{i.dob}">
-                                            <f:convertDateTime pattern="dd/MM/yyyy" />
-                                        </h:outputText>
-                                    </td>
-                                    <td>${i.age}</td>
-                                    <td>${i.contact}</td>
                                     <td>
                                         <h:column>
                                                 <h:commandLink action="#{sponsor.view(i)}" value=" View" styleClass="fa fa-eye"/> |

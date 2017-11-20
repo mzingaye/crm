@@ -174,14 +174,6 @@ public class Death implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Matrimonial getMatrimonialid() {
-        return matrimonialid;
-    }
-
-    public void setMatrimonialid(Matrimonial matrimonialid) {
-        this.matrimonialid = matrimonialid;
-    }
-
     public User getUserid() {
         return userid;
     }
@@ -196,6 +188,14 @@ public class Death implements Serializable {
 
     public void setBaptismid(Baptism baptismid) {
         this.baptismid = baptismid;
+    }
+
+    public Matrimonial getMatrimonialid() {
+        return matrimonialid;
+    }
+
+    public void setMatrimonialid(Matrimonial matrimonialid) {
+        this.matrimonialid = matrimonialid;
     }
 
     public Parish getParishid() {

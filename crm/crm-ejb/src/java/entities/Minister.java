@@ -40,8 +40,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Minister.findByLname", query = "SELECT m FROM Minister m WHERE m.lname = :lname"),
     @NamedQuery(name = "Minister.findByMorder", query = "SELECT m FROM Minister m WHERE m.morder = :morder"),
     @NamedQuery(name = "Minister.findByRank", query = "SELECT m FROM Minister m WHERE m.rank = :rank"),
-    @NamedQuery(name = "Minister.findByContact", query = "SELECT m FROM Minister m WHERE m.contact = :contact"),
-    @NamedQuery(name = "Minister.findByNatID", query = "SELECT m FROM Minister m WHERE m.natID = :natID"),
     @NamedQuery(name = "Minister.findByDeleteFlag", query = "SELECT m FROM Minister m WHERE m.deleteFlag = :deleteFlag"),
     @NamedQuery(name = "Minister.findByCreatedAt", query = "SELECT m FROM Minister m WHERE m.createdAt = :createdAt")})
 public class Minister implements Serializable {
@@ -71,16 +69,6 @@ public class Minister implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "rank")
     private String rank;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "contact")
-    private String contact;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 15)
-    @Column(name = "natID")
-    private String natID;
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
     @Column(name = "createdAt")
@@ -102,14 +90,12 @@ public class Minister implements Serializable {
         this.id = id;
     }
 
-    public Minister(Integer id, String fname, String lname, String morder, String rank, String contact, String natID) {
+    public Minister(Integer id, String fname, String lname, String morder, String rank) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.morder = morder;
         this.rank = rank;
-        this.contact = contact;
-        this.natID = natID;
     }
 
     public Integer getId() {
@@ -150,22 +136,6 @@ public class Minister implements Serializable {
 
     public void setRank(String rank) {
         this.rank = rank;
-    }
-
-    public String getContact() {
-        return contact;
-    }
-
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    public String getNatID() {
-        return natID;
-    }
-
-    public void setNatID(String natID) {
-        this.natID = natID;
     }
 
     public Integer getDeleteFlag() {

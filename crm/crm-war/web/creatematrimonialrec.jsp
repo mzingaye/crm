@@ -64,12 +64,12 @@
                                 </div>
                             </div>
                                                         
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="natID" value="#{matrimonial.b.memberid.natID}"/>
                                 </div>
-                            </div>
+                            </div--%>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
@@ -82,12 +82,12 @@
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="dob" value="#{matrimonial.b.memberid.dob}"/>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Age</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="age" value="#{matrimonial.b.memberid.age}"/>
                                 </div>
-                            </div>
+                            </div--%>
                             <hr>
                         </h:form>
                         <h:form styleClass="form-horizontal form-label-left">
@@ -112,12 +112,12 @@
                                 <h:inputText disabled="true"  styleClass="form-control has-feedback-left" id="spousename" value="#{matrimonial.spousename}"/>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="spousenatid" value="#{matrimonial.spousenatid}"/>
                                 </div>
-                            </div>
+                            </div--%>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -133,12 +133,12 @@
                                     </h:inputText>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Age</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="spouseage" value="#{matrimonial.spouseage}"/>
                                 </div>
-                            </div>
+                            </div--%>
                             <hr>
                         </h:form>
                         <h:form styleClass="form-horizontal form-label-left">
@@ -171,12 +171,12 @@
                                 </div>
                             </div>
                                                         
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="natID" value="#{matrimonial.sh.natID}"/>
                                 </div>
-                            </div>
+                            </div--%>
                             <hr>
                         </h:form>
                         <h:form styleClass="form-horizontal form-label-left">
@@ -209,12 +209,12 @@
                                 </div>
                             </div>
                                                         
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="natID" value="#{matrimonial.sw.natID}"/>
                                 </div>
-                            </div>
+                            </div--%>
                             <hr>
                         </h:form>
 
@@ -375,9 +375,7 @@
                             <th>#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>National ID</th>
                             <th>Sex</th>
-                            <th>Age</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
@@ -387,9 +385,7 @@
                                     <td>${i.id}</td>
                                     <td>${i.fname}</td>
                                     <td>${i.lname}</td>
-                                    <td>${i.natID}</td>
                                     <td>${i.sex}</td>
-                                    <td>${i.age}</td>
                                     <td>
                                         <h:column>
                                                 <h:commandLink action="#{matrimonial.findMember(i)}" value="Select" styleClass="fa fa-plus"/> 
@@ -426,9 +422,7 @@
                             <th>#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>National ID</th>
                             <th>Sex</th>
-                            <th>Age</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
@@ -438,9 +432,7 @@
                                     <td>${i.memberid.id}</td>
                                     <td>${i.memberid.fname}</td>
                                     <td>${i.memberid.lname}</td>
-                                    <td>${i.memberid.natID}</td>
                                     <td>${i.memberid.sex}</td>
-                                    <td>${i.memberid.age}</td>
                                     <td>
                                         <h:column>
                                                 <h:commandLink action="#{matrimonial.findBaptism(i)}" value="Select" styleClass="fa fa-plus"/> 
@@ -477,9 +469,7 @@
                             <th>#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>National ID</th>
                             <th>Sex</th>
-                            <th>Age</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
@@ -489,9 +479,7 @@
                                     <td>${i.id}</td>
                                     <td>${i.fname}</td>
                                     <td>${i.lname}</td>
-                                    <td>${i.natID}</td>
                                     <td>${i.sex}</td>
-                                    <td>${i.age}</td>
                                     <td>
                                         <h:column>
                                                 <h:commandLink action="#{matrimonial.findSponsor(i)}" value="Select" styleClass="fa fa-eye"/> 
@@ -528,9 +516,7 @@
                             <th>#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>National ID</th>
                             <th>Sex</th>
-                            <th>Age</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
@@ -540,9 +526,7 @@
                                     <td>${i.id}</td>
                                     <td>${i.fname}</td>
                                     <td>${i.lname}</td>
-                                    <td>${i.natID}</td>
                                     <td>${i.sex}</td>
-                                    <td>${i.age}</td>
                                     <td>
                                         <h:column>
                                                 <h:commandLink action="#{matrimonial.findHusSponsor(i)}" value="Select" styleClass="fa fa-eye"/> 

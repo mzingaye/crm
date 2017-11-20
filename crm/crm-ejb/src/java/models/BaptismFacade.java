@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -41,7 +42,12 @@ public class BaptismFacade extends AbstractFacade<Baptism> {
         return getEntityManager().createNamedQuery("Baptism.findByFirstCommunion",Baptism.class).setParameter("firstCommunion","%"+firstCommunion+"%").getResultList();
     }
      public Baptism findMember(Catholic memberid) {
-        return getEntityManager().createNamedQuery("Baptism.findByMemberId",Baptism.class).setParameter("memberid",memberid).getSingleResult();
+         try{
+            return getEntityManager().createNamedQuery("Baptism.findByMemberId",Baptism.class).setParameter("memberid",memberid).getSingleResult();
+        }
+         catch(NoResultException e){
+             return null;
+         }
     }
     
 }

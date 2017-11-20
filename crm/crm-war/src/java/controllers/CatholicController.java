@@ -147,7 +147,7 @@ public class CatholicController implements Serializable {
         return "sponsor";
     }
     
-    public String search(){
+    /*public String search(){
         Catholic c = this.catholicFacade.find(cBean.getId());
         cBean.setFname(c.getFname());
         cBean.setMname(c.getMname());
@@ -191,7 +191,7 @@ public class CatholicController implements Serializable {
         csBean.setMlname(c.getMlname());
         csBean.setMnatID(c.getMnatID());
         return null;
-    }
+    }*/
    
     
 }

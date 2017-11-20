@@ -60,10 +60,10 @@
                                     <td>${i.id}</td>
                                     <td>
                                         <h:outputText value="#{i.dateOfConfirmation}">
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
                                         </h:outputText>
                                     </td>
-                                    <td><h:outputText value="#{i.baptismid.id}"/></td>
+                                    <td><h:outputText value="#{i.baptismid.baptReg}"/></td>
                                     <td><h:outputText value="#{i.baptismid.memberid.fname} #{i.baptismid.memberid.lname}"/></td>
                                     <td><h:outputText value="#{i.parishid.name}"/></td>
                                     <td><h:outputText value="#{i.sponsorid.fname} #{i.sponsorid.lname}"/></td>

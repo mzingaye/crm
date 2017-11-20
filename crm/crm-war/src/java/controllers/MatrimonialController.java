@@ -190,17 +190,17 @@ public class MatrimonialController implements Serializable  {
     
     public void findMember(Catholic c){
         this.spousename = c.getFname().concat(" ").concat(c.getLname());
-        this.spousenatid = c.getNatID();
+        //this.spousenatid = c.getNatID();
         this.spousedob = c.getDob();
-        this.spouseage = c.getAge()+"";
+        //this.spouseage = c.getAge()+"";
         this.spousesex = c.getSex();
     }
     public void findBaptism(Baptism b){
         this.bs = b;
         this.spousename = b.getMemberid().getFname().concat(" ").concat(b.getMemberid().getLname());
-        this.spousenatid = b.getMemberid().getNatID();
+        //this.spousenatid = b.getMemberid().getNatID();
         this.spousedob = b.getMemberid().getDob();
-        this.spouseage = b.getMemberid().getAge()+"";
+        //this.spouseage = b.getMemberid().getAge()+"";
         this.spousesex = b.getMemberid().getSex();
     }
     public void findSponsor(Sponsor sw){
@@ -218,9 +218,9 @@ public class MatrimonialController implements Serializable  {
         this.bs = new Baptism();
         this.spousename = null;
         this.spouseage = null;
-        this.spousenatid = null;
+        //this.spousenatid = null;
         this.spousesex = null;
-        this.spousedob = null;
+        //this.spousedob = null;
         this.ministerid = 0;
         this.parishid = 0;
         return "creatematrimonialrec";

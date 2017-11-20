@@ -26,41 +26,13 @@ import javax.inject.Named;
 @RequestScoped
 @Named(value="cBean")
 public class CatholicBean  implements Serializable{
-    private String natID;
 
-    public String getNatID() {
-        return natID;
-    }
-
-    public void setNatID(String natID) {
-        this.natID = natID;
-    }
-
-    public String getFnatID() {
-        return fnatID;
-    }
-
-    public void setFnatID(String fnatID) {
-        this.fnatID = fnatID;
-    }
-
-    public String getMnatID() {
-        return mnatID;
-    }
-
-    public void setMnatID(String mnatID) {
-        this.mnatID = mnatID;
-    }
-    private String fnatID;
-    private String mnatID;
     private Integer id;
     private String fname;
     private String mname;
     private String lname;
     private String sex;
     private Date dob;
-    private int age;
-    private String placeOfBirth;
     private String contact;
     private String ffname;
     private String fmname;
@@ -168,22 +140,6 @@ public class CatholicBean  implements Serializable{
 
     public void setDob(Date dob) {
         this.dob = dob;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getPlaceOfBirth() {
-        return placeOfBirth;
-    }
-
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
     }
 
     public String getContact() {

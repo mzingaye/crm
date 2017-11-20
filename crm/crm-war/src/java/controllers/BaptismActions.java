@@ -63,7 +63,7 @@ public class BaptismActions implements Serializable  {
     public BaptismActions() {
     }
     
-    public String newRec(){
+    /*public String newRec(){
         bBean.setId(null);
         bBean.setCname(null);
         bBean.setDateOfBaptism(null);
@@ -89,11 +89,11 @@ public class BaptismActions implements Serializable  {
         cBean.setFfname(null);
         cBean.setFmname(null);
         cBean.setFlname(null);
-        cBean.setFnatID(null);
+       // cBean.setFnatID(null);
         cBean.setMfname(null);
         cBean.setMmname(null);
         cBean.setMlname(null);
-        cBean.setMnatID(null);
+        //cBean.setMnatID(null);
         
         sBean.setId(null);
         sBean.setFname(null);
@@ -274,5 +274,5 @@ public class BaptismActions implements Serializable  {
         b.setDeleteFlag(1);
         this.baptismFacade.edit(b);
         return "baptism";
-    }
+    }*/
 }

@@ -29,7 +29,7 @@
                         </tr>
                         <tr>
                             <td><span style="font-size:15px">Baptism Reg. No.</span> </td>
-                            <td><span style="font-size:15px">${bBean.id}</span></td>
+                            <td><span style="font-size:15px">${bBean.baptReg}</span></td>
                         </tr>
                         <tr>
                             <td><span style="font-size:15px">Christian Name</span> </td>

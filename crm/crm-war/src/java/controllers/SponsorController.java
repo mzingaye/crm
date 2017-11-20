@@ -83,23 +83,24 @@ public class SponsorController implements Serializable  {
     }
     
     public String make(Catholic c){
-        if(c.getAge()<18){
+        /*if(c.getAge()<18){
             log.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Member [ "+c.getId()+" ] is below 18 years!");
             return null;
         }
-        else{
+        else{*/
             this.s = new Sponsor();
             this.s.setFname(c.getFname());
             this.s.setMname(c.getMname());
             this.s.setLname(c.getLname());
-            this.s.setNatID(c.getNatID());
-            this.s.setAge(c.getAge());
+            //this.s.setNatID(c.getNatID());
+            //this.s.setAge(c.getAge());
             this.s.setSex(c.getSex());
-            this.s.setDob(c.getDob());
-            this.s.setContact(c.getContact());
+            //this.s.setDob(c.getDob());
+            //this.s.setContact(c.getContact());
             return "addsponsor";  
-        }
+       // }
         
+        //return "addsponsor";
     }
     
     public String edit(){
@@ -120,7 +121,7 @@ public class SponsorController implements Serializable  {
         return "newBaptism";
     }
     
-    public String search(){
+    /*public String search(){
         Sponsor s = this.sponsorFacade.find(sBean.getId());
         sBean.setFname(s.getFname());
         sBean.setMname(s.getMname());
@@ -144,7 +145,7 @@ public class SponsorController implements Serializable  {
         ssBean.setNatID(ss.getNatID());
         ssBean.setContact(ss.getContact());
         return null;
-    }
+    }*/
     
     public void delete(Sponsor s){
         try{

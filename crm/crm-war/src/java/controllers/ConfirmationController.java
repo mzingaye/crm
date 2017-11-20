@@ -140,12 +140,18 @@ public class ConfirmationController implements Serializable {
     }
     
     public String newCon(Baptism b){
-        this.b = b;
-        this.co = new Confirmation();
-        this.sponsor = b.getSponsorid().getId();
-        this.minister = 0;
-        this.parish = 0;
-        return "createconfirmation";
+        if(this.confirmationFacade.findBaptism(b)!= null){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" can only be confirmed ONCE!");
+            return null;
+        }
+        else{
+            this.b = b;
+            this.co = new Confirmation();
+            this.sponsor = b.getSponsorid().getId();
+            this.minister = 0;
+            this.parish = 0;
+            return "createconfirmation";
+        }
     }
     
     public String add(){
@@ -159,7 +165,7 @@ public class ConfirmationController implements Serializable {
                 return null;
             }
             else{
-                if(b.getMemberid().getAge() < 12){
+                /*if(b.getMemberid().getAge() < 12){
                     LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" is below 12 years of age, hence cannot be confirmed!");
                     return null; 
                  }
@@ -168,7 +174,7 @@ public class ConfirmationController implements Serializable {
                      LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" can only be confirmed ONCE!");
                      return null;
                  }
-                 catch(NoResultException | EJBException no){
+                 catch(NoResultException | EJBException no){*/
                      if(b.getDateOfBaptism().compareTo(co.getDateOfConfirmation()) < 0){
                          co.setBaptismid(b);
                          co.setMinisterid(this.ministerFacade.find(minister));
@@ -185,7 +191,7 @@ public class ConfirmationController implements Serializable {
                          LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Baptism Date: "+b.getDateOfBaptism()+" is after the entered Confirmation Date: "+co.getDateOfConfirmation()+" hence confirmation record cannot be created");
                          return null;
                      }
-                 }
+                 //}
             }
         }  
         else{
@@ -205,10 +211,10 @@ public class ConfirmationController implements Serializable {
     
     public String edit(){
         if(b != null){
-            if(b.getMemberid().getAge() < 12){
+            /*if(b.getMemberid().getAge() < 12){
                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" is below 12 years of age, hence cannot be confirmed!");
                return null; 
-            }
+            }*/
             try{
                 if(b.getDateOfBaptism().compareTo(co.getDateOfConfirmation()) < 0){
                     co.setBaptismid(b);

@@ -43,8 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Catholic.findByLname", query = "SELECT c FROM Catholic c WHERE c.lname = :lname"),
     @NamedQuery(name = "Catholic.findBySex", query = "SELECT c FROM Catholic c WHERE c.sex = :sex"),
     @NamedQuery(name = "Catholic.findByDob", query = "SELECT c FROM Catholic c WHERE c.dob = :dob"),
-    @NamedQuery(name = "Catholic.findByAge", query = "SELECT c FROM Catholic c WHERE c.age = :age"),
-    @NamedQuery(name = "Catholic.findByPlaceOfBirth", query = "SELECT c FROM Catholic c WHERE c.placeOfBirth = :placeOfBirth"),
     @NamedQuery(name = "Catholic.findByContact", query = "SELECT c FROM Catholic c WHERE c.contact = :contact"),
     @NamedQuery(name = "Catholic.findByFfname", query = "SELECT c FROM Catholic c WHERE c.ffname = :ffname"),
     @NamedQuery(name = "Catholic.findByFmname", query = "SELECT c FROM Catholic c WHERE c.fmname = :fmname"),
@@ -52,9 +50,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Catholic.findByMfname", query = "SELECT c FROM Catholic c WHERE c.mfname = :mfname"),
     @NamedQuery(name = "Catholic.findByMmname", query = "SELECT c FROM Catholic c WHERE c.mmname = :mmname"),
     @NamedQuery(name = "Catholic.findByMlname", query = "SELECT c FROM Catholic c WHERE c.mlname = :mlname"),
-    @NamedQuery(name = "Catholic.findByNatID", query = "SELECT c FROM Catholic c WHERE c.natID = :natID"),
-    @NamedQuery(name = "Catholic.findByFnatID", query = "SELECT c FROM Catholic c WHERE c.fnatID = :fnatID"),
-    @NamedQuery(name = "Catholic.findByMnatID", query = "SELECT c FROM Catholic c WHERE c.mnatID = :mnatID"),
     @NamedQuery(name = "Catholic.findByDeleteFlag", query = "SELECT c FROM Catholic c WHERE c.deleteFlag = :deleteFlag"),
     @NamedQuery(name = "Catholic.findByCreatedAt", query = "SELECT c FROM Catholic c WHERE c.createdAt = :createdAt")})
 public class Catholic implements Serializable {
@@ -89,15 +84,6 @@ public class Catholic implements Serializable {
     private Date dob;
     @Basic(optional = false)
     @NotNull(message = "Age can't be empty") 
-    @Column(name = "age")
-    private int age;
-    @Basic(optional = false)
-    @NotNull(message = "Place of birth can't be empty") 
-    @Size(min = 1, max = 100)
-    @Column(name = "placeOfBirth")
-    private String placeOfBirth;
-    @Basic(optional = false)
-    @NotNull(message = "Contact can't be empty") 
     @Size(min = 1, max = 255)
     @Column(name = "contact")
     private String contact;
@@ -119,15 +105,6 @@ public class Catholic implements Serializable {
     @Size(max = 50)
     @Column(name = "mlname")
     private String mlname;
-    @Size(max = 15, message = "Cannot be more than 15 characters!")
-    @Column(name = "natID")
-    private String natID;
-    @Size(max = 15)
-    @Column(name = "fnatID")
-    private String fnatID;
-    @Size(max = 15)
-    @Column(name = "mnatID")
-    private String mnatID;
     @Column(name = "deleteFlag")
     private Integer deleteFlag;
     @Column(name = "createdAt")
@@ -148,14 +125,12 @@ public class Catholic implements Serializable {
         this.id = id;
     }
 
-    public Catholic(Integer id, String fname, String lname, String sex, Date dob, int age, String placeOfBirth, String contact) {
+    public Catholic(Integer id, String fname, String lname, String sex, Date dob, String contact) {
         this.id = id;
         this.fname = fname;
         this.lname = lname;
         this.sex = sex;
         this.dob = dob;
-        this.age = age;
-        this.placeOfBirth = placeOfBirth;
         this.contact = contact;
     }
 
@@ -205,22 +180,6 @@ public class Catholic implements Serializable {
 
     public void setDob(Date dob) {
         this.dob = dob;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getPlaceOfBirth() {
-        return placeOfBirth;
-    }
-
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
     }
 
     public String getContact() {
@@ -277,30 +236,6 @@ public class Catholic implements Serializable {
 
     public void setMlname(String mlname) {
         this.mlname = mlname;
-    }
-
-    public String getNatID() {
-        return natID;
-    }
-
-    public void setNatID(String natID) {
-        this.natID = natID;
-    }
-
-    public String getFnatID() {
-        return fnatID;
-    }
-
-    public void setFnatID(String fnatID) {
-        this.fnatID = fnatID;
-    }
-
-    public String getMnatID() {
-        return mnatID;
-    }
-
-    public void setMnatID(String mnatID) {
-        this.mnatID = mnatID;
     }
 
     public Integer getDeleteFlag() {

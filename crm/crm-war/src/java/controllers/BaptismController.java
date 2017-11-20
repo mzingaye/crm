@@ -154,7 +154,7 @@ public class BaptismController implements Serializable {
     }
     
     public String add(){
-        try{
+        /*try{
             this.baptismFacade.findMember(c);
             LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+c.getId()+" : "+c.getFname()+" "+c.getLname()+"  can only be baptized once!");
             return "catholics";
@@ -162,7 +162,7 @@ public class BaptismController implements Serializable {
         catch(NoResultException no){
             
         }
-        catch(EJBException e){
+        catch(EJBException e){*/
             b.setMemberid(c);
             b.setMinisterid(this.ministerFacade.find(ministerid));
             b.setParishid(this.parishFacade.find(parishid));
@@ -174,8 +174,8 @@ public class BaptismController implements Serializable {
             this.s = new Sponsor();
             this.b = new Baptism(); 
             return "baptism";
-        }
-         return null;
+        //}
+        // return null;
     }
     
     public String edit(){
@@ -191,12 +191,29 @@ public class BaptismController implements Serializable {
     }
     
     public String newBaptism(Catholic c){
-        this.c = c;
-        this.s = new Sponsor();
-        this.b = new Baptism();
-        this.ministerid = 0;
-        this.parishid = 0;
-        return "newBaptism";
+       // try{
+            Baptism b = this.baptismFacade.findMember(c);
+            if(b != null){
+                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+c.getId()+" : "+c.getFname()+" "+c.getLname()+"  can only be baptized once!");
+                return null;
+            }
+            else{
+                this.c = c;
+                this.s = new Sponsor();
+                this.b = new Baptism();
+                this.ministerid = 0;
+                this.parishid = 0;
+                return "newBaptism";
+            }
+        /*}
+        catch(Exception no){
+            this.c = c;
+            this.s = new Sponsor();
+            this.b = new Baptism();
+            this.ministerid = 0;
+            this.parishid = 0;
+            return "newBaptism";
+        }*/
     }
     
     public void findSponsor(Sponsor s){

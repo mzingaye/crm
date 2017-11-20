@@ -44,7 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Baptism.findByFirstCommunion", query = "SELECT b FROM Baptism b WHERE b.firstCommunion = :firstCommunion"),
     @NamedQuery(name = "Baptism.findByPhysicalAddress", query = "SELECT b FROM Baptism b WHERE b.physicalAddress = :physicalAddress"),
     @NamedQuery(name = "Baptism.findByDeleteFlag", query = "SELECT b FROM Baptism b WHERE b.deleteFlag = :deleteFlag"),
-    @NamedQuery(name = "Baptism.findByCreatedAt", query = "SELECT b FROM Baptism b WHERE b.createdAt = :createdAt")})
+    @NamedQuery(name = "Baptism.findByCreatedAt", query = "SELECT b FROM Baptism b WHERE b.createdAt = :createdAt"),
+    @NamedQuery(name = "Baptism.findByBaptReg", query = "SELECT b FROM Baptism b WHERE b.baptReg = :baptReg")})
 public class Baptism implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -75,6 +76,10 @@ public class Baptism implements Serializable {
     @Column(name = "createdAt")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "baptReg")
+    private int baptReg;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "baptismid")
     private List<Death> deathList;
     @OneToMany(mappedBy = "spouseBaptismid")
@@ -106,11 +111,12 @@ public class Baptism implements Serializable {
         this.id = id;
     }
 
-    public Baptism(Integer id, String cname, Date dateOfBaptism, String physicalAddress) {
+    public Baptism(Integer id, String cname, Date dateOfBaptism, String physicalAddress, int baptReg) {
         this.id = id;
         this.cname = cname;
         this.dateOfBaptism = dateOfBaptism;
         this.physicalAddress = physicalAddress;
+        this.baptReg = baptReg;
     }
 
     public Integer getId() {
@@ -167,6 +173,14 @@ public class Baptism implements Serializable {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public int getBaptReg() {
+        return baptReg;
+    }
+
+    public void setBaptReg(int baptReg) {
+        this.baptReg = baptReg;
     }
 
     @XmlTransient

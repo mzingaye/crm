@@ -91,7 +91,7 @@
                                     <h:message for="dob" style="color: red"/> 
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{catholic.c.natID}" required="true" requiredMessage="National Identity / Passport Number is a required field!" >
@@ -117,7 +117,7 @@
                                     </h:inputText>
                                     <h:message for="placeOfBirth" style="color: red"/> 
                                 </div>
-                            </div>
+                            </div--%>
                              <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Contact</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -157,7 +157,7 @@
                                     <h:message for="flname" style="color: red"/>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText styleClass="form-control has-feedback-left" id="fnatID" value="#{catholic.c.fnatID}">
@@ -165,7 +165,7 @@
                                 </h:inputText>
                                     <h:message for="fnatID" style="color: red"/> 
                                 </div>
-                            </div>
+                            </div--%>
                             <hr>
                                 <h:outputLabel>Mother's Information</h:outputLabel>
                             <hr>
@@ -196,7 +196,7 @@
                                     <h:message for="mlname" style="color: red"/>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText styleClass="form-control has-feedback-left" id="mnatID" value="#{catholic.c.mnatID}">
@@ -204,7 +204,7 @@
                                 </h:inputText>
                                     <h:message for="mnatID" style="color: red"/> 
                                 </div>
-                            </div>
+                            </div--%>
                             <hr>
                             <h:commandButton action="#{catholic.add()}" value="Save" styleClass="btn btn-success"/>
                             <a href="catholics.jsp" value="" class="btn btn-danger">Cancel</a>

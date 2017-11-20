@@ -33,6 +33,7 @@ public class BaptismBean implements Serializable {
 
     private Integer id;
     private String cname;
+    private int baptReg;
     private Date dateOfBaptism;
     private Date firstCommunion;
     private String physicalAddress;
@@ -167,6 +168,14 @@ public class BaptismBean implements Serializable {
 
     public void setSponsorid(Sponsor sponsorid) {
         this.sponsorid = sponsorid;
+    }
+
+    public int getBaptReg() {
+        return baptReg;
+    }
+
+    public void setBaptReg(int baptReg) {
+        this.baptReg = baptReg;
     }
 
 }

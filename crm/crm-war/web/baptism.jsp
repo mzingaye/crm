@@ -48,7 +48,7 @@
                             <th>#</th>
                             <th>Christian Name</th>
                             <th>Full Name</th>
-                            <th>Member ID</th>
+                            <th>Baptism Reg.</th>
                             <th>Date Of Baptism</th>
                             <th>First Communion</th>
                             <th>Physical Address</th>
@@ -61,7 +61,7 @@
                                     <td>${i.id}</td>
                                     <td>${i.cname}</td>
                                     <td>${i.memberid.fname} ${i.memberid.lname}</td>
-                                    <td>${i.memberid.id}</td>
+                                    <td>${i.baptReg}</td>
                                     <td>
                                         <h:outputText value="#{i.dateOfBaptism}">
                                             <f:convertDateTime pattern="dd/MM/yyyy" />

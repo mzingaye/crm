@@ -53,7 +53,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{baptism.c.fname}" required="true" requiredMessage="First Name cannot be empty!" >
+                                <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="fname" value="#{baptism.c.fname}" required="true" requiredMessage="First Name cannot be empty!" >
                                     <f:validateLength maximum="50" />
                                 </h:inputText>
                                   <h:message for="fname" style="color: red"/>  
@@ -62,7 +62,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{baptism.c.mname}">
+                                  <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="mname" value="#{baptism.c.mname}">
                                       <f:validateLength maximum="50" />
                                 </h:inputText>
                                     <h:message for="mname" style="color: red"/> 
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{baptism.c.lname}" required="true" requiredMessage="Last Name cannot be empty!">
+                                  <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="lname" value="#{baptism.c.lname}" required="true" requiredMessage="Last Name cannot be empty!">
                                       <f:validateLength maximum="50" />
                                 </h:inputText>
                                   <h:message for="lname" style="color: red"/> 
@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:selectOneMenu styleClass="form-control has-feedback-left" id="sex" value="#{baptism.c.sex}" required="true" requiredMessage="Sex is a require field!" >
+                                    <h:selectOneMenu disabled="true" styleClass="form-control has-feedback-left" id="sex" value="#{baptism.c.sex}" required="true" requiredMessage="Sex is a require field!" >
                                         <f:selectItem itemLabel="Select Member's Sex" itemValue="" />
                                         <f:selectItem itemLabel="Female" itemValue="Female" />
                                         <f:selectItem itemLabel="Male" itemValue="Male" />
@@ -91,14 +91,14 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of Birth</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:inputText  styleClass="form-control has-feedback-left" id="dob" value="#{baptism.c.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Date of birth field is required."  converterMessage="Please provide date of birth in dd/mm/yyyy format">
+                                    <h:inputText disabled="true"  styleClass="form-control has-feedback-left" id="dob" value="#{baptism.c.dob}" title="dd/mm/yyyy" required="true" requiredMessage="The Date of birth field is required."  converterMessage="Please provide date of birth in dd/mm/yyyy format">
                                         <f:convertDateTime pattern="dd/MM/yyyy" />
                                         <f:validateLength maximum="50" />
                                     </h:inputText>
                                     <h:message for="dob" style="color: red"/> 
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{baptism.c.natID}" required="true" requiredMessage="National Identity / Passport Number is a required field!" >
@@ -124,18 +124,18 @@
                                     </h:inputText>
                                     <h:message for="placeOfBirth" style="color: red"/> 
                                 </div>
-                            </div>
+                            </div--%>
                             </h:form>
                             <hr>
                             <h:form  styleClass="form-horizontal form-label-left">
-                            <h:outputLabel>Sponsor Personal Information</h:outputLabel>
+                            <h:outputLabel>Sponsor Information</h:outputLabel>
                             <br>
                             <a href="findSponsor" data-toggle="modal"data-target="#findSponsor" class="btn btn-warning">Find Sponsor</a>
                             <hr>
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">First Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="fname" value="#{baptism.s.fname}" title="First Name" required="true" requiredMessage="The First Name field is required.">
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="fname" value="#{baptism.s.fname}" title="First Name" required="true" requiredMessage="The First Name field is required.">
                                         
                                         <f:validateLength maximum="50" />
                                     </h:inputText>
@@ -145,7 +145,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Middle Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <h:inputText styleClass="form-control has-feedback-left" id="mname" value="#{baptism.s.mname}">
+                                    <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="mname" value="#{baptism.s.mname}">
                                           <f:validateLength maximum="50" />
                                     </h:inputText>
                                     <h:message for="mname" style="color: red"/>  
@@ -154,7 +154,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Last Name</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                  <h:inputText styleClass="form-control has-feedback-left" id="lname" value="#{baptism.s.lname}" title="Last Name" required="true" requiredMessage="The Last Name field is required.">
+                                  <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="lname" value="#{baptism.s.lname}" title="Last Name" required="true" requiredMessage="The Last Name field is required.">
                                       <f:validateLength maximum="50" />
                                     </h:inputText>
                                     <h:message for="lname" style="color: red"/>  
@@ -163,7 +163,7 @@
                             <div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Sex</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
-                                    <h:selectOneMenu styleClass="form-control has-feedback-left" id="sex" value="#{baptism.s.sex}" required="true" requiredMessage="Sex is a require field!" >
+                                    <h:selectOneMenu disabled="true" styleClass="form-control has-feedback-left" id="sex" value="#{baptism.s.sex}" required="true" requiredMessage="Sex is a require field!" >
                                         <f:selectItem itemLabel="Select Sponsor's Sex" itemValue="" />
                                         <f:selectItem itemLabel="Female" itemValue="Female" />
                                         <f:selectItem itemLabel="Male" itemValue="Male" />
@@ -171,7 +171,7 @@
                                     <h:message for="sex" style="color: red"/>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{baptism.s.natID}" title="National ID / Passport Number" required="true" requiredMessage="The National ID / Passport Number field is required.">
@@ -208,7 +208,7 @@
                                     </h:inputTextarea>
                                     <h:message for="contact" style="color: red"/>  
                                 </div>
-                            </div> 
+                             </div--%> 
                             <hr>
                            
                         </h:form>
@@ -216,6 +216,15 @@
                                   <h:outputLabel>Baptism Information</h:outputLabel>
                             <hr>
                                  <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Baptism Reg. Number</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <h:inputText styleClass="form-control has-feedback-left" id="baptReg" value="#{baptism.b.baptReg}" title="Baptism Reg. Number" required="true" requiredMessage="Baptism Reg. Number field is required.">
+                                            <f:validateLength maximum="20" />
+                                        </h:inputText>
+                                        <h:message for="baptReg" style="color: red"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Christian Name</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <h:inputText styleClass="form-control has-feedback-left" id="cname" value="#{baptism.b.cname}" title="Christian Name" required="true" requiredMessage="The Chistian Name field is required.">
@@ -237,7 +246,7 @@
                                 <div class="form-group">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Date of First Communion</label>
                                     <div class="col-md-3 col-sm-3 col-xs-12">
-                                        <h:inputText  styleClass="form-control has-feedback-left" id="firstCommunion" value="#{baptism.b.firstCommunion}" title="dd/mm/yyyy" required="true" requiredMessage="The Date of first Communion field is required." converterMessage="Please provide date of firstCommunion in dd/mm/yyyy format">
+                                        <h:inputText  styleClass="form-control has-feedback-left" id="firstCommunion" value="#{baptism.b.firstCommunion}" title="dd/mm/yyyy" converterMessage="Please provide date of firstCommunion in dd/mm/yyyy format">
                                             <f:convertDateTime pattern="dd/MM/yyyy" />
                                             <f:validateLength maximum="50" />
                                         </h:inputText>
@@ -302,16 +311,14 @@
                         </div>
                         <div class="modal-body">
                             <h:form>
-                      
+                      <h:commandButton value="Add Sponsor" action="#{sponsor.newMember()}" styleClass="btn btn-info"/>
                     <table id="datatable" class="table table-striped  ">
                         <thead>
                           <tr>
                             <th>#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>National ID</th>
                             <th>Sex</th>
-                            <th>Age</th>
                             <th>Actions</th>
                           </tr>
                         </thead>
@@ -321,9 +328,7 @@
                                     <td>${i.id}</td>
                                     <td>${i.fname}</td>
                                     <td>${i.lname}</td>
-                                    <td>${i.natID}</td>
                                     <td>${i.sex}</td>
-                                    <td>${i.age}</td>
                                     <td>
                                         <h:column>
                                                 <h:commandLink action="#{baptism.findSponsor(i)}" value="Select" styleClass="fa fa-eye"/> 

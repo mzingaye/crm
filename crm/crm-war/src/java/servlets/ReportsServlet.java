@@ -69,6 +69,7 @@ public class ReportsServlet extends HttpServlet {
             case "baptism":
                 Baptism b = baptismFacade.find(id);
                 this.bBean.setCname(b.getCname());
+                this.bBean.setBaptReg(b.getBaptReg());
                 this.bBean.setConfirmationList(b.getConfirmationList());
                 this.bBean.setDateOfBaptism(b.getDateOfBaptism());
                 this.bBean.setDeathList(b.getDeathList());
