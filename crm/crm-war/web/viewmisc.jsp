@@ -97,7 +97,7 @@
                                     <h:message for="dob" style="color: red"/> 
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-3 col-sm-3 col-xs-12">
                                     <h:inputText disabled="true" styleClass="form-control has-feedback-left" id="natID" value="#{misc.c.natID}" required="true" requiredMessage="National Identity / Passport Number is a required field!" >
@@ -123,7 +123,7 @@
                                     </h:inputText>
                                     <h:message for="placeOfBirth" style="color: red"/> 
                                 </div>
-                            </div>
+                            </div--%>
                             </h:form>
                             <hr>
                             

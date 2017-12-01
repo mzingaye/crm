@@ -85,7 +85,7 @@
                                 <h:message for="rank" style="color: red"/> 
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <%--div class="form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">National ID / Passport Number</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <h:inputText styleClass="form-control has-feedback-left" id="natID" value="#{minister.m.natID}" title="NatIN" required="true" requiredMessage="The National ID / Passport field is required.">
@@ -103,7 +103,7 @@
                                 <h:message for="contact" style="color: red"/>                                
 
                                 </div>
-                            </div> 
+                            </div--%> 
                             <hr> 
                             <h:commandButton value="Update" action="#{minister.edit()}" styleClass="btn btn-primary"/>
                             <a href="config.jsp" value="" class="btn btn-danger">Cancel</a>

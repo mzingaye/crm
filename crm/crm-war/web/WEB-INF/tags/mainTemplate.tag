@@ -113,7 +113,7 @@
 
             <!-- /menu footer buttons -->
             <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
+              <!--a data-toggle="tooltip" data-placement="top" title="Settings">
                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               </a>
               <a data-toggle="tooltip" data-placement="top" title="FullScreen">
@@ -121,7 +121,7 @@
               </a>
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
+              </a-->
               <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.jsp">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
@@ -148,16 +148,16 @@
                     <li><a href="profile.jsp"> Profile</a></li>
                     <li>
                       <a href="config.jsp">
-                        <span class="badge bg-red pull-right">50%</span>
+                        <!--span class="badge bg-red pull-right">50%</span-->
                         <span>Settings</span>
                       </a>
                     </li>
-                    <li><a href="help.jsp">Help</a></li>
+                    <!--li><a href="help.jsp">Help</a></li-->
                     <li><a href="/crm-war/logout"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                   </ul>
                 </li>
 
-                <li role="presentation" class="dropdown">
+                <!--li role="presentation" class="dropdown">
                   <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                     <i class="fa fa-envelope-o"></i>
                     <span class="badge bg-green">6</span>
@@ -220,7 +220,7 @@
                       </div>
                     </li>
                   </ul>
-                </li>
+                </li-->
               </ul>
             </nav>
           </div>
