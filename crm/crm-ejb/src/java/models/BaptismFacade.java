@@ -38,6 +38,12 @@ public class BaptismFacade extends AbstractFacade<Baptism> {
     public List<Baptism> findByDateOfBaptism(Date dateOfBaptism) {
         return getEntityManager().createNamedQuery("Baptism.findByDateOfBaptism",Baptism.class).setParameter("dateOfBaptism",dateOfBaptism).getResultList();
     }
+    public List<Baptism> findByPhysicalAddress(String physicalAddress) {
+        return getEntityManager().createNamedQuery("Baptism.findByPhysicalAddress",Baptism.class).setParameter("physicalAddress","%"+physicalAddress+"%").getResultList();
+    }
+    public List<Baptism> findByBaptReg(int baptReg) {
+        return getEntityManager().createNamedQuery("Baptism.findByBaptReg",Baptism.class).setParameter("baptReg",baptReg).getResultList();
+    }
     public List<Baptism> findByFirstCommunion(Date firstCommunion) {
         return getEntityManager().createNamedQuery("Baptism.findByFirstCommunion",Baptism.class).setParameter("firstCommunion","%"+firstCommunion+"%").getResultList();
     }

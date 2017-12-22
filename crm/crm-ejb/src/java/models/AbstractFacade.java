@@ -5,6 +5,7 @@
  */
 package models;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,12 +46,14 @@ public abstract class AbstractFacade<T> {
 
     public T find(Object id) {
         return getEntityManager().find(entityClass, id);
-    }
+        }
 
     public List<T> findAll() {
         javax.persistence.criteria.CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
-        return getEntityManager().createQuery(cq).getResultList();
+        List<T> l = getEntityManager().createQuery(cq).getResultList();
+        Collections.reverse(l);
+        return l;
     }
 
     public List<T> findRange(int[] range) {

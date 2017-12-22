@@ -16,6 +16,7 @@ import entities.User;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
@@ -154,28 +155,17 @@ public class BaptismController implements Serializable {
     }
     
     public String add(){
-        /*try{
-            this.baptismFacade.findMember(c);
-            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+c.getId()+" : "+c.getFname()+" "+c.getLname()+"  can only be baptized once!");
-            return "catholics";
-        }
-        catch(NoResultException no){
-            
-        }
-        catch(EJBException e){*/
-            b.setMemberid(c);
-            b.setMinisterid(this.ministerFacade.find(ministerid));
-            b.setParishid(this.parishFacade.find(parishid));
-            b.setSponsorid(s);
-            b.setUserid(this.userFacade.find(uBean.getId()));
-            this.baptismFacade.create(this.b);
-            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+c.getId()+" : "+c.getFname()+" "+c.getLname()+"  baptism record ["+b.getId()+"] added successfully!");
-            this.c = new Catholic();
-            this.s = new Sponsor();
-            this.b = new Baptism(); 
-            return "baptism";
-        //}
-        // return null;
+        b.setMemberid(c);
+        b.setMinisterid(this.ministerFacade.find(ministerid));
+        b.setParishid(this.parishFacade.find(parishid));
+        b.setSponsorid(s);
+        b.setUserid(this.userFacade.find(uBean.getId()));
+        this.baptismFacade.create(this.b);
+        LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+c.getId()+" : "+c.getFname()+" "+c.getLname()+"  baptism record ["+b.getId()+"] added successfully!");
+        this.c = new Catholic();
+        this.s = new Sponsor();
+        this.b = new Baptism(); 
+        return "baptism";
     }
     
     public String edit(){
@@ -191,29 +181,19 @@ public class BaptismController implements Serializable {
     }
     
     public String newBaptism(Catholic c){
-       // try{
-            Baptism b = this.baptismFacade.findMember(c);
-            if(b != null){
-                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+c.getId()+" : "+c.getFname()+" "+c.getLname()+"  can only be baptized once!");
-                return null;
-            }
-            else{
-                this.c = c;
-                this.s = new Sponsor();
-                this.b = new Baptism();
-                this.ministerid = 0;
-                this.parishid = 0;
-                return "newBaptism";
-            }
-        /*}
-        catch(Exception no){
+        Baptism b = this.baptismFacade.findMember(c);
+        if(b != null){
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+c.getId()+" : "+c.getFname()+" "+c.getLname()+"  can only be baptized once!");
+            return null;
+        }
+        else{
             this.c = c;
             this.s = new Sponsor();
             this.b = new Baptism();
             this.ministerid = 0;
             this.parishid = 0;
             return "newBaptism";
-        }*/
+        }
     }
     
     public void findSponsor(Sponsor s){
@@ -231,15 +211,103 @@ public class BaptismController implements Serializable {
     
     public void delete(Baptism b){
         try{
-            //int del = JOptionPane.showConfirmDialog(null, "");
-            //if(del == 1){
-                this.baptismFacade.remove(b);
-                LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" deleted succesfful!");
-            //}
+            this.baptismFacade.remove(b);
+            LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => "+b.getMemberid().getId()+" : "+b.getMemberid().getFname()+" "+b.getMemberid().getLname()+" deleted succesfful!");
         }
         catch(Exception e){
             LOG.info("User #"+uBean.getId()+": "+uBean.getUsername()+"  => Baptism Record. No "+b.getId()+" cannot be deleted due to Error :"+e);
         }
+    }
+    
+    private int count;
+    private String value = "";
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void search(){
+        value = "value";
+        getValue();  
+    }
+    
+    public void clear(){
+        this.b.setId(0);
+        this.b.setCname(null);
+        this.b.setPhysicalAddress(null);
+        this.b.setDateOfBaptism(null);
+        this.b.setBaptReg(0);
+        this.value = "";
+    }
+    
+    private List<Baptism> list;
+
+    public List<Baptism> getList() {
+        return list;
+    }
+
+    public void setList(List<Baptism> list) {
+        this.list = list;
+    }
+  
+    public List<Baptism> getValue(){
+        switch(value){
+            case "value":
+                try{
+                    if(this.b.getId() != 0){
+                        List<Baptism> list = new ArrayList<>();
+                        list.add(this.baptismFacade.find(this.b.getId()));
+                        setList(list); 
+                        break;
+                    }
+                    if(this.b.getCname() != null){
+                        setList(this.baptismFacade.findByCname(this.b.getCname()));
+                        break; 
+                    }
+                    if(this.b.getDateOfBaptism() != null){
+                        setList(this.baptismFacade.findByDateOfBaptism(this.b.getDateOfBaptism()));
+                       break; 
+                    }
+                    if(this.b.getPhysicalAddress() != null){
+                        setList(this.baptismFacade.findByPhysicalAddress(this.b.getPhysicalAddress()));
+                       break; 
+                    }
+                    if(this.b.getBaptReg()!= 0){
+                        setList(this.baptismFacade.findByBaptReg(this.b.getBaptReg()));
+                       break; 
+                    }
+                    
+                }
+                catch(NullPointerException E){
+                    /*if(this.b.getCname() != null){
+                    setList(this.baptismFacade.findByCname(this.b.getCname()));
+                    break;
+                    }
+                    if(this.b.getDateOfBaptism() != null){
+                    setList(this.baptismFacade.findByDateOfBaptism(this.b.getDateOfBaptism()));
+                    break;
+                    }
+                    if(this.b.getPhysicalAddress() != null){
+                    setList(this.baptismFacade.findByPhysicalAddress(this.b.getPhysicalAddress()));
+                    break;
+                    }
+                    if(this.b.getBaptReg()!= 0){
+                    setList(this.baptismFacade.findByBaptReg(this.b.getBaptReg()));
+                    break;
+                    }*/
+                }
+                
+            default:
+                setList(this.baptismFacade.findAll());
+                break;
+        }
+        this.count = this.list.size();
+        return this.list;
+       
     }
     
 }

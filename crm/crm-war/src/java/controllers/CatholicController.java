@@ -11,6 +11,7 @@ import beans.ConfirmationBean;
 import beans.UserBean;
 import entities.Catholic;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -61,6 +62,7 @@ public class CatholicController implements Serializable {
     Logger log = Logger.getLogger(CatholicController.class);
     
     private Catholic c;
+    private String value = "";
     
     public Catholic getC() {
         return c;
@@ -147,51 +149,101 @@ public class CatholicController implements Serializable {
         return "sponsor";
     }
     
-    /*public String search(){
-        Catholic c = this.catholicFacade.find(cBean.getId());
-        cBean.setFname(c.getFname());
-        cBean.setMname(c.getMname());
-        cBean.setLname(c.getLname());
-        cBean.setSex(c.getSex());
-        cBean.setDob(c.getDob());
-        cBean.setAge(c.getAge());
-        cBean.setPlaceOfBirth(c.getPlaceOfBirth());
-        cBean.setNatID(c.getNatID());
-        cBean.setContact(c.getContact());
-        cBean.setFfname(c.getFfname());
-        cBean.setFmname(c.getFmname());
-        cBean.setFlname(c.getFlname());
-        cBean.setFnatID(c.getFnatID());
-        cBean.setMfname(c.getMfname());
-        cBean.setMmname(c.getMmname());
-        cBean.setMlname(c.getMlname());
-        cBean.setMnatID(c.getMnatID());
-        
-        //conBean.setBaptizedBy(this.baptismFacade.findMember(c).getMinisterid().getFname()+" "+this.baptismFacade.findMember(c).getMinisterid().getLname());
-        return null;
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public void search(){
+        value = "value";
+        getValue();  
     }
     
-    public String searchSpouse(){
-        Catholic c = this.catholicFacade.find(csBean.getId());
-        csBean.setFname(c.getFname());
-        csBean.setMname(c.getMname());
-        csBean.setLname(c.getLname());
-        csBean.setSex(c.getSex());
-        csBean.setDob(c.getDob());
-        csBean.setAge(c.getAge());
-        csBean.setPlaceOfBirth(c.getPlaceOfBirth());
-        csBean.setNatID(c.getNatID());
-        csBean.setContact(c.getContact());
-        csBean.setFfname(c.getFfname());
-        csBean.setFmname(c.getFmname());
-        csBean.setFlname(c.getFlname());
-        csBean.setFnatID(c.getFnatID());
-        csBean.setMfname(c.getMfname());
-        csBean.setMmname(c.getMmname());
-        csBean.setMlname(c.getMlname());
-        csBean.setMnatID(c.getMnatID());
-        return null;
-    }*/
-   
+    public void clear(){
+        this.c.setId(0);
+        this.c.setFname(null);
+        this.c.setLname(null);
+        this.c.setSex(null);
+        this.c.setDob(null);
+        this.c.setContact(null);
+        this.value = "";
+    }
     
+    private List<Catholic> list;
+
+    public List<Catholic> getList() {
+        return list;
+    }
+
+    public void setList(List<Catholic> list) {
+        this.list = list;
+    }
+  
+    public List<Catholic> getValue(){
+        switch(value){
+            case "value":
+                try{
+                    if(this.c.getId() != 0){
+                        List<Catholic> list = new ArrayList<>();
+                        list.add(this.catholicFacade.find(this.c.getId()));
+                        setList(list); 
+                        break;
+                    }
+                    if(this.c.getFname() != null){
+                        setList(this.catholicFacade.findByFname(this.c.getFname()));
+                        break; 
+                    }
+                    if(this.c.getLname() != null){
+                        setList(this.catholicFacade.findByLname(this.c.getLname()));
+                       break; 
+                    }
+                    if(this.c.getSex() != null){
+                        setList(this.catholicFacade.findBySex(this.c.getSex()));
+                       break; 
+                    }
+                    if(this.c.getDob()!= null){
+                        setList(this.catholicFacade.findByDob(this.c.getDob()));
+                       break; 
+                    }
+                    if(this.c.getContact()!= null){
+                        setList(this.catholicFacade.findByContact(this.c.getContact()));
+                       break; 
+                    }
+                }
+                catch(NullPointerException E){
+                    if(this.c.getFname() != null){
+                        setList(this.catholicFacade.findByFname(this.c.getFname()));
+                       break; 
+                    }
+                    if(this.c.getLname() != null){
+                        setList(this.catholicFacade.findByLname(this.c.getLname()));
+                       break; 
+                    }
+                    if(this.c.getSex() != null){
+                        setList(this.catholicFacade.findBySex(this.c.getSex()));
+                       break; 
+                    }
+                    if(this.c.getDob()!= null){
+                        setList(this.catholicFacade.findByDob(this.c.getDob()));
+                       break; 
+                    }
+                    if(this.c.getContact()!= null){
+                        setList(this.catholicFacade.findByContact(this.c.getContact()));
+                       break; 
+                    }
+                }
+                
+            default:
+                setList(this.catholicFacade.findAll());
+                break;
+        }
+        this.count = this.list.size();
+        return this.list;
+       
+    }
 }
